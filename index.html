@@ -3,292 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MeowChat - AI Chatbot สำหรับธุรกิจไทย</title>
-    <meta name="description" content="เปลี่ยนแชทให้เป็นเงิน ด้วย AI Chatbot อัจฉริยะ - ตอบแชท ปิดการขาย จัดการคลัง พร้อม 24 ชม.">
-    <!-- Fallback inline styles -->
+    <title>MeowChat - AI Chatbot</title>
     <style>
-        body { 
-            font-family: 'Prompt', sans-serif; 
-            margin: 0; 
-            padding: 0;
-            background: linear-gradient(180deg, #fff9f0 0%, #fff 50%, #fff5ee 100%);
-            min-height: 100vh;
-        }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        .text-center { text-align: center; }
-        .text-4xl { font-size: 2.5rem; font-weight: bold; }
-        .text-xl { font-size: 1.25rem; }
-        .mb-8 { margin-bottom: 2rem; }
-        .p-8 { padding: 2rem; }
-        .rounded-2xl { border-radius: 1rem; }
-        .bg-orange-500 { background-color: #f97316; }
-        .text-white { color: white; }
-        .gradient-text { 
-            background: linear-gradient(135deg, #FF6B35, #F7C548); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #fff9f0 0%, #fff 100%); min-height: 100vh; }
+        .header { background: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .logo { font-size: 24px; font-weight: bold; background: linear-gradient(135deg, #FF6B35, #F7C548); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav a { margin-left: 25px; color: #666; text-decoration: none; font-size: 14px; }
+        .nav a:hover { color: #FF6B35; }
+        .hero { text-align: center; padding: 80px 20px; }
+        .hero h1 { font-size: 48px; margin-bottom: 20px; color: #333; }
+        .hero h1 span { background: linear-gradient(135deg, #FF6B35, #F7C548); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 20px; color: #666; margin-bottom: 30px; }
+        .btn { display: inline-block; padding: 15px 40px; background: linear-gradient(135deg, #FF6B35, #F7C548); color: white; text-decoration: none; border-radius: 50px; font-weight: bold; margin: 5px; }
+        .btn-outline { background: transparent; border: 2px solid #FF6B35; color: #FF6B35; }
+        .features { padding: 60px 20px; max-width: 1200px; margin: 0 auto; }
+        .features h2 { text-align: center; font-size: 32px; margin-bottom: 40px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .card h3 { color: #333; margin-bottom: 10px; }
+        .card p { color: #666; font-size: 14px; line-height: 1.6; }
+        .emoji { font-size: 40px; display: block; margin-bottom: 15px; }
+        .pricing { padding: 60px 20px; background: #fff9f5; }
+        .pricing h2 { text-align: center; font-size: 32px; margin-bottom: 40px; }
+        .price-card { background: white; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .price-card.popular { border: 3px solid #FF6B35; transform: scale(1.05); }
+        .price { font-size: 48px; font-weight: bold; background: linear-gradient(135deg, #FF6B35, #F7C548); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .price span { font-size: 16px; color: #999; }
+        .footer { background: #333; color: white; padding: 30px; text-align: center; }
+        .footer a { color: #F7C548; text-decoration: none; }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        * { font-family: 'Prompt', sans-serif; margin: 0; padding: 0; }
-        :root { --primary: #FF6B35; --secondary: #F7C548; --accent: #2EC4B6; }
-        body { background: #fffaf8; overflow-x: hidden; }
-        
-        /* Hero */
-        .hero-bg { background: linear-gradient(180deg, #fff9f0 0%, #fff 50%, #fff5ee 100%); position: relative; overflow: hidden; }
-        .hero-bg::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.08) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(247, 197, 72, 0.1) 0%, transparent 50%); animation: bgMove 20s ease-in-out infinite; }
-        @keyframes bgMove { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-2%, -2%); } }
-        
-        /* Cat decorations */
-        .cat-decor { position: absolute; opacity: 0.15; animation: catFloat 6s ease-in-out infinite; z-index: 0; }
-        .cat-decor-1 { left: 2%; top: 10%; animation-delay: 0s; }
-        .cat-decor-2 { left: 8%; bottom: 20%; animation-delay: 1s; }
-        .cat-decor-3 { right: 5%; top: 15%; animation-delay: 2s; }
-        .cat-decor-4 { right: 12%; bottom: 25%; animation-delay: 3s; }
-        .cat-decor-5 { left: 30%; top: 5%; animation-delay: 4s; }
-        .cat-decor-6 { right: 25%; top: 8%; animation-delay: 5s; }
-        
-        @keyframes catFloat { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-20px) rotate(5deg); } }
-        
-        /* Paw prints */
-        .paw { position: absolute; font-size: 20px; opacity: 0.1; animation: pawFloat 8s ease-in-out infinite; }
-        .paw:nth-child(1) { left: 3%; top: 8%; animation-delay: 0s; }
-        .paw:nth-child(2) { left: 12%; top: 65%; animation-delay: 1s; }
-        .paw:nth-child(3) { left: 78%; top: 22%; animation-delay: 2s; }
-        .paw:nth-child(4) { left: 88%; top: 60%; animation-delay: 3s; }
-        .paw:nth-child(5) { left: 45%; top: 88%; animation-delay: 4s; }
-        .paw:nth-child(6) { left: 62%; top: 92%; animation-delay: 5s; }
-        
-        @keyframes pawFloat { 0%, 100% { transform: translateY(0) rotate(-10deg); opacity: 0.1; } 50% { transform: translateY(-15px) rotate(10deg); opacity: 0.15; } }
-        
-        /* Gradient Text */
-        .gradient-text { background: linear-gradient(135deg, #FF6B35 0%, #F7C548 50%, #2EC4B6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientShift 3s ease-in-out infinite; background-size: 200% 200%; }
-        @keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-        
-        /* Glow */
-        .glow-orange { box-shadow: 0 8px 30px rgba(255, 107, 53, 0.3); }
-        
-        /* Cards */
-        .white-card { background: white; border: 1px solid rgba(255,107,53,0.1); transition: all 0.4s; box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
-        .white-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(255,107,53,0.12); border-color: rgba(255,107,53,0.3); }
-        
-        /* Feature top border */
-        .feature-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #FF6B35, #F7C548, #2EC4B6); transform: scaleX(0); transition: transform 0.4s; }
-        .feature-card:hover::before { transform: scaleX(1); }
-        
-        /* Buttons */
-        .btn-primary { background: linear-gradient(135deg, #FF6B35 0%, #F7C548 100%); transition: all 0.3s; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(255,107,53,0.4); }
-        
-        /* Animations */
-        .fade-in { opacity: 0; transform: translateY(30px); animation: fadeInUp 0.8s ease forwards; }
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-        .cat-bounce { animation: catBounce 2s ease-in-out infinite; }
-        @keyframes catBounce { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-12px) rotate(5deg); } }
-        .pulse-ring { animation: pulseRing 2s infinite; }
-        @keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.3); } 70% { box-shadow: 0 0 0 12px rgba(255, 107, 53, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0); } }
-        
-        /* Big cute cat SVG */
-        .big-cat { position: absolute; opacity: 0.08; z-index: 0; }
-        .big-cat-1 { right: -50px; top: 50%; transform: translateY(-50%); }
-        .big-cat-2 { left: -30px; bottom: 10%; }
-        
-        /* Sections */
-        .section-light { background: white; }
-        .section-warm { background: #fff9f5; }
-        #features, #pricing, #contact {
-            scroll-margin-top: 100px;
-        }
 </head>
-<body class="min-h-screen text-gray-800">
-    <!-- Paw prints -->
-    <div class="paw">🐾</div>
-    <div class="paw">🐾</div>
-    <div class="paw">🐾</div>
-    <div class="paw">🐾</div>
-    <div class="paw">🐾</div>
-    <div class="paw">🐾</div>
-    
-    <!-- Cute cats decoration -->
-    <svg class="cat-decor cat-decor-1" width="120" height="120" viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="40" fill="#FF6B35"/><circle cx="45" cy="50" r="8" fill="white"/><circle cx="75" cy="50" r="8" fill="white"/><circle cx="47" cy="52" r="4" fill="#333"/><circle cx="77" cy="52" r="4" fill="#333"/><path d="M55 65 Q60 72 65 65" stroke="#333" stroke-width="3" fill="none"/><path d="M30 35 L40 45 M90 35 L80 45" stroke="#FF6B35" stroke-width="8" stroke-linecap="round"/></svg>
-    <svg class="cat-decor cat-decor-2" width="100" height="100" viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="40" fill="#F7C548"/><circle cx="45" cy="50" r="8" fill="white"/><circle cx="75" cy="50" r="8" fill="white"/><circle cx="47" cy="52" r="4" fill="#333"/><circle cx="77" cy="52" r="4" fill="#333"/><path d="M55 65 Q60 72 65 65" stroke="#333" stroke-width="3" fill="none"/><path d="M30 35 L40 45 M90 35 L80 45" stroke="#F7C548" stroke-width="8" stroke-linecap="round"/></svg>
-    <svg class="cat-decor cat-decor-3" width="90" height="90" viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="35" fill="#FF6B35"/><circle cx="48" cy="52" r="7" fill="white"/><circle cx="72" cy="52" r="7" fill="white"/><circle cx="50" cy="54" r="3" fill="#333"/><circle cx="74" cy="54" r="3" fill="#333"/><path d="M56 64 Q60 70 64 64" stroke="#333" stroke-width="2" fill="none"/><path d="M32 38 L40 44 M88 38 L80 44" stroke="#FF6B35" stroke-width="6" stroke-linecap="round"/></svg>
-    <svg class="cat-decor cat-decor-4" width="110" height="110" viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="38" fill="#2EC4B6"/><circle cx="46" cy="51" r="8" fill="white"/><circle cx="74" cy="51" r="8" fill="white"/><circle cx="48" cy="53" r="4" fill="#333"/><circle cx="76" cy="53" r="4" fill="#333"/><path d="M55 65 Q60 72 65 65" stroke="#333" stroke-width="3" fill="none"/><path d="M30 36 L40 45 M90 36 L80 45" stroke="#2EC4B6" stroke-width="7" stroke-linecap="round"/></svg>
-    <svg class="cat-decor cat-decor-5" width="80" height="80" viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="30" fill="#FF6B35"/><circle cx="50" cy="53" r="6" fill="white"/><circle cx="70" cy="53" r="6" fill="white"/><circle cx="52" cy="55" r="3" fill="#333"/><circle cx="72" cy="55" r="3" fill="#333"/><path d="M56 64 Q60 68 64 64" stroke="#333" stroke-width="2" fill="none"/><path d="M35 40 L42 45 M85 40 L78 45" stroke="#FF6B35" stroke-width="5" stroke-linecap="round"/></svg>
-    <svg class="cat-decor cat-decor-6" width="95" height="95" viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="35" fill="#F7C548"/><circle cx="48" cy="52" r="7" fill="white"/><circle cx="72" cy="52" r="7" fill="white"/><circle cx="50" cy="54" r="3" fill="#333"/><circle cx="74" cy="54" r="3" fill="#333"/><path d="M56 64 Q60 70 64 64" stroke="#333" stroke-width="2" fill="none"/><path d="M32 38 L40 44 M88 38 L80 44" stroke="#F7C548" stroke-width="6" stroke-linecap="round"/></svg>
-
-    <!-- Navbar -->
-    <nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-lg border-b border-orange-100 shadow-sm">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <span class="text-4xl cat-bounce">🐱</span>
-                <div><span class="text-2xl font-bold gradient-text">MeowChat</span><div class="text-xs text-orange-400 font-medium">by Mawsom</div></div>
-            </div>
-            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-500">
-                <a href="#features" class="hover:text-orange-500 transition">ฟีเจอร์</a>
-                <a href="#pricing" class="hover:text-orange-500 transition">ราคา</a>
-                <a href="#contact" class="hover:text-orange-500 transition">ติดต่อ</a>
-            </div>
-            <a href="https://line.me/ti/p/@960xboyt" class="btn-primary px-6 py-2.5 rounded-full text-sm font-bold text-white">ลองใช้ฟรี</a>
+<body>
+    <div class="header">
+        <div class="logo">🐱 MeowChat</div>
+        <div class="nav">
+            <a href="#features">ฟีเจอร์</a>
+            <a href="#pricing">ราคา</a>
+            <a href="#contact">ติดต่อ</a>
         </div>
-    </nav>
+    </div>
 
-    <!-- Hero -->
-    <section class="hero-bg pt-40 pb-28 px-6">
-        <div class="max-w-5xl mx-auto text-center relative z-10">
-            <div class="fade-in inline-flex items-center gap-2 px-5 py-2 rounded-full bg-orange-100 text-orange-600 text-sm mb-8 font-medium">
-                <span class="animate-pulse">✦</span> AI Chatbot สำหรับธุรกิจไทย 🐱 <span class="animate-pulse">✦</span>
-            </div>
-            <h1 class="fade-in text-5xl md:text-7xl font-extrabold mb-8 leading-tight text-gray-900">
-                ตอบแชท ปิดการขาย<br>
-                <span class="gradient-text">จัดการคลังสินค้า</span><br>
-                พร้อม 24 ชม.
-            </h1>
-            <p class="fade-in text-gray-600 text-xl mb-10">AI ที่ทำได้ทุกอย่าง! 🎯 ตอบลูกค้า ✨ ปิดการขาย 📦 อัพเดทคลัง 📊 รอบดูยอดขาย ให้คุณในแอปเดียว</p>
-            <div class="fade-in flex flex-col md:flex-row gap-5 justify-center">
-                <a href="https://line.me/ti/p/@960xboyt" class="btn-primary px-10 py-4 rounded-full font-bold text-lg text-white glow-orange inline-flex items-center gap-3 pulse-ring"><span class="text-2xl">💬</span> Add LINE @960xboyt</a>
-                <a href="#features" class="px-10 py-4 rounded-full border-2 border-orange-200 hover:bg-orange-50 font-bold text-orange-600">ดูฟีเจอร์</a>
-            </div>
-            <div class="fade-in mt-16 flex flex-wrap justify-center gap-10">
-                <div class="text-center"><div class="text-4xl font-bold gradient-text">24/7</div><div class="text-gray-500">พร้อมตอบ</div></div>
-                <div class="text-center"><div class="text-4xl font-bold gradient-text">95%</div><div class="text-gray-500">ปิดขายสำเร็จ</div></div>
-                <div class="text-center"><div class="text-4xl font-bold gradient-text">3 นาที</div><div class="text-gray-500">ตั้งค่าเสร็จ</div></div>
-                <div class="text-center"><div class="text-4xl">💕</div><div class="text-gray-500">แมวส้มรักคุณ</div></div>
-            </div>
+    <div class="hero">
+        <h1>ตอบแชท ปิดการขาย<br><span>จัดการคลังสินค้า</span><br>พร้อม 24 ชม.</h1>
+        <p>AI ที่ทำได้ทุกอย่าง! ตอบลูกค้า ปิดการขาย อัพเดทคลัง รอบดูยอดขาย</p>
+        <div>
+            <a href="https://line.me/ti/p/@960xboyt" class="btn">💬 Add LINE @960xboyt</a>
+            <a href="#features" class="btn btn-outline">ดูฟีเจอร์</a>
         </div>
-    </section>
+        <div style="margin-top: 50px; display: flex; justify-content: center; gap: 40px;">
+            <div><div class="price" style="font-size: 32px;">24/7</div><div style="color: #999;">พร้อมตอบ</div></div>
+            <div><div class="price" style="font-size: 32px;">95%</div><div style="color: #999;">ปิดขายสำเร็จ</div></div>
+            <div><div class="price" style="font-size: 32px;">3 นาที</div><div style="color: #999;">ตั้งค่าเสร็จ</div></div>
+        </div>
+    </div>
 
-    <!-- Features -->
-    <section id="features" class="section-light py-24 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16"><h2 class="text-4xl font-bold mb-4 text-gray-900">🐱 ทำได้ทุกอย่าง</h2><p class="text-gray-500 text-lg">ไม่ใช่แค่แชทบอท คือพนักงานอัจฉริยะ</p></div>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="white-card feature-card p-8 rounded-2xl relative">
-                    <div class="text-5xl mb-5 cat-bounce">💬</div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">ตอบแชทอัตโนมัติ</h3>
-                    <p class="text-gray-500 mb-4">AI ตอบลูกค้าทุกข้อความ ไม่ต้องนั่งรอ ตอบเร็ว แม่นยำ ไม่มีเบื่อ</p>
-                    <ul class="text-sm text-gray-400"><li>✓ ตอบทันที ไม่ต้องรอคิว</li><li>✓ เข้าใจภาษาไทย</li><li>✓ พร้อม 24 ชม.</li></ul>
-                </div>
-                <div class="white-card feature-card p-8 rounded-2xl relative">
-                    <div class="text-5xl mb-5 cat-bounce" style="animation-delay:0.5s">💰</div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">ปิดการขายอัตโนมัติ</h3>
-                    <p class="text-gray-500 mb-4">AI แนะนำสินค้า โปรโมชั่น ช่วยปิดการขาย เพิ่มยอดขายให้คุณ</p>
-                    <ul class="text-sm text-gray-400"><li>✓ แนะนำสินค้าตรงใจ</li><li>✓ เสนอโปรโมชั่น</li><li>✓ ติดตามหลังขาย</li></ul>
-                </div>
-                <div class="white-card feature-card p-8 rounded-2xl relative">
-                    <div class="text-5xl mb-5 cat-bounce" style="animation-delay:1s">📦</div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">อัพเดทคลังสินค้า</h3>
-                    <p class="text-gray-500 mb-4">เชื่อมต่อระบบคลัง อัพเดทสต็อกอัตโนมัติ ลดของค้างสต็อก</p>
-                    <ul class="text-sm text-gray-400"><li>✓ เชื่อม POS/ERP</li><li>✓ แจ้งเตือนสต็อกต่ำ</li><li>✓ อัพเดทเรียลไทม์</li></ul>
-                </div>
-                <div class="white-card feature-card p-8 rounded-2xl relative">
-                    <div class="text-5xl mb-5 cat-bounce" style="animation-delay:1.5s">📊</div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">Dashboard ยอดขาย</h3>
-                    <p class="text-gray-500 mb-4">รอบดูยอดขาย สถิติลูกค้า รายงานได้ตลอดเวลา</p>
-                    <ul class="text-sm text-gray-400"><li>✓ ดูยอดขายเรียลไทม์</li><li>✓ วิเคราะห์ลูกค้า</li><li>✓ Export รายงาน</li></ul>
-                </div>
-                <div class="white-card feature-card p-8 rounded-2xl relative">
-                    <div class="text-5xl mb-5 cat-bounce" style="animation-delay:2s">🛒</div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">รับออร์เดอร์</h3>
-                    <p class="text-gray-500 mb-4">รับออร์เดอร์ผ่านแชท ส่งต่อหลังบ้านอัตโนมัติ</p>
-                    <ul class="text-sm text-gray-400"><li>✓ รับออร์เดอร์ได้เลย</li><li>✓ ยืนยันอัตโนมัติ</li><li>✓ แจ้งทีมส่งของ</li></ul>
-                </div>
-                <div class="white-card feature-card p-8 rounded-2xl relative">
-                    <div class="text-5xl mb-5 cat-bounce" style="animation-delay:2.5s">👥</div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">จัดการลูกค้า</h3>
-                    <p class="text-gray-500 mb-4">เก็บข้อมูลลูกค้า แบ่งกลุ่ม ส่งข่าวโปรโมชั่นได้</p>
-                    <ul class="text-sm text-gray-400"><li>✓ ฐานลูกค้า</li><li>✓ แบ่งกลุ่ม</li><li>✓ ส่ง Broadcast</li></ul>
-                </div>
+    <div class="features" id="features">
+        <h2>🐱 ทำได้ทุกอย่าง</h2>
+        <div class="grid">
+            <div class="card"><span class="emoji">💬</span><h3>ตอบแชทอัตโนมัติ</h3><p>AI ตอบลูกค้าทุกข้อความ ไม่ต้องนั่งรอ ตอบเร็ว แม่นยำ</p></div>
+            <div class="card"><span class="emoji">💰</span><h3>ปิดการขายอัตโนมัติ</h3><p>AI แนะนำสินค้า โปรโมชั่น ช่วยปิดการขาย เพิ่มยอดขาย</p></div>
+            <div class="card"><span class="emoji">📦</span><h3>อัพเดทคลังสินค้า</h3><p>เชื่อมต่อระบบคลัง อัพเดทสต็อกอัตโนมัติ</p></div>
+            <div class="card"><span class="emoji">📊</span><h3>Dashboard ยอดขาย</h3><p>รอบดูยอดขาย สถิติลูกค้า รายงานได้ตลอดเวลา</p></div>
+            <div class="card"><span class="emoji">🛒</span><h3>รับออร์เดอร์</h3><p>รับออร์เดอร์ผ่านแชท ส่งต่อหลังบ้านอัตโนมัติ</p></div>
+            <div class="card"><span class="emoji">👥</span><h3>จัดการลูกค้า</h3><p>เก็บข้อมูลลูกค้า แบ่งกลุ่ม ส่งข่าวโปรโมชั่นได้</p></div>
+        </div>
+    </div>
+
+    <div class="pricing" id="pricing">
+        <h2>💕 ราคาแพ็กเกจ</h2>
+        <div class="grid" style="max-width: 1000px; margin: 0 auto;">
+            <div class="price-card">
+                <div style="font-size: 32px;">🌟</div>
+                <h3>Starter</h3>
+                <div class="price">฿0<span>/เดือน</span></div>
+                <ul style="text-align: left; color: #666; margin: 20px 0; line-height: 2;">
+                    <li>✓ ตอบแชท 100 ข้อความ/เดือน</li>
+                    <li>✓ AI ตอบคำถามพื้นฐาน</li>
+                </ul>
+                <a href="https://line.me/ti/p/@960xboyt" class="btn" style="width: 100%;">เริ่มฟรี</a>
+            </div>
+            <div class="price-card popular">
+                <div style="background: linear-gradient(135deg, #FF6B35, #F7C548); color: white; padding: 5px 20px; border-radius: 20px; display: inline-block; margin-bottom: 10px; font-size: 12px;">ยอดนิยม</div>
+                <div style="font-size: 32px;">💼</div>
+                <h3>Business</h3>
+                <div class="price">฿2,990<span>/เดือน</span></div>
+                <ul style="text-align: left; color: #666; margin: 20px 0; line-height: 2;">
+                    <li>✓ ตอบแชทไม่จำกัด</li>
+                    <li>✓ ปิดการขายอัตโนมัติ</li>
+                    <li>✓ เชื่อมต่อคลังสินค้า</li>
+                    <li>✓ Dashboard ยอดขาย</li>
+                </ul>
+                <a href="https://line.me/ti/p/@960xboyt" class="btn" style="width: 100%;">สมัครเลย</a>
+            </div>
+            <div class="price-card">
+                <div style="font-size: 32px;">🏢</div>
+                <h3>Enterprise</h3>
+                <div class="price">ติดต่อ<span></span></div>
+                <ul style="text-align: left; color: #666; margin: 20px 0; line-height: 2;">
+                    <li>✓ ทุกอย่างใน Business</li>
+                    <li>✓ Custom AI Persona</li>
+                    <li>✓ เชื่อมระบบได้ทุกอย่าง</li>
+                </ul>
+                <a href="mailto:mawsomcto@gmail.com" class="btn btn-outline" style="width: 100%;">ติดต่อฝ่ายขาย</a>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Pricing -->
-    <section id="pricing" class="section-warm py-24 px-6">
-        <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-16"><h2 class="text-4xl font-bold mb-4 text-gray-900">💕 ราคาแพ็กเกจ</h2><p class="text-gray-500">เลือกแพ็กเกจที่เหมาะกับธุรกิจคุณ</p></div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="white-card p-8 rounded-2xl">
-                    <div class="text-center"><div class="text-4xl mb-2">🌟</div><h3 class="text-2xl font-bold mb-2">Starter</h3><div class="text-5xl font-bold gradient-text mb-2">฿0</div><div class="text-gray-400 mb-6">/เดือน</div></div>
-                    <ul class="text-gray-500 space-y-3 mb-8"><li>✓ ตอบแชท 100 ข้อความ/เดือน</li><li>✓ AI ตอบคำถามพื้นฐาน</li><li>✓ Dashboard พื้นฐาน</li></ul>
-                    <a href="https://line.me/ti/p/@960xboyt" class="block w-full py-4 rounded-xl border-2 border-orange-200 text-center font-bold text-orange-500 hover:bg-orange-50">เริ่มฟรี</a>
-                </div>
-                <div class="white-card p-8 rounded-2xl relative border-orange-300 border-2">
-                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-orange-400 to-amber-400 px-6 py-2 rounded-full text-sm font-bold text-white">ยอดนิยม</div>
-                    <div class="text-center"><div class="text-4xl mb-2">💼</div><h3 class="text-2xl font-bold mb-2">Business</h3><div class="text-5xl font-bold gradient-text mb-2">฿2,990</div><div class="text-gray-400 mb-6">/เดือน</div></div>
-                    <ul class="text-gray-500 space-y-3 mb-8"><li>✓ ตอบแชทไม่จำกัด</li><li>✓ 💰 ปิดการขายอัตโนมัติ</li><li>✓ 📦 เชื่อมต่อคลังสินค้า</li><li>✓ 📊 Dashboard ยอดขาย</li><li>✓ Priority Support</li></ul>
-                    <a href="https://line.me/ti/p/@960xboyt" class="block w-full py-4 rounded-xl bg-gradient-to-r from-orange-400 to-amber-400 text-center font-bold text-white glow-orange">สมัครเลย</a>
-                </div>
-                <div class="white-card p-8 rounded-2xl">
-                    <div class="text-center"><div class="text-4xl mb-2">🏢</div><h3 class="text-2xl font-bold mb-2">Enterprise</h3><div class="text-5xl font-bold gradient-text mb-2">ติดต่อ</div><div class="text-gray-400 mb-6">ราคาตามขนาด</div></div>
-                    <ul class="text-gray-500 space-y-3 mb-8"><li>✓ ทุกอย่างใน Business</li><li>✓ Custom AI Persona</li><li>✓ เชื่อมระบบได้ทุกอย่าง</li><li>✓ ตัวแทนดูแลส่วนตัว</li></ul>
-                    <a href="mailto:mawsomcto@gmail.com" class="block w-full py-4 rounded-xl border-2 border-orange-200 text-center font-bold text-orange-500 hover:bg-orange-50">ติดต่อฝ่ายขาย</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="section-light py-20 px-6">
-        <div class="max-w-3xl mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-6 text-gray-900">🐱 พร้อมยกระดับธุรกิจแล้วหรือยัง?</h2>
-            <p class="text-gray-500 mb-8">เริ่มใช้งานฟรีวันนี้ ไม่มีค่าใช้จ่าย</p>
-            <a href="https://line.me/ti/p/@960xboyt" class="btn-primary px-12 py-5 rounded-full font-bold text-xl text-white glow-orange inline-flex items-center gap-3"><span class="text-3xl cat-bounce">🐱</span> เริ่มตอนนี้</a>
-        </div>
-    </section>
-
-    <!-- Contact Form -->
-    <section id="contact" class="section-warm py-24 px-6">
-        <div class="max-w-3xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold mb-4 text-gray-900">💬 ติดต่อเรา</h2>
-                <p class="text-gray-500">มีคำถาม? ถามได้เลย!</p>
-            </div>
-            <form class="white-card p-8 rounded-2xl space-y-6">
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">ชื่อ</label>
-                        <input type="text" placeholder="ชื่อของคุณ" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-400 focus:ring-2 focus:ring-orange-100 outline-none transition">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">เบอร์โทร</label>
-                        <input type="tel" placeholder="08x-xxx-xxxx" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-400 focus:ring-2 focus:ring-orange-100 outline-none transition">
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">อีเมล</label>
-                    <input type="email" placeholder="email@example.com" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-400 focus:ring-2 focus:ring-orange-100 outline-none transition">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">ข้อความ</label>
-                    <textarea rows="4" placeholder="สอบถามรายละเอียด..." class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-400 focus:ring-2 focus:ring-orange-100 outline-none transition resize-none"></textarea>
-                </div>
-                <button type="button" class="btn-primary w-full py-4 rounded-xl font-bold text-white text-lg">ส่งข้อความ</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-10 px-6 bg-orange-50 border-t border-orange-100">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-3"><span class="text-2xl">🐱</span><span class="text-xl font-bold gradient-text">MeowChat</span></div>
-            <div class="text-gray-400 text-sm">© 2026 MeowChat.store by Mawsom</div>
-            <div class="flex gap-6 text-gray-500"><a href="https://line.me/ti/p/@960xboyt" class="hover:text-orange-500">LINE: @960xboyt</a><a href="mailto:mawsomcto@gmail.com" class="hover:text-orange-500">Email</a></div>
-        </div>
-    <script>
-        // Smooth scroll
-        document.querySelectorAll('a[href^=\"#\"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const offset = 80;
-                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-                }
-            });
-        });
-    </script>
+    <div class="footer" id="contact">
+        <p>🐱 MeowChat by Mawsom</p>
+        <p style="margin-top: 10px; font-size: 14px;">
+            LINE: <a href="https://line.me/ti/p/@960xboyt">@960xboyt</a> | 
+            Email: <a href="mailto:mawsomcto@gmail.com">mawsomcto@gmail.com</a>
+        </p>
+        <p style="margin-top: 20px; font-size: 12px; color: #999;">© 2026 MeowChat.store by Mawsom</p>
+    </div>
+</body>
 </html>

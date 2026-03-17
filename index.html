@@ -3,61 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MeowChat - AI Chatbot for Thai Business</title>
+    <title>MeowChat - AI Chatbot สำหรับธุรกิจไทย</title>
+    <meta name="description" content="เปลี่ยนแชทให้เป็นเงิน ด้วย AI Chatbot อัจฉริยะ">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', sans-serif;
+        * { font-family: 'Prompt', sans-serif; }
+        body { background: #0f0f0f; }
+        .gradient-text {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .container {
-            text-align: center;
-            color: white;
-            padding: 40px;
+        .glow {
+            box-shadow: 0 0 60px rgba(102, 126, 234, 0.3);
         }
-        h1 { font-size: 3rem; margin-bottom: 20px; }
-        p { font-size: 1.5rem; margin-bottom: 30px; opacity: 0.9; }
-        .btn {
-            display: inline-block;
-            padding: 15px 40px;
-            background: #06c755;
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            transition: transform 0.3s;
+        .card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
         }
-        .btn:hover { transform: scale(1.05); }
-        .features {
-            margin-top: 50px;
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .feature {
-            background: rgba(255,255,255,0.2);
-            padding: 20px;
-            border-radius: 15px;
-            width: 200px;
+        .card:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(102, 126, 234, 0.3);
+            transform: translateY(-4px);
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1>🐱 MeowChat</h1>
-        <p>AI Chatbot สำหรับธุรกิจไทย</p>
-        <a href="https://line.me/ti/p/@960xboyt" class="btn">➤ Add LINE @960xboyt</a>
-        <div class="features">
-            <div class="feature">🤖 AI ฉลาด</div>
-            <div class="feature">⚡ ตอบเร็ว</div>
-            <div class="feature">💕 อ่อนหวาน</div>
+<body class="min-h-screen text-white">
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 bg-black/50 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <span class="text-2xl">🐱</span>
+                <span class="text-xl font-bold">MeowChat</span>
+            </div>
+            <div class="hidden md:flex gap-8 text-sm text-gray-400">
+                <a href="#features" class="hover:text-white transition">ฟีเจอร์</a>
+                <a href="#pricing" class="hover:text-white transition">ราคา</a>
+                <a href="#contact" class="hover:text-white transition">ติดต่อ</a>
+            </div>
+            <a href="https://line.me/ti/p/@960xboyt" class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 px-5 py-2 rounded-full text-sm font-bold transition-all transform hover:scale-105">
+                ลองใช้ฟรี
+            </a>
         </div>
-    </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="pt-32 pb-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-block px-4 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-sm mb-6">
+                🚀 AI Chatbot สำหรับธุรกิจไทย
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                ยกระดับธุรกิจด้วย<br>
+                <span class="gradient-text">AI Chatbot อัจฉริยะ</span>
+            </h1>
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10">
+                เปลี่ยนแชทให้เป็นเงิน MeowChat ช่วยตอบลูกค้า ปิดการขาย และรันงานอัตโนมัติ 24/7
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="https://line.me/ti/p/@960xboyt" class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:scale-105 glow inline-flex items-center justify-center gap-2">
+                    <span>➤</span> Add LINE @960xboyt
+                </a>
+                <a href="#pricing" class="px-8 py-4 rounded-full border border-white/20 hover:bg-white/5 font-bold text-lg transition">
+                    ดูราคา
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">ฟีเจอร์เด่น</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="card p-8 rounded-2xl transition-all">
+                    <div class="text-4xl mb-4">🤖</div>
+                    <h3 class="text-xl font-bold mb-2">AI ฉลาด</h3>
+                    <p class="text-gray-400">เข้าใจภาษาไทยธรรมชาติ ตอบคำถามลูกค้าได้แม่นยำ</p>
+                </div>
+                <div class="card p-8 rounded-2xl transition-all">
+                    <div class="text-4xl mb-4">⚡</div>
+                    <h3 class="text-xl font-bold mb-2">ตอบเร็ว</h3>
+                    <p class="text-gray-400">ตอบลูกค้าทันที 24/7 ไม่ต้องรอคิว</p>
+                </div>
+                <div class="card p-8 rounded-2xl transition-all">
+                    <div class="text-4xl mb-4">💰</div>
+                    <h3 class="text-xl font-bold mb-2">เพิ่มขาย</h3>
+                    <p class="text-gray-400">ช่วยแนะนำสินค้า ปิดการขายอัตโนมัติ</p>
+                </div>
+                <div class="card p-8 rounded-2xl transition-all">
+                    <div class="text-4xl mb-4">📊</div>
+                    <h3 class="text-xl font-bold mb-2">Analytics</h3>
+                    <p class="text-gray-400">วิเคราะห์พฤติกรรมลูกค้า เข้าใจความต้องการ</p>
+                </div>
+                <div class="card p-8 rounded-2xl transition-all">
+                    <div class="text-4xl mb-4">🔗</div>
+                    <h3 class="text-xl font-bold mb-2">เชื่อมต่อ API</h3>
+                    <p class="text-gray-400">เชื่อมกับระบบหลังบ้าน สต็อก ส่งของ บัญชี</p>
+                </div>
+                <div class="card p-8 rounded-2xl transition-all">
+                    <div class="text-4xl mb-4">🎯</div>
+                    <h3 class="text-xl font-bold mb-2">Custom สไตล์</h3>
+                    <p class="text-gray-400">ปรับ personality ให้เข้ากับแบรนด์</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="py-20 px-6 bg-white/2">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-4">ราคาแพ็กเกจ</h2>
+            <p class="text-gray-400 text-center mb-12">เลือกแพ็กเกจที่เหมาะกับธุรกิจคุณ</p>
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <!-- Starter -->
+                <div class="card p-8 rounded-2xl">
+                    <h3 class="text-xl font-bold mb-2">Starter</h3>
+                    <div class="text-4xl font-bold mb-4">฿0<span class="text-sm text-gray-500 font-normal">/เดือน</span></div>
+                    <ul class="text-gray-400 text-sm space-y-3 mb-8">
+                        <li>✓ รองรับ 1 ช่องทาง (LINE)</li>
+                        <li>✓ ตอบแชทอัตโนมัติ 100 ข้อความ/เดือน</li>
+                        <li>✓ AI ตอบคำถามพื้นฐาน</li>
+                    </ul>
+                    <a href="https://line.me/ti/p/@960xboyt" class="block w-full py-3 rounded-xl border border-white/20 hover:bg-white/5 text-center font-bold transition">
+                        เริ่มฟรี
+                    </a>
+                </div>
+                
+                <!-- Business -->
+                <div class="card p-8 rounded-2xl border-purple-500/30 bg-purple-500/5 relative">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-600 to-indigo-600 px-4 py-1 rounded-full text-xs font-bold">
+                        ยอดนิยม
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Business</h3>
+                    <div class="text-4xl font-bold mb-4">฿2,990<span class="text-sm text-gray-500 font-normal">/เดือน</span></div>
+                    <ul class="text-gray-400 text-sm space-y-3 mb-8">
+                        <li>✓ รองรับ LINE & Messenger</li>
+                        <li>✓ ตอบแชทไม่จำกัด</li>
+                        <li>✓ AI Sales Agent</li>
+                        <li>✓ เชื่อม API ธุรกิจ</li>
+                    </ul>
+                    <a href="https://line.me/ti/p/@960xboyt" class="block w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-center font-bold transition">
+                        สมัครเลย
+                    </a>
+                </div>
+                
+                <!-- Enterprise -->
+                <div class="card p-8 rounded-2xl">
+                    <h3 class="text-xl font-bold mb-2">Enterprise</h3>
+                    <div class="text-4xl font-bold mb-4">ติดต่อราคา</div>
+                    <ul class="text-gray-400 text-sm space-y-3 mb-8">
+                        <li>✓ ทุกอย่างใน Business</li>
+                        <li>✓ Custom AI Persona</li>
+                        <li>✓ ตัวแทนดูแลส่วนตัว</li>
+                        <li>✓ Install บน Server ส่วนตัว</li>
+                    </ul>
+                    <a href="#contact" class="block w-full py-3 rounded-xl border border-white/20 hover:bg-white/5 text-center font-bold transition">
+                        ติดต่อฝ่ายขาย
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 px-6">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6">พร้อมยกระดับธุรกิจแล้วหรือยัง?</h2>
+            <p class="text-gray-400 mb-8">เริ่มใช้งานฟรีวันนี้ ไม่มีค่าใช้จ่าย</p>
+            <a href="https://line.me/ti/p/@960xboyt" class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:scale-105 glow">
+                <span>🐱</span> เริ่มตอนนี้
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="py-10 px-6 border-t border-white/5">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2">
+                <span class="text-xl">🐱</span>
+                <span class="font-bold">MeowChat</span>
+            </div>
+            <p class="text-gray-500 text-sm">© 2026 MeowChat.store by Mawsom</p>
+            <div class="flex gap-4 text-sm text-gray-400">
+                <a href="https://line.me/ti/p/@960xboyt" class="hover:text-white transition">LINE: @960xboyt</a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

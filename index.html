@@ -2,788 +2,613 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MeowChat - AI Chatbot สำหรับธุรกิจไทย</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#FFFDF5;--lav:#8E6FBB;--lav-s:#B19CD9;--lav-m:#E8E0F5;
-  --peach:#FFD180;--apricot:#FFB74D;--txt:#5D4E6D;--gray:#7A6B8A;
-  --white:#fff;--r:32px;
-  --sh:0 6px 24px rgba(142,111,187,.13);
-  --sh2:0 16px 40px rgba(255,183,77,.25);
-}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;overflow-x:hidden}
-
-/* paw bg pattern */
-body::before{
-  content:'';position:fixed;inset:0;
-  background-image:radial-gradient(circle,rgba(177,156,217,.08) 2px,transparent 2px);
-  background-size:40px 40px;pointer-events:none;z-index:0
+:root{
+  --bg:#FFFDF5;--lav:#8E6FBB;--lavs:#B19CD9;--lavm:#EDE8F8;
+  --peach:#FFD180;--apricot:#FFB74D;
+  --dark:#5D4E6D;--gray:#7A6B8A;
+  --sh:0 8px 28px rgba(142,111,187,.13);
+  --sh2:0 18px 45px rgba(255,183,77,.22)
 }
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--dark);overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(circle at 15% 85%,rgba(177,156,217,.07) 0,transparent 50%),
+             radial-gradient(circle at 85% 15%,rgba(255,209,128,.07) 0,transparent 50%)}
 
-/* NAV */
-header{
-  background:rgba(255,253,245,.92);backdrop-filter:blur(20px);
-  position:sticky;top:0;z-index:100;
-  box-shadow:0 2px 20px rgba(142,111,187,.1);
-  border-bottom:1px solid rgba(177,156,217,.15)
-}
-.nav{display:flex;align-items:center;justify-content:space-between;
-  max-width:1160px;margin:0 auto;padding:14px 24px}
+/* ── NAV ── */
+nav{background:rgba(255,253,245,.94);backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(177,156,217,.18);
+  position:sticky;top:0;z-index:99;box-shadow:0 2px 16px rgba(142,111,187,.09)}
+.nav-inner{max-width:1140px;margin:0 auto;padding:13px 28px;
+  display:flex;align-items:center;justify-content:space-between}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.logo-cat{font-size:36px;animation:bob 2s ease-in-out infinite}
-@keyframes bob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-6px) rotate(3deg)}}
-.logo-name{font-size:26px;font-weight:900;color:var(--lav)}
-.logo-by{font-size:10px;color:var(--apricot);font-weight:700;letter-spacing:.5px}
-nav{display:flex;gap:8px;align-items:center}
-nav a{color:var(--gray);text-decoration:none;font-weight:700;font-size:14px;
-  padding:8px 16px;border-radius:50px;transition:.3s}
-nav a:hover{color:var(--lav);background:var(--lav-m)}
-.btn{display:inline-flex;align-items:center;justify-content:center;
-  padding:11px 28px;border-radius:50px;font-weight:800;font-size:14px;
+.logo-icon{font-size:34px;animation:bob 2.4s ease-in-out infinite;display:block}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-6px) rotate(4deg)}}
+.logo-name{font-size:22px;font-weight:900;color:var(--lav);line-height:1.1}
+.logo-sub{font-size:10px;color:var(--apricot);font-weight:700;letter-spacing:.5px}
+.nav-links{display:flex;gap:6px}
+.nav-links a{color:var(--gray);text-decoration:none;font-weight:700;font-size:14px;
+  padding:8px 16px;border-radius:50px;transition:.25s}
+.nav-links a:hover{color:var(--lav);background:var(--lavm)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  padding:11px 26px;border-radius:50px;font-weight:800;font-size:14px;
   text-decoration:none;border:none;cursor:pointer;transition:.3s}
-.btn-pri{background:linear-gradient(135deg,var(--peach),var(--apricot));
-  color:white;box-shadow:0 4px 20px rgba(255,183,77,.4)}
-.btn-pri:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 8px 28px rgba(255,183,77,.5)}
-.btn-out{background:var(--white);border:2px solid var(--lav-s);color:var(--lav)}
-.btn-out:hover{background:var(--lav-m);transform:translateY(-2px)}
+.btn-p{background:linear-gradient(135deg,#FFD180,#FFB74D);color:#fff;
+  box-shadow:0 4px 18px rgba(255,183,77,.4)}
+.btn-p:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 8px 26px rgba(255,183,77,.5)}
+.btn-o{background:#fff;border:2px solid var(--lavs);color:var(--lav)}
+.btn-o:hover{background:var(--lavm);transform:translateY(-2px)}
 
-/* HERO */
-.hero{
-  position:relative;text-align:center;
-  padding:80px 24px 60px;overflow:hidden;z-index:1;
-  background:radial-gradient(ellipse at 20% 30%,rgba(177,156,217,.18),transparent 60%),
-             radial-gradient(ellipse at 80% 70%,rgba(255,209,128,.18),transparent 60%),var(--bg)
-}
-.paw-float{position:absolute;font-size:28px;opacity:.1;animation:pf 7s ease-in-out infinite}
-.paw-float:nth-child(1){left:5%;top:20%;animation-delay:0s}
-.paw-float:nth-child(2){left:12%;top:60%;animation-delay:1.5s}
-.paw-float:nth-child(3){right:8%;top:15%;animation-delay:3s}
-.paw-float:nth-child(4){right:15%;top:65%;animation-delay:4.5s}
-.paw-float:nth-child(5){left:30%;top:80%;animation-delay:2s}
-.paw-float:nth-child(6){right:30%;top:10%;animation-delay:5s}
-@keyframes pf{0%,100%{transform:translateY(0) rotate(-15deg)}50%{transform:translateY(-20px) rotate(15deg)}}
-
-.hero-inner{position:relative;z-index:1;max-width:900px;margin:0 auto}
-.badge-pill{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:10px 24px;background:var(--lav-m);border:1.5px solid var(--lav-s);
-  border-radius:50px;color:var(--lav);font-size:13px;font-weight:800;
-  margin-bottom:32px;animation:fadeDown .6s ease both
-}
-@keyframes fadeDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
-
-/* Hero cloud + cats illustration */
-.hero-illustration{
-  width:340px;height:220px;margin:0 auto 32px;position:relative;
-  animation:float 3s ease-in-out infinite
-}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-.hero-illustration svg{width:100%;height:100%}
-
-.hero h1{
-  font-size:clamp(32px,5vw,58px);font-weight:900;line-height:1.1;
-  margin-bottom:18px;color:var(--txt);
-  animation:fadeUp .7s .1s ease both
-}
-@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-.hero h1 em{
-  font-style:normal;
+/* ── HERO ── */
+.hero{position:relative;z-index:1;overflow:hidden;
+  padding:64px 28px 52px;
+  background:radial-gradient(ellipse at 8% 20%,rgba(177,156,217,.17),transparent 52%),
+             radial-gradient(ellipse at 92% 80%,rgba(255,209,128,.17),transparent 52%),
+             var(--bg)}
+.paw{position:absolute;font-size:22px;opacity:.09;animation:pf 7s ease-in-out infinite;user-select:none}
+.paw:nth-child(1){left:3%;top:12%}.paw:nth-child(2){left:9%;top:70%;animation-delay:2s}
+.paw:nth-child(3){right:4%;top:18%;animation-delay:4s}.paw:nth-child(4){right:11%;top:72%;animation-delay:1.5s}
+.paw:nth-child(5){left:22%;top:88%;animation-delay:3s}.paw:nth-child(6){right:22%;top:5%;animation-delay:5s}
+@keyframes pf{0%,100%{transform:translateY(0)rotate(-12deg)}50%{transform:translateY(-18px)rotate(14deg)}}
+.hero-wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;
+  gap:40px;align-items:center}
+@media(max-width:800px){.hero-wrap{grid-template-columns:1fr;text-align:center}}
+.hero-text{}
+.badge{display:inline-flex;align-items:center;gap:7px;
+  padding:8px 20px;border-radius:50px;margin-bottom:24px;font-size:13px;font-weight:800;
+  background:var(--lavm);border:1.5px solid var(--lavs);color:var(--lav);
+  animation:fd .6s ease both}
+@keyframes fd{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+.hero-text h1{font-size:clamp(28px,4.2vw,52px);font-weight:900;line-height:1.15;
+  color:var(--dark);margin-bottom:18px;animation:fu .7s .1s ease both}
+@keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.hero-text h1 em{font-style:normal;
   background:linear-gradient(135deg,var(--apricot),var(--lav));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent
-}
-.hero-sub{font-size:18px;color:var(--gray);margin-bottom:36px;
-  max-width:520px;margin-left:auto;margin-right:auto;animation:fadeUp .7s .2s ease both}
-.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
-  margin-bottom:48px;animation:fadeUp .7s .3s ease both}
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-desc{font-size:16px;color:var(--gray);line-height:1.75;margin-bottom:30px;
+  animation:fu .7s .2s ease both}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:38px;
+  animation:fu .7s .3s ease both}
+@media(max-width:800px){.hero-btns{justify-content:center}}
+.stats-row{display:flex;gap:16px;flex-wrap:wrap;animation:fu .7s .4s ease both}
+@media(max-width:800px){.stats-row{justify-content:center}}
+.stat{display:flex;align-items:center;gap:10px;
+  background:#fff;padding:12px 18px;border-radius:18px;
+  box-shadow:var(--sh);border:1.5px solid var(--lavm)}
+.stat-ico{font-size:22px}
+.stat-n{font-size:18px;font-weight:900;color:var(--lav);line-height:1}
+.stat-l{font-size:11px;color:var(--gray);font-weight:700}
 
-.stats-row{
-  display:flex;justify-content:center;gap:24px;flex-wrap:wrap;
-  animation:fadeUp .7s .4s ease both
-}
-.stat-pill{
-  display:flex;align-items:center;gap:10px;
-  background:var(--white);padding:14px 22px;border-radius:20px;
-  box-shadow:var(--sh);border:1.5px solid var(--lav-m)
-}
-.stat-icon{font-size:24px}
-.stat-num{font-size:22px;font-weight:900;color:var(--lav)}
-.stat-lbl{font-size:12px;color:var(--gray);font-weight:700}
+/* hero illustration */
+.hero-art{display:flex;justify-content:center;align-items:flex-end;
+  animation:float 3.2s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.hero-art svg{width:100%;max-width:420px;height:auto;
+  filter:drop-shadow(0 20px 40px rgba(142,111,187,.18))}
 
-/* SECTION COMMON */
-.section{padding:80px 24px;position:relative;z-index:1}
-.section-center{text-align:center;max-width:1160px;margin:0 auto}
-.s-label{
-  display:inline-block;padding:6px 18px;border-radius:50px;
-  background:var(--lav-m);color:var(--lav);font-size:12px;font-weight:800;
-  letter-spacing:.5px;margin-bottom:12px
-}
-.s-title{font-size:clamp(28px,4vw,42px);font-weight:900;margin-bottom:10px;color:var(--txt)}
-.s-sub{font-size:17px;color:var(--gray);margin-bottom:48px}
+/* ── SECTION BASE ── */
+.sec{position:relative;z-index:1;padding:70px 28px}
+.sec-hd{text-align:center;margin-bottom:44px}
+.s-chip{display:inline-block;padding:6px 18px;border-radius:50px;
+  background:var(--lavm);color:var(--lav);font-size:12px;font-weight:800;
+  letter-spacing:.4px;margin-bottom:10px}
+.s-title{font-size:clamp(24px,3.5vw,38px);font-weight:900;color:var(--dark);margin-bottom:8px}
+.s-sub{font-size:16px;color:var(--gray)}
 
-/* FEATURES GRID */
-.features-bg{background:var(--bg)}
-.feat-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
-  max-width:1100px;margin:0 auto
-}
-@media(max-width:900px){.feat-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:580px){.feat-grid{grid-template-columns:1fr}}
-.feat-card{
-  background:var(--white);border-radius:var(--r);padding:32px 24px;
-  box-shadow:var(--sh);border:2px solid var(--lav-m);
-  text-align:center;transition:.4s;cursor:default;
-  animation:cardIn .6s ease both
-}
-@keyframes cardIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.feat-card:hover{transform:translateY(-10px);box-shadow:var(--sh2);border-color:var(--peach)}
-.cat-icon{width:110px;height:110px;margin:0 auto 16px;display:block;
-  transition:transform .35s;filter:drop-shadow(0 4px 12px rgba(142,111,187,.18))}
-.feat-card:hover .cat-icon{transform:scale(1.1) rotate(-3deg)}
-.feat-card h3{font-size:18px;font-weight:800;color:var(--lav);margin-bottom:8px}
-.feat-card p{font-size:14px;color:var(--gray);line-height:1.7}
-.tag-row{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px}
-.tag{background:var(--lav-m);color:var(--lav);border-radius:50px;
-  font-size:11px;font-weight:700;padding:4px 12px}
+/* ── FEATURES ── */
+.feat-wrap{background:var(--bg)}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
+  max-width:1060px;margin:0 auto}
+@media(max-width:860px){.feat-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.feat-grid{grid-template-columns:1fr}}
+.fc{background:#fff;border-radius:28px;padding:28px 20px 24px;
+  box-shadow:var(--sh);border:2px solid var(--lavm);text-align:center;
+  transition:.38s;cursor:default;opacity:0;transform:translateY(20px)}
+.fc.show{opacity:1;transform:none}
+.fc:hover{transform:translateY(-10px);box-shadow:var(--sh2);border-color:var(--peach)}
+.fc-ico{width:100px;height:100px;margin:0 auto 14px;display:block;
+  transition:.35s;filter:drop-shadow(0 4px 12px rgba(142,111,187,.17))}
+.fc:hover .fc-ico{transform:scale(1.12) rotate(-4deg)}
+.fc h3{font-size:16px;font-weight:800;color:var(--lav);margin-bottom:7px}
+.fc p{font-size:13px;color:var(--gray);line-height:1.7}
+.fc-tags{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:10px}
+.tc{background:var(--lavm);color:var(--lav);border-radius:50px;
+  font-size:11px;font-weight:700;padding:3px 11px}
 
-/* PRICING */
-.pricing-bg{
-  background:linear-gradient(180deg,var(--bg),var(--lav-m))
-}
-.price-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
-  max-width:1000px;margin:0 auto;align-items:start
-}
-@media(max-width:850px){.price-grid{grid-template-columns:1fr;max-width:380px}}
-.price-card{
-  background:var(--white);border-radius:var(--r);padding:36px 28px;
-  box-shadow:var(--sh);border:2px solid var(--lav-m);
-  text-align:center;position:relative;transition:.4s
-}
-.price-card:hover{transform:translateY(-8px);box-shadow:var(--sh2)}
-.price-card.pop{
-  border:3px solid var(--peach);transform:scale(1.04);
-  background:linear-gradient(180deg,#FFFEF8,var(--white));
-  box-shadow:0 12px 40px rgba(255,183,77,.3)
-}
-.price-card.pop:hover{transform:scale(1.04) translateY(-8px)}
-.pop-badge{
-  position:absolute;top:-18px;left:50%;transform:translateX(-50%);
+/* ── PRICING ── */
+.pri-wrap{background:linear-gradient(180deg,var(--bg) 0,var(--lavm) 100%)}
+.pri-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
+  max-width:960px;margin:0 auto;align-items:start}
+@media(max-width:780px){.pri-grid{grid-template-columns:1fr;max-width:360px}}
+.pc{background:#fff;border-radius:28px;padding:32px 24px;
+  box-shadow:var(--sh);border:2px solid var(--lavm);text-align:center;
+  position:relative;transition:.38s;opacity:0;transform:translateY(20px)}
+.pc.show{opacity:1;transform:none}
+.pc:hover{transform:translateY(-8px);box-shadow:var(--sh2)}
+.pc.pop{border:3px solid var(--peach);transform:scale(1.05);
+  box-shadow:0 14px 44px rgba(255,183,77,.28)}
+.pc.pop:hover{transform:scale(1.05) translateY(-8px)}
+.pop-lbl{position:absolute;top:-16px;left:50%;transform:translateX(-50%);
   background:linear-gradient(135deg,var(--peach),var(--apricot));
-  color:white;padding:8px 24px;border-radius:20px;font-size:12px;
-  font-weight:800;white-space:nowrap;box-shadow:0 4px 14px rgba(255,183,77,.4)
-}
-.price-cat{width:90px;height:90px;margin:0 auto 12px}
-.price-cat svg{width:100%;height:100%}
-.price-name{font-size:22px;font-weight:900;color:var(--lav);margin-bottom:4px}
-.price-sub{font-size:12px;color:var(--gray);margin-bottom:12px}
-.price-num{
-  font-size:44px;font-weight:900;
+  color:#fff;padding:7px 22px;border-radius:18px;font-size:12px;font-weight:800;
+  white-space:nowrap;box-shadow:0 4px 14px rgba(255,183,77,.4)}
+.pc-ico{width:80px;height:80px;margin:0 auto 12px}
+.pc-ico svg{width:100%;height:100%}
+.pc-name{font-size:20px;font-weight:900;color:var(--lav)}
+.pc-hint{font-size:12px;color:var(--gray);margin-bottom:8px}
+.pc-price{font-size:40px;font-weight:900;
   background:linear-gradient(135deg,var(--lav),var(--apricot));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  margin:8px 0
-}
-.price-num sup{font-size:20px}
-.price-num span{font-size:15px;color:var(--gray);font-weight:600;
-  -webkit-text-fill-color:var(--gray)}
-.price-list{list-style:none;margin:20px 0;text-align:left}
-.price-list li{
-  padding:10px 0;border-bottom:1px dashed var(--lav-m);
-  font-size:13px;color:var(--gray);font-weight:600;
-  display:flex;align-items:center;gap:8px
-}
-.price-list li:last-child{border-bottom:none}
-.price-list li::before{content:'✓';color:var(--apricot);font-weight:900}
-.price-card .btn{width:100%;margin-top:8px;justify-content:center}
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:6px 0}
+.pc-price sup{font-size:18px}.pc-price small{font-size:14px;
+  color:var(--gray);font-weight:600;-webkit-text-fill-color:var(--gray)}
+.pc-list{list-style:none;margin:16px 0;text-align:left}
+.pc-list li{padding:9px 0;border-bottom:1px dashed var(--lavm);
+  font-size:13px;color:var(--gray);font-weight:700;display:flex;align-items:center;gap:7px}
+.pc-list li:last-child{border:none}
+.pc-list li::before{content:'✓';color:var(--apricot);font-weight:900}
+.pc .btn{width:100%;margin-top:6px;justify-content:center}
 
-/* CTA */
-.cta-sec{
-  text-align:center;padding:80px 24px;position:relative;overflow:hidden;z-index:1;
-  background:linear-gradient(135deg,var(--lav-m),var(--bg))
-}
-.cta-cats{font-size:60px;margin-bottom:20px;animation:float 3s ease-in-out infinite}
-.cta-sec h2{font-size:clamp(26px,4vw,40px);font-weight:900;color:var(--lav);margin-bottom:12px}
-.cta-sec p{font-size:17px;color:var(--gray);margin-bottom:32px}
-.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+/* ── CTA ── */
+.cta{text-align:center;padding:72px 28px;z-index:1;position:relative;
+  background:linear-gradient(135deg,var(--lavm),var(--bg))}
+.cta-cats{font-size:56px;margin-bottom:16px;display:block;
+  animation:float 3s ease-in-out infinite}
+.cta h2{font-size:clamp(24px,3.5vw,38px);font-weight:900;color:var(--lav);margin-bottom:10px}
+.cta p{font-size:16px;color:var(--gray);margin-bottom:28px}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
-/* FOOTER */
-footer{
-  background:var(--lav-s);color:white;
-  padding:50px 24px 30px;text-align:center;position:relative;overflow:hidden
-}
-footer::before{
-  content:'🐾';position:absolute;font-size:200px;opacity:.05;
-  top:-20px;left:50%;transform:translateX(-50%);white-space:nowrap;letter-spacing:60px
-}
-.footer-inner{position:relative;z-index:1}
-.footer-logo{font-size:28px;font-weight:900;margin-bottom:6px}
-.footer-logo span{opacity:.7;font-size:13px;font-weight:600;display:block;margin-top:2px}
-.footer-links{display:flex;gap:24px;justify-content:center;margin:20px 0;flex-wrap:wrap}
-.footer-links a{color:rgba(255,255,255,.85);text-decoration:none;font-weight:700;
-  font-size:14px;transition:.3s;padding:4px 8px;border-radius:8px}
-.footer-links a:hover{background:rgba(255,255,255,.2)}
-.footer-social{display:flex;gap:14px;justify-content:center;margin:16px 0}
-.social-btn{
-  width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.2);
-  display:flex;align-items:center;justify-content:center;font-size:18px;
-  transition:.3s;text-decoration:none
-}
-.social-btn:hover{background:rgba(255,255,255,.35);transform:translateY(-3px)}
-.footer-copy{font-size:13px;opacity:.7;margin-top:20px}
+/* ── FOOTER ── */
+footer{background:var(--lavs);color:#fff;padding:44px 28px 28px;text-align:center;position:relative;overflow:hidden;z-index:1}
+footer::before{content:'🐾 🐾 🐾 🐾 🐾';position:absolute;top:-10px;left:50%;
+  transform:translateX(-50%);font-size:100px;opacity:.05;white-space:nowrap;letter-spacing:40px}
+.ft-in{position:relative;z-index:1}
+.ft-logo{font-size:24px;font-weight:900;margin-bottom:4px}
+.ft-logo small{display:block;font-size:11px;opacity:.7;font-weight:600}
+.ft-links{display:flex;gap:20px;justify-content:center;margin:18px 0;flex-wrap:wrap}
+.ft-links a{color:rgba(255,255,255,.85);text-decoration:none;font-weight:700;font-size:14px;
+  padding:4px 8px;border-radius:8px;transition:.25s}
+.ft-links a:hover{background:rgba(255,255,255,.2)}
+.ft-social{display:flex;gap:12px;justify-content:center;margin:14px 0}
+.soc{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.2);
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+  text-decoration:none;transition:.25s}
+.soc:hover{background:rgba(255,255,255,.35);transform:translateY(-3px)}
+.ft-copy{font-size:12px;opacity:.65;margin-top:16px}
 
-/* SCROLL ANIMATION */
-.reveal{opacity:0;transform:translateY(30px);transition:.7s ease}
-.reveal.visible{opacity:1;transform:none}
-
-@media(max-width:680px){
-  .nav{flex-wrap:wrap;gap:10px}
-  .stats-row{gap:12px}
-  .stat-pill{padding:10px 14px}
-}
+/* ── ANIMATIONS ── */
+@keyframes popIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+.reveal{opacity:0;transform:translateY(24px);transition:.6s ease}
+.reveal.show{opacity:1;transform:none}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<header>
-<div class="nav">
-  <a href="#" class="logo">
-    <div class="logo-cat">🐱</div>
-    <div>
-      <div class="logo-name">MeowChat</div>
-      <div class="logo-by">by Mawsom</div>
-    </div>
+<nav>
+<div class="nav-inner">
+  <a class="logo" href="#">
+    <span class="logo-icon">🐱</span>
+    <div><div class="logo-name">MeowChat</div><div class="logo-sub">by Mawsom</div></div>
   </a>
-  <nav>
-    <a href="#features">ฟีเจอร์</a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
     <a href="#pricing">ราคา</a>
     <a href="#contact">ติดต่อ</a>
-  </nav>
-  <a href="https://line.me/ti/p/@960xboyt" class="btn btn-pri">ลองใช้ฟรี 🐾</a>
+  </div>
+  <a href="https://line.me/ti/p/@960xboyt" class="btn btn-p">Try Free 🐾</a>
 </div>
-</header>
+</nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="paw-float">🐾</div>
-  <div class="paw-float">🐾</div>
-  <div class="paw-float">🐾</div>
-  <div class="paw-float">🐾</div>
-  <div class="paw-float">🐾</div>
-  <div class="paw-float">🐾</div>
+  <span class="paw">🐾</span><span class="paw">🐾</span>
+  <span class="paw">🐾</span><span class="paw">🐾</span>
+  <span class="paw">🐾</span><span class="paw">🐾</span>
 
-  <div class="hero-inner">
-    <div class="badge-pill">✨ AI Chatbot สำหรับธุรกิจไทย ✨</div>
+  <div class="hero-wrap">
+    <div class="hero-text">
+      <div class="badge">🐾 AI Chatbot สำหรับธุรกิจไทย</div>
+      <h1>หายเลิดตอบเองโดยมัดิ<br>เหร่อเหม <em>แก้แมช</em><br>ตอบน้องร้อยอ่าน</h1>
+      <p class="hero-desc">สุขก้นความสมดวลกับลับกวบร้อยลอพร้อม<br>AI ตอบแชท • ปิดการขาย • อัพเดทคลัง • ดูยอดขาย พร้อม 24 ชม.</p>
+      <div class="hero-btns">
+        <a href="https://line.me/ti/p/@960xboyt" class="btn btn-p">Start Now 🐾</a>
+        <a href="#features" class="btn btn-o">ดูฟีเจอร์</a>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><span class="stat-ico">🐾</span><div><div class="stat-n">10K+</div><div class="stat-l">Active Users</div></div></div>
+        <div class="stat"><span class="stat-ico">🏪</span><div><div class="stat-n">205m</div><div class="stat-l">Managed Shops</div></div></div>
+        <div class="stat"><span class="stat-ico">💬</span><div><div class="stat-n">5,000+</div><div class="stat-l">Completed Chats</div></div></div>
+      </div>
+    </div>
 
-    <!-- Hero chibi cat on clouds -->
-    <div class="hero-illustration">
-      <svg viewBox="0 0 340 220" xmlns="http://www.w3.org/2000/svg">
+    <!-- Hero cloud+cats SVG illustration -->
+    <div class="hero-art">
+      <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
         <!-- clouds -->
-        <ellipse cx="170" cy="185" rx="130" ry="38" fill="#EDE8F8" opacity=".7"/>
-        <ellipse cx="80" cy="175" rx="70" ry="25" fill="#E8E0F5" opacity=".6"/>
-        <ellipse cx="270" cy="178" rx="60" ry="22" fill="#E8E0F5" opacity=".6"/>
-        <ellipse cx="150" cy="165" rx="100" ry="32" fill="#F0EBF8"/>
-        <ellipse cx="200" cy="158" rx="85" ry="28" fill="#F5F0FC"/>
-        <!-- small sitting cat left -->
-        <ellipse cx="80" cy="155" rx="22" ry="20" fill="#FFD180"/>
-        <ellipse cx="68" cy="133" rx="10" ry="9" fill="#FFD180"/>
-        <ellipse cx="92" cy="133" rx="10" ry="9" fill="#FFD180"/>
-        <ellipse cx="63" cy="126" rx="5" ry="7" fill="#FFC04D"/>
-        <ellipse cx="94" cy="126" rx="5" ry="7" fill="#FFC04D"/>
-        <circle cx="74" cy="142" r="3.5" fill="#5D4E6D"/>
-        <circle cx="86" cy="142" r="3.5" fill="#5D4E6D"/>
-        <ellipse cx="80" cy="148" rx="6" ry="3" fill="#FF9ECC"/>
-        <path d="M77 145 Q80 148 83 145" stroke="#5D4E6D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-        <!-- main big cat center -->
-        <ellipse cx="170" cy="148" rx="45" ry="42" fill="#FFFFFF" opacity=".4"/>
-        <ellipse cx="170" cy="140" rx="36" ry="34" fill="#B19CD9"/>
-        <ellipse cx="152" cy="108" rx="16" ry="14" fill="#B19CD9"/>
-        <ellipse cx="188" cy="108" rx="16" ry="14" fill="#B19CD9"/>
-        <ellipse cx="148" cy="100" rx="8" ry="10" fill="#D4C2F0"/>
-        <ellipse cx="192" cy="100" rx="8" ry="10" fill="#D4C2F0"/>
-        <ellipse cx="165" cy="137" rx="5" ry="6" fill="#5D4E6D"/>
-        <ellipse cx="175" cy="137" rx="5" ry="6" fill="#5D4E6D"/>
-        <circle cx="166" cy="136" r="2" fill="white"/>
-        <circle cx="176" cy="136" r="2" fill="white"/>
-        <ellipse cx="163" cy="146" rx="5" ry="3" fill="#FFB7D5"/>
-        <ellipse cx="177" cy="146" rx="5" ry="3" fill="#FFB7D5"/>
-        <ellipse cx="170" cy="143" rx="4" ry="3" fill="#FF9ECC"/>
-        <path d="M165 141 Q170 145 175 141" stroke="#5D4E6D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-        <line x1="145" y1="140" x2="158" y2="143" stroke="#5D4E6D" stroke-width="1" opacity=".5"/>
-        <line x1="145" y1="144" x2="158" y2="145" stroke="#5D4E6D" stroke-width="1" opacity=".5"/>
-        <line x1="182" y1="143" x2="195" y2="140" stroke="#5D4E6D" stroke-width="1" opacity=".5"/>
-        <line x1="182" y1="145" x2="195" y2="144" stroke="#5D4E6D" stroke-width="1" opacity=".5"/>
-        <!-- small cat right -->
-        <ellipse cx="262" cy="152" rx="20" ry="18" fill="#FFB74D"/>
-        <ellipse cx="251" cy="133" rx="9" ry="8" fill="#FFB74D"/>
-        <ellipse cx="273" cy="133" rx="9" ry="8" fill="#FFB74D"/>
-        <ellipse cx="247" cy="127" rx="4" ry="6" fill="#FFA040"/>
-        <ellipse cx="276" cy="127" rx="4" ry="6" fill="#FFA040"/>
-        <circle cx="257" cy="141" r="3" fill="#5D4E6D"/>
-        <circle cx="268" cy="141" r="3" fill="#5D4E6D"/>
-        <ellipse cx="262" cy="147" rx="5" ry="2.5" fill="#FF9ECC"/>
-        <path d="M259 144 Q262 147 265 144" stroke="#5D4E6D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-        <!-- stars/sparkles -->
-        <text x="120" y="95" font-size="14" fill="#FFD180">✦</text>
-        <text x="215" y="88" font-size="12" fill="#B19CD9">✦</text>
-        <text x="130" y="115" font-size="10" fill="#FFB74D">★</text>
-        <text x="205" y="112" font-size="10" fill="#B19CD9">★</text>
+        <ellipse cx="200" cy="260" rx="170" ry="46" fill="#EDE8F8" opacity=".75"/>
+        <ellipse cx="120" cy="248" rx="90" ry="32" fill="#E8E0F5" opacity=".65"/>
+        <ellipse cx="300" cy="250" rx="80" ry="28" fill="#E8E0F5" opacity=".65"/>
+        <ellipse cx="175" cy="238" rx="130" ry="40" fill="#F0EBF9"/>
+        <ellipse cx="215" cy="228" rx="110" ry="34" fill="#F5F0FC"/>
+        <!-- sparkles -->
+        <text x="60" y="130" font-size="18" fill="#FFD180" opacity=".8">✦</text>
+        <text x="340" y="100" font-size="14" fill="#B19CD9" opacity=".8">✦</text>
+        <text x="80" y="180" font-size="12" fill="#FFB74D" opacity=".7">★</text>
+        <text x="330" y="170" font-size="12" fill="#B19CD9" opacity=".7">★</text>
+        <!-- left small cat (peach/orange) -->
+        <ellipse cx="88" cy="218" rx="30" ry="27" fill="#FFD180"/>
+        <ellipse cx="73" cy="188" rx="14" ry="13" fill="#FFD180"/>
+        <ellipse cx="103" cy="188" rx="14" ry="13" fill="#FFD180"/>
+        <ellipse cx="68" cy="179" rx="7" ry="10" fill="#FFC04D"/>
+        <ellipse cx="108" cy="179" rx="7" ry="10" fill="#FFC04D"/>
+        <circle cx="81" cy="212" r="5" fill="#5D4E6D"/>
+        <circle cx="95" cy="212" r="5" fill="#5D4E6D"/>
+        <circle cx="82" cy="211" r="1.8" fill="white"/>
+        <circle cx="96" cy="211" r="1.8" fill="white"/>
+        <ellipse cx="88" cy="220" rx="7" ry="4" fill="#FFB7D5"/>
+        <path d="M84 218 Q88 222 92 218" stroke="#5D4E6D" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <line x1="64" y1="208" x2="78" y2="212" stroke="#5D4E6D" stroke-width="1.2" opacity=".45"/>
+        <line x1="64" y1="213" x2="78" y2="214" stroke="#5D4E6D" stroke-width="1.2" opacity=".45"/>
+        <line x1="98" y1="212" x2="112" y2="208" stroke="#5D4E6D" stroke-width="1.2" opacity=".45"/>
+        <line x1="98" y1="214" x2="112" y2="213" stroke="#5D4E6D" stroke-width="1.2" opacity=".45"/>
+        <!-- centre big cat (lavender) -->
+        <ellipse cx="200" cy="205" rx="52" ry="48" fill="#fff" opacity=".35"/>
+        <ellipse cx="200" cy="196" rx="42" ry="39" fill="#B19CD9"/>
+        <ellipse cx="178" cy="154" rx="19" ry="17" fill="#B19CD9"/>
+        <ellipse cx="222" cy="154" rx="19" ry="17" fill="#B19CD9"/>
+        <ellipse cx="173" cy="143" rx="10" ry="13" fill="#CDB8EA"/>
+        <ellipse cx="227" cy="143" rx="10" ry="13" fill="#CDB8EA"/>
+        <circle cx="190" cy="190" r="6.5" fill="#5D4E6D"/>
+        <circle cx="210" cy="190" r="6.5" fill="#5D4E6D"/>
+        <circle cx="191" cy="188" r="2.2" fill="white"/>
+        <circle cx="211" cy="188" r="2.2" fill="white"/>
+        <ellipse cx="190" cy="201" rx="6" ry="3.5" fill="#FFB7D5"/>
+        <ellipse cx="210" cy="201" rx="6" ry="3.5" fill="#FFB7D5"/>
+        <ellipse cx="200" cy="198" rx="5" ry="4" fill="#FF9ECC"/>
+        <path d="M194 195 Q200 201 206 195" stroke="#5D4E6D" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        <line x1="162" y1="192" x2="182" y2="196" stroke="#5D4E6D" stroke-width="1.3" opacity=".4"/>
+        <line x1="162" y1="197" x2="182" y2="198" stroke="#5D4E6D" stroke-width="1.3" opacity=".4"/>
+        <line x1="218" y1="196" x2="238" y2="192" stroke="#5D4E6D" stroke-width="1.3" opacity=".4"/>
+        <line x1="218" y1="198" x2="238" y2="197" stroke="#5D4E6D" stroke-width="1.3" opacity=".4"/>
+        <!-- right small cat (apricot) -->
+        <ellipse cx="318" cy="216" rx="28" ry="25" fill="#FFB74D"/>
+        <ellipse cx="304" cy="189" rx="13" ry="12" fill="#FFB74D"/>
+        <ellipse cx="332" cy="189" rx="13" ry="12" fill="#FFB74D"/>
+        <ellipse cx="300" cy="180" rx="7" ry="9" fill="#FFA040"/>
+        <ellipse cx="336" cy="180" rx="7" ry="9" fill="#FFA040"/>
+        <circle cx="311" cy="210" r="4.5" fill="#5D4E6D"/>
+        <circle cx="325" cy="210" r="4.5" fill="#5D4E6D"/>
+        <circle cx="312" cy="209" r="1.5" fill="white"/>
+        <circle cx="326" cy="209" r="1.5" fill="white"/>
+        <ellipse cx="318" cy="218" rx="6" ry="3.5" fill="#FFB7D5"/>
+        <path d="M314 216 Q318 220 322 216" stroke="#5D4E6D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
       </svg>
-    </div>
-
-    <h1>หายเลิกตอบเองโดยมัติเหรอเหม<br><em>แก้แหมชตอบน้องร้อยอ่าน</em></h1>
-    <p class="hero-sub">สุขก้นความสมดวลกับลับกวบร้อยลอพร้อม – AI Agent ที่ตอบแชท ปิดยาย อัพเดทคลัง และดูยอดขาย พร้อม 24 ชม.</p>
-    <div class="hero-btns">
-      <a href="https://line.me/ti/p/@960xboyt" class="btn btn-pri">💬 เริ่มใช้ฟรีเลย</a>
-      <a href="#features" class="btn btn-out">ดูฟีเจอร์ทั้งหมด</a>
-    </div>
-    <div class="stats-row">
-      <div class="stat-pill">
-        <div class="stat-icon">🐾</div>
-        <div><div class="stat-num">10K+</div><div class="stat-lbl">Active Users</div></div>
-      </div>
-      <div class="stat-pill">
-        <div class="stat-icon">🏪</div>
-        <div><div class="stat-num">205m</div><div class="stat-lbl">Managed Shops</div></div>
-      </div>
-      <div class="stat-pill">
-        <div class="stat-icon">💬</div>
-        <div><div class="stat-num">5,000+</div><div class="stat-lbl">Completed Chats</div></div>
-      </div>
     </div>
   </div>
 </section>
 
 <!-- FEATURES -->
-<section class="section features-bg" id="features">
-<div class="section-center">
-  <div class="s-label">🐱 ฟีเจอร์</div>
+<section class="sec feat-wrap" id="features">
+<div class="sec-hd">
+  <div class="s-chip">🐱 ฟีเจอร์</div>
   <h2 class="s-title">ทำได้ทุกอย่าง</h2>
   <p class="s-sub">ไม่ใช่แค่แชทบอท คือพนักงานอัจฉริยะ 24 ชั่วโมง</p>
-  <div class="feat-grid">
-
-    <!-- Card 1: ตอบแชทอัตโนมัติ -->
-    <div class="feat-card reveal" style="animation-delay:.1s">
-      <svg class="cat-icon" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="55" cy="55" r="52" fill="#FFF8E1"/>
-        <ellipse cx="55" cy="62" rx="32" ry="28" fill="#FFD180"/>
-        <ellipse cx="38" cy="32" rx="14" ry="12" fill="#FFD180"/>
-        <ellipse cx="72" cy="32" rx="14" ry="12" fill="#FFD180"/>
-        <ellipse cx="34" cy="24" rx="7" ry="9" fill="#FFC04D"/>
-        <ellipse cx="76" cy="24" rx="7" ry="9" fill="#FFC04D"/>
-        <circle cx="46" cy="58" r="5" fill="#5D4E6D"/>
-        <circle cx="64" cy="58" r="5" fill="#5D4E6D"/>
-        <circle cx="47" cy="57" r="1.5" fill="white"/>
-        <circle cx="65" cy="57" r="1.5" fill="white"/>
-        <ellipse cx="46" cy="66" rx="4" ry="2.5" fill="#FFB7D5"/>
-        <ellipse cx="64" cy="66" rx="4" ry="2.5" fill="#FFB7D5"/>
-        <ellipse cx="55" cy="64" rx="3.5" ry="2.5" fill="#FF9ECC"/>
-        <path d="M50 62 Q55 66 60 62" stroke="#5D4E6D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-        <!-- chat bubble -->
-        <rect x="62" y="20" width="36" height="24" rx="8" fill="#B19CD9"/>
-        <path d="M68 44 L65 50 L75 44" fill="#B19CD9"/>
-        <circle cx="70" cy="32" r="2.5" fill="white"/>
-        <circle cx="78" cy="32" r="2.5" fill="white"/>
-        <circle cx="86" cy="32" r="2.5" fill="white"/>
-      </svg>
-      <h3>ตอบแชทอัตโนมัติ</h3>
-      <p>ตอบลูกค้าทุกข้อความทันที ไม่ต้องนั่งรอ เข้าใจภาษาไทยได้ดี พร้อม 24 ชม.</p>
-      <div class="tag-row">
-        <span class="tag">ตอบทันที</span>
-        <span class="tag">ภาษาไทย</span>
-        <span class="tag">24/7</span>
-      </div>
-    </div>
-
-    <!-- Card 2: ปิดการขายอัตโนมัติ -->
-    <div class="feat-card reveal" style="animation-delay:.2s">
-      <svg class="cat-icon" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="55" cy="55" r="52" fill="#FFF8E1"/>
-        <ellipse cx="55" cy="62" rx="32" ry="28" fill="#FFB74D"/>
-        <ellipse cx="38" cy="32" rx="14" ry="12" fill="#FFB74D"/>
-        <ellipse cx="72" cy="32" rx="14" ry="12" fill="#FFB74D"/>
-        <ellipse cx="34" cy="24" rx="7" ry="9" fill="#FFA040"/>
-        <ellipse cx="76" cy="24" rx="7" ry="9" fill="#FFA040"/>
-        <circle cx="46" cy="58" r="5" fill="#5D4E6D"/>
-        <circle cx="64" cy="58" r="5" fill="#5D4E6D"/>
-        <circle cx="47" cy="57" r="1.5" fill="white"/>
-        <circle cx="65" cy="57" r="1.5" fill="white"/>
-        <ellipse cx="46" cy="66" rx="4" ry="2.5" fill="#FFB7D5"/>
-        <ellipse cx="64" cy="66" rx="4" ry="2.5" fill="#FFB7D5"/>
-        <ellipse cx="55" cy="64" rx="3.5" ry="2.5" fill="#FF9ECC"/>
-        <path d="M50 62 Q55 66 60 62" stroke="#5D4E6D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-        <!-- money bag -->
-        <ellipse cx="78" cy="75" rx="14" ry="16" fill="#FFD700"/>
-        <ellipse cx="78" cy="61" rx="6" ry="5" fill="#FFC107"/>
-        <rect x="74" y="56" width="8" height="6" rx="2" fill="#FFB300"/>
-        <text x="73" y="79" font-size="10" font-weight="900" fill="#5D4E6D">$</text>
-        <!-- paw on bag -->
-        <ellipse cx="85" cy="68" rx="5" ry="4" fill="#FFB74D"/>
-        <circle cx="83" cy="64" r="2" fill="#FFB74D"/>
-        <circle cx="87" cy="64" r="2" fill="#FFB74D"/>
-      </svg>
-      <h3>ปิดการขายอัตโนมัติ</h3>
-      <p>AI แนะนำสินค้า เสนอโปรโมชั่น ช่วยปิดการขาย เพิ่มยอดขายให้คุณ</p>
-      <div class="tag-row">
-        <span class="tag">แนะนำสินค้า</span>
-        <span class="tag">โปรโมชั่น</span>
-        <span class="tag">ติดตามหลังขาย</span>
-      </div>
-    </div>
-
-    <!-- Card 3: อัพเดทคลังสินค้า -->
-    <div class="feat-card reveal" style="animation-delay:.3s">
-      <svg class="cat-icon" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="55" cy="55" r="52" fill="#FFF8E1"/>
-        <ellipse cx="48" cy="56" rx="26" ry="24" fill="#B19CD9"/>
-        <ellipse cx="34" cy="30" rx="12" ry="11" fill="#B19CD9"/>
-        <ellipse cx="62" cy="30" rx="12" ry="11" fill="#B19CD9"/>
-        <ellipse cx="30" cy="23" rx="6" ry="8" fill="#9B84C9"/>
-        <ellipse cx="66" cy="23" rx="6" ry="8" fill="#9B84C9"/>
-        <circle cx="40" cy="52" r="4.5" fill="#5D4E6D"/>
-        <circle cx="56" cy="52" r="4.5" fill="#5D4E6D"/>
-        <circle cx="41" cy="51" r="1.5" fill="white"/>
-        <circle cx="57" cy="51" r="1.5" fill="white"/>
-        <ellipse cx="40" cy="60" rx="3.5" ry="2.2" fill="#FFB7D5"/>
-        <ellipse cx="56" cy="60" rx="3.5" ry="2.2" fill="#FFB7D5"/>
-        <path d="M45 57 Q48 61 53 57" stroke="#5D4E6D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-        <!-- box with cat tail -->
-        <rect x="58" y="60" width="36" height="32" rx="5" fill="#D4A574"/>
-        <rect x="58" y="60" width="36" height="10" rx="5" fill="#C49060"/>
-        <line x1="76" y1="60" x2="76" y2="92" stroke="#C49060" stroke-width="2"/>
-        <!-- cat tail coming out -->
-        <path d="M85 60 Q95 50 90 40 Q85 32 90 28" stroke="#B19CD9" stroke-width="4" fill="none" stroke-linecap="round"/>
-        <ellipse cx="90" cy="27" rx="5" ry="4" fill="#B19CD9"/>
-      </svg>
-      <h3>อัพเดทคลังสินค้า</h3>
-      <p>เชื่อมต่อระบบคลัง อัพเดทสต็อกอัตโนมัติ แจ้งเตือนสต็อกต่ำ</p>
-      <div class="tag-row">
-        <span class="tag">เชื่อม POS</span>
-        <span class="tag">Real-time</span>
-        <span class="tag">แจ้งเตือน</span>
-      </div>
-    </div>
-
-    <!-- Card 4: Dashboard ยอดขาย -->
-    <div class="feat-card reveal" style="animation-delay:.15s">
-      <svg class="cat-icon" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="55" cy="55" r="52" fill="#FFF8E1"/>
-        <ellipse cx="48" cy="50" rx="26" ry="24" fill="#FFB74D"/>
-        <ellipse cx="34" cy="26" rx="12" ry="11" fill="#FFB74D"/>
-        <ellipse cx="62" cy="26" rx="12" ry="11" fill="#FFB74D"/>
-        <ellipse cx="30" cy="19" rx="6" ry="8" fill="#FFA040"/>
-        <ellipse cx="66" cy="19" rx="6" ry="8" fill="#FFA040"/>
-        <circle cx="40" cy="46" r="4.5" fill="#5D4E6D"/>
-        <circle cx="56" cy="46" r="4.5" fill="#5D4E6D"/>
-        <circle cx="41" cy="45" r="1.5" fill="white"/>
-        <circle cx="57" cy="45" r="1.5" fill="white"/>
-        <path d="M44 52 Q48 56 53 52" stroke="#5D4E6D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-        <!-- dashboard bars -->
-        <rect x="20" y="62" width="70" height="38" rx="6" fill="white" stroke="#E6E6FA" stroke-width="1.5"/>
-        <rect x="28" y="82" width="10" height="12" rx="2" fill="#B19CD9"/>
-        <rect x="42" y="74" width="10" height="20" rx="2" fill="#8E6FBB"/>
-        <rect x="56" y="70" width="10" height="24" rx="2" fill="#FFB74D"/>
-        <rect x="70" y="76" width="10" height="18" rx="2" fill="#FFD180"/>
-        <!-- paw on dashboard -->
-        <ellipse cx="74" cy="64" rx="6" ry="5" fill="#FFB74D"/>
-        <circle cx="70" cy="59" r="2.5" fill="#FFB74D"/>
-        <circle cx="78" cy="59" r="2.5" fill="#FFB74D"/>
-        <circle cx="74" cy="57" r="2" fill="#FFB74D"/>
-      </svg>
-      <h3>Dashboard ยอดขาย</h3>
-      <p>ดูยอดขาย สถิติลูกค้า รายงานได้ตลอดเวลา Export ได้ทันที</p>
-      <div class="tag-row">
-        <span class="tag">Real-time</span>
-        <span class="tag">วิเคราะห์</span>
-        <span class="tag">Export</span>
-      </div>
-    </div>
-
-    <!-- Card 5: รับออเดอร์ -->
-    <div class="feat-card reveal" style="animation-delay:.25s">
-      <svg class="cat-icon" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="55" cy="55" r="52" fill="#FFF8E1"/>
-        <!-- shopping cart -->
-        <rect x="22" y="58" width="50" height="34" rx="6" fill="#E8E0F5"/>
-        <line x1="46" y1="58" x2="46" y2="92" stroke="#B19CD9" stroke-width="1.5"/>
-        <path d="M18 52 L22 58 L72 58 L68 40 L28 40 L22 52" fill="#B19CD9"/>
-        <circle cx="34" cy="96" r="5" fill="#8E6FBB"/>
-        <circle cx="58" cy="96" r="5" fill="#8E6FBB"/>
-        <!-- cat in cart -->
-        <ellipse cx="55" cy="42" rx="18" ry="16" fill="#FFD180"/>
-        <ellipse cx="45" cy="26" rx="9" ry="8" fill="#FFD180"/>
-        <ellipse cx="65" cy="26" rx="9" ry="8" fill="#FFD180"/>
-        <ellipse cx="42" cy="20" rx="5" ry="6" fill="#FFC04D"/>
-        <ellipse cx="68" cy="20" rx="5" ry="6" fill="#FFC04D"/>
-        <circle cx="49" cy="39" r="4" fill="#5D4E6D"/>
-        <circle cx="61" cy="39" r="4" fill="#5D4E6D"/>
-        <circle cx="50" cy="38" r="1.5" fill="white"/>
-        <circle cx="62" cy="38" r="1.5" fill="white"/>
-        <path d="M52 45 Q55 48 58 45" stroke="#5D4E6D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-        <!-- second small cat -->
-        <ellipse cx="80" cy="48" rx="14" ry="12" fill="#FFB74D"/>
-        <ellipse cx="73" cy="36" rx="7" ry="6" fill="#FFB74D"/>
-        <ellipse cx="87" cy="36" rx="7" ry="6" fill="#FFB74D"/>
-        <circle cx="77" cy="45" r="3" fill="#5D4E6D"/>
-        <circle cx="84" cy="45" r="3" fill="#5D4E6D"/>
-        <path d="M79 49 Q81 51 83 49" stroke="#5D4E6D" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-      </svg>
-      <h3>รับออเดอร์</h3>
-      <p>รับออเดอร์ผ่านแชทอัตโนมัติ ยืนยัน และส่งต่อทีมจัดส่งได้เลย</p>
-      <div class="tag-row">
-        <span class="tag">Auto Order</span>
-        <span class="tag">ยืนยันทันที</span>
-        <span class="tag">แจ้งทีมส่ง</span>
-      </div>
-    </div>
-
-    <!-- Card 6: จัดการลูกค้า -->
-    <div class="feat-card reveal" style="animation-delay:.35s">
-      <svg class="cat-icon" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="55" cy="55" r="52" fill="#FFF8E1"/>
-        <!-- left cat -->
-        <ellipse cx="34" cy="64" rx="22" ry="20" fill="#FFD180"/>
-        <ellipse cx="24" cy="44" rx="10" ry="9" fill="#FFD180"/>
-        <ellipse cx="44" cy="44" rx="10" ry="9" fill="#FFD180"/>
-        <ellipse cx="21" cy="37" rx="5" ry="7" fill="#FFC04D"/>
-        <ellipse cx="47" cy="37" rx="5" ry="7" fill="#FFC04D"/>
-        <circle cx="29" cy="60" r="3.5" fill="#5D4E6D"/>
-        <circle cx="39" cy="60" r="3.5" fill="#5D4E6D"/>
-        <path d="M31 65 Q34 68 37 65" stroke="#5D4E6D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-        <!-- right cat -->
-        <ellipse cx="76" cy="64" rx="22" ry="20" fill="#B19CD9"/>
-        <ellipse cx="66" cy="44" rx="10" ry="9" fill="#B19CD9"/>
-        <ellipse cx="86" cy="44" rx="10" ry="9" fill="#B19CD9"/>
-        <ellipse cx="63" cy="37" rx="5" ry="7" fill="#9B84C9"/>
-        <ellipse cx="89" cy="37" rx="5" ry="7" fill="#9B84C9"/>
-        <circle cx="71" cy="60" r="3.5" fill="#5D4E6D"/>
-        <circle cx="81" cy="60" r="3.5" fill="#5D4E6D"/>
-        <path d="M73 65 Q76 68 79 65" stroke="#5D4E6D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-        <!-- Meow bubbles -->
-        <rect x="12" y="18" width="30" height="16" rx="8" fill="#B19CD9"/>
-        <text x="27" y="30" font-size="7" font-weight="800" text-anchor="middle" fill="white">Meow!</text>
-        <path d="M20 34 L17 40 L26 34" fill="#B19CD9"/>
-        <rect x="66" y="18" width="30" height="16" rx="8" fill="#FFD180"/>
-        <text x="81" y="30" font-size="7" font-weight="800" text-anchor="middle" fill="#5D4E6D">Meow~</text>
-        <path d="M90 34 L93 40 L84 34" fill="#FFD180"/>
-      </svg>
-      <h3>จัดการลูกค้า</h3>
-      <p>เก็บข้อมูลลูกค้า แบ่งกลุ่ม ส่งข่าวโปรโมชั่น Broadcast ได้ทันที</p>
-      <div class="tag-row">
-        <span class="tag">ฐานลูกค้า</span>
-        <span class="tag">แบ่งกลุ่ม</span>
-        <span class="tag">Broadcast</span>
-      </div>
-    </div>
-
-  </div>
 </div>
+<div class="feat-grid">
+
+<!-- 1 ตอบแชท -->
+<div class="fc">
+  <svg class="fc-ico" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="48" fill="#FFF8E1"/>
+    <ellipse cx="50" cy="57" rx="28" ry="25" fill="#FFD180"/>
+    <ellipse cx="35" cy="30" rx="13" ry="12" fill="#FFD180"/>
+    <ellipse cx="65" cy="30" rx="13" ry="12" fill="#FFD180"/>
+    <ellipse cx="31" cy="22" rx="7" ry="9" fill="#FFC04D"/>
+    <ellipse cx="69" cy="22" rx="7" ry="9" fill="#FFC04D"/>
+    <circle cx="42" cy="53" r="4.5" fill="#5D4E6D"/><circle cx="58" cy="53" r="4.5" fill="#5D4E6D"/>
+    <circle cx="43" cy="52" r="1.5" fill="white"/><circle cx="59" cy="52" r="1.5" fill="white"/>
+    <ellipse cx="42" cy="60" rx="4" ry="2.5" fill="#FFB7D5"/><ellipse cx="58" cy="60" rx="4" ry="2.5" fill="#FFB7D5"/>
+    <path d="M46 57 Q50 61 54 57" stroke="#5D4E6D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <rect x="55" y="14" width="33" height="22" rx="8" fill="#B19CD9"/>
+    <path d="M61 36 L58 44 L68 36" fill="#B19CD9"/>
+    <circle cx="64" cy="25" r="2.5" fill="white"/><circle cx="72" cy="25" r="2.5" fill="white"/><circle cx="80" cy="25" r="2.5" fill="white"/>
+  </svg>
+  <h3>ตอบแชทอัตโนมัติ</h3>
+  <p>ตอบลูกค้าทุกข้อความทันที พร้อม 24 ชม. เข้าใจภาษาไทยได้ดี</p>
+  <div class="fc-tags"><span class="tc">ตอบทันที</span><span class="tc">24/7</span><span class="tc">ภาษาไทย</span></div>
+</div>
+
+<!-- 2 Manage Payments -->
+<div class="fc">
+  <svg class="fc-ico" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="48" fill="#FFF8E1"/>
+    <ellipse cx="50" cy="57" rx="28" ry="25" fill="#FFB74D"/>
+    <ellipse cx="35" cy="30" rx="13" ry="12" fill="#FFB74D"/><ellipse cx="65" cy="30" rx="13" ry="12" fill="#FFB74D"/>
+    <ellipse cx="31" cy="22" rx="7" ry="9" fill="#FFA040"/><ellipse cx="69" cy="22" rx="7" ry="9" fill="#FFA040"/>
+    <circle cx="42" cy="53" r="4.5" fill="#5D4E6D"/><circle cx="58" cy="53" r="4.5" fill="#5D4E6D"/>
+    <circle cx="43" cy="52" r="1.5" fill="white"/><circle cx="59" cy="52" r="1.5" fill="white"/>
+    <path d="M46 58 Q50 62 54 58" stroke="#5D4E6D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <ellipse cx="50" cy="60" rx="4" ry="2.5" fill="#FFB7D5"/>
+    <!-- money bag -->
+    <ellipse cx="74" cy="72" rx="13" ry="15" fill="#FFD700"/>
+    <ellipse cx="74" cy="58" rx="5.5" ry="5" fill="#FFC107"/>
+    <rect x="71" y="53" width="7" height="5" rx="2" fill="#FFB300"/>
+    <text x="68" y="77" font-size="11" font-weight="900" fill="#5D4E6D">$</text>
+    <ellipse cx="80" cy="65" rx="4" ry="3.5" fill="#FFB74D"/>
+    <circle cx="78" cy="61" r="2" fill="#FFB74D"/><circle cx="82" cy="61" r="2" fill="#FFB74D"/>
+  </svg>
+  <h3>Manage Payments</h3>
+  <p>ปิดยอดขาย รับชำระเงิน จัดการออเดอร์อัตโนมัติ ไม่พลาดทุกออเดอร์</p>
+  <div class="fc-tags"><span class="tc">ปิดการขาย</span><span class="tc">อัตโนมัติ</span></div>
+</div>
+
+<!-- 3 Inventory Box -->
+<div class="fc">
+  <svg class="fc-ico" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="48" fill="#FFF8E1"/>
+    <ellipse cx="44" cy="48" rx="24" ry="22" fill="#B19CD9"/>
+    <ellipse cx="31" cy="25" rx="11" ry="10" fill="#B19CD9"/><ellipse cx="57" cy="25" rx="11" ry="10" fill="#B19CD9"/>
+    <ellipse cx="28" cy="18" rx="6" ry="8" fill="#9B84C9"/><ellipse cx="60" cy="18" rx="6" ry="8" fill="#9B84C9"/>
+    <circle cx="37" cy="44" r="4" fill="#5D4E6D"/><circle cx="51" cy="44" r="4" fill="#5D4E6D"/>
+    <circle cx="38" cy="43" r="1.5" fill="white"/><circle cx="52" cy="43" r="1.5" fill="white"/>
+    <path d="M41 50 Q44 53 48 50" stroke="#5D4E6D" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    <rect x="55" y="55" width="34" height="30" rx="5" fill="#D4A574"/><rect x="55" y="55" width="34" height="10" rx="5" fill="#C49060"/>
+    <line x1="72" y1="55" x2="72" y2="85" stroke="#C49060" stroke-width="2"/>
+    <path d="M79 55 Q88 44 84 36 Q80 30 84 26" stroke="#B19CD9" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <ellipse cx="84" cy="25" rx="5" ry="4" fill="#B19CD9"/>
+  </svg>
+  <h3>Inventory Box</h3>
+  <p>อัพเดทสต็อกอัตโนมัติ เชื่อม POS แจ้งเตือนสต็อกต่ำ เรียลไทม์</p>
+  <div class="fc-tags"><span class="tc">POS</span><span class="tc">Real-time</span><span class="tc">แจ้งเตือน</span></div>
+</div>
+
+<!-- 4 Dashboard -->
+<div class="fc">
+  <svg class="fc-ico" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="48" fill="#FFF8E1"/>
+    <ellipse cx="44" cy="45" rx="24" ry="22" fill="#FFB74D"/>
+    <ellipse cx="31" cy="22" rx="11" ry="10" fill="#FFB74D"/><ellipse cx="57" cy="22" rx="11" ry="10" fill="#FFB74D"/>
+    <ellipse cx="28" cy="15" rx="6" ry="8" fill="#FFA040"/><ellipse cx="60" cy="15" rx="6" ry="8" fill="#FFA040"/>
+    <circle cx="37" cy="41" r="4" fill="#5D4E6D"/><circle cx="51" cy="41" r="4" fill="#5D4E6D"/>
+    <circle cx="38" cy="40" r="1.5" fill="white"/><circle cx="52" cy="40" r="1.5" fill="white"/>
+    <path d="M41 47 Q44 50 48 47" stroke="#5D4E6D" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    <rect x="18" y="60" width="64" height="32" rx="6" fill="white" stroke="#E8E0F5" stroke-width="1.5"/>
+    <rect x="24" y="76" width="10" height="10" rx="2" fill="#B19CD9"/>
+    <rect x="38" y="70" width="10" height="16" rx="2" fill="#8E6FBB"/>
+    <rect x="52" y="66" width="10" height="20" rx="2" fill="#FFB74D"/>
+    <rect x="66" y="72" width="10" height="14" rx="2" fill="#FFD180"/>
+    <!-- paw on chart -->
+    <ellipse cx="68" cy="62" rx="5" ry="4" fill="#FFB74D"/>
+    <circle cx="64" cy="57" r="2" fill="#FFB74D"/><circle cx="72" cy="57" r="2" fill="#FFB74D"/><circle cx="68" cy="56" r="2" fill="#FFB74D"/>
+  </svg>
+  <h3>Dashboard ยอดขาย</h3>
+  <p>ดูยอดขาย สถิติลูกค้า รายงานได้ตลอดเวลา Export รายงานได้ทันที</p>
+  <div class="fc-tags"><span class="tc">Real-time</span><span class="tc">วิเคราะห์</span><span class="tc">Export</span></div>
+</div>
+
+<!-- 5 E-coming Cart -->
+<div class="fc">
+  <svg class="fc-ico" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="48" fill="#FFF8E1"/>
+    <path d="M14 42 L18 52 L70 52 L65 34 L24 34 Z" fill="#B19CD9"/>
+    <rect x="18" y="52" width="52" height="28" rx="5" fill="#E8E0F5"/>
+    <line x1="44" y1="52" x2="44" y2="80" stroke="#B19CD9" stroke-width="1.5"/>
+    <circle cx="30" cy="84" r="5" fill="#8E6FBB"/><circle cx="58" cy="84" r="5" fill="#8E6FBB"/>
+    <!-- cat in cart -->
+    <ellipse cx="50" cy="38" rx="16" ry="14" fill="#FFD180"/>
+    <ellipse cx="40" cy="22" rx="8" ry="7" fill="#FFD180"/><ellipse cx="60" cy="22" rx="8" ry="7" fill="#FFD180"/>
+    <ellipse cx="37" cy="17" rx="4" ry="6" fill="#FFC04D"/><ellipse cx="63" cy="17" rx="4" ry="6" fill="#FFC04D"/>
+    <circle cx="45" cy="35" r="3.5" fill="#5D4E6D"/><circle cx="55" cy="35" r="3.5" fill="#5D4E6D"/>
+    <circle cx="46" cy="34" r="1.2" fill="white"/><circle cx="56" cy="34" r="1.2" fill="white"/>
+    <path d="M47 40 Q50 43 53 40" stroke="#5D4E6D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="75" cy="44" rx="12" ry="11" fill="#FFB74D"/>
+    <ellipse cx="68" cy="33" rx="7" ry="6" fill="#FFB74D"/><ellipse cx="82" cy="33" rx="7" ry="6" fill="#FFB74D"/>
+    <circle cx="72" cy="41" r="3" fill="#5D4E6D"/><circle cx="79" cy="41" r="3" fill="#5D4E6D"/>
+    <path d="M74 46 Q76 48 79 46" stroke="#5D4E6D" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+  </svg>
+  <h3>รับออเดอร์</h3>
+  <p>รับออเดอร์ผ่านแชท ยืนยันอัตโนมัติ ส่งต่อทีมจัดส่งได้ทันที</p>
+  <div class="fc-tags"><span class="tc">Auto Order</span><span class="tc">ยืนยันทันที</span></div>
+</div>
+
+<!-- 6 Customer Group -->
+<div class="fc">
+  <svg class="fc-ico" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="48" fill="#FFF8E1"/>
+    <ellipse cx="32" cy="62" rx="22" ry="20" fill="#FFD180"/>
+    <ellipse cx="20" cy="40" rx="10" ry="9" fill="#FFD180"/><ellipse cx="44" cy="40" rx="10" ry="9" fill="#FFD180"/>
+    <ellipse cx="17" cy="33" rx="5" ry="7" fill="#FFC04D"/><ellipse cx="47" cy="33" rx="5" ry="7" fill="#FFC04D"/>
+    <circle cx="27" cy="57" r="3.5" fill="#5D4E6D"/><circle cx="37" cy="57" r="3.5" fill="#5D4E6D"/>
+    <path d="M29 62 Q32 66 35 62" stroke="#5D4E6D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="68" cy="62" rx="22" ry="20" fill="#B19CD9"/>
+    <ellipse cx="56" cy="40" rx="10" ry="9" fill="#B19CD9"/><ellipse cx="80" cy="40" rx="10" ry="9" fill="#B19CD9"/>
+    <ellipse cx="53" cy="33" rx="5" ry="7" fill="#9B84C9"/><ellipse cx="83" cy="33" rx="5" ry="7" fill="#9B84C9"/>
+    <circle cx="63" cy="57" r="3.5" fill="#5D4E6D"/><circle cx="73" cy="57" r="3.5" fill="#5D4E6D"/>
+    <path d="M65 62 Q68 66 71 62" stroke="#5D4E6D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <rect x="6" y="12" width="28" height="14" rx="7" fill="#B19CD9"/>
+    <text x="20" y="23" font-size="6.5" font-weight="800" text-anchor="middle" fill="white">Meow!</text>
+    <path d="M14 26 L11 32 L20 26" fill="#B19CD9"/>
+    <rect x="66" y="12" width="28" height="14" rx="7" fill="#FFD180"/>
+    <text x="80" y="23" font-size="6.5" font-weight="800" text-anchor="middle" fill="#5D4E6D">Meow~</text>
+    <path d="M88 26 L91 32 L82 26" fill="#FFD180"/>
+  </svg>
+  <h3>จัดการลูกค้า</h3>
+  <p>เก็บข้อมูลลูกค้า แบ่งกลุ่ม ส่ง Broadcast โปรโมชั่นได้ทันที</p>
+  <div class="fc-tags"><span class="tc">ฐานลูกค้า</span><span class="tc">แบ่งกลุ่ม</span><span class="tc">Broadcast</span></div>
+</div>
+
+</div><!-- /feat-grid -->
 </section>
 
 <!-- PRICING -->
-<section class="section pricing-bg" id="pricing">
-<div class="section-center">
-  <div class="s-label">💕 ราคา</div>
+<section class="sec pri-wrap" id="pricing">
+<div class="sec-hd">
+  <div class="s-chip">💕 ราคา</div>
   <h2 class="s-title">เลือกแพ็กเกจที่ใช่</h2>
   <p class="s-sub">เริ่มต้นฟรี อัพเกรดได้ตามการเติบโตของธุรกิจ</p>
-  <div class="price-grid">
-
-    <!-- Starter -->
-    <div class="price-card reveal">
-      <div class="price-cat">
-        <svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="45" cy="52" rx="30" ry="27" fill="#E8E0F5"/>
-          <ellipse cx="31" cy="26" rx="13" ry="12" fill="#E8E0F5"/>
-          <ellipse cx="59" cy="26" rx="13" ry="12" fill="#E8E0F5"/>
-          <ellipse cx="27" cy="19" rx="7" ry="9" fill="#D4C4F0"/>
-          <ellipse cx="63" cy="19" rx="7" ry="9" fill="#D4C4F0"/>
-          <circle cx="37" cy="48" r="4.5" fill="#5D4E6D"/>
-          <circle cx="53" cy="48" r="4.5" fill="#5D4E6D"/>
-          <ellipse cx="45" cy="56" rx="5" ry="3" fill="#FFB7D5"/>
-          <path d="M41 53 Q45 57 49 53" stroke="#5D4E6D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          <text x="45" y="80" font-size="18" text-anchor="middle">⭐</text>
-        </svg>
-      </div>
-      <div class="price-name">Starter</div>
-      <div class="price-sub">เริ่มต้น 1 ชีวิต</div>
-      <div class="price-num"><sup>฿</sup>0<span>/month</span></div>
-      <ul class="price-list">
-        <li>Active 5 ชีวิต</li>
-        <li>Pastel Features</li>
-        <li>Pastel Apricot</li>
-        <li>Pastel Ivuse</li>
-      </ul>
-      <a href="https://line.me/ti/p/@960xboyt" class="btn btn-out">ราศรีฟรี</a>
-    </div>
-
-    <!-- Business (Popular) -->
-    <div class="price-card pop reveal">
-      <div class="pop-badge">🐾 ยอดนิยม</div>
-      <div class="price-cat">
-        <svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
-          <!-- business cat with tie -->
-          <ellipse cx="45" cy="50" rx="30" ry="27" fill="#FFB74D"/>
-          <ellipse cx="31" cy="24" rx="13" ry="12" fill="#FFB74D"/>
-          <ellipse cx="59" cy="24" rx="13" ry="12" fill="#FFB74D"/>
-          <ellipse cx="27" cy="17" rx="7" ry="9" fill="#FFA040"/>
-          <ellipse cx="63" cy="17" rx="7" ry="9" fill="#FFA040"/>
-          <circle cx="37" cy="46" r="5" fill="#5D4E6D"/>
-          <circle cx="53" cy="46" r="5" fill="#5D4E6D"/>
-          <circle cx="38" cy="45" r="1.8" fill="white"/>
-          <circle cx="54" cy="45" r="1.8" fill="white"/>
-          <ellipse cx="37" cy="54" rx="4" ry="2.5" fill="#FFB7D5"/>
-          <ellipse cx="53" cy="54" rx="4" ry="2.5" fill="#FFB7D5"/>
-          <ellipse cx="45" cy="52" rx="4" ry="3" fill="#FF9ECC"/>
-          <path d="M41 50 Q45 54 49 50" stroke="#5D4E6D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-          <!-- tie -->
-          <polygon points="45,58 42,64 45,72 48,64" fill="#8E6FBB"/>
-          <polygon points="41,58 45,63 49,58" fill="#6B4F99"/>
-          <!-- glasses -->
-          <circle cx="37" cy="44" r="6" fill="none" stroke="#5D4E6D" stroke-width="1.5"/>
-          <circle cx="53" cy="44" r="6" fill="none" stroke="#5D4E6D" stroke-width="1.5"/>
-          <line x1="43" y1="44" x2="47" y2="44" stroke="#5D4E6D" stroke-width="1.5"/>
-        </svg>
-      </div>
-      <div class="price-name">Business</div>
-      <div class="price-sub">เริ่มต้น ฿2,990</div>
-      <div class="price-num"><sup>฿</sup>2,990<span>/month</span></div>
-      <ul class="price-list">
-        <li>Business Illustration</li>
-        <li>Pastel Features</li>
-        <li>Pastel Apricot</li>
-        <li>Paw-Badge</li>
-      </ul>
-      <a href="https://line.me/ti/p/@960xboyt" class="btn btn-pri">ราศรีฟรี</a>
-    </div>
-
-    <!-- Enterprise -->
-    <div class="price-card reveal">
-      <div class="price-cat">
-        <svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="45" cy="50" rx="30" ry="27" fill="#B19CD9"/>
-          <ellipse cx="31" cy="24" rx="13" ry="12" fill="#B19CD9"/>
-          <ellipse cx="59" cy="24" rx="13" ry="12" fill="#B19CD9"/>
-          <ellipse cx="27" cy="17" rx="7" ry="9" fill="#9B84C9"/>
-          <ellipse cx="63" cy="17" rx="7" ry="9" fill="#9B84C9"/>
-          <circle cx="37" cy="46" r="5" fill="#5D4E6D"/>
-          <circle cx="53" cy="46" r="5" fill="#5D4E6D"/>
-          <circle cx="38" cy="45" r="1.8" fill="white"/>
-          <circle cx="54" cy="45" r="1.8" fill="white"/>
-          <ellipse cx="45" cy="55" rx="5" ry="3" fill="#FFB7D5"/>
-          <path d="M41 52 Q45 56 49 52" stroke="#5D4E6D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-          <!-- crown -->
-          <polygon points="25,20 30,10 35,18 40,8 45,18 50,8 55,18 60,10 65,20" fill="#FFD700"/>
-          <rect x="25" y="18" width="40" height="6" rx="2" fill="#FFD700"/>
-        </svg>
-      </div>
-      <div class="price-name">Enterprise</div>
-      <div class="price-sub">สมชา 1 ชีวิต</div>
-      <div class="price-num"><sup></sup>$0<span>/month</span></div>
-      <ul class="price-list">
-        <li>Business Stats</li>
-        <li>Pastel Features</li>
-        <li>Pastel Permissions</li>
-        <li>Customer Groups</li>
-      </ul>
-      <a href="https://line.me/ti/p/@960xboyt" class="btn btn-out">ราศรีฟรี</a>
-    </div>
-
-  </div>
 </div>
+<div class="pri-grid">
+
+<!-- Starter -->
+<div class="pc">
+  <div class="pc-ico">
+    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="40" cy="48" rx="28" ry="25" fill="#EDE8F8"/>
+      <ellipse cx="27" cy="22" rx="12" ry="11" fill="#EDE8F8"/><ellipse cx="53" cy="22" rx="12" ry="11" fill="#EDE8F8"/>
+      <ellipse cx="24" cy="15" rx="6" ry="8" fill="#D8CEF0"/><ellipse cx="56" cy="15" rx="6" ry="8" fill="#D8CEF0"/>
+      <circle cx="33" cy="44" r="4.5" fill="#5D4E6D"/><circle cx="47" cy="44" r="4.5" fill="#5D4E6D"/>
+      <circle cx="34" cy="43" r="1.5" fill="white"/><circle cx="48" cy="43" r="1.5" fill="white"/>
+      <ellipse cx="40" cy="52" rx="5" ry="3" fill="#FFB7D5"/>
+      <path d="M36 49 Q40 53 44 49" stroke="#5D4E6D" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <text x="40" y="74" font-size="16" text-anchor="middle">⭐</text>
+    </svg>
+  </div>
+  <div class="pc-name">Starter</div>
+  <div class="pc-hint">เริ่มต้น 1 ชีวิต</div>
+  <div class="pc-price"><sup>฿</sup>2,990<small>/month</small></div>
+  <ul class="pc-list">
+    <li>Active 5ชีวิต</li>
+    <li>Pastel Features</li>
+    <li>Pastel Apricot</li>
+    <li>Pastel Ivuse</li>
+  </ul>
+  <a href="https://line.me/ti/p/@960xboyt" class="btn btn-o">ราศรีฟรี</a>
+</div>
+
+<!-- Business -->
+<div class="pc pop">
+  <div class="pop-lbl">🐾 ยอดนิยม</div>
+  <div class="pc-ico">
+    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="40" cy="46" rx="28" ry="25" fill="#FFB74D"/>
+      <ellipse cx="27" cy="20" rx="12" ry="11" fill="#FFB74D"/><ellipse cx="53" cy="20" rx="12" ry="11" fill="#FFB74D"/>
+      <ellipse cx="24" cy="13" rx="6" ry="8" fill="#FFA040"/><ellipse cx="56" cy="13" rx="6" ry="8" fill="#FFA040"/>
+      <circle cx="33" cy="40" r="5" fill="#5D4E6D"/><circle cx="47" cy="40" r="5" fill="#5D4E6D"/>
+      <circle cx="34" cy="39" r="1.8" fill="white"/><circle cx="48" cy="39" r="1.8" fill="white"/>
+      <ellipse cx="40" cy="49" rx="5" ry="3" fill="#FFB7D5"/>
+      <path d="M36 46 Q40 50 44 46" stroke="#5D4E6D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <!-- glasses -->
+      <circle cx="33" cy="38" r="5.5" fill="none" stroke="#5D4E6D" stroke-width="1.4"/>
+      <circle cx="47" cy="38" r="5.5" fill="none" stroke="#5D4E6D" stroke-width="1.4"/>
+      <line x1="38.5" y1="38" x2="41.5" y2="38" stroke="#5D4E6D" stroke-width="1.4"/>
+      <!-- tie -->
+      <polygon points="40,53 37,60 40,68 43,60" fill="#8E6FBB"/>
+      <polygon points="36,53 40,58 44,53" fill="#6B4F99"/>
+    </svg>
+  </div>
+  <div class="pc-name">Business</div>
+  <div class="pc-hint">เริ่มต้น ฿2,990</div>
+  <div class="pc-price"><sup>฿</sup>2,990<small>/month</small></div>
+  <ul class="pc-list">
+    <li>Business Illustration</li>
+    <li>Pastel Features</li>
+    <li>Pastel Apricot</li>
+    <li>Paw-Badge</li>
+  </ul>
+  <a href="https://line.me/ti/p/@960xboyt" class="btn btn-p">ราศรีฟรี</a>
+</div>
+
+<!-- Enterprise -->
+<div class="pc">
+  <div class="pc-ico">
+    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="40" cy="46" rx="28" ry="25" fill="#B19CD9"/>
+      <ellipse cx="27" cy="20" rx="12" ry="11" fill="#B19CD9"/><ellipse cx="53" cy="20" rx="12" ry="11" fill="#B19CD9"/>
+      <ellipse cx="24" cy="13" rx="6" ry="8" fill="#9B84C9"/><ellipse cx="56" cy="13" rx="6" ry="8" fill="#9B84C9"/>
+      <circle cx="33" cy="42" r="5" fill="#5D4E6D"/><circle cx="47" cy="42" r="5" fill="#5D4E6D"/>
+      <circle cx="34" cy="41" r="1.8" fill="white"/><circle cx="48" cy="41" r="1.8" fill="white"/>
+      <ellipse cx="40" cy="51" rx="5" ry="3" fill="#FFB7D5"/>
+      <path d="M36 48 Q40 52 44 48" stroke="#5D4E6D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <!-- crown -->
+      <polygon points="22,16 28,6 33,14 40,4 47,14 52,6 58,16" fill="#FFD700"/>
+      <rect x="22" y="14" width="36" height="5" rx="2" fill="#FFD700"/>
+    </svg>
+  </div>
+  <div class="pc-name">Enterprise</div>
+  <div class="pc-hint">สมชา 1 ชีวิต</div>
+  <div class="pc-price"><sup></sup>$0<small>/month</small></div>
+  <ul class="pc-list">
+    <li>Business Stats</li>
+    <li>Pastel Features</li>
+    <li>Pastel Permissions</li>
+    <li>Customer Groups</li>
+  </ul>
+  <a href="https://line.me/ti/p/@960xboyt" class="btn btn-o">ราศรีฟรี</a>
+</div>
+
+</div><!-- /pri-grid -->
 </section>
 
 <!-- CTA -->
-<section class="cta-sec" id="contact">
-  <div class="cta-cats">😺🐱😸</div>
+<section class="cta" id="contact">
+  <span class="cta-cats">😺🐱😸</span>
   <h2>พร้อมเริ่มต้นแล้วหรือยัง?</h2>
   <p>ทดลองใช้ฟรีวันนี้ ไม่ต้องใช้บัตรเครดิต เริ่มได้ใน 3 นาที</p>
-  <div class="cta-btns">
-    <a href="https://line.me/ti/p/@960xboyt" class="btn btn-pri">💬 Add LINE @MeowChat</a>
-    <a href="#features" class="btn btn-out">ดูฟีเจอร์ทั้งหมด</a>
+  <div class="cta-row">
+    <a href="https://line.me/ti/p/@960xboyt" class="btn btn-p">💬 Add LINE @MeowChat</a>
+    <a href="#features" class="btn btn-o">ดูฟีเจอร์ทั้งหมด</a>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer id="footer">
-<div class="footer-inner">
-  <div class="footer-logo">
-    🐱 MeowChat
-    <span>by Mawsom</span>
-  </div>
-  <div class="footer-links">
+<footer>
+<div class="ft-in">
+  <div class="ft-logo">🐱 MeowChat<small>by Mawsom</small></div>
+  <div class="ft-links">
     <a href="#features">Features</a>
     <a href="#pricing">FAQ</a>
     <a href="#contact">Terms</a>
     <a href="#contact">Contact</a>
   </div>
-  <div class="footer-social">
-    <a class="social-btn" href="#">🌐</a>
-    <a class="social-btn" href="#">📘</a>
-    <a class="social-btn" href="#">📷</a>
-    <a class="social-btn" href="#">🐦</a>
-    <a class="social-btn" href="#">▶️</a>
+  <div class="ft-social">
+    <a class="soc" href="#">🌐</a>
+    <a class="soc" href="#">📘</a>
+    <a class="soc" href="#">📷</a>
+    <a class="soc" href="#">🐦</a>
+    <a class="soc" href="#">▶️</a>
   </div>
-  <div style="margin-top:20px;font-size:18px">🐾 🐾 🐾</div>
-  <p class="footer-copy">© 2022 MeowChat by Mawsom, Inc. All rights reserved.</p>
+  <div style="font-size:20px;margin-top:14px;opacity:.25">🐾 🐾 🐾</div>
+  <p class="ft-copy">© 2022 MeowChat by Mawsom, Inc. All rights reserved.</p>
 </div>
 </footer>
 
 <script>
-// Scroll reveal animation
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.1 });
+// Scroll reveal
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('show') })
+}, {threshold:0.12})
+document.querySelectorAll('.fc, .pc, .reveal').forEach((el,i)=>{
+  el.style.transitionDelay = (i % 3) * 0.1 + 's'
+  io.observe(el)
+})
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+// Parallax paws on mouse move
+document.addEventListener('mousemove', e => {
+  const mx = (e.clientX/innerWidth-.5)*18
+  const my = (e.clientY/innerHeight-.5)*18
+  document.querySelectorAll('.paw').forEach((p,i)=>{
+    const f=(i+1)*.25
+    p.style.transform = `translateX(${mx*f}px) translateY(${my*f}px)`
+  })
+})
 
-// Stagger cards
-document.querySelectorAll('.feat-card, .price-card').forEach((card, i) => {
-  card.style.transitionDelay = (i * 0.08) + 's';
-});
-
-// Parallax paw prints
-document.addEventListener('mousemove', (e) => {
-  const paws = document.querySelectorAll('.paw-float');
-  const mx = (e.clientX / window.innerWidth - 0.5) * 20;
-  const my = (e.clientY / window.innerHeight - 0.5) * 20;
-  paws.forEach((p, i) => {
-    const factor = (i + 1) * 0.3;
-    p.style.transform = `translateX(${mx * factor}px) translateY(${my * factor}px)`;
-  });
-});
-
-// Counter animation for stats
-function animateCount(el, target, suffix='') {
-  let start = 0;
-  const duration = 1500;
-  const step = target / (duration / 16);
-  const timer = setInterval(() => {
-    start += step;
-    if (start >= target) { start = target; clearInterval(timer); }
-    el.textContent = Math.floor(start).toLocaleString() + suffix;
-  }, 16);
-}
-
-// Smooth nav highlight
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('nav a');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 100) current = s.id;
-  });
-  navLinks.forEach(a => {
-    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--lav)' : '';
-    a.style.background = a.getAttribute('href') === '#' + current ? 'var(--lav-m)' : '';
-  });
-});
+// Active nav highlight on scroll
+const secs = document.querySelectorAll('section[id]')
+const links = document.querySelectorAll('.nav-links a')
+addEventListener('scroll', ()=>{
+  let cur=''
+  secs.forEach(s=>{ if(scrollY >= s.offsetTop-120) cur=s.id })
+  links.forEach(a=>{
+    const active = a.getAttribute('href')==='#'+cur
+    a.style.color = active ? 'var(--lav)' : ''
+    a.style.background = active ? 'var(--lavm)' : ''
+  })
+}, {passive:true})
 </script>
 </body>
 </html>

@@ -98,48 +98,46 @@ nav{background:rgba(255,253,245,.94);backdrop-filter:blur(18px);
   max-width:1060px;margin:0 auto}
 @media(max-width:860px){.feat-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:540px){.feat-grid{grid-template-columns:1fr}}
-.fc{background:#fff;border-radius:var(--r);padding:28px 20px 24px;
-  box-shadow:var(--sh);border:2px solid var(--lavm);text-align:center;
+.fc{background:#FFF8F0;border-radius:var(--r);padding:28px 20px 24px;
+  box-shadow:0 4px 20px rgba(255,183,77,.12);border:2px solid #FFE8CC;text-align:center;
   transition:.38s;cursor:default;opacity:0;transform:translateY(20px)}
 .fc.show{opacity:1;transform:none}
 .fc:hover{transform:translateY(-10px);box-shadow:var(--sh2);border-color:var(--peach)}
 .fc-ico{width:120px;height:120px;margin:0 auto 14px;display:block;object-fit:contain;
-  transition:.35s;filter:drop-shadow(0 4px 12px rgba(142,111,187,.17))}
+  transition:.35s;filter:drop-shadow(0 4px 12px rgba(255,183,77,.2))}
 .fc:hover .fc-ico{transform:scale(1.12) rotate(-4deg)}
-.fc h3{font-size:16px;font-weight:800;color:var(--lav);margin-bottom:7px}
+.fc h3{font-size:16px;font-weight:800;color:var(--dark);margin-bottom:7px}
 .fc p{font-size:13px;color:var(--gray);line-height:1.7}
 .fc-tags{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:10px}
-.tc{background:var(--lavm);color:var(--lav);border-radius:50px;
+.tc{background:#FFF0DE;color:var(--apricot);border-radius:50px;
   font-size:11px;font-weight:700;padding:3px 11px}
 
 /* ── PRICING ── */
-.pri-wrap{background:linear-gradient(180deg,var(--bg) 0,var(--lavm) 100%)}
+.pri-wrap{background:var(--bg)}
 .pri-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
-  max-width:960px;margin:0 auto;align-items:start}
+  max-width:960px;margin:0 auto;align-items:stretch}
 @media(max-width:780px){.pri-grid{grid-template-columns:1fr;max-width:360px}}
 .pc{background:#fff;border-radius:var(--r);padding:32px 24px;
-  box-shadow:var(--sh);border:2px solid var(--lavm);text-align:center;
+  box-shadow:0 4px 20px rgba(142,111,187,.1);border:2px solid #EDE8F8;text-align:center;
   position:relative;transition:.38s;opacity:0;transform:translateY(20px)}
 .pc.show{opacity:1;transform:none}
 .pc:hover{transform:translateY(-8px);box-shadow:var(--sh2)}
-.pc.pop{border:3px solid var(--peach);transform:scale(1.05);
-  box-shadow:0 14px 44px rgba(255,183,77,.28)}
+.pc.pop{border:3px solid var(--apricot);transform:scale(1.05);
+  box-shadow:0 14px 44px rgba(255,183,77,.22)}
 .pc.pop:hover{transform:scale(1.05) translateY(-8px)}
 .pop-lbl{position:absolute;top:-16px;left:50%;transform:translateX(-50%);
   background:linear-gradient(135deg,var(--peach),var(--apricot));
   color:#fff;padding:7px 22px;border-radius:18px;font-size:12px;font-weight:800;
   white-space:nowrap;box-shadow:0 4px 14px rgba(255,183,77,.4)}
 .pc-ico{width:100px;height:100px;margin:0 auto 12px;object-fit:contain;display:block;
-  filter:drop-shadow(0 4px 10px rgba(142,111,187,.15))}
-.pc-name{font-size:20px;font-weight:900;color:var(--lav)}
+  filter:drop-shadow(0 4px 10px rgba(255,183,77,.15))}
+.pc-name{font-size:20px;font-weight:900;color:var(--dark)}
 .pc-hint{font-size:12px;color:var(--gray);margin-bottom:8px}
-.pc-price{font-size:40px;font-weight:900;
-  background:linear-gradient(135deg,var(--lav),var(--apricot));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:6px 0}
+.pc-price{font-size:40px;font-weight:900;color:var(--dark);margin:6px 0}
 .pc-price sup{font-size:18px}.pc-price small{font-size:14px;
-  color:var(--gray);font-weight:600;-webkit-text-fill-color:var(--gray)}
+  color:var(--gray);font-weight:600}
 .pc-list{list-style:none;margin:16px 0;text-align:left}
-.pc-list li{padding:9px 0;border-bottom:1px dashed var(--lavm);
+.pc-list li{padding:9px 0;border-bottom:1px dashed #EDE8F8;
   font-size:13px;color:var(--gray);font-weight:700;display:flex;align-items:center;gap:7px}
 .pc-list li:last-child{border:none}
 .pc-list li::before{content:'✓';color:var(--apricot);font-weight:900}
@@ -155,22 +153,27 @@ nav{background:rgba(255,253,245,.94);backdrop-filter:blur(18px);
 .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
 /* ── FOOTER ── */
-footer{background:var(--lavs);color:#fff;padding:44px 28px 28px;text-align:center;position:relative;overflow:hidden;z-index:1}
-footer::before{content:'🐾 🐾 🐾 🐾 🐾';position:absolute;top:-10px;left:50%;
-  transform:translateX(-50%);font-size:100px;opacity:.05;white-space:nowrap;letter-spacing:40px}
-.ft-in{position:relative;z-index:1}
-.ft-logo{font-size:24px;font-weight:900;margin-bottom:4px}
+footer{background:#FFF5EB;color:var(--dark);padding:44px 28px 28px;text-align:center;position:relative;overflow:hidden;z-index:1}
+.ft-in{position:relative;z-index:1;max-width:960px;margin:0 auto;
+  display:grid;grid-template-columns:auto 1fr;gap:30px;text-align:left}
+@media(max-width:640px){.ft-in{grid-template-columns:1fr;text-align:center}}
+
+.ft-logo{font-size:24px;font-weight:900;margin-bottom:4px;color:var(--dark)}
 .ft-logo small{display:block;font-size:11px;opacity:.7;font-weight:600}
-.ft-links{display:flex;gap:20px;justify-content:center;margin:18px 0;flex-wrap:wrap}
-.ft-links a{color:rgba(255,255,255,.85);text-decoration:none;font-weight:700;font-size:14px;
-  padding:4px 8px;border-radius:8px;transition:.25s}
-.ft-links a:hover{background:rgba(255,255,255,.2)}
-.ft-social{display:flex;gap:12px;justify-content:center;margin:14px 0}
-.soc{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.2);
-  display:flex;align-items:center;justify-content:center;font-size:16px;
-  text-decoration:none;transition:.25s}
-.soc:hover{background:rgba(255,255,255,.35);transform:translateY(-3px)}
-.ft-copy{font-size:12px;opacity:.65;margin-top:16px}
+.ft-social{display:flex;gap:10px;margin:14px 0}
+@media(max-width:640px){.ft-social{justify-content:center}}
+.soc{width:34px;height:34px;border-radius:50%;background:var(--lavm);
+  display:flex;align-items:center;justify-content:center;font-size:14px;
+  text-decoration:none;transition:.25s;color:var(--dark)}
+.soc:hover{background:var(--peach);transform:translateY(-3px)}
+.ft-copy{font-size:12px;opacity:.5;margin-top:8px}
+.ft-right{display:flex;gap:40px;flex-wrap:wrap}
+@media(max-width:640px){.ft-right{justify-content:center}}
+.ft-links{display:flex;flex-direction:column;gap:8px}
+.ft-links a{color:var(--gray);text-decoration:none;font-weight:700;font-size:14px;transition:.25s}
+.ft-links a:hover{color:var(--apricot)}
+.ft-cats{position:absolute;bottom:10px;right:20px;display:flex;gap:4px;opacity:.6}
+.ft-cats img{width:60px;height:60px;object-fit:contain}
 
 /* ── ANIMATIONS ── */
 @keyframes popIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
@@ -352,22 +355,29 @@ footer::before{content:'🐾 🐾 🐾 🐾 🐾';position:absolute;top:-10px;le
 <!-- FOOTER -->
 <footer>
 <div class="ft-in">
-  <div class="ft-logo">🐱 MeowChat<small>by Mawsom</small></div>
-  <div class="ft-links">
-    <a href="#features">Features</a>
-    <a href="#pricing">FAQ</a>
-    <a href="#contact">Terms</a>
-    <a href="#contact">Contact</a>
+  <div>
+    <div class="ft-logo">🐱 MeowChat<small>by Mawsom</small></div>
+    <div class="ft-social">
+      <a class="soc" href="#">🌐</a>
+      <a class="soc" href="#">📘</a>
+      <a class="soc" href="#">📷</a>
+      <a class="soc" href="#">🐦</a>
+      <a class="soc" href="#">▶️</a>
+    </div>
+    <p class="ft-copy">© 2022 MeowChat by Mawsom, Inc.<br>All rights reserved.</p>
   </div>
-  <div class="ft-social">
-    <a class="soc" href="#">🌐</a>
-    <a class="soc" href="#">📘</a>
-    <a class="soc" href="#">📷</a>
-    <a class="soc" href="#">🐦</a>
-    <a class="soc" href="#">▶️</a>
+  <div class="ft-right">
+    <div class="ft-links">
+      <a href="#features">Features</a>
+      <a href="#pricing">FAQ</a>
+      <a href="#contact">Terms</a>
+      <a href="#contact">Contact</a>
+    </div>
   </div>
-  <div style="font-size:20px;margin-top:14px;opacity:.25">🐾 🐾 🐾</div>
-  <p class="ft-copy">© 2022 MeowChat by Mawsom, Inc. All rights reserved.</p>
+</div>
+<div class="ft-cats">
+  <img src="assets/icon-chat.png" alt="">
+  <img src="assets/icon-payments.png" alt="">
 </div>
 </footer>
 

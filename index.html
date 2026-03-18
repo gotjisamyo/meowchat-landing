@@ -12,6 +12,7 @@ html{scroll-behavior:smooth}
   --bg:#FFFDF5;--lav:#8E6FBB;--lavs:#B19CD9;--lavm:#EDE8F8;
   --peach:#FFD180;--apricot:#FFB74D;
   --dark:#5D4E6D;--gray:#7A6B8A;
+  --r:24px;
   --sh:0 8px 28px rgba(142,111,187,.13);
   --sh2:0 18px 45px rgba(255,183,77,.22)
 }
@@ -46,50 +47,41 @@ nav{background:rgba(255,253,245,.94);backdrop-filter:blur(18px);
 
 /* ── HERO ── */
 .hero{position:relative;z-index:1;overflow:hidden;
-  padding:64px 28px 52px;
-  background:radial-gradient(ellipse at 8% 20%,rgba(177,156,217,.17),transparent 52%),
-             radial-gradient(ellipse at 92% 80%,rgba(255,209,128,.17),transparent 52%),
+  padding:48px 28px 44px;text-align:center;
+  background:radial-gradient(ellipse at 50% 20%,rgba(177,156,217,.12),transparent 52%),
+             radial-gradient(ellipse at 50% 80%,rgba(255,209,128,.12),transparent 52%),
              var(--bg)}
 .paw{position:absolute;font-size:22px;opacity:.09;animation:pf 7s ease-in-out infinite;user-select:none}
 .paw:nth-child(1){left:3%;top:12%}.paw:nth-child(2){left:9%;top:70%;animation-delay:2s}
 .paw:nth-child(3){right:4%;top:18%;animation-delay:4s}.paw:nth-child(4){right:11%;top:72%;animation-delay:1.5s}
 .paw:nth-child(5){left:22%;top:88%;animation-delay:3s}.paw:nth-child(6){right:22%;top:5%;animation-delay:5s}
 @keyframes pf{0%,100%{transform:translateY(0)rotate(-12deg)}50%{transform:translateY(-18px)rotate(14deg)}}
-.hero-wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;
-  gap:40px;align-items:center}
-@media(max-width:800px){.hero-wrap{grid-template-columns:1fr;text-align:center}}
-.hero-text{padding-top:20px}
+.hero-inner{max-width:700px;margin:0 auto}
+.hero-art{animation:float 3.2s ease-in-out infinite;margin-bottom:24px}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.hero-art img{width:220px;height:auto;filter:drop-shadow(0 16px 32px rgba(142,111,187,.2))}
 .badge{display:inline-flex;align-items:center;gap:7px;
-  padding:8px 20px;border-radius:50px;margin-bottom:24px;font-size:13px;font-weight:800;
+  padding:8px 20px;border-radius:50px;margin-bottom:20px;font-size:13px;font-weight:800;
   background:var(--lavm);border:1.5px solid var(--lavs);color:var(--lav);
   animation:fd .6s ease both}
 @keyframes fd{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
-.hero-text h1{font-size:clamp(28px,4.2vw,52px);font-weight:900;line-height:1.15;
-  color:var(--dark);margin-bottom:18px;animation:fu .7s .1s ease both}
+.hero h1{font-size:clamp(26px,4vw,48px);font-weight:900;line-height:1.18;
+  color:var(--dark);margin-bottom:16px;animation:fu .7s .1s ease both}
 @keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
-.hero-text h1 em{font-style:normal;
+.hero h1 em{font-style:normal;
   background:linear-gradient(135deg,var(--apricot),var(--lav));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero-desc{font-size:16px;color:var(--gray);line-height:1.75;margin-bottom:30px;
+.hero-desc{font-size:16px;color:var(--gray);line-height:1.75;margin-bottom:28px;
   animation:fu .7s .2s ease both}
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:38px;
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:32px;
   animation:fu .7s .3s ease both}
-@media(max-width:800px){.hero-btns{justify-content:center}}
-.stats-row{display:flex;gap:16px;flex-wrap:wrap;animation:fu .7s .4s ease both}
-@media(max-width:800px){.stats-row{justify-content:center}}
+.stats-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;animation:fu .7s .4s ease both}
 .stat{display:flex;align-items:center;gap:10px;
   background:#fff;padding:12px 18px;border-radius:18px;
   box-shadow:var(--sh);border:1.5px solid var(--lavm)}
 .stat-ico{font-size:22px}
 .stat-n{font-size:18px;font-weight:900;color:var(--lav);line-height:1}
 .stat-l{font-size:11px;color:var(--gray);font-weight:700}
-
-/* hero illustration */
-.hero-art{display:flex;justify-content:center;align-items:flex-end;
-  animation:float 3.2s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-.hero-art svg{width:100%;max-width:420px;height:auto;
-  filter:drop-shadow(0 20px 40px rgba(142,111,187,.18))}
 
 /* ── SECTION BASE ── */
 .sec{position:relative;z-index:1;padding:70px 28px}
@@ -106,12 +98,12 @@ nav{background:rgba(255,253,245,.94);backdrop-filter:blur(18px);
   max-width:1060px;margin:0 auto}
 @media(max-width:860px){.feat-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:540px){.feat-grid{grid-template-columns:1fr}}
-.fc{background:#fff;border-radius:28px;padding:28px 20px 24px;
+.fc{background:#fff;border-radius:var(--r);padding:28px 20px 24px;
   box-shadow:var(--sh);border:2px solid var(--lavm);text-align:center;
   transition:.38s;cursor:default;opacity:0;transform:translateY(20px)}
 .fc.show{opacity:1;transform:none}
 .fc:hover{transform:translateY(-10px);box-shadow:var(--sh2);border-color:var(--peach)}
-.fc-ico{width:100px;height:100px;margin:0 auto 14px;display:block;
+.fc-ico{width:120px;height:120px;margin:0 auto 14px;display:block;object-fit:contain;
   transition:.35s;filter:drop-shadow(0 4px 12px rgba(142,111,187,.17))}
 .fc:hover .fc-ico{transform:scale(1.12) rotate(-4deg)}
 .fc h3{font-size:16px;font-weight:800;color:var(--lav);margin-bottom:7px}
@@ -125,7 +117,7 @@ nav{background:rgba(255,253,245,.94);backdrop-filter:blur(18px);
 .pri-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
   max-width:960px;margin:0 auto;align-items:start}
 @media(max-width:780px){.pri-grid{grid-template-columns:1fr;max-width:360px}}
-.pc{background:#fff;border-radius:28px;padding:32px 24px;
+.pc{background:#fff;border-radius:var(--r);padding:32px 24px;
   box-shadow:var(--sh);border:2px solid var(--lavm);text-align:center;
   position:relative;transition:.38s;opacity:0;transform:translateY(20px)}
 .pc.show{opacity:1;transform:none}
@@ -137,8 +129,8 @@ nav{background:rgba(255,253,245,.94);backdrop-filter:blur(18px);
   background:linear-gradient(135deg,var(--peach),var(--apricot));
   color:#fff;padding:7px 22px;border-radius:18px;font-size:12px;font-weight:800;
   white-space:nowrap;box-shadow:0 4px 14px rgba(255,183,77,.4)}
-.pc-ico{width:80px;height:80px;margin:0 auto 12px}
-.pc-ico svg{width:100%;height:100%}
+.pc-ico{width:100px;height:100px;margin:0 auto 12px;object-fit:contain;display:block;
+  filter:drop-shadow(0 4px 10px rgba(142,111,187,.15))}
 .pc-name{font-size:20px;font-weight:900;color:var(--lav)}
 .pc-hint{font-size:12px;color:var(--gray);margin-bottom:8px}
 .pc-price{font-size:40px;font-weight:900;
@@ -204,63 +196,27 @@ footer::before{content:'🐾 🐾 🐾 🐾 🐾';position:absolute;top:-10px;le
 </div>
 </nav>
 
-    <!-- Hero cloud+cats SVG illustration ABOVE text -->
+<!-- HERO -->
+<section class="hero">
+  <span class="paw">🐾</span><span class="paw">🐾</span>
+  <span class="paw">🐾</span><span class="paw">🐾</span>
+  <span class="paw">🐾</span><span class="paw">🐾</span>
+  <div class="hero-inner">
     <div class="hero-art">
-      <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
-        <!-- clouds -->
-        <ellipse cx="200" cy="210" rx="140" ry="32" fill="#EDE8F8" opacity=".7"/>
-        <ellipse cx="120" cy="200" rx="80" ry="24" fill="#E8E0F5" opacity=".6"/>
-        <ellipse cx="280" cy="200" rx="70" ry="20" fill="#E8E0F5" opacity=".6"/>
-        <ellipse cx="180" cy="190" rx="110" ry="34" fill="#F0EBF9"/>
-        <ellipse cx="220" cy="185" rx="100" ry="30" fill="#F5F0FC"/>
-        <!-- left small cat (Lavender/Purple) -->
-        <ellipse cx="100" cy="165" rx="32" ry="30" fill="#B19CD9"/>
-        <ellipse cx="85" cy="135" rx="14" ry="12" fill="#B19CD9"/>
-        <ellipse cx="115" cy="135" rx="14" ry="12" fill="#B19CD9"/>
-        <ellipse cx="80" cy="126" rx="7" ry="9" fill="#9B84C9"/>
-        <ellipse cx="120" cy="126" rx="7" ry="9" fill="#9B84C9"/>
-        <circle cx="92" cy="158" r="4.5" fill="#5D4E6D"/>
-        <circle cx="108" cy="158" r="4.5" fill="#5D4E6D"/>
-        <ellipse cx="100" cy="166" rx="6" ry="3.5" fill="#FFB7D5"/>
-        <path d="M96 163 Q100 167 104 163" stroke="#5D4E6D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-        <!-- center cat (White/Calico) -->
-        <ellipse cx="200" cy="155" rx="44" ry="40" fill="#FFFFFF"/>
-        <!-- calico patches -->
-        <path d="M175 125 Q185 115 200 120 L210 135 L190 140 Z" fill="#FFB74D"/>
-        <path d="M220 125 Q235 135 230 150 L215 160 L205 145 Z" fill="#B19CD9"/>
-        <circle cx="188" cy="148" r="6" fill="#5D4E6D"/><circle cx="212" cy="148" r="6" fill="#5D4E6D"/>
-        <circle cx="189" cy="146" r="1.8" fill="white"/><circle cx="213" cy="146" r="1.8" fill="white"/>
-        <ellipse cx="200" cy="154" rx="4.5" ry="3.5" fill="#FF9ECC"/>
-        <path d="M195 151 Q200 155 205 151" stroke="#5D4E6D" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <ellipse cx="178" cy="115" rx="18" ry="16" fill="#FFFFFF"/>
-        <ellipse cx="222" cy="115" rx="18" ry="16" fill="#FFFFFF"/>
-        <!-- right cat (Ginger/Orange) -->
-        <ellipse cx="300" cy="165" rx="32" ry="30" fill="#FFB74D"/>
-        <ellipse cx="285" cy="135" rx="14" ry="12" fill="#FFB74D"/>
-        <ellipse cx="315" cy="135" rx="14" ry="12" fill="#FFB74D"/>
-        <ellipse cx="280" cy="126" rx="7" ry="9" fill="#FFA500"/>
-        <ellipse cx="320" cy="126" rx="7" ry="9" fill="#FFA500"/>
-        <circle cx="292" cy="158" r="4.5" fill="#5D4E6D"/><circle cx="308" cy="158" r="4.5" fill="#5D4E6D"/>
-        <ellipse cx="300" cy="166" rx="6" ry="3.5" fill="#FFB7D5"/>
-        <path d="M296 163 Q300 167 304 163" stroke="#5D4E6D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      </svg>
+      <img src="assets/hero-cat.png" alt="MeowChat Cat" width="220" height="220">
     </div>
-
-    <div class="hero-text">
-      <div class="badge">🐾 AI Chatbot สำหรับธุรกิจไทย</div>
-      <h1>หายเลิดตอบเองโดยมัติดิ<br>เหร่อเหม <em>แก้แมช</em><br>ตอบน้องร้อยอ่าน</h1>
-      <p class="hero-desc">สุขก้นความสมดวลกับลับกวบร้อยลอพร้อม<br>AI ตอบแชท • ปิดการขาย • อัพเดทคลัง • ดูยอดขาย พร้อม 24 ชม.</p>
-      <div class="hero-btns">
-        <a href="https://line.me/ti/p/@960xboyt" class="btn btn-p">Start Now 🐾</a>
-        <a href="#features" class="btn btn-o">ดูฟีเจอร์</a>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><span class="stat-ico">🐾</span><div><div class="stat-n">10K+</div><div class="stat-l">Active Users</div></div></div>
-        <div class="stat"><span class="stat-ico">🏪</span><div><div class="stat-n">205m</div><div class="stat-l">Managed Shops</div></div></div>
-        <div class="stat"><span class="stat-ico">💬</span><div><div class="stat-n">5,000+</div><div class="stat-l">Completed Chats</div></div></div>
-      </div>
+    <div class="badge">🐾 AI Chatbot สำหรับธุรกิจไทย</div>
+    <h1>หายเลิดตอบเองโดยมัติดิ<br>เหร่อเหม <em>แก้แมช</em><br>ตอบน้องร้อยอ่าน</h1>
+    <p class="hero-desc">สุขก้นความสมดวลกับลับกวบร้อยลอพร้อม<br>AI ตอบแชท • ปิดการขาย • อัพเดทคลัง • ดูยอดขาย พร้อม 24 ชม.</p>
+    <div class="hero-btns">
+      <a href="https://line.me/ti/p/@960xboyt" class="btn btn-p">Start Now 🐾</a>
+      <a href="#features" class="btn btn-o">ดูฟีเจอร์</a>
     </div>
-
+    <div class="stats-row">
+      <div class="stat"><span class="stat-ico">🐾</span><div><div class="stat-n">10K+</div><div class="stat-l">Active Users</div></div></div>
+      <div class="stat"><span class="stat-ico">🏪</span><div><div class="stat-n">205m</div><div class="stat-l">Managed Shops</div></div></div>
+      <div class="stat"><span class="stat-ico">💬</span><div><div class="stat-n">5,000+</div><div class="stat-l">Completed Chats</div></div></div>
+    </div>
   </div>
 </section>
 
@@ -273,96 +229,52 @@ footer::before{content:'🐾 🐾 🐾 🐾 🐾';position:absolute;top:-10px;le
 </div>
 <div class="feat-grid">
 
-<!-- 1 Chat (Lavender Card) -->
-<div class="fc" style="background:var(--lavm)">
-  <svg class="fc-ico" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="50" cy="55" rx="32" ry="30" fill="#B19CD9"/>
-    <ellipse cx="35" cy="25" rx="14" ry="12" fill="#B19CD9"/>
-    <ellipse cx="65" cy="25" rx="14" ry="12" fill="#B19CD9"/>
-    <circle cx="42" cy="50" r="5" fill="#5D4E6D"/><circle cx="58" cy="50" r="5" fill="#5D4E6D"/>
-    <path d="M45 58 Q50 63 55 58" stroke="#5D4E6D" stroke-width="2" fill="none" stroke-linecap="round"/>
-  </svg>
+<!-- 1 Chat -->
+<div class="fc">
+  <img class="fc-ico" src="assets/icon-chat.png" alt="ตอบแชท">
   <h3>ตอบแชทอัตโนมัติ</h3>
-  <p>AI ตอบลูกค้าทุกข้อความ ไม่ต้องนั่งรอ พร้อม 24 ชม.</p>
+  <p>ตอบลูกค้าทุกข้อความทันที พร้อม 24 ชม. เข้าใจภาษาไทยได้ดี</p>
+  <div class="fc-tags"><span class="tc">ตอบทันที</span><span class="tc">24/7</span><span class="tc">ภาษาไทย</span></div>
 </div>
 
-<!-- 2 Manage Payments (Peach Card) -->
-<div class="fc" style="background:#FFE0B2">
-  <svg class="fc-ico" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="50" cy="62" rx="30" ry="27" fill="#FFB74D"/>
-    <ellipse cx="36" cy="34" rx="14" ry="12" fill="#FFB74D"/>
-    <ellipse cx="64" cy="34" rx="14" ry="12" fill="#FFB74D"/>
-    <!-- coin/money bag -->
-    <circle cx="50" cy="65" r="18" fill="white" opacity=".3"/>
-    <ellipse cx="50" cy="75" rx="14" ry="16" fill="#FFD700"/>
-    <text x="46" y="80" font-size="12" font-weight="900" fill="#5D4E6D">$</text>
-    <circle cx="42" cy="58" r="4.5" fill="#5D4E6D"/><circle cx="58" cy="58" r="4.5" fill="#5D4E6D"/>
-  </svg>
+<!-- 2 Manage Payments -->
+<div class="fc">
+  <img class="fc-ico" src="assets/icon-payments.png" alt="Manage Payments">
   <h3>Manage Payments</h3>
-  <p>ปิดการขายอัตโนมัติ รับชำระเงิน และจัดการออเดอร์</p>
+  <p>ปิดยอดขาย รับชำระเงิน จัดการออเดอร์อัตโนมัติ ไม่พลาดทุกออเดอร์</p>
+  <div class="fc-tags"><span class="tc">ปิดการขาย</span><span class="tc">อัตโนมัติ</span></div>
 </div>
 
-<!-- 3 Inventory Box (Apricot/Yellow Card) -->
-<div class="fc" style="background:#FFF9C4">
-  <svg class="fc-ico" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <rect x="30" y="55" width="40" height="35" rx="4" fill="#D4A574"/>
-    <rect x="30" y="55" width="40" height="10" rx="4" fill="#C49060"/>
-    <!-- Ginger cat in box -->
-    <ellipse cx="50" cy="48" rx="22" ry="20" fill="#FFD180"/>
-    <ellipse cx="38" cy="28" rx="12" ry="10" fill="#FFD180"/>
-    <ellipse cx="62" cy="28" rx="12" ry="10" fill="#FFD180"/>
-    <circle cx="44" cy="45" r="4" fill="#5D4E6D"/><circle cx="56" cy="45" r="4" fill="#5D4E6D"/>
-    <path d="M47 52 Q50 55 53 52" stroke="#5D4E6D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-  </svg>
+<!-- 3 Inventory Box -->
+<div class="fc">
+  <img class="fc-ico" src="assets/icon-inventory.png" alt="Inventory Box">
   <h3>Inventory Box</h3>
-  <p>เชื่อมต่อระบบคลัง อัพเดทสต็อกอัตโนมัติ ลดของค้างสต็อก</p>
+  <p>อัพเดทสต็อกอัตโนมัติ เชื่อม POS แจ้งเตือนสต็อกต่ำ เรียลไทม์</p>
+  <div class="fc-tags"><span class="tc">POS</span><span class="tc">Real-time</span><span class="tc">แจ้งเตือน</span></div>
 </div>
 
-<!-- 4 Dashboard (Lavender Card) -->
-<div class="fc" style="background:var(--lavm)">
-  <svg class="fc-ico" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <rect x="25" y="45" width="50" height="38" rx="6" fill="white" stroke="#B19CD9" stroke-width="2"/>
-    <!-- Calico cat in monitor -->
-    <ellipse cx="50" cy="45" rx="22" ry="20" fill="#FFFFFF"/>
-    <path d="M35 30 Q45 25 55 35 Z" fill="#FFB74D"/>
-    <path d="M65 30 Q55 25 45 35 Z" fill="#B19CD9"/>
-    <circle cx="44" cy="45" r="4" fill="#5D4E6D"/><circle cx="56" cy="45" r="4" fill="#5D4E6D"/>
-    <path d="M47 50 Q50 53 53 50" stroke="#5D4E6D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  </svg>
-  <h3>Dashboard ยอดขาย</h3>
-  <p>ดูยอดสถิติลูกค้า วิเคราะห์ยอดขาย เพื่อการเติบโตที่ยั่งยืน</p>
+<!-- 4 Sales Dashboard -->
+<div class="fc">
+  <img class="fc-ico" src="assets/icon-dashboard.png" alt="Sales Dashboard">
+  <h3>Sales Dashboard</h3>
+  <p>ดูยอดขาย สถิติลูกค้า รายงานได้ตลอดเวลา Export รายงานได้ทันที</p>
+  <div class="fc-tags"><span class="tc">Real-time</span><span class="tc">วิเคราะห์</span><span class="tc">Export</span></div>
 </div>
 
-<!-- 5 E-commerce (Peach Card) -->
-<div class="fc" style="background:#FFE0B2">
-  <svg class="fc-ico" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <rect x="25" y="60" width="50" height="30" rx="5" fill="#FFD180"/>
-    <circle cx="35" cy="90" r="4" fill="#5D4E6D"/><circle cx="65" cy="90" r="4" fill="#5D4E6D"/>
-    <!-- Ginger cat in cart -->
-    <ellipse cx="50" cy="45" rx="22" ry="20" fill="#FFB74D"/>
-    <ellipse cx="38" cy="25" rx="12" ry="10" fill="#FFB74D"/>
-    <ellipse cx="62" cy="25" rx="12" ry="10" fill="#FFB74D"/>
-    <circle cx="44" cy="45" r="4" fill="#5D4E6D"/><circle cx="56" cy="45" r="4" fill="#5D4E6D"/>
-  </svg>
-  <h3>E-commerce integration</h3>
-  <p>เชื่อมต่อกับร้านค้าออนไลน์ จัดการออร์เดอร์ได้จากที่เดียว</p>
+<!-- 5 E-comping Cart -->
+<div class="fc">
+  <img class="fc-ico" src="assets/icon-cart.png" alt="E-comping Cart">
+  <h3>E-comping Cart</h3>
+  <p>รับออเดอร์ผ่านแชท ยืนยันอัตโนมัติ ส่งต่อทีมจัดส่งได้ทันที</p>
+  <div class="fc-tags"><span class="tc">Auto Order</span><span class="tc">ยืนยันทันที</span></div>
 </div>
 
-<!-- 6 Customer Management (Pink Card) -->
-<div class="fc" style="background:#FCE4EC">
-  <svg class="fc-ico" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <!-- Three cats group -->
-    <circle cx="35" cy="65" r="20" fill="#B19CD9"/>
-    <circle cx="65" cy="65" r="20" fill="#FFB74D"/>
-    <circle cx="50" cy="50" r="22" fill="#FFFFFF"/>
-    <path d="M40 35 L50 30 L60 35 Z" fill="#FFB74D"/>
-    <circle cx="44" cy="50" r="3" fill="#5D4E6D"/><circle cx="56" cy="50" r="3" fill="#5D4E6D"/>
-    <!-- bubbles -->
-    <rect x="15" y="15" width="30" height="15" rx="8" fill="#B19CD9"/>
-    <path d="M15 30 L10 35 L20 30" fill="#B19CD9"/>
-  </svg>
-  <h3>Customer Management</h3>
-  <p>เก็บข้อมูล และดูแลลูกค้าของคุณอย่างอัจฉริยะ</p>
+<!-- 6 Customer Group -->
+<div class="fc">
+  <img class="fc-ico" src="assets/icon-customers.png" alt="Customer Group">
+  <h3>Customer Group</h3>
+  <p>เก็บข้อมูลลูกค้า แบ่งกลุ่ม ส่ง Broadcast โปรโมชั่นได้ทันที</p>
+  <div class="fc-tags"><span class="tc">ฐานลูกค้า</span><span class="tc">แบ่งกลุ่ม</span><span class="tc">Broadcast</span></div>
 </div>
 
 </div><!-- /feat-grid -->
@@ -379,18 +291,7 @@ footer::before{content:'🐾 🐾 🐾 🐾 🐾';position:absolute;top:-10px;le
 
 <!-- Starter -->
 <div class="pc">
-  <div class="pc-ico">
-    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="40" cy="48" rx="28" ry="25" fill="#EDE8F8"/>
-      <ellipse cx="27" cy="22" rx="12" ry="11" fill="#EDE8F8"/><ellipse cx="53" cy="22" rx="12" ry="11" fill="#EDE8F8"/>
-      <ellipse cx="24" cy="15" rx="6" ry="8" fill="#D8CEF0"/><ellipse cx="56" cy="15" rx="6" ry="8" fill="#D8CEF0"/>
-      <circle cx="33" cy="44" r="4.5" fill="#5D4E6D"/><circle cx="47" cy="44" r="4.5" fill="#5D4E6D"/>
-      <circle cx="34" cy="43" r="1.5" fill="white"/><circle cx="48" cy="43" r="1.5" fill="white"/>
-      <ellipse cx="40" cy="52" rx="5" ry="3" fill="#FFB7D5"/>
-      <path d="M36 49 Q40 53 44 49" stroke="#5D4E6D" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-      <text x="40" y="74" font-size="16" text-anchor="middle">⭐</text>
-    </svg>
-  </div>
+  <div style="font-size:48px;margin-bottom:8px">⭐</div>
   <div class="pc-name">Starter</div>
   <div class="pc-hint">เริ่มต้น 1 ชีวิต</div>
   <div class="pc-price"><sup>฿</sup>2,990<small>/month</small></div>
@@ -400,28 +301,13 @@ footer::before{content:'🐾 🐾 🐾 🐾 🐾';position:absolute;top:-10px;le
     <li>Pastel Apricot</li>
     <li>Pastel Ivuse</li>
   </ul>
-  <a href="https://line.me/ti/p/@960xboyt" class="btn btn-o">ราศรีฟรี</a>
+  <a href="https://line.me/ti/p/@960xboyt" class="btn btn-o">ลองฟรี</a>
 </div>
 
 <!-- Business (Popular) -->
 <div class="pc pop">
   <div class="pop-lbl">🐾 ยอดนิยม</div>
-  <!-- Business Cat Badge Illustration -->
-  <div style="width:100px;height:100px;margin:0 auto 16px;position:relative;">
-    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-       <circle cx="50" cy="50" r="48" fill="#F5F0FC" stroke="#B19CD9" stroke-width="2"/>
-       <!-- calico cat badge -->
-       <ellipse cx="50" cy="55" rx="30" ry="27" fill="#FFFFFF"/>
-       <path d="M35 30 Q45 25 55 35 Z" fill="#FFB74D"/>
-       <path d="M65 30 Q55 25 45 35 Z" fill="#B19CD9"/>
-       <circle cx="42" cy="50" r="4" fill="#5D4E6D"/><circle cx="58" cy="50" r="4" fill="#5D4E6D"/>
-       <path d="M47 56 Q50 59 53 56" stroke="#5D4E6D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-       <!-- tie -->
-       <polygon points="50,65 47,72 50,80 53,72" fill="#8E6FBB"/>
-    </svg>
-    <!-- Floating Pop-Badge (Paw icon) -->
-    <div style="position:absolute;top:0;right:-10px;width:34px;height:34px;background:#FFD180;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(255,183,77,.4);font-size:16px;">🐾</div>
-  </div>
+  <img class="pc-ico" src="assets/icon-business.png" alt="Business Cat">
   <div class="pc-name">Business</div>
   <div class="pc-hint">เริ่มต้น ฿2,990</div>
   <div class="pc-price"><sup>฿</sup>2,990<small>/month</small></div>
@@ -431,25 +317,12 @@ footer::before{content:'🐾 🐾 🐾 🐾 🐾';position:absolute;top:-10px;le
     <li>Pastel Apricot</li>
     <li>Paw-Badge</li>
   </ul>
-  <a href="https://line.me/ti/p/@960xboyt" class="btn btn-p">ราศรีฟรี</a>
+  <a href="https://line.me/ti/p/@960xboyt" class="btn btn-p">ลองฟรี</a>
 </div>
 
 <!-- Enterprise -->
 <div class="pc">
-  <div class="pc-ico">
-    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="40" cy="46" rx="28" ry="25" fill="#B19CD9"/>
-      <ellipse cx="27" cy="20" rx="12" ry="11" fill="#B19CD9"/><ellipse cx="53" cy="20" rx="12" ry="11" fill="#B19CD9"/>
-      <ellipse cx="24" cy="13" rx="6" ry="8" fill="#9B84C9"/><ellipse cx="56" cy="13" rx="6" ry="8" fill="#9B84C9"/>
-      <circle cx="33" cy="42" r="5" fill="#5D4E6D"/><circle cx="47" cy="42" r="5" fill="#5D4E6D"/>
-      <circle cx="34" cy="41" r="1.8" fill="white"/><circle cx="48" cy="41" r="1.8" fill="white"/>
-      <ellipse cx="40" cy="51" rx="5" ry="3" fill="#FFB7D5"/>
-      <path d="M36 48 Q40 52 44 48" stroke="#5D4E6D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      <!-- crown -->
-      <polygon points="22,16 28,6 33,14 40,4 47,14 52,6 58,16" fill="#FFD700"/>
-      <rect x="22" y="14" width="36" height="5" rx="2" fill="#FFD700"/>
-    </svg>
-  </div>
+  <div style="font-size:48px;margin-bottom:8px">👑</div>
   <div class="pc-name">Enterprise</div>
   <div class="pc-hint">สมชา 1 ชีวิต</div>
   <div class="pc-price"><sup></sup>$0<small>/month</small></div>
@@ -459,7 +332,7 @@ footer::before{content:'🐾 🐾 🐾 🐾 🐾';position:absolute;top:-10px;le
     <li>Pastel Permissions</li>
     <li>Customer Groups</li>
   </ul>
-  <a href="https://line.me/ti/p/@960xboyt" class="btn btn-o">ราศรีฟรี</a>
+  <a href="https://line.me/ti/p/@960xboyt" class="btn btn-o">ลองฟรี</a>
 </div>
 
 </div><!-- /pri-grid -->
@@ -479,15 +352,6 @@ footer::before{content:'🐾 🐾 🐾 🐾 🐾';position:absolute;top:-10px;le
 <!-- FOOTER -->
 <footer>
 <div class="ft-in">
-  <!-- Cats on cloud footer match -->
-  <div style="width:160px;height:80px;margin:0 auto 16px;">
-    <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-       <ellipse cx="100" cy="80" rx="80" ry="20" fill="#FFFFFF" opacity=".2"/>
-       <ellipse cx="70" cy="70" rx="20" ry="18" fill="#B19CD9"/>
-       <ellipse cx="130" cy="70" rx="20" ry="18" fill="#FFB74D"/>
-       <ellipse cx="100" cy="60" rx="24" ry="22" fill="#FFFFFF"/>
-    </svg>
-  </div>
   <div class="ft-logo">🐱 MeowChat<small>by Mawsom</small></div>
   <div class="ft-links">
     <a href="#features">Features</a>

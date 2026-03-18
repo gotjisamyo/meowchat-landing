@@ -1,9 +1,95 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="th" itemscope itemtype="https://schema.org/Organization">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MeowChat - AI Chatbot สำหรับธุรกิจไทย</title>
+<title>MeowChat - AI Chatbot สำหรับธุรกิจไทย | ตอบแชทอัตโนมัติ 24/7</title>
+<meta name="description" content="MeowChat - AI Chatbot สำหรับธุรกิจไทย ตอบแชทอัตโนมัติ ปิดการขาย จัดการออเดอร์ อัพเดทสต็อก ดูยอดขาย พร้อม 24 ชม. เริ่มต้นฟรี">
+<meta name="keywords" content="AI Chatbot, LINE Bot, ธุรกิจไทย, ตอบแชทอัตโนมัติ, ปิดการขาย, จัดการออเดอร์, สต็อกสินค้า, LINE Official Account, Chatbot Thailand, SME, ร้านค้าออนไลน์">
+<meta name="author" content="Mawsom Company">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Thai">
+<meta name="revisit-after" content="7 days">
+<meta name="geo.region" content="TH">
+<meta name="geo.placename" content="Thailand">
+<meta name="theme-color" content="#8E6FBB">
+<meta property="og:title" content="MeowChat - AI Chatbot สำหรับธุรกิจไทย">
+<meta property="og:description" content="ตอบแชทอัตโนมัติ ปิดการขาย จัดการออเดอร์ อัพเดทสต็อก ดูยอดขาย พร้อม 24 ชม.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://meowchat.ai">
+<meta property="og:image" content="https://meowchat.ai/assets/og-image.png">
+<meta property="og:site_name" content="MeowChat">
+<meta property="og:locale" content="th_TH">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MeowChat - AI Chatbot สำหรับธุรกิจไทย">
+<meta name="twitter:description" content="ตอบแชทอัตโนมัติ ปิดการขาย จัดการออเดอร์ อัพเดทสต็อก พร้อม 24 ชม.">
+<meta name="twitter:image" content="https://meowchat.ai/assets/og-image.png">
+<meta name="twitter:site" content="@meowchat">
+<link rel="canonical" href="https://meowchat.ai">
+<link rel="alternate" hreflang="th" href="https://meowchat.ai">
+<link rel="alternate" hreflang="en" href="https://meowchat.ai/en">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-icon.png">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "MeowChat",
+  "alternateName": "MeowChat by Mawsom",
+  "url": "https://meowchat.ai",
+  "logo": "https://meowchat.ai/assets/logo.png",
+  "description": "AI Chatbot สำหรับธุรกิจไทย ตอบแชทอัตโนมัติ ปิดการขาย จัดการออเดอร์",
+  "foundingDate": "2024",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Bangkok",
+    "addressCountry": "TH"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+66812345678",
+    "contactType": "customer service",
+    "availableLanguage": "Thai"
+  },
+  "sameAs": [
+    "https://line.me/ti/p/@960xboyt"
+  ],
+  "serviceType": ["AI Chatbot", "LINE Bot", "Customer Service Automation"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "MeowChat",
+  "url": "https://meowchat.ai",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://meowchat.ai/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "MeowChat Business",
+  "description": "AI Chatbot สำหรับธุรกิจไทย ราคา 2,990 บาท/เดือน",
+  "brand": {
+    "@type": "Brand",
+    "name": "MeowChat"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "2990",
+    "priceCurrency": "THB",
+    "availability": "https://schema.org/InStock"
+  }
+}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -153,27 +239,60 @@ nav{background:rgba(255,253,245,.94);backdrop-filter:blur(18px);
 .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
 /* ── FOOTER ── */
-footer{background:#FFF5EB;color:var(--dark);padding:44px 28px 28px;text-align:center;position:relative;overflow:hidden;z-index:1}
-.ft-in{position:relative;z-index:1;max-width:960px;margin:0 auto;
-  display:grid;grid-template-columns:auto 1fr;gap:30px;text-align:left}
-@media(max-width:640px){.ft-in{grid-template-columns:1fr;text-align:center}}
+footer{background:#FFF5EB;color:var(--dark);padding:56px 28px 32px;text-align:center;position:relative;overflow:hidden;z-index:1}
+footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(circle at 10% 90%,rgba(177,156,217,.06) 0,transparent 40%),
+             radial-gradient(circle at 90% 10%,rgba(255,209,128,.08) 0,transparent 40%)}
+.ft-in{position:relative;z-index:1;max-width:1080px;margin:0 auto;
+  display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;text-align:left}
+@media(max-width:900px){.ft-in{grid-template-columns:1fr 1fr;text-align:left}}
+@media(max-width:540px){.ft-in{grid-template-columns:1fr;text-align:center}}
 
-.ft-logo{font-size:24px;font-weight:900;margin-bottom:4px;color:var(--dark)}
-.ft-logo small{display:block;font-size:11px;opacity:.7;font-weight:600}
-.ft-social{display:flex;gap:10px;margin:14px 0}
-@media(max-width:640px){.ft-social{justify-content:center}}
-.soc{width:34px;height:34px;border-radius:50%;background:var(--lavm);
-  display:flex;align-items:center;justify-content:center;font-size:14px;
-  text-decoration:none;transition:.25s;color:var(--dark)}
-.soc:hover{background:var(--peach);transform:translateY(-3px)}
-.ft-copy{font-size:12px;opacity:.5;margin-top:8px}
-.ft-right{display:flex;gap:40px;flex-wrap:wrap}
-@media(max-width:640px){.ft-right{justify-content:center}}
-.ft-links{display:flex;flex-direction:column;gap:8px}
-.ft-links a{color:var(--gray);text-decoration:none;font-weight:700;font-size:14px;transition:.25s}
+.ft-brand{max-width:280px}
+@media(max-width:540px){.ft-brand{max-width:none}}
+.ft-logo{font-size:26px;font-weight:900;margin-bottom:4px;color:var(--dark);display:flex;align-items:center;gap:8px}
+.ft-logo span{font-size:28px;animation:bob 2.4s ease-in-out infinite}
+.ft-logo small{display:block;font-size:11px;opacity:.7;font-weight:600;color:var(--gray)}
+.ft-desc{font-size:13px;color:var(--gray);line-height:1.7;margin:14px 0}
+.ft-social{display:flex;gap:10px;margin:18px 0}
+@media(max-width:540px){.ft-social{justify-content:center}}
+.soc{width:38px;height:38px;border-radius:50%;background:var(--lavm);
+  display:flex;align-items:center;justify-content:center;font-size:15px;
+  text-decoration:none;transition:.3s;color:var(--dark);border:2px solid transparent}
+.soc:hover{background:var(--peach);transform:translateY(-4px) scale(1.08);border-color:var(--apricot)}
+.soc.fb:hover{background:#1877F2;color:#fff}
+.soc.ig:hover{background:linear-gradient(45deg,#f09433,#e66825,#dc2743,#cc2366,#bc1888);color:#fff}
+.soc.li:hover{background:#0A66C2;color:#fff}
+.soc.ln{background:#06C755;color:#fff}
+.soc.ln:hover{transform:translateY(-4px) scale(1.08)}
+
+.ft-col h4{font-size:13px;font-weight:800;color:var(--dark);margin-bottom:16px;
+  text-transform:uppercase;letter-spacing:.8px;display:flex;align-items:center;gap:6px}
+@media(max-width:540px){.ft-col h4{justify-content:center}}
+.ft-col h4::before{content:'';width:4px;height:4px;background:var(--apricot);border-radius:50%}
+.ft-links{display:flex;flex-direction:column;gap:10px}
+.ft-links a{color:var(--gray);text-decoration:none;font-weight:600;font-size:13px;transition:.25s;position:relative}
+.ft-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:var(--peach);transition:.3s}
 .ft-links a:hover{color:var(--apricot)}
-.ft-cats{position:absolute;bottom:10px;right:20px;display:flex;gap:4px;opacity:.6}
-.ft-cats img{width:60px;height:60px;object-fit:contain}
+.ft-links a:hover::after{width:100%}
+@media(max-width:540px){.ft-links{text-align:left}}
+
+.ft-bottom{margin-top:38px;padding-top:24px;border-top:1px solid rgba(142,111,187,.15);position:relative;z-index:1}
+.ft-bottom-in{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+@media(max-width:640px){.ft-bottom-in{flex-direction:column;text-align:center}}
+.ft-copy{font-size:12px;opacity:.6;color:var(--gray)}
+.ft-copy strong{color:var(--lav)}
+.ft-legal{display:flex;gap:20px;flex-wrap:wrap}
+.ft-legal a{font-size:12px;color:var(--gray);text-decoration:none;font-weight:600;transition:.25s}
+.ft-legal a:hover{color:var(--apricot)}
+
+.ft-badge{display:flex;align-items:center;gap:8px;margin-top:12px}
+@media(max-width:540px){.ft-badge{justify-content:center}}
+.ft-badge span{font-size:11px;color:var(--gray);background:var(--lavm);padding:5px 12px;border-radius:20px;font-weight:700}
+.ft-badge span::before{content:'✓';margin-right:4px;color:var(--lav)}
+
+.ft-cats{position:absolute;bottom:8px;right:16px;display:flex;gap:6px;opacity:.5;pointer-events:none}
+.ft-cats img{width:48px;height:48px;object-fit:contain}
 
 /* ── ANIMATIONS ── */
 @keyframes popIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
@@ -355,29 +474,79 @@ footer{background:#FFF5EB;color:var(--dark);padding:44px 28px 28px;text-align:ce
 <!-- FOOTER -->
 <footer>
 <div class="ft-in">
-  <div>
-    <div class="ft-logo">🐱 MeowChat<small>by Mawsom</small></div>
+  <!-- Brand Column -->
+  <div class="ft-brand">
+    <div class="ft-logo"><span>🐱</span> MeowChat<small>by Mawsom</small></div>
+    <p class="ft-desc">AI Chatbot สำหรับธุรกิจไทย ตอบแชทอัตโนมัติ ปิดการขาย จัดการออเดอร์ อัพเดทสต็อก ดูยอดขาย พร้อม 24 ชม. ช่วยให้ธุรกิจของคุณเติบโตได้อย่างมีประสิทธิภาพ</p>
     <div class="ft-social">
-      <a class="soc" href="#">🌐</a>
-      <a class="soc" href="#">📘</a>
-      <a class="soc" href="#">📷</a>
-      <a class="soc" href="#">🐦</a>
-      <a class="soc" href="#">▶️</a>
+      <a class="soc fb" href="https://facebook.com/meowchat" aria-label="Facebook" target="_blank" rel="noopener">📘</a>
+      <a class="soc ig" href="https://instagram.com/meowchat" aria-label="Instagram" target="_blank" rel="noopener">📷</a>
+      <a class="soc li" href="https://linkedin.com/company/meowchat" aria-label="LinkedIn" target="_blank" rel="noopener">💼</a>
+      <a class="soc ln" href="https://line.me/ti/p/@960xboyt" aria-label="LINE" target="_blank" rel="noopener">📢</a>
+      <a class="soc" href="https://youtube.com/@meowchat" aria-label="YouTube" target="_blank" rel="noopener">▶️</a>
+      <a class="soc" href="https://twitter.com/meowchat" aria-label="Twitter" target="_blank" rel="noopener">🐦</a>
     </div>
-    <p class="ft-copy">© 2022 MeowChat by Mawsom, Inc.<br>All rights reserved.</p>
+    <div class="ft-badge">
+      <span>🔒 ข้อมูลปลอดภัย</span>
+      <span>🇹🇭 สนับสนุนไทย</span>
+    </div>
   </div>
-  <div class="ft-right">
+
+  <!-- Product -->
+  <div class="ft-col">
+    <h4>สินค้า</h4>
     <div class="ft-links">
-      <a href="#features">Features</a>
-      <a href="#pricing">FAQ</a>
-      <a href="#contact">Terms</a>
-      <a href="#contact">Contact</a>
+      <a href="#features">ฟีเจอร์ทั้งหมด</a>
+      <a href="#pricing">ราคาแพ็กเกจ</a>
+      <a href="#">Demo</a>
+      <a href="#">อัพเกรดแพ็กเกจ</a>
+      <a href="#">Integration</a>
+      <a href="#">LINE Bot</a>
+    </div>
+  </div>
+
+  <!-- Company -->
+  <div class="ft-col">
+    <h4>บริษัท</h4>
+    <div class="ft-links">
+      <a href="#">เกี่ยวกับเรา</a>
+      <a href="#">ทีมงาน</a>
+      <a href="#">ติดต่อเรา</a>
+      <a href="#">ร่วมงานกับเรา</a>
+      <a href="#">ข่าวสาร</a>
+      <a href="#">Blog</a>
+    </div>
+  </div>
+
+  <!-- Support -->
+  <div class="ft-col">
+    <h4>ช่วยเหลือ</h4>
+    <div class="ft-links">
+      <a href="#">ศูนย์ช่วยเหลือ</a>
+      <a href="#">คู่มือการใช้งาน</a>
+      <a href="#">API Documentation</a>
+      <a href="#">คำถามที่พบบ่อย</a>
+      <a href="#">รายงานปัญหา</a>
+      <a href="#">Status Page</a>
+    </div>
+  </div>
+</div>
+
+<div class="ft-bottom">
+  <div class="ft-bottom-in">
+    <p class="ft-copy">© <strong>2024 MeowChat</strong> by Mawsom Company. All rights reserved. <br>🇹🇭 สนับสนุนธุรกิจไทย มุ่งสู่ความยั่งยืน</p>
+    <div class="ft-legal">
+      <a href="#">นโยบายความเป็นส่วนตัว</a>
+      <a href="#">ข้อกำหนดการใช้งาน</a>
+      <a href="#">นโยบายคุกกี้</a>
+      <a href="#">GDPR Compliance</a>
     </div>
   </div>
 </div>
 <div class="ft-cats">
   <img src="assets/icon-chat.png" alt="">
   <img src="assets/icon-payments.png" alt="">
+  <img src="assets/icon-inventory.png" alt="">
 </div>
 </footer>
 

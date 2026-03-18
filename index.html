@@ -58,7 +58,7 @@ nav{background:rgba(255,253,245,.94);backdrop-filter:blur(18px);
 .hero-wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;
   gap:40px;align-items:center}
 @media(max-width:800px){.hero-wrap{grid-template-columns:1fr;text-align:center}}
-.hero-text{}
+.hero-text{padding-top:20px}
 .badge{display:inline-flex;align-items:center;gap:7px;
   padding:8px 20px;border-radius:50px;margin-bottom:24px;font-size:13px;font-weight:800;
   background:var(--lavm);border:1.5px solid var(--lavs);color:var(--lav);
@@ -204,16 +204,51 @@ footer::before{content:'🐾 🐾 🐾 🐾 🐾';position:absolute;top:-10px;le
 </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <span class="paw">🐾</span><span class="paw">🐾</span>
-  <span class="paw">🐾</span><span class="paw">🐾</span>
-  <span class="paw">🐾</span><span class="paw">🐾</span>
+    <!-- Hero cloud+cats SVG illustration ABOVE text -->
+    <div class="hero-art">
+      <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
+        <!-- clouds -->
+        <ellipse cx="200" cy="210" rx="140" ry="32" fill="#EDE8F8" opacity=".7"/>
+        <ellipse cx="120" cy="200" rx="80" ry="24" fill="#E8E0F5" opacity=".6"/>
+        <ellipse cx="280" cy="200" rx="70" ry="20" fill="#E8E0F5" opacity=".6"/>
+        <ellipse cx="180" cy="190" rx="110" ry="34" fill="#F0EBF9"/>
+        <ellipse cx="220" cy="185" rx="100" ry="30" fill="#F5F0FC"/>
+        <!-- left small cat (Lavender/Purple) -->
+        <ellipse cx="100" cy="165" rx="32" ry="30" fill="#B19CD9"/>
+        <ellipse cx="85" cy="135" rx="14" ry="12" fill="#B19CD9"/>
+        <ellipse cx="115" cy="135" rx="14" ry="12" fill="#B19CD9"/>
+        <ellipse cx="80" cy="126" rx="7" ry="9" fill="#9B84C9"/>
+        <ellipse cx="120" cy="126" rx="7" ry="9" fill="#9B84C9"/>
+        <circle cx="92" cy="158" r="4.5" fill="#5D4E6D"/>
+        <circle cx="108" cy="158" r="4.5" fill="#5D4E6D"/>
+        <ellipse cx="100" cy="166" rx="6" ry="3.5" fill="#FFB7D5"/>
+        <path d="M96 163 Q100 167 104 163" stroke="#5D4E6D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <!-- center cat (White/Calico) -->
+        <ellipse cx="200" cy="155" rx="44" ry="40" fill="#FFFFFF"/>
+        <!-- calico patches -->
+        <path d="M175 125 Q185 115 200 120 L210 135 L190 140 Z" fill="#FFB74D"/>
+        <path d="M220 125 Q235 135 230 150 L215 160 L205 145 Z" fill="#B19CD9"/>
+        <circle cx="188" cy="148" r="6" fill="#5D4E6D"/><circle cx="212" cy="148" r="6" fill="#5D4E6D"/>
+        <circle cx="189" cy="146" r="1.8" fill="white"/><circle cx="213" cy="146" r="1.8" fill="white"/>
+        <ellipse cx="200" cy="154" rx="4.5" ry="3.5" fill="#FF9ECC"/>
+        <path d="M195 151 Q200 155 205 151" stroke="#5D4E6D" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <ellipse cx="178" cy="115" rx="18" ry="16" fill="#FFFFFF"/>
+        <ellipse cx="222" cy="115" rx="18" ry="16" fill="#FFFFFF"/>
+        <!-- right cat (Ginger/Orange) -->
+        <ellipse cx="300" cy="165" rx="32" ry="30" fill="#FFB74D"/>
+        <ellipse cx="285" cy="135" rx="14" ry="12" fill="#FFB74D"/>
+        <ellipse cx="315" cy="135" rx="14" ry="12" fill="#FFB74D"/>
+        <ellipse cx="280" cy="126" rx="7" ry="9" fill="#FFA500"/>
+        <ellipse cx="320" cy="126" rx="7" ry="9" fill="#FFA500"/>
+        <circle cx="292" cy="158" r="4.5" fill="#5D4E6D"/><circle cx="308" cy="158" r="4.5" fill="#5D4E6D"/>
+        <ellipse cx="300" cy="166" rx="6" ry="3.5" fill="#FFB7D5"/>
+        <path d="M296 163 Q300 167 304 163" stroke="#5D4E6D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
 
-  <div class="hero-wrap">
     <div class="hero-text">
       <div class="badge">🐾 AI Chatbot สำหรับธุรกิจไทย</div>
-      <h1>หายเลิดตอบเองโดยมัดิ<br>เหร่อเหม <em>แก้แมช</em><br>ตอบน้องร้อยอ่าน</h1>
+      <h1>หายเลิดตอบเองโดยมัติดิ<br>เหร่อเหม <em>แก้แมช</em><br>ตอบน้องร้อยอ่าน</h1>
       <p class="hero-desc">สุขก้นความสมดวลกับลับกวบร้อยลอพร้อม<br>AI ตอบแชท • ปิดการขาย • อัพเดทคลัง • ดูยอดขาย พร้อม 24 ชม.</p>
       <div class="hero-btns">
         <a href="https://line.me/ti/p/@960xboyt" class="btn btn-p">Start Now 🐾</a>
@@ -226,69 +261,6 @@ footer::before{content:'🐾 🐾 🐾 🐾 🐾';position:absolute;top:-10px;le
       </div>
     </div>
 
-    <!-- Hero cloud+cats SVG illustration -->
-    <div class="hero-art">
-      <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-        <!-- clouds -->
-        <ellipse cx="200" cy="260" rx="170" ry="46" fill="#EDE8F8" opacity=".75"/>
-        <ellipse cx="120" cy="248" rx="90" ry="32" fill="#E8E0F5" opacity=".65"/>
-        <ellipse cx="300" cy="250" rx="80" ry="28" fill="#E8E0F5" opacity=".65"/>
-        <ellipse cx="175" cy="238" rx="130" ry="40" fill="#F0EBF9"/>
-        <ellipse cx="215" cy="228" rx="110" ry="34" fill="#F5F0FC"/>
-        <!-- sparkles -->
-        <text x="60" y="130" font-size="18" fill="#FFD180" opacity=".8">✦</text>
-        <text x="340" y="100" font-size="14" fill="#B19CD9" opacity=".8">✦</text>
-        <text x="80" y="180" font-size="12" fill="#FFB74D" opacity=".7">★</text>
-        <text x="330" y="170" font-size="12" fill="#B19CD9" opacity=".7">★</text>
-        <!-- left small cat (peach/orange) -->
-        <ellipse cx="88" cy="218" rx="30" ry="27" fill="#FFD180"/>
-        <ellipse cx="73" cy="188" rx="14" ry="13" fill="#FFD180"/>
-        <ellipse cx="103" cy="188" rx="14" ry="13" fill="#FFD180"/>
-        <ellipse cx="68" cy="179" rx="7" ry="10" fill="#FFC04D"/>
-        <ellipse cx="108" cy="179" rx="7" ry="10" fill="#FFC04D"/>
-        <circle cx="81" cy="212" r="5" fill="#5D4E6D"/>
-        <circle cx="95" cy="212" r="5" fill="#5D4E6D"/>
-        <circle cx="82" cy="211" r="1.8" fill="white"/>
-        <circle cx="96" cy="211" r="1.8" fill="white"/>
-        <ellipse cx="88" cy="220" rx="7" ry="4" fill="#FFB7D5"/>
-        <path d="M84 218 Q88 222 92 218" stroke="#5D4E6D" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <line x1="64" y1="208" x2="78" y2="212" stroke="#5D4E6D" stroke-width="1.2" opacity=".45"/>
-        <line x1="64" y1="213" x2="78" y2="214" stroke="#5D4E6D" stroke-width="1.2" opacity=".45"/>
-        <line x1="98" y1="212" x2="112" y2="208" stroke="#5D4E6D" stroke-width="1.2" opacity=".45"/>
-        <line x1="98" y1="214" x2="112" y2="213" stroke="#5D4E6D" stroke-width="1.2" opacity=".45"/>
-        <!-- centre big cat (lavender) -->
-        <ellipse cx="200" cy="205" rx="52" ry="48" fill="#fff" opacity=".35"/>
-        <ellipse cx="200" cy="196" rx="42" ry="39" fill="#B19CD9"/>
-        <ellipse cx="178" cy="154" rx="19" ry="17" fill="#B19CD9"/>
-        <ellipse cx="222" cy="154" rx="19" ry="17" fill="#B19CD9"/>
-        <ellipse cx="173" cy="143" rx="10" ry="13" fill="#CDB8EA"/>
-        <ellipse cx="227" cy="143" rx="10" ry="13" fill="#CDB8EA"/>
-        <circle cx="190" cy="190" r="6.5" fill="#5D4E6D"/>
-        <circle cx="210" cy="190" r="6.5" fill="#5D4E6D"/>
-        <circle cx="191" cy="188" r="2.2" fill="white"/>
-        <circle cx="211" cy="188" r="2.2" fill="white"/>
-        <ellipse cx="190" cy="201" rx="6" ry="3.5" fill="#FFB7D5"/>
-        <ellipse cx="210" cy="201" rx="6" ry="3.5" fill="#FFB7D5"/>
-        <ellipse cx="200" cy="198" rx="5" ry="4" fill="#FF9ECC"/>
-        <path d="M194 195 Q200 201 206 195" stroke="#5D4E6D" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-        <line x1="162" y1="192" x2="182" y2="196" stroke="#5D4E6D" stroke-width="1.3" opacity=".4"/>
-        <line x1="162" y1="197" x2="182" y2="198" stroke="#5D4E6D" stroke-width="1.3" opacity=".4"/>
-        <line x1="218" y1="196" x2="238" y2="192" stroke="#5D4E6D" stroke-width="1.3" opacity=".4"/>
-        <line x1="218" y1="198" x2="238" y2="197" stroke="#5D4E6D" stroke-width="1.3" opacity=".4"/>
-        <!-- right small cat (apricot) -->
-        <ellipse cx="318" cy="216" rx="28" ry="25" fill="#FFB74D"/>
-        <ellipse cx="304" cy="189" rx="13" ry="12" fill="#FFB74D"/>
-        <ellipse cx="332" cy="189" rx="13" ry="12" fill="#FFB74D"/>
-        <ellipse cx="300" cy="180" rx="7" ry="9" fill="#FFA040"/>
-        <ellipse cx="336" cy="180" rx="7" ry="9" fill="#FFA040"/>
-        <circle cx="311" cy="210" r="4.5" fill="#5D4E6D"/>
-        <circle cx="325" cy="210" r="4.5" fill="#5D4E6D"/>
-        <circle cx="312" cy="209" r="1.5" fill="white"/>
-        <circle cx="326" cy="209" r="1.5" fill="white"/>
-        <ellipse cx="318" cy="218" rx="6" ry="3.5" fill="#FFB7D5"/>
-        <path d="M314 216 Q318 220 322 216" stroke="#5D4E6D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      </svg>
-    </div>
   </div>
 </section>
 
@@ -301,145 +273,96 @@ footer::before{content:'🐾 🐾 🐾 🐾 🐾';position:absolute;top:-10px;le
 </div>
 <div class="feat-grid">
 
-<!-- 1 ตอบแชท -->
-<div class="fc">
+<!-- 1 Chat (Lavender Card) -->
+<div class="fc" style="background:var(--lavm)">
   <svg class="fc-ico" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="50" cy="50" r="48" fill="#FFF8E1"/>
-    <ellipse cx="50" cy="57" rx="28" ry="25" fill="#FFD180"/>
-    <ellipse cx="35" cy="30" rx="13" ry="12" fill="#FFD180"/>
-    <ellipse cx="65" cy="30" rx="13" ry="12" fill="#FFD180"/>
-    <ellipse cx="31" cy="22" rx="7" ry="9" fill="#FFC04D"/>
-    <ellipse cx="69" cy="22" rx="7" ry="9" fill="#FFC04D"/>
-    <circle cx="42" cy="53" r="4.5" fill="#5D4E6D"/><circle cx="58" cy="53" r="4.5" fill="#5D4E6D"/>
-    <circle cx="43" cy="52" r="1.5" fill="white"/><circle cx="59" cy="52" r="1.5" fill="white"/>
-    <ellipse cx="42" cy="60" rx="4" ry="2.5" fill="#FFB7D5"/><ellipse cx="58" cy="60" rx="4" ry="2.5" fill="#FFB7D5"/>
-    <path d="M46 57 Q50 61 54 57" stroke="#5D4E6D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-    <rect x="55" y="14" width="33" height="22" rx="8" fill="#B19CD9"/>
-    <path d="M61 36 L58 44 L68 36" fill="#B19CD9"/>
-    <circle cx="64" cy="25" r="2.5" fill="white"/><circle cx="72" cy="25" r="2.5" fill="white"/><circle cx="80" cy="25" r="2.5" fill="white"/>
+    <ellipse cx="50" cy="55" rx="32" ry="30" fill="#B19CD9"/>
+    <ellipse cx="35" cy="25" rx="14" ry="12" fill="#B19CD9"/>
+    <ellipse cx="65" cy="25" rx="14" ry="12" fill="#B19CD9"/>
+    <circle cx="42" cy="50" r="5" fill="#5D4E6D"/><circle cx="58" cy="50" r="5" fill="#5D4E6D"/>
+    <path d="M45 58 Q50 63 55 58" stroke="#5D4E6D" stroke-width="2" fill="none" stroke-linecap="round"/>
   </svg>
   <h3>ตอบแชทอัตโนมัติ</h3>
-  <p>ตอบลูกค้าทุกข้อความทันที พร้อม 24 ชม. เข้าใจภาษาไทยได้ดี</p>
-  <div class="fc-tags"><span class="tc">ตอบทันที</span><span class="tc">24/7</span><span class="tc">ภาษาไทย</span></div>
+  <p>AI ตอบลูกค้าทุกข้อความ ไม่ต้องนั่งรอ พร้อม 24 ชม.</p>
 </div>
 
-<!-- 2 Manage Payments -->
-<div class="fc">
+<!-- 2 Manage Payments (Peach Card) -->
+<div class="fc" style="background:#FFE0B2">
   <svg class="fc-ico" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="50" cy="50" r="48" fill="#FFF8E1"/>
-    <ellipse cx="50" cy="57" rx="28" ry="25" fill="#FFB74D"/>
-    <ellipse cx="35" cy="30" rx="13" ry="12" fill="#FFB74D"/><ellipse cx="65" cy="30" rx="13" ry="12" fill="#FFB74D"/>
-    <ellipse cx="31" cy="22" rx="7" ry="9" fill="#FFA040"/><ellipse cx="69" cy="22" rx="7" ry="9" fill="#FFA040"/>
-    <circle cx="42" cy="53" r="4.5" fill="#5D4E6D"/><circle cx="58" cy="53" r="4.5" fill="#5D4E6D"/>
-    <circle cx="43" cy="52" r="1.5" fill="white"/><circle cx="59" cy="52" r="1.5" fill="white"/>
-    <path d="M46 58 Q50 62 54 58" stroke="#5D4E6D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-    <ellipse cx="50" cy="60" rx="4" ry="2.5" fill="#FFB7D5"/>
-    <!-- money bag -->
-    <ellipse cx="74" cy="72" rx="13" ry="15" fill="#FFD700"/>
-    <ellipse cx="74" cy="58" rx="5.5" ry="5" fill="#FFC107"/>
-    <rect x="71" y="53" width="7" height="5" rx="2" fill="#FFB300"/>
-    <text x="68" y="77" font-size="11" font-weight="900" fill="#5D4E6D">$</text>
-    <ellipse cx="80" cy="65" rx="4" ry="3.5" fill="#FFB74D"/>
-    <circle cx="78" cy="61" r="2" fill="#FFB74D"/><circle cx="82" cy="61" r="2" fill="#FFB74D"/>
+    <ellipse cx="50" cy="62" rx="30" ry="27" fill="#FFB74D"/>
+    <ellipse cx="36" cy="34" rx="14" ry="12" fill="#FFB74D"/>
+    <ellipse cx="64" cy="34" rx="14" ry="12" fill="#FFB74D"/>
+    <!-- coin/money bag -->
+    <circle cx="50" cy="65" r="18" fill="white" opacity=".3"/>
+    <ellipse cx="50" cy="75" rx="14" ry="16" fill="#FFD700"/>
+    <text x="46" y="80" font-size="12" font-weight="900" fill="#5D4E6D">$</text>
+    <circle cx="42" cy="58" r="4.5" fill="#5D4E6D"/><circle cx="58" cy="58" r="4.5" fill="#5D4E6D"/>
   </svg>
   <h3>Manage Payments</h3>
-  <p>ปิดยอดขาย รับชำระเงิน จัดการออเดอร์อัตโนมัติ ไม่พลาดทุกออเดอร์</p>
-  <div class="fc-tags"><span class="tc">ปิดการขาย</span><span class="tc">อัตโนมัติ</span></div>
+  <p>ปิดการขายอัตโนมัติ รับชำระเงิน และจัดการออเดอร์</p>
 </div>
 
-<!-- 3 Inventory Box -->
-<div class="fc">
+<!-- 3 Inventory Box (Apricot/Yellow Card) -->
+<div class="fc" style="background:#FFF9C4">
   <svg class="fc-ico" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="50" cy="50" r="48" fill="#FFF8E1"/>
-    <ellipse cx="44" cy="48" rx="24" ry="22" fill="#B19CD9"/>
-    <ellipse cx="31" cy="25" rx="11" ry="10" fill="#B19CD9"/><ellipse cx="57" cy="25" rx="11" ry="10" fill="#B19CD9"/>
-    <ellipse cx="28" cy="18" rx="6" ry="8" fill="#9B84C9"/><ellipse cx="60" cy="18" rx="6" ry="8" fill="#9B84C9"/>
-    <circle cx="37" cy="44" r="4" fill="#5D4E6D"/><circle cx="51" cy="44" r="4" fill="#5D4E6D"/>
-    <circle cx="38" cy="43" r="1.5" fill="white"/><circle cx="52" cy="43" r="1.5" fill="white"/>
-    <path d="M41 50 Q44 53 48 50" stroke="#5D4E6D" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-    <rect x="55" y="55" width="34" height="30" rx="5" fill="#D4A574"/><rect x="55" y="55" width="34" height="10" rx="5" fill="#C49060"/>
-    <line x1="72" y1="55" x2="72" y2="85" stroke="#C49060" stroke-width="2"/>
-    <path d="M79 55 Q88 44 84 36 Q80 30 84 26" stroke="#B19CD9" stroke-width="4" fill="none" stroke-linecap="round"/>
-    <ellipse cx="84" cy="25" rx="5" ry="4" fill="#B19CD9"/>
+    <rect x="30" y="55" width="40" height="35" rx="4" fill="#D4A574"/>
+    <rect x="30" y="55" width="40" height="10" rx="4" fill="#C49060"/>
+    <!-- Ginger cat in box -->
+    <ellipse cx="50" cy="48" rx="22" ry="20" fill="#FFD180"/>
+    <ellipse cx="38" cy="28" rx="12" ry="10" fill="#FFD180"/>
+    <ellipse cx="62" cy="28" rx="12" ry="10" fill="#FFD180"/>
+    <circle cx="44" cy="45" r="4" fill="#5D4E6D"/><circle cx="56" cy="45" r="4" fill="#5D4E6D"/>
+    <path d="M47 52 Q50 55 53 52" stroke="#5D4E6D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
   </svg>
   <h3>Inventory Box</h3>
-  <p>อัพเดทสต็อกอัตโนมัติ เชื่อม POS แจ้งเตือนสต็อกต่ำ เรียลไทม์</p>
-  <div class="fc-tags"><span class="tc">POS</span><span class="tc">Real-time</span><span class="tc">แจ้งเตือน</span></div>
+  <p>เชื่อมต่อระบบคลัง อัพเดทสต็อกอัตโนมัติ ลดของค้างสต็อก</p>
 </div>
 
-<!-- 4 Dashboard -->
-<div class="fc">
+<!-- 4 Dashboard (Lavender Card) -->
+<div class="fc" style="background:var(--lavm)">
   <svg class="fc-ico" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="50" cy="50" r="48" fill="#FFF8E1"/>
-    <ellipse cx="44" cy="45" rx="24" ry="22" fill="#FFB74D"/>
-    <ellipse cx="31" cy="22" rx="11" ry="10" fill="#FFB74D"/><ellipse cx="57" cy="22" rx="11" ry="10" fill="#FFB74D"/>
-    <ellipse cx="28" cy="15" rx="6" ry="8" fill="#FFA040"/><ellipse cx="60" cy="15" rx="6" ry="8" fill="#FFA040"/>
-    <circle cx="37" cy="41" r="4" fill="#5D4E6D"/><circle cx="51" cy="41" r="4" fill="#5D4E6D"/>
-    <circle cx="38" cy="40" r="1.5" fill="white"/><circle cx="52" cy="40" r="1.5" fill="white"/>
-    <path d="M41 47 Q44 50 48 47" stroke="#5D4E6D" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-    <rect x="18" y="60" width="64" height="32" rx="6" fill="white" stroke="#E8E0F5" stroke-width="1.5"/>
-    <rect x="24" y="76" width="10" height="10" rx="2" fill="#B19CD9"/>
-    <rect x="38" y="70" width="10" height="16" rx="2" fill="#8E6FBB"/>
-    <rect x="52" y="66" width="10" height="20" rx="2" fill="#FFB74D"/>
-    <rect x="66" y="72" width="10" height="14" rx="2" fill="#FFD180"/>
-    <!-- paw on chart -->
-    <ellipse cx="68" cy="62" rx="5" ry="4" fill="#FFB74D"/>
-    <circle cx="64" cy="57" r="2" fill="#FFB74D"/><circle cx="72" cy="57" r="2" fill="#FFB74D"/><circle cx="68" cy="56" r="2" fill="#FFB74D"/>
+    <rect x="25" y="45" width="50" height="38" rx="6" fill="white" stroke="#B19CD9" stroke-width="2"/>
+    <!-- Calico cat in monitor -->
+    <ellipse cx="50" cy="45" rx="22" ry="20" fill="#FFFFFF"/>
+    <path d="M35 30 Q45 25 55 35 Z" fill="#FFB74D"/>
+    <path d="M65 30 Q55 25 45 35 Z" fill="#B19CD9"/>
+    <circle cx="44" cy="45" r="4" fill="#5D4E6D"/><circle cx="56" cy="45" r="4" fill="#5D4E6D"/>
+    <path d="M47 50 Q50 53 53 50" stroke="#5D4E6D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
   </svg>
   <h3>Dashboard ยอดขาย</h3>
-  <p>ดูยอดขาย สถิติลูกค้า รายงานได้ตลอดเวลา Export รายงานได้ทันที</p>
-  <div class="fc-tags"><span class="tc">Real-time</span><span class="tc">วิเคราะห์</span><span class="tc">Export</span></div>
+  <p>ดูยอดสถิติลูกค้า วิเคราะห์ยอดขาย เพื่อการเติบโตที่ยั่งยืน</p>
 </div>
 
-<!-- 5 E-coming Cart -->
-<div class="fc">
+<!-- 5 E-commerce (Peach Card) -->
+<div class="fc" style="background:#FFE0B2">
   <svg class="fc-ico" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="50" cy="50" r="48" fill="#FFF8E1"/>
-    <path d="M14 42 L18 52 L70 52 L65 34 L24 34 Z" fill="#B19CD9"/>
-    <rect x="18" y="52" width="52" height="28" rx="5" fill="#E8E0F5"/>
-    <line x1="44" y1="52" x2="44" y2="80" stroke="#B19CD9" stroke-width="1.5"/>
-    <circle cx="30" cy="84" r="5" fill="#8E6FBB"/><circle cx="58" cy="84" r="5" fill="#8E6FBB"/>
-    <!-- cat in cart -->
-    <ellipse cx="50" cy="38" rx="16" ry="14" fill="#FFD180"/>
-    <ellipse cx="40" cy="22" rx="8" ry="7" fill="#FFD180"/><ellipse cx="60" cy="22" rx="8" ry="7" fill="#FFD180"/>
-    <ellipse cx="37" cy="17" rx="4" ry="6" fill="#FFC04D"/><ellipse cx="63" cy="17" rx="4" ry="6" fill="#FFC04D"/>
-    <circle cx="45" cy="35" r="3.5" fill="#5D4E6D"/><circle cx="55" cy="35" r="3.5" fill="#5D4E6D"/>
-    <circle cx="46" cy="34" r="1.2" fill="white"/><circle cx="56" cy="34" r="1.2" fill="white"/>
-    <path d="M47 40 Q50 43 53 40" stroke="#5D4E6D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    <ellipse cx="75" cy="44" rx="12" ry="11" fill="#FFB74D"/>
-    <ellipse cx="68" cy="33" rx="7" ry="6" fill="#FFB74D"/><ellipse cx="82" cy="33" rx="7" ry="6" fill="#FFB74D"/>
-    <circle cx="72" cy="41" r="3" fill="#5D4E6D"/><circle cx="79" cy="41" r="3" fill="#5D4E6D"/>
-    <path d="M74 46 Q76 48 79 46" stroke="#5D4E6D" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+    <rect x="25" y="60" width="50" height="30" rx="5" fill="#FFD180"/>
+    <circle cx="35" cy="90" r="4" fill="#5D4E6D"/><circle cx="65" cy="90" r="4" fill="#5D4E6D"/>
+    <!-- Ginger cat in cart -->
+    <ellipse cx="50" cy="45" rx="22" ry="20" fill="#FFB74D"/>
+    <ellipse cx="38" cy="25" rx="12" ry="10" fill="#FFB74D"/>
+    <ellipse cx="62" cy="25" rx="12" ry="10" fill="#FFB74D"/>
+    <circle cx="44" cy="45" r="4" fill="#5D4E6D"/><circle cx="56" cy="45" r="4" fill="#5D4E6D"/>
   </svg>
-  <h3>รับออเดอร์</h3>
-  <p>รับออเดอร์ผ่านแชท ยืนยันอัตโนมัติ ส่งต่อทีมจัดส่งได้ทันที</p>
-  <div class="fc-tags"><span class="tc">Auto Order</span><span class="tc">ยืนยันทันที</span></div>
+  <h3>E-commerce integration</h3>
+  <p>เชื่อมต่อกับร้านค้าออนไลน์ จัดการออร์เดอร์ได้จากที่เดียว</p>
 </div>
 
-<!-- 6 Customer Group -->
-<div class="fc">
+<!-- 6 Customer Management (Pink Card) -->
+<div class="fc" style="background:#FCE4EC">
   <svg class="fc-ico" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="50" cy="50" r="48" fill="#FFF8E1"/>
-    <ellipse cx="32" cy="62" rx="22" ry="20" fill="#FFD180"/>
-    <ellipse cx="20" cy="40" rx="10" ry="9" fill="#FFD180"/><ellipse cx="44" cy="40" rx="10" ry="9" fill="#FFD180"/>
-    <ellipse cx="17" cy="33" rx="5" ry="7" fill="#FFC04D"/><ellipse cx="47" cy="33" rx="5" ry="7" fill="#FFC04D"/>
-    <circle cx="27" cy="57" r="3.5" fill="#5D4E6D"/><circle cx="37" cy="57" r="3.5" fill="#5D4E6D"/>
-    <path d="M29 62 Q32 66 35 62" stroke="#5D4E6D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    <ellipse cx="68" cy="62" rx="22" ry="20" fill="#B19CD9"/>
-    <ellipse cx="56" cy="40" rx="10" ry="9" fill="#B19CD9"/><ellipse cx="80" cy="40" rx="10" ry="9" fill="#B19CD9"/>
-    <ellipse cx="53" cy="33" rx="5" ry="7" fill="#9B84C9"/><ellipse cx="83" cy="33" rx="5" ry="7" fill="#9B84C9"/>
-    <circle cx="63" cy="57" r="3.5" fill="#5D4E6D"/><circle cx="73" cy="57" r="3.5" fill="#5D4E6D"/>
-    <path d="M65 62 Q68 66 71 62" stroke="#5D4E6D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    <rect x="6" y="12" width="28" height="14" rx="7" fill="#B19CD9"/>
-    <text x="20" y="23" font-size="6.5" font-weight="800" text-anchor="middle" fill="white">Meow!</text>
-    <path d="M14 26 L11 32 L20 26" fill="#B19CD9"/>
-    <rect x="66" y="12" width="28" height="14" rx="7" fill="#FFD180"/>
-    <text x="80" y="23" font-size="6.5" font-weight="800" text-anchor="middle" fill="#5D4E6D">Meow~</text>
-    <path d="M88 26 L91 32 L82 26" fill="#FFD180"/>
+    <!-- Three cats group -->
+    <circle cx="35" cy="65" r="20" fill="#B19CD9"/>
+    <circle cx="65" cy="65" r="20" fill="#FFB74D"/>
+    <circle cx="50" cy="50" r="22" fill="#FFFFFF"/>
+    <path d="M40 35 L50 30 L60 35 Z" fill="#FFB74D"/>
+    <circle cx="44" cy="50" r="3" fill="#5D4E6D"/><circle cx="56" cy="50" r="3" fill="#5D4E6D"/>
+    <!-- bubbles -->
+    <rect x="15" y="15" width="30" height="15" rx="8" fill="#B19CD9"/>
+    <path d="M15 30 L10 35 L20 30" fill="#B19CD9"/>
   </svg>
-  <h3>จัดการลูกค้า</h3>
-  <p>เก็บข้อมูลลูกค้า แบ่งกลุ่ม ส่ง Broadcast โปรโมชั่นได้ทันที</p>
-  <div class="fc-tags"><span class="tc">ฐานลูกค้า</span><span class="tc">แบ่งกลุ่ม</span><span class="tc">Broadcast</span></div>
+  <h3>Customer Management</h3>
+  <p>เก็บข้อมูล และดูแลลูกค้าของคุณอย่างอัจฉริยะ</p>
 </div>
 
 </div><!-- /feat-grid -->
@@ -480,26 +403,24 @@ footer::before{content:'🐾 🐾 🐾 🐾 🐾';position:absolute;top:-10px;le
   <a href="https://line.me/ti/p/@960xboyt" class="btn btn-o">ราศรีฟรี</a>
 </div>
 
-<!-- Business -->
+<!-- Business (Popular) -->
 <div class="pc pop">
   <div class="pop-lbl">🐾 ยอดนิยม</div>
-  <div class="pc-ico">
-    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="40" cy="46" rx="28" ry="25" fill="#FFB74D"/>
-      <ellipse cx="27" cy="20" rx="12" ry="11" fill="#FFB74D"/><ellipse cx="53" cy="20" rx="12" ry="11" fill="#FFB74D"/>
-      <ellipse cx="24" cy="13" rx="6" ry="8" fill="#FFA040"/><ellipse cx="56" cy="13" rx="6" ry="8" fill="#FFA040"/>
-      <circle cx="33" cy="40" r="5" fill="#5D4E6D"/><circle cx="47" cy="40" r="5" fill="#5D4E6D"/>
-      <circle cx="34" cy="39" r="1.8" fill="white"/><circle cx="48" cy="39" r="1.8" fill="white"/>
-      <ellipse cx="40" cy="49" rx="5" ry="3" fill="#FFB7D5"/>
-      <path d="M36 46 Q40 50 44 46" stroke="#5D4E6D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      <!-- glasses -->
-      <circle cx="33" cy="38" r="5.5" fill="none" stroke="#5D4E6D" stroke-width="1.4"/>
-      <circle cx="47" cy="38" r="5.5" fill="none" stroke="#5D4E6D" stroke-width="1.4"/>
-      <line x1="38.5" y1="38" x2="41.5" y2="38" stroke="#5D4E6D" stroke-width="1.4"/>
-      <!-- tie -->
-      <polygon points="40,53 37,60 40,68 43,60" fill="#8E6FBB"/>
-      <polygon points="36,53 40,58 44,53" fill="#6B4F99"/>
+  <!-- Business Cat Badge Illustration -->
+  <div style="width:100px;height:100px;margin:0 auto 16px;position:relative;">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+       <circle cx="50" cy="50" r="48" fill="#F5F0FC" stroke="#B19CD9" stroke-width="2"/>
+       <!-- calico cat badge -->
+       <ellipse cx="50" cy="55" rx="30" ry="27" fill="#FFFFFF"/>
+       <path d="M35 30 Q45 25 55 35 Z" fill="#FFB74D"/>
+       <path d="M65 30 Q55 25 45 35 Z" fill="#B19CD9"/>
+       <circle cx="42" cy="50" r="4" fill="#5D4E6D"/><circle cx="58" cy="50" r="4" fill="#5D4E6D"/>
+       <path d="M47 56 Q50 59 53 56" stroke="#5D4E6D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+       <!-- tie -->
+       <polygon points="50,65 47,72 50,80 53,72" fill="#8E6FBB"/>
     </svg>
+    <!-- Floating Pop-Badge (Paw icon) -->
+    <div style="position:absolute;top:0;right:-10px;width:34px;height:34px;background:#FFD180;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(255,183,77,.4);font-size:16px;">🐾</div>
   </div>
   <div class="pc-name">Business</div>
   <div class="pc-hint">เริ่มต้น ฿2,990</div>
@@ -558,6 +479,15 @@ footer::before{content:'🐾 🐾 🐾 🐾 🐾';position:absolute;top:-10px;le
 <!-- FOOTER -->
 <footer>
 <div class="ft-in">
+  <!-- Cats on cloud footer match -->
+  <div style="width:160px;height:80px;margin:0 auto 16px;">
+    <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+       <ellipse cx="100" cy="80" rx="80" ry="20" fill="#FFFFFF" opacity=".2"/>
+       <ellipse cx="70" cy="70" rx="20" ry="18" fill="#B19CD9"/>
+       <ellipse cx="130" cy="70" rx="20" ry="18" fill="#FFB74D"/>
+       <ellipse cx="100" cy="60" rx="24" ry="22" fill="#FFFFFF"/>
+    </svg>
+  </div>
   <div class="ft-logo">🐱 MeowChat<small>by Mawsom</small></div>
   <div class="ft-links">
     <a href="#features">Features</a>

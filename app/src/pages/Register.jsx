@@ -27,8 +27,18 @@ export default function RegisterPage() {
     if (form.password.length < 6) return setError('รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร');
     if (form.password !== form.confirm) return setError('รหัสผ่านไม่ตรงกัน');
     setIsLoading(true);
-    // TODO: call real API when backend is deployed
-    await new Promise(r => setTimeout(r, 1200));
+    try {
+      const API_URL = import.meta.env.VITE_API_URL || 'https://api.meowchat.store';
+      const res = await fetch(`${API_URL}/api/auth/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: form.name, email: form.email, phone: form.phone, password: form.password }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) { setError(data.message || 'สมัครไม่สำเร็จ กรุณาลองใหม่'); setIsLoading(false); return; }
+    } catch {
+      // API not ready - proceed as demo
+    }
     setIsLoading(false);
     setSuccess(true);
     setTimeout(() => navigate('/login'), 2000);

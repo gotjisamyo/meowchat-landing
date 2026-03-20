@@ -1,5 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 
+const API_URL = import.meta.env.VITE_API_URL || 'https://api.meowchat.store';
+
 const AuthContext = createContext(null);
 
 // User roles
@@ -75,20 +77,35 @@ export function AuthProvider({ children }) {
   }, []);
 
   const login = async (email, password) => {
-    return new Promise((resolve, reject) => {
+    // Try real API first
+    try {
+      const res = await fetch(`${API_URL}/api/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.trim().toLowerCase(), password }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        const token = data.token;
+        const userData = data.user || { email, name: email.split('@')[0], role: 'user' };
+        localStorage.setItem('meowchat_token', token);
+        localStorage.setItem('meowchat_user', JSON.stringify(userData));
+        setUser(userData);
+        setIsAuthenticated(true);
+        return { success: true, user: userData };
+      }
+      const err = await res.json().catch(() => ({}));
+      return { success: false, error: err.message || 'อีเมลหรือรหัสผ่านไม่ถูกต้อง' };
+    } catch {
+      // API not available - fallback to mock
+    }
+
+    // Mock fallback (dev/demo)
+    return new Promise((resolve) => {
       setTimeout(() => {
         const normalizedEmail = email.trim().toLowerCase();
         const mockUser = MOCK_USERS[normalizedEmail];
-        
-        if (mockUser && password === 'admin123') {
-          const token = 'mock_jwt_token_' + Date.now();
-          localStorage.setItem('meowchat_token', token);
-          localStorage.setItem('meowchat_user', JSON.stringify(mockUser));
-          setUser(mockUser);
-          setIsAuthenticated(true);
-          resolve({ success: true, user: mockUser });
-        } else if (mockUser && password === 'password123') {
-          // Alternative password for demo
+        if (mockUser && (password === 'admin123' || password === 'password123')) {
           const token = 'mock_jwt_token_' + Date.now();
           localStorage.setItem('meowchat_token', token);
           localStorage.setItem('meowchat_user', JSON.stringify(mockUser));
@@ -96,7 +113,7 @@ export function AuthProvider({ children }) {
           setIsAuthenticated(true);
           resolve({ success: true, user: mockUser });
         } else {
-          reject(new Error('อีเมลหรือรหัสผ่านไม่ถูกต้อง'));
+          resolve({ success: false, error: 'อีเมลหรือรหัสผ่านไม่ถูกต้อง' });
         }
       }, 800);
     });

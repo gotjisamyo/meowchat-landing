@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Base URL for API - ปรับตาม environment
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8888';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://api.meowchat.store';
 
 // Create axios instance
 const api = axios.create({

@@ -1,0 +1,362 @@
+import { useState, useMemo } from 'react';
+import { 
+  AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend
+} from 'recharts';
+import { 
+  Users, Code2, CreditCard, TrendingUp, UserPlus, UserMinus,
+  ChevronRight, RefreshCw, Calendar, Crown, Zap
+} from 'lucide-react';
+import PageLayout from '../components/PageLayout';
+import StatsCard from '../components/StatsCard';
+import ChartCard from '../components/ChartCard';
+import DataTable from '../components/DataTable';
+import { useAuth } from '../context/AuthContext';
+import { 
+  revenueData, 
+  apiUsageData, 
+  salesByCategory, 
+  userGrowthData,
+  recentTransactions,
+  subscriptionStats,
+  customersData 
+} from '../data/mockData';
+
+export default function Dashboard({ setSidebarOpen }) {
+  const { isAdmin } = useAuth();
+  const tableColumns = ['ลูกค้า', 'วันที่', 'จำนวน', 'สถานะ'];
+
+  // KPI data for admin vs regular user
+  const kpiData = useMemo(() => {
+    if (isAdmin()) {
+      return [
+        { title: 'ลูกค้าทั้งหมด', value: subscriptionStats.total.toLocaleString(), change: `+${subscriptionStats.newThisMonth}`, isPositive: true, icon: 'users', color: 'blue' },
+        { title: 'ลูกค้าใช้งานอยู่', value: subscriptionStats.active.toLocaleString(), change: '+8.2%', isPositive: true, icon: 'users', color: 'green' },
+        { title: 'รายได้ต่อเดือน', value: `฿${(subscriptionStats.revenue.monthly / 1000000).toFixed(1)}M`, change: '+12.5%', isPositive: true, icon: 'wallet', color: 'orange' },
+        { title: 'อัตรา Churn', value: `${subscriptionStats.churnRate}%`, change: '-0.3%', isPositive: true, icon: 'trending-up', color: 'red' },
+      ];
+    }
+    return [
+      { title: 'ลูกค้าทั้งหมด', value: '8,432', change: '+12.5%', isPositive: true, icon: 'users', color: 'blue' },
+      { title: 'API Calls วันนี้', value: '24,891', change: '+8.2%', isPositive: true, icon: 'api', color: 'purple' },
+      { title: 'Credits คงเหลือ', value: '฿15,420', change: '+5.7%', isPositive: true, icon: 'credit-card', color: 'yellow' },
+      { title: 'อัตราการแปลง', value: '3.2%', change: '-2.3%', isPositive: false, icon: 'trending-up', color: 'green' },
+    ];
+  }, [isAdmin]);
+
+  // Plan distribution data for admin
+  const planDistribution = useMemo(() => {
+    if (!isAdmin()) return null;
+    return [
+      { name: 'Free', value: subscriptionStats.byPlan.free, color: '#6B7280' },
+      { name: 'Pro', value: subscriptionStats.byPlan.pro, color: '#FF6B35' },
+      { name: 'Enterprise', value: subscriptionStats.byPlan.enterprise, color: '#8B5CF6' },
+    ];
+  }, [isAdmin]);
+
+  // Top customers for admin
+  const topCustomers = useMemo(() => {
+    if (!isAdmin()) return null;
+    return [...customersData]
+      .sort((a, b) => b.revenue - a.revenue)
+      .slice(0, 5);
+  }, [isAdmin]);
+
+  return (
+    <PageLayout 
+      title="Dashboard" 
+      subtitle="ภาพรวมธุรกิจแบบเรียลไทม์"
+      setSidebarOpen={setSidebarOpen}
+      actions={
+        <>
+          {/* Date Range Picker */}
+          <div className="hidden md:flex items-center gap-2 px-4 py-2.5 bg-white/[0.03] border border-white/[0.06] rounded-xl">
+            <Calendar className="w-4 h-4 text-zinc-500" />
+            <span className="text-sm text-zinc-400">Today</span>
+            <ChevronRight className="w-4 h-4 text-zinc-600" />
+          </div>
+          
+          {/* Refresh Button */}
+          <button className="btn-secondary px-4 py-2.5 rounded-xl text-sm font-semibold flex items-center gap-2">
+            <RefreshCw className="w-4 h-4" />
+            <span className="hidden lg:inline">Refresh</span>
+          </button>
+        </>
+      }
+    >
+      {/* KPI Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        {kpiData.map((kpi, idx) => (
+          <StatsCard 
+            key={idx}
+            title={kpi.title}
+            value={kpi.value}
+            change={kpi.change}
+            isPositive={kpi.isPositive}
+            icon={kpi.icon}
+            color={kpi.color}
+            delay={idx * 100}
+          />
+        ))}
+      </div>
+
+      {/* Admin-specific: Subscription Overview */}
+      {isAdmin() && (
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+          {/* Subscription Stats */}
+          <div className="lg:col-span-2 bg-gradient-to-br from-orange-500/10 to-purple-500/10 border border-orange-500/20 rounded-3xl p-6">
+            <h3 className="text-lg font-bold text-white mb-4">สถิติ Subscription</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="text-center p-4 bg-black/20 rounded-2xl">
+                <UserPlus className="w-6 h-6 text-emerald-400 mx-auto mb-2" />
+                <p className="text-2xl font-bold text-white">{subscriptionStats.newThisMonth}</p>
+                <p className="text-xs text-zinc-400">New This Month</p>
+              </div>
+              <div className="text-center p-4 bg-black/20 rounded-2xl">
+                <Users className="w-6 h-6 text-blue-400 mx-auto mb-2" />
+                <p className="text-2xl font-bold text-white">{subscriptionStats.active.toLocaleString()}</p>
+                <p className="text-xs text-zinc-400">Active</p>
+              </div>
+              <div className="text-center p-4 bg-black/20 rounded-2xl">
+                <UserMinus className="w-6 h-6 text-red-400 mx-auto mb-2" />
+                <p className="text-2xl font-bold text-white">{subscriptionStats.churned.toLocaleString()}</p>
+                <p className="text-xs text-zinc-400">Churned</p>
+              </div>
+              <div className="text-center p-4 bg-black/20 rounded-2xl">
+                <TrendingUp className="w-6 h-6 text-emerald-400 mx-auto mb-2" />
+                <p className="text-2xl font-bold text-white">{subscriptionStats.growthRate}%</p>
+                <p className="text-xs text-zinc-400">Growth Rate</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Plan Distribution */}
+          <ChartCard title="แผมตามจำนวน" subtitle="Plan distribution" delay={300} className="lg:col-span-1">
+            <ResponsiveContainer width="100%" height={140}>
+              <PieChart>
+                <Pie 
+                  data={planDistribution} 
+                  cx="50%" 
+                  cy="50%" 
+                  innerRadius={35} 
+                  outerRadius={60} 
+                  paddingAngle={4} 
+                  dataKey="value"
+                >
+                  {planDistribution.map((entry, index) => (
+                    <Cell key={index} fill={entry.color} cornerRadius={4} />
+                  ))}
+                </Pie>
+                <Tooltip 
+                  contentStyle={{ backgroundColor: '#1A1A24', border: 'none', borderRadius: '12px' }} 
+                />
+              </PieChart>
+            </ResponsiveContainer>
+            <div className="flex justify-center gap-3 mt-2">
+              {planDistribution.map((item) => (
+                <div key={item.name} className="flex items-center gap-1.5">
+                  <div className="w-2 h-2 rounded-full" style={{ backgroundColor: item.color }} />
+                  <span className="text-xs text-zinc-500">{item.name}</span>
+                </div>
+              ))}
+            </div>
+          </ChartCard>
+
+          {/* Revenue Stats */}
+          <div className="bg-[#151520] border border-white/[0.06] rounded-3xl p-6">
+            <h3 className="text-lg font-bold text-white mb-4">รายได้</h3>
+            <div className="space-y-4">
+              <div className="flex justify-between items-center">
+                <span className="text-zinc-400">ต่อเดือน</span>
+                <span className="text-xl font-bold text-white">฿{(subscriptionStats.revenue.monthly / 1000000).toFixed(1)}M</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-zinc-400">ต่อปี</span>
+                <span className="text-xl font-bold text-white">฿{(subscriptionStats.revenue.yearly / 1000000).toFixed(1)}M</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-zinc-400">ต่อ User</span>
+                <span className="text-xl font-bold text-orange-400">฿{subscriptionStats.revenue.avgPerUser}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Charts Row 1 */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Revenue Chart */}
+        <ChartCard title="รายได้ & ต้นทุน" subtitle="Monthly performance" delay={400} className="lg:col-span-2">
+          <ResponsiveContainer width="100%" height={300}>
+            <AreaChart data={revenueData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+              <defs>
+                <linearGradient id="revenueGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#FF6B35" stopOpacity={0.3}/>
+                  <stop offset="95%" stopColor="#FF6B35" stopOpacity={0}/>
+                </linearGradient>
+                <linearGradient id="costGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#8B5CF6" stopOpacity={0.3}/>
+                  <stop offset="95%" stopColor="#8B5CF6" stopOpacity={0}/>
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" vertical={false} />
+              <XAxis dataKey="month" stroke="#52525B" fontSize={11} tickLine={false} axisLine={false} />
+              <YAxis stroke="#52525B" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v/1000}k`} />
+              <Tooltip 
+                contentStyle={{ backgroundColor: '#1A1A24', border: 'none', borderRadius: '12px', boxShadow: '0 8px 32px rgba(0,0,0,0.4)' }} 
+                labelStyle={{ color: '#A1A1AA' }}
+                formatter={(v) => `฿${v.toLocaleString()}`}
+              />
+              <Legend iconType="circle" wrapperStyle={{ paddingTop: '20px', fontSize: '12px' }} />
+              <Area type="monotone" dataKey="revenue" stroke="#FF6B35" strokeWidth={3} fillOpacity={1} fill="url(#revenueGrad)" name="รายได้" />
+              <Area type="monotone" dataKey="cost" stroke="#8B5CF6" strokeWidth={3} fillOpacity={1} fill="url(#costGrad)" name="ต้นทุน" />
+            </AreaChart>
+          </ResponsiveContainer>
+        </ChartCard>
+
+        {/* Donut Chart */}
+        <ChartCard title="ยอดขายตามหมวดหมู่" subtitle="By product category" delay={500}>
+          <ResponsiveContainer width="100%" height={180}>
+            <PieChart>
+              <Pie 
+                data={salesByCategory} 
+                cx="50%" 
+                cy="50%" 
+                innerRadius={55} 
+                outerRadius={85} 
+                paddingAngle={4} 
+                dataKey="value"
+              >
+                {salesByCategory.map((entry, index) => (
+                  <Cell key={index} fill={entry.color} cornerRadius={8} />
+                ))}
+              </Pie>
+              <Tooltip 
+                contentStyle={{ backgroundColor: '#1A1A24', border: 'none', borderRadius: '12px' }} 
+              />
+            </PieChart>
+          </ResponsiveContainer>
+          <div className="flex flex-wrap justify-center gap-3 mt-2">
+            {salesByCategory.map((item) => (
+              <div key={item.name} className="flex items-center gap-2">
+                <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: item.color }} />
+                <span className="text-xs text-zinc-500">{item.name}</span>
+                <span className="text-xs font-bold text-white">{item.value}%</span>
+              </div>
+            ))}
+          </div>
+        </ChartCard>
+      </div>
+
+      {/* Charts Row 2 */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* API Usage */}
+        <ChartCard title="การใช้งาน API รายสัปดาห์" delay={600}>
+          <ResponsiveContainer width="100%" height={240}>
+            <BarChart data={apiUsageData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" vertical={false} />
+              <XAxis dataKey="day" stroke="#52525B" fontSize={11} tickLine={false} axisLine={false} />
+              <YAxis stroke="#52525B" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v/1000}k`} />
+              <Tooltip 
+                contentStyle={{ backgroundColor: '#1A1A24', border: 'none', borderRadius: '12px' }}
+                formatter={(v) => [v.toLocaleString(), 'Calls']}
+              />
+              <Bar dataKey="calls" fill="#8B5CF6" radius={[8, 8, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </ChartCard>
+
+        {/* User Growth */}
+        <ChartCard title="การเติบโตของผู้ใช้" subtitle="Monthly active users" delay={700}>
+          <ResponsiveContainer width="100%" height={240}>
+            <AreaChart data={userGrowthData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+              <defs>
+                <linearGradient id="usersGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#F7C548" stopOpacity={0.3}/>
+                  <stop offset="95%" stopColor="#F7C548" stopOpacity={0}/>
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" vertical={false} />
+              <XAxis dataKey="month" stroke="#52525B" fontSize={11} tickLine={false} axisLine={false} />
+              <YAxis stroke="#52525B" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v/1000}k`} />
+              <Tooltip 
+                contentStyle={{ backgroundColor: '#1A1A24', border: 'none', borderRadius: '12px' }}
+              />
+              <Area type="monotone" dataKey="users" stroke="#F7C548" strokeWidth={3} fillOpacity={1} fill="url(#usersGrad)" />
+            </AreaChart>
+          </ResponsiveContainer>
+        </ChartCard>
+      </div>
+
+      {/* Admin: Top Customers Table */}
+      {isAdmin() && topCustomers && (
+        <div className="bg-[#151520] border border-white/[0.06] rounded-3xl p-6">
+          <h3 className="text-lg font-bold text-white mb-4">ลูกค้ายอดนิยม</h3>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-white/[0.06]">
+                  <th className="text-left pb-4 text-sm font-semibold text-zinc-400">ลูกค้า</th>
+                  <th className="text-left pb-4 text-sm font-semibold text-zinc-400">แผม</th>
+                  <th className="text-left pb-4 text-sm font-semibold text-zinc-400">รายได้รวม</th>
+                  <th className="text-left pb-4 text-sm font-semibold text-zinc-400">API Calls</th>
+                  <th className="text-left pb-4 text-sm font-semibold text-zinc-400">สถานะ</th>
+                </tr>
+              </thead>
+              <tbody>
+                {topCustomers.map((customer) => (
+                  <tr key={customer.id} className="border-b border-white/[0.04]">
+                    <td className="py-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-pink-500 flex items-center justify-center text-white font-medium">
+                          {customer.name.charAt(0)}
+                        </div>
+                        <div>
+                          <p className="font-medium text-white">{customer.name}</p>
+                          <p className="text-sm text-zinc-500">{customer.email}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="py-4">
+                      <span className={`
+                        px-3 py-1 text-xs font-medium rounded-full capitalize
+                        ${customer.plan === 'enterprise' ? 'bg-purple-500/20 text-purple-400' : 
+                          customer.plan === 'pro' ? 'bg-orange-500/20 text-orange-400' : 
+                          'bg-zinc-500/20 text-zinc-400'}
+                      `}>
+                        {customer.plan}
+                      </span>
+                    </td>
+                    <td className="py-4">
+                      <span className="font-medium text-white">฿{customer.revenue.toLocaleString()}</span>
+                    </td>
+                    <td className="py-4">
+                      <div className="flex items-center gap-2">
+                        <Zap className="w-4 h-4 text-zinc-500" />
+                        <span className="text-white">{customer.apiCalls.toLocaleString()}</span>
+                      </div>
+                    </td>
+                    <td className="py-4">
+                      <span className={`px-3 py-1 text-xs font-medium rounded-full ${
+                        customer.status === 'active' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'
+                      }`}>
+                        {customer.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* Recent Transactions Table */}
+      <DataTable 
+        title="รายการล่าสุด" 
+        columns={tableColumns} 
+        data={recentTransactions}
+        delay={800}
+      />
+    </PageLayout>
+  );
+}

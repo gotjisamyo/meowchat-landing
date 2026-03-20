@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Marketing from './pages/Marketing';
 import Sales from './pages/Sales';
@@ -29,8 +30,8 @@ function AdminLayout({ children }) {
 
   return (
     <div className="flex h-screen w-full overflow-hidden bg-[#0A0A0F]">
-      <Sidebar 
-        activePage={activePage} 
+      <Sidebar
+        activePage={activePage}
         setActivePage={setActivePage}
         isOpen={sidebarOpen}
         setIsOpen={setSidebarOpen}
@@ -38,26 +39,27 @@ function AdminLayout({ children }) {
         setIsCollapsed={setIsCollapsed}
       />
       <main className="flex-1 min-w-0 h-screen overflow-y-auto overflow-x-hidden">
-        {children(activePage)}
+        {children(activePage, setSidebarOpen)}
       </main>
     </div>
   );
 }
 
 function App() {
-  const renderPage = (activePage) => {
+  const renderPage = (activePage, setSidebarOpen) => {
+    const props = { setSidebarOpen };
     switch (activePage) {
-      case 'dashboard':    return <Dashboard setSidebarOpen={() => {}} />;
-      case 'marketing':   return <Marketing setSidebarOpen={() => {}} />;
-      case 'sales':       return <Sales setSidebarOpen={() => {}} />;
-      case 'finance':     return <Finance setSidebarOpen={() => {}} />;
-      case 'api':         return <ApiUsage setSidebarOpen={() => {}} />;
-      case 'settings':    return <Settings setSidebarOpen={() => {}} />;
-      case 'pricing':     return <Pricing setSidebarOpen={() => {}} />;
-      case 'subscription': return <Subscription setSidebarOpen={() => {}} />;
-      case 'customers':   return <Customers setSidebarOpen={() => {}} />;
-      case 'profile':     return <Profile setSidebarOpen={() => {}} />;
-      default:            return <Dashboard setSidebarOpen={() => {}} />;
+      case 'dashboard':    return <Dashboard {...props} />;
+      case 'marketing':   return <Marketing {...props} />;
+      case 'sales':       return <Sales {...props} />;
+      case 'finance':     return <Finance {...props} />;
+      case 'api':         return <ApiUsage {...props} />;
+      case 'settings':    return <Settings {...props} />;
+      case 'pricing':     return <Pricing {...props} />;
+      case 'subscription': return <Subscription {...props} />;
+      case 'customers':   return <Customers {...props} />;
+      case 'profile':     return <Profile {...props} />;
+      default:            return <Dashboard {...props} />;
     }
   };
 
@@ -65,8 +67,9 @@ function App() {
     <AuthProvider>
       <Router>
         <Routes>
-          {/* Public Route */}
+          {/* Public Routes */}
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           
           {/* Protected Routes */}
           <Route

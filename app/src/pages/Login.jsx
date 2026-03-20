@@ -187,21 +187,20 @@ export default function LoginPage() {
             </button>
           </form>
 
-          {/* Dev Mode Hint */}
-          <div className="mt-6 pt-6 border-t border-white/10">
-            <button
-              type="button"
-              onClick={handleDevFill}
-              className="w-full text-center text-sm text-gray-500 hover:text-gray-400 transition-colors"
-            >
-              🔧 Dev Mode: คลิกเพื่อกรอกข้อมูลทดสอบ
-            </button>
+          {/* Register Link */}
+          <div className="mt-6 pt-6 border-t border-white/10 text-center">
+            <p className="text-sm text-gray-500">
+              ยังไม่มีบัญชี?{' '}
+              <a href="/register" className="text-pink-400 hover:text-pink-300 transition-colors font-medium">
+                สมัครฟรี
+              </a>
+            </p>
           </div>
         </div>
 
         {/* Footer */}
         <p className="text-center mt-6 text-gray-500 text-xs">
-          © 2024 MeowChat. All rights reserved.
+          © 2026 MeowChat. All rights reserved.
         </p>
       </div>
     </div>

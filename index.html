@@ -324,11 +324,12 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
 .hero-desc{font-size:14px}
 .hero-btns{flex-direction:column;gap:10px}
 .hero-btns .btn{width:100%}
-.stats-grid{grid-template-columns:1fr;gap:12px}
-.features-grid{grid-template-columns:1fr}
-.pricing-grid{grid-template-columns:1fr}
-.fc,.pc{grid-template-columns:1fr}
-.footer-inner{grid-template-columns:1fr;text-align:center}
+.stats-row{flex-direction:column;gap:12px}
+.stat{width:100%;justify-content:center}
+.feat-grid{grid-template-columns:1fr}
+.pri-grid{grid-template-columns:1fr}
+.ft-in{grid-template-columns:1fr;text-align:center}
+.ft-links{text-align:center}
 .ft-cats{position:static;justify-content:center;margin-top:16px}
 }
 </style>
@@ -348,14 +349,14 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
     <a href="#contact">ติดต่อ</a>
   </div>
   <a href="https://line.me/ti/p/@960xboyt" class="btn btn-p">Try Free 🐾</a>
-  <button class="hamburger" id="hamburger" aria-label="Menu">
+  <button class="hamburger" id="hamburger" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="mobileMenu" type="button">
     <span></span><span></span><span></span>
   </button>
 </div>
 </nav>
 <div class="menu-overlay" id="menuOverlay"></div>
-<div class="mobile-menu" id="mobileMenu">
-  <button class="menu-close" id="menuClose">×</button>
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <button class="menu-close" id="menuClose" aria-label="ปิดเมนู" type="button">×</button>
   <a href="#features">Features</a>
   <a href="#pricing">ราคา</a>
   <a href="#contact">ติดต่อ</a>
@@ -403,44 +404,44 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
   <div class="fc-tags"><span class="tc">ตอบทันที</span><span class="tc">24/7</span><span class="tc">ภาษาไทย</span></div>
 </div>
 
-<!-- 2 Manage Payments -->
+<!-- 2 ระบบชำระเงินและออเดอร์ -->
 <div class="fc">
-  <img class="fc-ico" src="assets/icon-payments.png" alt="Manage Payments">
-  <h3>Manage Payments</h3>
-  <p>ปิดยอดขาย รับชำระเงิน จัดการออเดอร์อัตโนมัติ ไม่พลาดทุกออเดอร์</p>
+  <img class="fc-ico" src="assets/icon-payments.png" alt="ระบบชำระเงินและออเดอร์">
+  <h3>จัดการชำระเงินและออเดอร์</h3>
+  <p>ปิดยอดขาย รับชำระเงิน และจัดการออเดอร์อัตโนมัติ ไม่พลาดทุกคำสั่งซื้อ</p>
   <div class="fc-tags"><span class="tc">ปิดการขาย</span><span class="tc">อัตโนมัติ</span></div>
 </div>
 
-<!-- 3 Inventory Box -->
+<!-- 3 สต็อกสินค้า -->
 <div class="fc">
-  <img class="fc-ico" src="assets/icon-inventory.png" alt="Inventory Box">
-  <h3>Inventory Box</h3>
-  <p>อัพเดทสต็อกอัตโนมัติ เชื่อม POS แจ้งเตือนสต็อกต่ำ เรียลไทม์</p>
-  <div class="fc-tags"><span class="tc">POS</span><span class="tc">Real-time</span><span class="tc">แจ้งเตือน</span></div>
+  <img class="fc-ico" src="assets/icon-inventory.png" alt="สต็อกสินค้า">
+  <h3>จัดการสต็อกสินค้า</h3>
+  <p>อัพเดทสต็อกอัตโนมัติ เชื่อม POS แจ้งเตือนสินค้าใกล้หมดแบบเรียลไทม์</p>
+  <div class="fc-tags"><span class="tc">POS</span><span class="tc">เรียลไทม์</span><span class="tc">แจ้งเตือน</span></div>
 </div>
 
-<!-- 4 Sales Dashboard -->
+<!-- 4 แดชบอร์ดยอดขาย -->
 <div class="fc">
-  <img class="fc-ico" src="assets/icon-dashboard.png" alt="Sales Dashboard">
-  <h3>Sales Dashboard</h3>
-  <p>ดูยอดขาย สถิติลูกค้า รายงานได้ตลอดเวลา Export รายงานได้ทันที</p>
-  <div class="fc-tags"><span class="tc">Real-time</span><span class="tc">วิเคราะห์</span><span class="tc">Export</span></div>
+  <img class="fc-ico" src="assets/icon-dashboard.png" alt="แดชบอร์ดยอดขาย">
+  <h3>แดชบอร์ดยอดขาย</h3>
+  <p>ดูยอดขาย สถิติลูกค้า และออกรายงานได้ตลอดเวลา เพื่อช่วยตัดสินใจเร็วขึ้น</p>
+  <div class="fc-tags"><span class="tc">เรียลไทม์</span><span class="tc">วิเคราะห์</span><span class="tc">รายงาน</span></div>
 </div>
 
-<!-- 5 E-comping Cart -->
+<!-- 5 ตะกร้าและออเดอร์ -->
 <div class="fc">
-  <img class="fc-ico" src="assets/icon-cart.png" alt="E-comping Cart">
-  <h3>E-comping Cart</h3>
-  <p>รับออเดอร์ผ่านแชท ยืนยันอัตโนมัติ ส่งต่อทีมจัดส่งได้ทันที</p>
-  <div class="fc-tags"><span class="tc">Auto Order</span><span class="tc">ยืนยันทันที</span></div>
+  <img class="fc-ico" src="assets/icon-cart.png" alt="ตะกร้าและออเดอร์">
+  <h3>รับออเดอร์ผ่านแชท</h3>
+  <p>รับออเดอร์ผ่านแชท ยืนยันอัตโนมัติ และส่งต่อทีมจัดส่งได้ทันที</p>
+  <div class="fc-tags"><span class="tc">รับออเดอร์</span><span class="tc">ยืนยันทันที</span></div>
 </div>
 
-<!-- 6 Customer Group -->
+<!-- 6 กลุ่มลูกค้า -->
 <div class="fc">
-  <img class="fc-ico" src="assets/icon-customers.png" alt="Customer Group">
-  <h3>Customer Group</h3>
-  <p>เก็บข้อมูลลูกค้า แบ่งกลุ่ม ส่ง Broadcast โปรโมชั่นได้ทันที</p>
-  <div class="fc-tags"><span class="tc">ฐานลูกค้า</span><span class="tc">แบ่งกลุ่ม</span><span class="tc">Broadcast</span></div>
+  <img class="fc-ico" src="assets/icon-customers.png" alt="กลุ่มลูกค้า">
+  <h3>จัดการฐานลูกค้า</h3>
+  <p>เก็บข้อมูลลูกค้า แบ่งกลุ่ม และส่ง Broadcast โปรโมชั่นได้อย่างแม่นยำ</p>
+  <div class="fc-tags"><span class="tc">ฐานลูกค้า</span><span class="tc">แบ่งกลุ่ม</span><span class="tc">บรอดแคสต์</span></div>
 </div>
 
 </div><!-- /feat-grid -->
@@ -636,11 +637,29 @@ const hamburger = document.getElementById('hamburger')
 const mobileMenu = document.getElementById('mobileMenu')
 const menuOverlay = document.getElementById('menuOverlay')
 const menuClose = document.getElementById('menuClose')
-function openMenu(){hamburger.classList.add('active');mobileMenu.classList.add('active');menuOverlay.classList.add('active');document.body.style.overflow='hidden'}
-function closeMenu(){hamburger.classList.remove('active');mobileMenu.classList.remove('active');menuOverlay.classList.remove('active');document.body.style.overflow=''}
-hamburger.addEventListener('click',openMenu)
+function openMenu(){
+  hamburger.classList.add('active')
+  hamburger.setAttribute('aria-expanded','true')
+  mobileMenu.classList.add('active')
+  mobileMenu.setAttribute('aria-hidden','false')
+  menuOverlay.classList.add('active')
+  document.body.style.overflow='hidden'
+}
+function closeMenu(){
+  hamburger.classList.remove('active')
+  hamburger.setAttribute('aria-expanded','false')
+  mobileMenu.classList.remove('active')
+  mobileMenu.setAttribute('aria-hidden','true')
+  menuOverlay.classList.remove('active')
+  document.body.style.overflow=''
+}
+hamburger.addEventListener('click',()=>{
+  if(mobileMenu.classList.contains('active')) closeMenu()
+  else openMenu()
+})
 menuClose.addEventListener('click',closeMenu)
 menuOverlay.addEventListener('click',closeMenu)
+document.addEventListener('keydown',e=>{ if(e.key==='Escape' && mobileMenu.classList.contains('active')) closeMenu() })
 mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu))
 </script>
 </body>

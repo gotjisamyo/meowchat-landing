@@ -1,6 +1,6 @@
-import { 
+import {
   LayoutDashboard, BarChart3, Wallet, Building2, Code2, Settings,
-  ChevronLeft, ChevronRight, Cat, Zap, Menu, Users, CreditCard, User
+  ChevronLeft, ChevronRight, Cat, Zap, Menu, Users, CreditCard, User, BadgeDollarSign
 } from 'lucide-react';
 import UserMenu from './auth/UserMenu';
 import { useAuth } from '../context/AuthContext';
@@ -12,7 +12,7 @@ const menuItems = [
   { id: 'sales',     label: 'Sales',      icon: Wallet },
   { id: 'finance',   label: 'Finance',    icon: Building2 },
   { id: 'api',       label: 'API Usage',  icon: Code2 },
-  { id: 'pricing',   label: 'Pricing',    icon: CreditCard },
+  { id: 'pricing',   label: 'Pricing',    icon: BadgeDollarSign },
   { id: 'subscription', label: 'Subscription', icon: CreditCard },
   { id: 'settings',  label: 'Settings',   icon: Settings },
   { id: 'profile',   label: 'My Account', icon: User },

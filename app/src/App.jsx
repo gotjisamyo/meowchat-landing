@@ -29,6 +29,7 @@ const Templates = lazy(() => import('./pages/Templates'));
 import Sidebar from './components/Sidebar';
 import FeedbackWidget from './components/FeedbackWidget';
 import QuickActionsFAB from './components/QuickActionsFAB';
+import SuperAdminApp from './superadmin/SuperAdminApp';
 
 const PageLoader = () => (
   <div className="flex items-center justify-center h-screen bg-[#0A0A0F]">
@@ -96,6 +97,9 @@ function App() {
       <Router>
         <Suspense fallback={<PageLoader />}>
           <Routes>
+            {/* Super Admin — standalone auth, no ProtectedRoute wrapper */}
+            <Route path="/superadmin/*" element={<SuperAdminApp />} />
+
             {/* Public Routes */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

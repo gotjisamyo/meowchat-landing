@@ -49,6 +49,28 @@ export function AuthProvider({ children }) {
     return { success: true, user: data.user };
   };
 
+  const register = async (email, password, businessName) => {
+    const res = await fetch(`${API_URL}/api/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email.trim().toLowerCase(), password, businessName }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.message || 'สมัครไม่สำเร็จ กรุณาลองใหม่');
+    }
+
+    // TODO: connect Resend API key via VITE_RESEND_API_KEY
+    // Send welcome email via Resend (free tier - 3000 emails/month)
+    // Note: This requires VITE_RESEND_API_KEY env var
+    // For now just log - will be connected when key is available
+    console.log('[MeowChat] New user registered:', email, '- welcome email pending Resend API key');
+
+    return { success: true };
+  };
+
   const logout = () => {
     localStorage.removeItem('meowchat_token');
     localStorage.removeItem('meowchat_user');
@@ -73,6 +95,7 @@ export function AuthProvider({ children }) {
       loading,
       isAuthenticated,
       login,
+      register,
       logout,
       hasRole,
       isAdmin,

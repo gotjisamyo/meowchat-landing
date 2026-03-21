@@ -18,6 +18,7 @@ const menuItems = [
   { id: 'subscription', label: 'Subscription', icon: CreditCard },
   { id: 'personality', label: 'บุคลิกบอท', icon: Sparkles },
   { id: 'automation', label: 'Automation', icon: Zap },
+  { id: 'knowledge',  label: 'คลังความรู้', icon: BookOpen },
   { id: 'settings',  label: 'Settings',   icon: Settings },
   { id: 'profile',   label: 'My Account', icon: User },
 ];

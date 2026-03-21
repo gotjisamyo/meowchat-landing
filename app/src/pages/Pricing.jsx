@@ -1,29 +1,26 @@
 import { useState } from 'react';
 import { Check, X, Zap, Crown, Rocket, Loader2, Sparkles } from 'lucide-react';
 import PageLayout from '../components/PageLayout';
+import OmiseCheckout from '../components/OmiseCheckout';
 import { subscriptionPlans } from '../data/mockData';
 import { useAuth } from '../context/AuthContext';
 
 export default function Pricing({ setSidebarOpen }) {
   const { user, updateSubscription } = useAuth();
   const [loadingPlan, setLoadingPlan] = useState(null);
-  const [selectedPlan, setSelectedPlan] = useState(null);
+  const [checkoutPlan, setCheckoutPlan] = useState(null); // plan object for modal
 
-  const handleSelectPlan = async (planId) => {
+  const handleSelectPlan = (planId) => {
     if (!user) return;
     if (planId === user.subscription?.plan) return;
-    
-    setLoadingPlan(planId);
-    setSelectedPlan(planId);
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setLoadingPlan(null);
-    setSelectedPlan(null);
-    
-    // Show success message (in real app, would show toast)
-    alert(`อัพเกรดเป็น ${planId.toUpperCase()} สำเร็จ!`);
+    const plan = subscriptionPlans.find(p => p.id === planId);
+    if (!plan || plan.price === 0) return; // Free plan needs no payment
+    setCheckoutPlan(plan);
+  };
+
+  const handlePaymentSuccess = (plan) => {
+    updateSubscription(plan.id);
+    setCheckoutPlan(null);
   };
 
   const getPlanIcon = (color) => {
@@ -54,6 +51,14 @@ export default function Pricing({ setSidebarOpen }) {
   };
 
   return (
+    <>
+    {checkoutPlan && (
+      <OmiseCheckout
+        plan={checkoutPlan}
+        onClose={() => setCheckoutPlan(null)}
+        onSuccess={handlePaymentSuccess}
+      />
+    )}
     <PageLayout
       title="Pricing"
       subtitle="เลือกแผมที่เหมาะกับธุรกิจของคุณ"
@@ -79,6 +84,7 @@ export default function Pricing({ setSidebarOpen }) {
           const Icon = getPlanIcon(plan.color);
           const isCurrentPlan = user?.subscription?.plan === plan.id;
           const isLoading = loadingPlan === plan.id;
+          const isFree = plan.price === 0;
           
           return (
             <div 
@@ -198,6 +204,7 @@ export default function Pricing({ setSidebarOpen }) {
         </div>
       </div>
     </PageLayout>
+    </>
   );
 }
 

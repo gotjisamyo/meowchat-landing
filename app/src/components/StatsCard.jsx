@@ -62,7 +62,7 @@ export default function StatsCard({ title, value, change, isPositive, icon, colo
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: delay / 1000, ease: 'easeOut' }}
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
-      className="group relative bg-[#12121A] rounded-3xl p-10 border border-white/[0.04] hover:border-orange-500/20 transition-all duration-300"
+      className="group relative bg-[#12121A] rounded-3xl p-5 border border-white/[0.04] hover:border-orange-500/20 transition-all duration-300"
     >
       {/* Background Gradient */}
       <div className={`absolute inset-0 bg-gradient-to-br ${colorStyle.bg} opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl`} />

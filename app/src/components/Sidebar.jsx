@@ -1,7 +1,7 @@
 import {
   LayoutDashboard, BarChart3, Wallet, Building2, Code2, Settings,
   ChevronLeft, ChevronRight, Cat, Zap, Users, CreditCard, User, BadgeDollarSign, Sparkles,
-  PieChart, BookOpen, MessageSquare, Package
+  PieChart, BookOpen, MessageSquare, Package, Library, HelpCircle
 } from 'lucide-react';
 import UserMenu from './auth/UserMenu';
 import { useAuth } from '../context/AuthContext';
@@ -37,6 +37,8 @@ const menuSections = [
   {
     label: 'ระบบ',
     items: [
+      { id: 'templates',    label: 'เทมเพลต',      icon: Library },
+      { id: 'help',         label: 'ช่วยเหลือ',    icon: HelpCircle },
       { id: 'api',          label: 'API Usage',    icon: Code2 },
       { id: 'pricing',      label: 'Pricing',      icon: BadgeDollarSign },
       { id: 'subscription', label: 'Subscription', icon: CreditCard },

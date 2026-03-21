@@ -23,6 +23,8 @@ const Analytics = lazy(() => import('./pages/Analytics'));
 const KnowledgeBase = lazy(() => import('./pages/KnowledgeBase'));
 const ChatInbox = lazy(() => import('./pages/ChatInbox'));
 const Orders = lazy(() => import('./pages/Orders'));
+const HelpCenter = lazy(() => import('./pages/HelpCenter'));
+const Templates = lazy(() => import('./pages/Templates'));
 
 import Sidebar from './components/Sidebar';
 import FeedbackWidget from './components/FeedbackWidget';
@@ -83,6 +85,8 @@ function App() {
       case 'knowledge':   return <KnowledgeBase setSidebarOpen={() => {}} />;
       case 'inbox':       return <ChatInbox setSidebarOpen={() => {}} />;
       case 'orders':      return <Orders setSidebarOpen={() => {}} />;
+      case 'help':        return <HelpCenter setSidebarOpen={() => {}} />;
+      case 'templates':   return <Templates setSidebarOpen={() => {}} />;
       default:            return <Dashboard setSidebarOpen={() => {}} />;
     }
   };

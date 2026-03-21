@@ -21,6 +21,7 @@ import Automation from './pages/Automation';
 import Analytics from './pages/Analytics';
 import KnowledgeBase from './pages/KnowledgeBase';
 import ChatInbox from './pages/ChatInbox';
+import Orders from './pages/Orders';
 
 import Sidebar from './components/Sidebar';
 import FeedbackWidget from './components/FeedbackWidget';
@@ -70,6 +71,7 @@ function App() {
       case 'automation':  return <Automation setSidebarOpen={() => {}} />;
       case 'knowledge':   return <KnowledgeBase setSidebarOpen={() => {}} />;
       case 'inbox':       return <ChatInbox setSidebarOpen={() => {}} />;
+      case 'orders':      return <Orders setSidebarOpen={() => {}} />;
       default:            return <Dashboard setSidebarOpen={() => {}} />;
     }
   };

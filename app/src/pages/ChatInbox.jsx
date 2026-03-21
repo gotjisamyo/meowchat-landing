@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Send, Bot, User, AlertCircle, ChevronDown } from 'lucide-react';
+import { Search, Send, Bot, User, AlertCircle, ChevronDown, ArrowLeft } from 'lucide-react';
 import { chatInboxData } from '../data/mockData';
 
 // Stats derived from conversations
@@ -112,6 +112,8 @@ export default function ChatInbox({ setSidebarOpen }) {
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('all');
   const [inputText, setInputText] = useState('');
+  // Mobile view state: 'list' shows conversation list, 'chat' shows chat panel
+  const [mobileView, setMobileView] = useState('list');
   const messagesEndRef = useRef(null);
   const textareaRef = useRef(null);
 
@@ -193,8 +195,11 @@ export default function ChatInbox({ setSidebarOpen }) {
 
   return (
     <div className="flex h-screen overflow-hidden">
-      {/* Left Panel */}
-      <div className="w-72 flex-shrink-0 border-r border-white/[0.06] flex flex-col bg-[#0A0A0F] h-full">
+      {/* Left Panel — full width on mobile when mobileView==='list', hidden otherwise */}
+      <div className={`flex-shrink-0 border-r border-white/[0.06] flex flex-col bg-[#0A0A0F] h-full
+        w-full md:w-72
+        ${mobileView === 'list' ? 'flex' : 'hidden md:flex'}
+      `}>
         {/* Title */}
         <div className="flex items-center gap-3 px-4 pt-5 pb-3 border-b border-white/[0.04]">
           <button
@@ -264,14 +269,16 @@ export default function ChatInbox({ setSidebarOpen }) {
               key={conv.id}
               conv={conv}
               isActive={conv.id === activeId}
-              onClick={() => setActiveId(conv.id)}
+              onClick={() => { setActiveId(conv.id); setMobileView('chat'); }}
             />
           ))}
         </div>
       </div>
 
-      {/* Right Panel */}
-      <div className="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
+      {/* Right Panel — hidden on mobile when mobileView==='list' */}
+      <div className={`flex-1 flex flex-col min-w-0 h-full overflow-hidden
+        ${mobileView === 'chat' ? 'flex' : 'hidden md:flex'}
+      `}>
         {!activeConv ? (
           <div className="flex-1 flex flex-col items-center justify-center gap-3 text-zinc-600">
             <div className="w-16 h-16 rounded-2xl bg-white/[0.04] flex items-center justify-center text-3xl">
@@ -284,6 +291,14 @@ export default function ChatInbox({ setSidebarOpen }) {
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/[0.06] flex-shrink-0 bg-[#0A0A0F]/80 backdrop-blur">
               <div className="flex items-center gap-3 min-w-0">
+                {/* Mobile back button */}
+                <button
+                  className="md:hidden p-1.5 -ml-1 hover:bg-white/[0.06] rounded-lg text-zinc-400 flex-shrink-0 flex items-center gap-1 text-xs font-semibold"
+                  onClick={() => setMobileView('list')}
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  <span>กลับ</span>
+                </button>
                 <div
                   className="w-9 h-9 rounded-full flex items-center justify-center font-bold text-white text-sm flex-shrink-0"
                   style={{ backgroundColor: activeConv.customer.color }}

@@ -1,5 +1,6 @@
 import { Plus, Download, FileText } from 'lucide-react';
 import PageLayout from '../components/PageLayout';
+import { ordersData } from '../data/mockData';
 
 // Sales funnel data
 const funnelSteps = [
@@ -135,7 +136,53 @@ export default function Sales({ setSidebarOpen }) {
         </p>
       </div>
 
-      {/* Section 3 — Recent Transactions */}
+      {/* Section 3 — Recent Orders from ordersData */}
+      <div className="bg-[#12121A] rounded-3xl border border-white/[0.04] p-6 pb-8">
+        <div className="flex items-center justify-between mb-6">
+          <h4 className="text-lg font-bold text-white leading-relaxed">📦 ออเดอร์ล่าสุด</h4>
+          <span className="text-xs text-zinc-500">5 รายการล่าสุด</span>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-white/[0.06]">
+                {['ออเดอร์', 'ลูกค้า', 'สินค้า', 'ยอด', 'สถานะ'].map((h) => (
+                  <th key={h} className="text-left text-[10px] font-bold text-zinc-500 uppercase tracking-[2px] pb-3 pr-5 last:pr-0 leading-relaxed">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {ordersData.slice(-5).reverse().map((order) => {
+                const orderStatusMap = {
+                  new:       { label: 'รับแล้ว',     className: 'bg-orange-500/15 text-orange-400 border border-orange-500/25' },
+                  preparing: { label: 'กำลังเตรียม', className: 'bg-yellow-500/15 text-yellow-400 border border-yellow-500/25' },
+                  shipped:   { label: 'ส่งแล้ว',     className: 'bg-blue-500/15 text-blue-400 border border-blue-500/25' },
+                  done:      { label: 'เสร็จสิ้น',   className: 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/25' },
+                };
+                const sc = orderStatusMap[order.status];
+                return (
+                  <tr key={order.id} className="border-b border-white/[0.03] hover:bg-white/[0.02] transition-colors">
+                    <td className="py-3.5 pr-5 text-zinc-500 font-mono text-xs leading-relaxed">#{order.id}</td>
+                    <td className="py-3.5 pr-5 leading-relaxed">
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 rounded-full flex items-center justify-center text-white font-bold text-[10px] flex-shrink-0" style={{ background: order.color }}>{order.avatar}</div>
+                        <span className="font-semibold text-white text-sm">{order.customer}</span>
+                      </div>
+                    </td>
+                    <td className="py-3.5 pr-5 text-zinc-400 leading-relaxed max-w-[160px] truncate">{order.items}</td>
+                    <td className="py-3.5 pr-5 font-bold text-white leading-relaxed">฿{order.total.toLocaleString()}</td>
+                    <td className="py-3.5">
+                      <span className={`inline-block px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider leading-none ${sc.className}`}>{sc.label}</span>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Section 4 — Recent Transactions */}
       <div className="bg-[#12121A] rounded-3xl border border-white/[0.04] p-6 pb-8">
         <h4 className="text-lg font-bold text-white mb-6 leading-relaxed">🧾 ออเดอร์ล่าสุดวันนี้</h4>
         <div className="overflow-x-auto">

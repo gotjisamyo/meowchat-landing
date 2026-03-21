@@ -79,6 +79,16 @@ export const apiEndpointUsage = [
   { endpoint: '/api/webhooks', calls: 23000, avgTime: '15ms' },
 ];
 
+export const ordersData = [
+  { id: 'MC-001', customer: 'คุณแนน', avatar: 'น', color: '#FF6B35', items: 'เสื้อยืด Oversize x2', total: 598, status: 'new', time: '09:15', address: '123 ถ.สุขุมวิท กรุงเทพฯ' },
+  { id: 'MC-002', customer: 'พี่บอล', avatar: 'บ', color: '#8B5CF6', items: 'กางเกง Jogger x1, หมวก x1', total: 658, status: 'new', time: '09:30', address: '456 ถ.พระราม 4 กรุงเทพฯ' },
+  { id: 'MC-003', customer: 'น้องฝ้าย', avatar: 'ฝ', color: '#10B981', items: 'Set ประหยัด x2', total: 1398, status: 'preparing', time: '08:45', address: '789 ถ.รัชดา กรุงเทพฯ' },
+  { id: 'MC-004', customer: 'คุณมาย', avatar: 'ม', color: '#F59E0B', items: 'เสื้อยืด x1', total: 299, status: 'preparing', time: '08:00', address: '321 ถ.ลาดพร้าว กรุงเทพฯ' },
+  { id: 'MC-005', customer: 'พี่โอ้', avatar: 'โ', color: '#3B82F6', items: 'กางเกง x3', total: 1377, status: 'shipped', time: '07:30', tracking: 'KEX123456789', address: '654 ถ.งามวงศ์วาน นนทบุรี' },
+  { id: 'MC-006', customer: 'คุณนิ่ม', avatar: 'น', color: '#EC4899', items: 'ถุงผ้า x2', total: 298, status: 'shipped', time: '07:00', tracking: 'JNT987654321', address: '987 ถ.บางนา กรุงเทพฯ' },
+  { id: 'MC-007', customer: 'แม่ค้าออนไลน์', avatar: 'อ', color: '#6366F1', items: 'เสื้อยืด x5, กางเกง x2', total: 2413, status: 'done', time: 'เมื่อวาน', address: '147 ถ.เพชรบุรี กรุงเทพฯ' },
+];
+
 export const financeData = {
   totalRevenue: 3650000,
   totalCost: 1800000,

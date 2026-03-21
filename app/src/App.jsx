@@ -15,6 +15,7 @@ import Pricing from './pages/Pricing';
 import Subscription from './pages/Subscription';
 import Customers from './pages/Customers';
 import Profile from './pages/Profile';
+import BotPersonality from './pages/BotPersonality';
 
 import Sidebar from './components/Sidebar';
 import FeedbackWidget from './components/FeedbackWidget';
@@ -59,6 +60,7 @@ function App() {
       case 'subscription': return <Subscription setSidebarOpen={() => {}} />;
       case 'customers':   return <Customers setSidebarOpen={() => {}} />;
       case 'profile':     return <Profile setSidebarOpen={() => {}} />;
+      case 'personality': return <BotPersonality setSidebarOpen={() => {}} />;
       default:            return <Dashboard setSidebarOpen={() => {}} />;
     }
   };

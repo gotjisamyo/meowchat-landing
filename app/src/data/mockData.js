@@ -373,10 +373,187 @@ export const subscriptionStats = {
   growthRate: 8.5,
 };
 
+// ============== Store Knowledge Base Data ==============
+
+export const storeProducts = [
+  { id: 1, name: 'เสื้อยืด Oversize', price: 299, unit: 'ตัว', category: 'เสื้อผ้า', stock: 45, active: true, description: 'ผ้า Cotton 100% มีไซส์ S-XL' },
+  { id: 2, name: 'กางเกง Jogger', price: 459, unit: 'ตัว', category: 'เสื้อผ้า', stock: 23, active: true, description: 'ผ้า Polyester นุ่ม ใส่สบาย' },
+  { id: 3, name: 'Set ประหยัด (เสื้อ+กางเกง)', price: 699, unit: 'ชุด', category: 'เสื้อผ้า', stock: 10, active: true, description: 'ประหยัดกว่าซื้อแยก ฿59' },
+  { id: 4, name: 'หมวก Cap', price: 199, unit: 'ใบ', category: 'อุปกรณ์เสริม', stock: 0, active: false, description: 'หมดชั่วคราว รอสต็อกใหม่' },
+  { id: 5, name: 'ถุงผ้า Tote', price: 149, unit: 'ใบ', category: 'อุปกรณ์เสริม', stock: 88, active: true, description: 'ผ้า Canvas พิมพ์ลาย' },
+];
+
+export const storeFAQs = [
+  { id: 1, q: 'ส่งได้ที่ไหนบ้าง?', a: 'ส่งทั่วประเทศไทยครับ ใช้ Kerry/J&T ค่าส่งเริ่ม ฿50' },
+  { id: 2, q: 'ชำระเงินยังไงได้บ้าง?', a: 'โอนแบงก์, PromptPay, บัตรเครดิตครับ' },
+  { id: 3, q: 'รับของกี่วัน?', a: '2-3 วันทำการครับ กรุงเทพฯ วันถัดไป' },
+  { id: 4, q: 'คืนสินค้าได้ไหม?', a: 'คืนได้ภายใน 7 วัน สินค้าต้องไม่ผ่านการใช้งานครับ' },
+  { id: 5, q: 'มีของพรุ่งนี้ไหม?', a: 'สต็อกอัพเดทเรียลไทม์ครับ ถ้าแสดงว่ามี แปลว่ามีครับ' },
+];
+
+// ============== Chatbot Data ==============
+
+export const chatbotsData = [
+  {
+    id: 1,
+    botName: 'Customer Support Bot',
+    status: 'active',
+    messagesThisMonth: 3241,
+    avgResponseTime: '1.2s',
+    personality: {
+      name: 'น้องมีม',
+      avatar: '🐱',
+      pronoun: 'หนู',
+      tone: 'cute',
+      traits: { friendly: 5, professional: 2, cute: 5, energetic: 4, warmth: 5 },
+      greeting: 'สวัสดีค่ะ! หนูน้องมีมยินดีช่วยเหลือนะคะ 🐱✨',
+      goodbye: 'ขอบคุณที่ใช้บริการนะคะ แวะมาใหม่ได้เสมอเลยค่ะ 💕',
+      fallback: 'ขอโทษนะคะ หนูยังไม่เข้าใจ ลองถามใหม่อีกครั้งได้เลยค่ะ 🙏',
+      upsell: 'มีสินค้าใหม่เข้ามาด้วยนะคะ อยากดูไหมคะ? 🛍️',
+    },
+  },
+  {
+    id: 2,
+    botName: 'Sales Assistant',
+    status: 'active',
+    messagesThisMonth: 1890,
+    avgResponseTime: '0.9s',
+    personality: {
+      name: 'น้องเซลส์',
+      avatar: '👩',
+      pronoun: 'หนู',
+      tone: 'professional',
+      traits: { friendly: 4, professional: 5, cute: 2, energetic: 4, warmth: 3 },
+      greeting: 'สวัสดีค่ะ ยินดีให้บริการและแนะนำสินค้าที่เหมาะกับคุณ',
+      goodbye: 'ขอบคุณที่สนใจสินค้าของเรา หวังว่าจะได้ให้บริการอีกครั้งนะคะ',
+      fallback: 'ขออภัยค่ะ กรุณาติดต่อเจ้าหน้าที่เพื่อข้อมูลเพิ่มเติม',
+      upsell: 'สินค้าชิ้นนี้มีส่วนลดพิเศษวันนี้ อยากทราบรายละเอียดไหมคะ?',
+    },
+  },
+  {
+    id: 3,
+    botName: 'FAQ Bot',
+    status: 'inactive',
+    messagesThisMonth: 0,
+    avgResponseTime: '-',
+    personality: {
+      name: 'น้องรู้รอบ',
+      avatar: '🤓',
+      pronoun: 'ผม',
+      tone: 'expert',
+      traits: { friendly: 3, professional: 5, cute: 1, energetic: 3, warmth: 2 },
+      greeting: 'สวัสดีครับ ผมน้องรู้รอบ พร้อมตอบคำถามทุกข้อด้วยข้อมูลที่ครบถ้วนและแม่นยำ',
+      goodbye: 'ขอบคุณที่ใช้บริการครับ หากมีคำถามเพิ่มเติมยินดีให้บริการเสมอ',
+      fallback: 'ขออภัยครับ คำถามนี้อยู่นอกเหนือฐานความรู้ของผม กรุณาติดต่อทีมงานโดยตรง',
+      upsell: 'หากต้องการข้อมูลเพิ่มเติมเกี่ยวกับแพ็กเกจพรีเมียม ผมสามารถอธิบายรายละเอียดได้ครับ',
+    },
+  },
+];
+
 // Tag colors
 export const tagColors = {
   'VIP': { bg: 'bg-yellow-500/20', text: 'text-yellow-400', border: 'border-yellow-500/30' },
   'New': { bg: 'bg-blue-500/20', text: 'text-blue-400', border: 'border-blue-500/30' },
   'Active': { bg: 'bg-emerald-500/20', text: 'text-emerald-400', border: 'border-emerald-500/30' },
   'Churned': { bg: 'bg-red-500/20', text: 'text-red-400', border: 'border-red-500/30' },
+};
+
+// ============== CRM / LINE Chat Customer Data ==============
+
+export const crmCustomers = [
+  {
+    id: 1,
+    name: 'คุณแนน',
+    lineId: '@nan_shop',
+    lastChat: '2026-03-19T07:30:00',
+    orders: 12,
+    totalSpend: 4580,
+    tags: ['VIP', 'ขาประจำ'],
+    notes: 'ชอบเสื้อ oversize ไซส์ L',
+    avatar: 'น',
+    avatarColor: 'from-pink-500 to-rose-400',
+    timeline: [
+      { type: 'order', icon: '📦', text: 'เสื้อยืด Oversize x2 — ฿598', date: '2026-03-15T10:00:00' },
+      { type: 'chat',  icon: '💬', text: 'ถามเรื่องไซส์', date: '2026-03-14T15:30:00' },
+      { type: 'order', icon: '📦', text: 'กางเกง Jogger — ฿459', date: '2026-02-28T09:00:00' },
+      { type: 'chat',  icon: '💬', text: 'สอบถามโปรโมชั่น', date: '2026-02-20T11:00:00' },
+    ],
+  },
+  {
+    id: 2,
+    name: 'พี่โอ้',
+    lineId: '@oh_bkk',
+    lastChat: '2026-03-19T06:15:00',
+    orders: 3,
+    totalSpend: 1247,
+    tags: ['ลูกค้าใหม่'],
+    notes: '',
+    avatar: 'โ',
+    avatarColor: 'from-blue-500 to-cyan-400',
+    timeline: [
+      { type: 'order', icon: '📦', text: 'Set ประหยัด (เสื้อ+กางเกง) — ฿699', date: '2026-03-19T06:00:00' },
+      { type: 'chat',  icon: '💬', text: 'ถามเรื่องการจัดส่ง', date: '2026-03-18T20:00:00' },
+      { type: 'order', icon: '📦', text: 'เสื้อยืด Oversize — ฿299', date: '2026-03-10T14:00:00' },
+    ],
+  },
+  {
+    id: 3,
+    name: 'น้องฝ้าย',
+    lineId: '@fai2546',
+    lastChat: '2026-03-18T20:00:00',
+    orders: 8,
+    totalSpend: 3200,
+    tags: ['ขาประจำ'],
+    notes: 'แพ้สีย้อม ควรแนะนำ natural only',
+    avatar: 'ฝ',
+    avatarColor: 'from-purple-500 to-violet-400',
+    timeline: [
+      { type: 'chat',  icon: '💬', text: 'ถามเรื่องสีของเสื้อ natural', date: '2026-03-18T20:00:00' },
+      { type: 'order', icon: '📦', text: 'ถุงผ้า Tote x3 — ฿447', date: '2026-03-12T09:30:00' },
+      { type: 'order', icon: '📦', text: 'เสื้อยืด Oversize — ฿299', date: '2026-02-25T13:00:00' },
+      { type: 'chat',  icon: '💬', text: 'แจ้งว่าแพ้สีย้อม', date: '2026-02-24T18:00:00' },
+    ],
+  },
+  {
+    id: 4,
+    name: 'คุณมาย',
+    lineId: '@may_online',
+    lastChat: '2026-03-18T14:30:00',
+    orders: 1,
+    totalSpend: 299,
+    tags: [],
+    notes: '',
+    avatar: 'ม',
+    avatarColor: 'from-emerald-500 to-teal-400',
+    timeline: [
+      { type: 'order', icon: '📦', text: 'เสื้อยืด Oversize — ฿299', date: '2026-03-18T14:00:00' },
+      { type: 'chat',  icon: '💬', text: 'สอบถามราคา', date: '2026-03-18T13:30:00' },
+    ],
+  },
+  {
+    id: 5,
+    name: 'พี่บอล',
+    lineId: '@ball_store',
+    lastChat: '2026-03-17T11:00:00',
+    orders: 25,
+    totalSpend: 9800,
+    tags: ['VIP', 'ขาประจำ'],
+    notes: 'ลูกค้า VIP ส่วนลด 10% เสมอ',
+    avatar: 'บ',
+    avatarColor: 'from-orange-500 to-amber-400',
+    timeline: [
+      { type: 'order', icon: '📦', text: 'Set ประหยัด x5 — ฿3,495', date: '2026-03-17T11:00:00' },
+      { type: 'chat',  icon: '💬', text: 'ขอใบเสร็จ', date: '2026-03-17T10:30:00' },
+      { type: 'order', icon: '📦', text: 'กางเกง Jogger x3 — ฿1,377', date: '2026-03-05T09:00:00' },
+      { type: 'chat',  icon: '💬', text: 'ถามสต็อกสินค้า', date: '2026-03-04T16:00:00' },
+      { type: 'order', icon: '📦', text: 'เสื้อยืด Oversize x4 — ฿1,196', date: '2026-02-20T10:00:00' },
+    ],
+  },
+];
+
+// CRM tag color map
+export const crmTagColors = {
+  'VIP':        { bg: 'bg-yellow-500/20', text: 'text-yellow-400', border: 'border-yellow-500/30' },
+  'ขาประจำ':    { bg: 'bg-orange-500/20', text: 'text-orange-400', border: 'border-orange-500/30' },
+  'ลูกค้าใหม่': { bg: 'bg-blue-500/20',   text: 'text-blue-400',   border: 'border-blue-500/30' },
 };

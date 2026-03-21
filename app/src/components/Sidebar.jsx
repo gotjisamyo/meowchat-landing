@@ -1,6 +1,6 @@
 import {
   LayoutDashboard, BarChart3, Wallet, Building2, Code2, Settings,
-  ChevronLeft, ChevronRight, Cat, Zap, Menu, Users, CreditCard, User, BadgeDollarSign
+  ChevronLeft, ChevronRight, Cat, Zap, Menu, Users, CreditCard, User, BadgeDollarSign, Sparkles
 } from 'lucide-react';
 import UserMenu from './auth/UserMenu';
 import { useAuth } from '../context/AuthContext';
@@ -14,6 +14,7 @@ const menuItems = [
   { id: 'api',       label: 'API Usage',  icon: Code2 },
   { id: 'pricing',   label: 'Pricing',    icon: BadgeDollarSign },
   { id: 'subscription', label: 'Subscription', icon: CreditCard },
+  { id: 'personality', label: 'บุคลิกบอท', icon: Sparkles },
   { id: 'settings',  label: 'Settings',   icon: Settings },
   { id: 'profile',   label: 'My Account', icon: User },
 ];

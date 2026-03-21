@@ -1,24 +1,26 @@
 import { useState, useMemo } from 'react';
-import { 
+import {
   AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend
 } from 'recharts';
-import { 
+import {
   Users, Code2, CreditCard, TrendingUp, UserPlus, UserMinus,
-  ChevronRight, RefreshCw, Calendar, Crown, Zap
+  ChevronRight, RefreshCw, Calendar, Crown, Zap,
+  AlertTriangle, ShoppingCart, Send, ToggleLeft, ToggleRight, ClipboardList
 } from 'lucide-react';
 import PageLayout from '../components/PageLayout';
 import StatsCard from '../components/StatsCard';
 import ChartCard from '../components/ChartCard';
 import DataTable from '../components/DataTable';
 import { useAuth } from '../context/AuthContext';
-import { 
-  revenueData, 
-  apiUsageData, 
-  salesByCategory, 
+import {
+  revenueData,
+  apiUsageData,
+  salesByCategory,
   userGrowthData,
   recentTransactions,
   subscriptionStats,
-  customersData 
+  customersData,
+  storeProducts,
 } from '../data/mockData';
 
 // ── AI Insights helpers ───────────────────────────────────────────────────────
@@ -68,6 +70,123 @@ function AiInsightsPanel() {
             />
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Stock Alert Widget ────────────────────────────────────────────────────────
+
+function StockAlertPanel() {
+  const lowStockItems = storeProducts.filter((p) => p.stock <= 5 && p.active);
+  if (lowStockItems.length === 0) return null;
+
+  return (
+    <div className="bg-orange-500/10 border border-orange-500/30 rounded-2xl p-5 mb-6">
+      <div className="flex items-center gap-2 mb-4">
+        <AlertTriangle className="w-5 h-5 text-orange-400 flex-shrink-0" />
+        <h3 className="font-bold text-white text-sm">
+          แจ้งเตือนสต็อก{' '}
+          <span className="ml-1 px-2 py-0.5 bg-orange-500/20 text-orange-400 text-xs rounded-full">
+            {lowStockItems.length} รายการ
+          </span>
+        </h3>
+      </div>
+      <div className="space-y-2">
+        {lowStockItems.map((item) => (
+          <div
+            key={item.id}
+            className="flex items-center justify-between gap-3 bg-white/[0.03] border border-white/[0.06] rounded-xl px-4 py-2.5"
+          >
+            <div className="flex items-center gap-2 min-w-0">
+              <ShoppingCart className="w-4 h-4 text-orange-400 flex-shrink-0" />
+              <span className="text-sm text-white font-medium truncate">{item.name}</span>
+            </div>
+            <div className="flex items-center gap-3 flex-shrink-0">
+              <span className="text-xs text-orange-300 font-semibold">
+                เหลือ {item.stock} ชิ้น
+              </span>
+              <button className="px-3 py-1 bg-orange-500 hover:bg-orange-600 rounded-lg text-xs text-white font-semibold transition-colors">
+                สั่งเพิ่ม
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ── Daily Menu Widget ─────────────────────────────────────────────────────────
+
+function DailyMenuPanel() {
+  const [isOpen, setIsOpen] = useState(true);
+  const [broadcastSent, setBroadcastSent] = useState(false);
+
+  // Pick 3 active products as today's featured items
+  const featuredItems = storeProducts.filter((p) => p.active && p.stock > 0).slice(0, 3);
+
+  const handleBroadcast = () => {
+    setBroadcastSent(true);
+    setTimeout(() => setBroadcastSent(false), 3000);
+  };
+
+  return (
+    <div className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-5 mb-6">
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2">
+          <ClipboardList className="w-5 h-5 text-orange-400 flex-shrink-0" />
+          <h3 className="font-bold text-white text-sm">เมนู/โปรวันนี้</h3>
+        </div>
+        {/* Toggle รับออเดอร์ */}
+        <button
+          onClick={() => setIsOpen((v) => !v)}
+          className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
+            isOpen
+              ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/25'
+              : 'bg-white/[0.04] border-white/[0.08] text-zinc-400 hover:border-white/20'
+          }`}
+        >
+          {isOpen ? (
+            <ToggleRight className="w-4 h-4" />
+          ) : (
+            <ToggleLeft className="w-4 h-4" />
+          )}
+          เปิดรับออเดอร์วันนี้
+        </button>
+      </div>
+
+      {/* Featured products */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+        {featuredItems.map((item) => (
+          <div
+            key={item.id}
+            className="bg-white/[0.03] border border-white/[0.06] rounded-xl px-3 py-2.5 flex flex-col gap-1"
+          >
+            <span className="text-xs text-zinc-400 font-medium">{item.category}</span>
+            <span className="text-sm text-white font-semibold">{item.name}</span>
+            <span className="text-orange-400 font-bold text-sm">฿{item.price.toLocaleString()}/{item.unit}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Order count + Broadcast */}
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <span className="text-xs text-zinc-400">
+          สั่งออเดอร์มาแล้ว{' '}
+          <span className="text-white font-bold">14 รายการ</span>วันนี้
+        </span>
+        <button
+          onClick={handleBroadcast}
+          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
+            broadcastSent
+              ? 'bg-emerald-500/20 border border-emerald-500/30 text-emerald-400'
+              : 'bg-orange-500 hover:bg-orange-600 text-white'
+          }`}
+        >
+          <Send className="w-3.5 h-3.5" />
+          {broadcastSent ? 'ส่ง Broadcast ให้ 340 คน แล้ว ✅' : 'ส่ง Broadcast เมนูวันนี้'}
+        </button>
       </div>
     </div>
   );
@@ -154,6 +273,12 @@ export default function Dashboard({ setSidebarOpen }) {
 
       {/* ── AI Insights Panel ─────────────────────────────────────────────── */}
       <AiInsightsPanel />
+
+      {/* ── Stock Alert Widget ────────────────────────────────────────────── */}
+      <StockAlertPanel />
+
+      {/* ── Daily Menu / Today's Offer ────────────────────────────────────── */}
+      <DailyMenuPanel />
 
       {/* KPI Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

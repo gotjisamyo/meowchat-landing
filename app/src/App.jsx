@@ -26,6 +26,7 @@ const Orders = lazy(() => import('./pages/Orders'));
 
 import Sidebar from './components/Sidebar';
 import FeedbackWidget from './components/FeedbackWidget';
+import QuickActionsFAB from './components/QuickActionsFAB';
 
 const PageLoader = () => (
   <div className="flex items-center justify-center h-screen bg-[#0A0A0F]">
@@ -58,6 +59,7 @@ function AdminLayout({ children }) {
       <main className="flex-1 min-w-0 h-screen overflow-y-auto overflow-x-hidden">
         {children(activePage)}
       </main>
+      <QuickActionsFAB navigate={setActivePage} />
     </div>
   );
 }

@@ -35,35 +35,78 @@ function labelCls() {
 
 // ─── mock AI responder ──────────────────────────────────────────────────────
 
-function mockAIAnswer(question, products, faqs, storeInfo) {
-  const q = question.toLowerCase();
-
-  // Check FAQ first (keyword match)
-  for (const faq of faqs) {
-    const keywords = faq.q.toLowerCase().split(/[\s?/,]+/).filter(Boolean);
-    const hit = keywords.some((kw) => kw.length > 1 && q.includes(kw));
-    if (hit) return `📋 จาก FAQ: ${faq.a}`;
-  }
-
-  // Check product name / price query
+// Helper: find a product whose name (or any word >2 chars) appears in the query
+function findProductInQuery(q, products) {
   for (const p of products) {
-    if (q.includes(p.name.toLowerCase()) || p.name.toLowerCase().split(' ').some((w) => w.length > 2 && q.includes(w))) {
-      if (!p.active || p.stock === 0) {
-        return `❌ ${p.name} หมดสต็อกแล้วครับ`;
-      }
-      return `✅ ${p.name} ราคา ฿${p.price.toLocaleString()}/${p.unit} — สต็อกเหลือ ${p.stock} ${p.unit} ครับ`;
-    }
+    const nameLower = p.name.toLowerCase();
+    if (q.includes(nameLower)) return p;
+    // Also match individual words (length > 2) so "เสื้อยืด" matches "เสื้อยืด Oversize"
+    const words = nameLower.split(/\s+/).filter((w) => w.length > 2);
+    if (words.some((w) => q.includes(w))) return p;
   }
+  return null;
+}
 
-  // Price / ราคา generic query
-  if (q.includes('ราคา') || q.includes('เท่าไหร่') || q.includes('เท่าไร')) {
+function mockAIAnswer(question, products, faqs, storeInfo) {
+  const q = question.toLowerCase().trim();
+
+  // ── Pattern: "ราคา [product]" ─────────────────────────────────────────────
+  if (q.startsWith('ราคา') || q.includes('ราคา ')) {
+    const matched = findProductInQuery(q, products);
+    if (matched) {
+      if (!matched.active || matched.stock === 0) {
+        return `❌ ${matched.name} หมดสต็อกแล้วครับ ราคาปกติ ฿${matched.price.toLocaleString()}/${matched.unit}`;
+      }
+      return `💰 ${matched.name} ราคา ฿${matched.price.toLocaleString()}/${matched.unit} ครับ (สต็อกเหลือ ${matched.stock} ${matched.unit})`;
+    }
+    // Generic price list
     const available = products.filter((p) => p.active && p.stock > 0);
     if (available.length === 0) return 'ขออภัยครับ ตอนนี้ไม่มีสินค้าพร้อมขาย';
     const list = available.map((p) => `• ${p.name}: ฿${p.price.toLocaleString()}/${p.unit}`).join('\n');
     return `💰 ราคาสินค้าของเรา:\n${list}`;
   }
 
-  // Stock / มีไหม
+  // ── Pattern: "มี [product] ไหม" ──────────────────────────────────────────
+  if (q.startsWith('มี') && (q.includes('ไหม') || q.includes('บ้าง') || q.includes('มั้ย'))) {
+    const matched = findProductInQuery(q, products);
+    if (matched) {
+      if (!matched.active || matched.stock === 0) {
+        return `❌ ${matched.name} หมดแล้วครับ ตอนนี้ไม่มีในสต็อก`;
+      }
+      return `✅ มีครับ ${matched.name} เหลือ ${matched.stock} ${matched.unit} ครับ`;
+    }
+    // No specific product — list all available
+    const available = products.filter((p) => p.active && p.stock > 0);
+    return available.length > 0
+      ? `📦 สินค้าที่พร้อมส่ง: ${available.map((p) => p.name).join(', ')} ครับ`
+      : 'ขออภัยครับ ตอนนี้สินค้าหมดทุกรายการ';
+  }
+
+  // ── Pattern: "เปิดกี่โมง" / store hours ──────────────────────────────────
+  if (q.includes('เปิดกี่โมง') || q.includes('กี่โมง') || q.includes('เปิด') || q.includes('ปิด') || q.includes('เวลา')) {
+    if (storeInfo.openTime && storeInfo.closeTime) {
+      return `🏪 ร้านเปิด ${storeInfo.openTime} - ${storeInfo.closeTime} น. ครับ`;
+    }
+    return 'กรุณากรอกเวลาเปิด-ปิดในแท็บ "ข้อมูลร้าน" ก่อนนะครับ';
+  }
+
+  // ── Check FAQ first (keyword match) ──────────────────────────────────────
+  for (const faq of faqs) {
+    const keywords = faq.q.toLowerCase().split(/[\s?/,]+/).filter(Boolean);
+    const hit = keywords.some((kw) => kw.length > 1 && q.includes(kw));
+    if (hit) return `📋 จาก FAQ: ${faq.a}`;
+  }
+
+  // ── Check product name mention ────────────────────────────────────────────
+  const matchedProduct = findProductInQuery(q, products);
+  if (matchedProduct) {
+    if (!matchedProduct.active || matchedProduct.stock === 0) {
+      return `❌ ${matchedProduct.name} หมดสต็อกแล้วครับ`;
+    }
+    return `✅ ${matchedProduct.name} ราคา ฿${matchedProduct.price.toLocaleString()}/${matchedProduct.unit} — สต็อกเหลือ ${matchedProduct.stock} ${matchedProduct.unit} ครับ`;
+  }
+
+  // ── Generic "มีไหม" / stock query ────────────────────────────────────────
   if (q.includes('มีไหม') || q.includes('สต็อก') || q.includes('ของมี')) {
     const available = products.filter((p) => p.active && p.stock > 0);
     return available.length > 0
@@ -71,12 +114,12 @@ function mockAIAnswer(question, products, faqs, storeInfo) {
       : 'ขออภัยครับ ตอนนี้สินค้าหมดทุกรายการ';
   }
 
-  // Store hours
-  if (q.includes('เปิด') || q.includes('ปิด') || q.includes('เวลา')) {
-    if (storeInfo.openTime && storeInfo.closeTime) {
-      return `🏪 ร้านเปิด ${storeInfo.openTime} - ${storeInfo.closeTime} น. ครับ`;
-    }
-    return 'กรุณากรอกเวลาเปิด-ปิดในแท็บ "ข้อมูลร้าน" ก่อนนะครับ';
+  // ── Generic price question ────────────────────────────────────────────────
+  if (q.includes('เท่าไหร่') || q.includes('เท่าไร')) {
+    const available = products.filter((p) => p.active && p.stock > 0);
+    if (available.length === 0) return 'ขออภัยครับ ตอนนี้ไม่มีสินค้าพร้อมขาย';
+    const list = available.map((p) => `• ${p.name}: ฿${p.price.toLocaleString()}/${p.unit}`).join('\n');
+    return `💰 ราคาสินค้าของเรา:\n${list}`;
   }
 
   return 'ขออภัยครับ ยังไม่พบข้อมูลที่ตรงกับคำถามนี้ในคลังความรู้ของร้าน กรุณาติดต่อร้านโดยตรงครับ';
@@ -231,10 +274,10 @@ function AITestTab({ products, faqs, storeInfo }) {
   };
 
   const SUGGESTIONS = [
-    'ของชิ้นนี้ราคาเท่าไหร่?',
+    'ราคา เสื้อยืด Oversize',
+    'มี กางเกง Jogger ไหม',
+    'เปิดกี่โมง',
     'ส่งได้ที่ไหนบ้าง?',
-    'มีสินค้าอะไรบ้าง?',
-    'รับของกี่วัน?',
   ];
 
   return (

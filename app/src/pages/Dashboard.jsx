@@ -135,6 +135,22 @@ export default function Dashboard({ setSidebarOpen }) {
         </>
       }
     >
+      {/* ── Onboarding Banner ─────────────────────────────────────────────── */}
+      {!localStorage.getItem('onboardingComplete') && (
+        <div className="bg-orange-500/10 border border-orange-500/30 rounded-2xl p-4 mb-6 flex items-center justify-between">
+          <div>
+            <p className="font-semibold text-white">⚡ ตั้งค่าให้ครบ รับลูกค้าได้เลย!</p>
+            <p className="text-sm text-zinc-400">เชื่อม LINE OA และเพิ่มสินค้าเพื่อเริ่มรับแชท</p>
+          </div>
+          <a
+            href="/onboarding"
+            className="px-4 py-2 bg-orange-500 text-white rounded-xl text-sm font-semibold hover:bg-orange-400 transition"
+          >
+            ตั้งค่าเลย →
+          </a>
+        </div>
+      )}
+
       {/* ── AI Insights Panel ─────────────────────────────────────────────── */}
       <AiInsightsPanel />
 

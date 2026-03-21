@@ -20,6 +20,7 @@ import BotPersonality from './pages/BotPersonality';
 import Automation from './pages/Automation';
 import Analytics from './pages/Analytics';
 import KnowledgeBase from './pages/KnowledgeBase';
+import ChatInbox from './pages/ChatInbox';
 
 import Sidebar from './components/Sidebar';
 import FeedbackWidget from './components/FeedbackWidget';
@@ -68,6 +69,7 @@ function App() {
       case 'personality': return <BotPersonality setSidebarOpen={() => {}} />;
       case 'automation':  return <Automation setSidebarOpen={() => {}} />;
       case 'knowledge':   return <KnowledgeBase setSidebarOpen={() => {}} />;
+      case 'inbox':       return <ChatInbox setSidebarOpen={() => {}} />;
       default:            return <Dashboard setSidebarOpen={() => {}} />;
     }
   };

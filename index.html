@@ -231,6 +231,9 @@ nav{background:rgba(255,253,245,.94);backdrop-filter:blur(18px);
 .pc-list li::before{content:'✓';color:var(--apricot);font-weight:900}
 .pc .btn{width:100%;margin-top:6px;justify-content:center}
 
+/* ── CTA NOTE ── */
+.cta-note{font-size:12px;color:#888;margin-top:6px;text-align:center}
+
 /* ── CTA ── */
 .cta{text-align:center;padding:72px 28px;z-index:1;position:relative;
   background:linear-gradient(135deg,var(--lavm),var(--bg))}
@@ -451,12 +454,58 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
 </div><!-- /feat-grid -->
 </section>
 
+<!-- USE CASES -->
+<section class="sec usecase-wrap" id="usecases">
+<div class="sec-hd">
+  <div class="s-chip">🏪 ธุรกิจที่ใช้ได้</div>
+  <h2 class="s-title">ใช้ได้กับธุรกิจทุกประเภท</h2>
+  <p class="s-sub">ไม่ว่าจะขายของ ทำอาหาร หรือให้บริการ MeowChat ช่วยได้ทั้งนั้น</p>
+</div>
+<div class="uc-grid">
+  <div class="uc reveal">
+    <span class="uc-emoji">🍱</span>
+    <div class="uc-name">ร้านอาหาร</div>
+    <p class="uc-desc">รับออเดอร์, เมนูวันนี้, สถานะจัดส่ง</p>
+  </div>
+  <div class="uc reveal">
+    <span class="uc-emoji">👗</span>
+    <div class="uc-name">แฟชั่น / ออนไลน์</div>
+    <p class="uc-desc">ถามไซส์, เช็คสต็อก, ปิดการขาย</p>
+  </div>
+  <div class="uc reveal">
+    <span class="uc-emoji">💆</span>
+    <div class="uc-name">สปา / ความงาม</div>
+    <p class="uc-desc">จองนัด, แนะนำแพ็กเกจ, ยืนยันนัด</p>
+  </div>
+  <div class="uc reveal">
+    <span class="uc-emoji">🔧</span>
+    <div class="uc-name">ช่าง / บริการ</div>
+    <p class="uc-desc">นัดซ่อม, ประเมินราคา, โอนให้ช่าง</p>
+  </div>
+  <div class="uc reveal">
+    <span class="uc-emoji">🏠</span>
+    <div class="uc-name">อสังหา / เช่า</div>
+    <p class="uc-desc">ถามห้องว่าง, นัดดูห้อง, ส่งรายละเอียด</p>
+  </div>
+  <div class="uc reveal">
+    <span class="uc-emoji">🎓</span>
+    <div class="uc-name">สอนพิเศษ</div>
+    <p class="uc-desc">สมัครเรียน, จองคลาส, แจ้งเตือนก่อนเรียน</p>
+  </div>
+</div>
+</section>
+
 <!-- DEMO -->
 <section class="sec demo-wrap" id="demo">
 <div class="sec-hd">
   <div class="s-chip">🤖 ทดลองใช้งาน</div>
   <h2 class="s-title">ลองคุยกับ MeowChat เลย</h2>
   <p class="s-sub">จำลองการสนทนาจริง — ดูว่า bot จะตอบลูกค้าคุณยังไง</p>
+</div>
+<div class="demo-tabs">
+  <button class="demo-tab active" onclick="switchDemo('shop',this)">🛍️ ร้านค้าออนไลน์</button>
+  <button class="demo-tab" onclick="switchDemo('food',this)">🍱 ร้านอาหาร / เดลิเวอรี่</button>
+  <button class="demo-tab" onclick="switchDemo('appt',this)">💆 นัดหมาย / บริการ</button>
 </div>
 <div class="demo-shell">
   <div class="demo-phone">
@@ -530,6 +579,45 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
 <div class="rev-more">จาก <strong>2,000+</strong> ร้านค้า · คะแนนเฉลี่ย <strong>4.9/5</strong> ⭐</div>
 </section>
 
+<!-- CHANNEL SUPPORT -->
+<section class="sec channel-wrap" id="channels">
+<div class="sec-hd">
+  <div class="s-chip">🔌 ช่องทางที่รองรับ</div>
+  <h2 class="s-title">ช่องทางที่รองรับแล้ว</h2>
+  <p class="s-sub">เชื่อมต่อได้ทันที — ช่องทางอื่นๆ กำลังพัฒนา</p>
+</div>
+<div class="ch-row">
+  <div class="ch-card">
+    <span class="ch-icon">💚</span>
+    <div class="ch-info">
+      <span class="ch-name">LINE OA</span>
+      <span class="ch-badge live">✅ ใช้งานได้แล้ว</span>
+    </div>
+  </div>
+  <div class="ch-card">
+    <span class="ch-icon">💙</span>
+    <div class="ch-info">
+      <span class="ch-name">Facebook Messenger</span>
+      <span class="ch-badge soon">🔜 เร็วๆ นี้</span>
+    </div>
+  </div>
+  <div class="ch-card">
+    <span class="ch-icon">🌸</span>
+    <div class="ch-info">
+      <span class="ch-name">Instagram DM</span>
+      <span class="ch-badge soon">🔜 กำลังพัฒนา</span>
+    </div>
+  </div>
+  <div class="ch-card">
+    <span class="ch-icon">💬</span>
+    <div class="ch-info">
+      <span class="ch-name">WhatsApp</span>
+      <span class="ch-badge soon">🔜 กำลังพัฒนา</span>
+    </div>
+  </div>
+</div>
+</section>
+
 <!-- PRICING -->
 <section class="sec pri-wrap" id="pricing">
 <div class="sec-hd">
@@ -552,6 +640,7 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
     <li>Basic Analytics</li>
   </ul>
   <a href="https://app.meowchat.store/register" class="btn btn-o">เริ่มต้นฟรี</a>
+  <p class="cta-note">ไม่ต้องใส่บัตรเครดิต</p>
 </div>
 
 <!-- Pro (Popular) -->
@@ -571,6 +660,7 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
     <li>Priority Support</li>
   </ul>
   <a href="https://app.meowchat.store/register" class="btn btn-p">อัพเกรดเป็น Pro</a>
+  <p class="cta-note">ทดลองใช้ Pro ฟรี 14 วัน</p>
 </div>
 
 <!-- Enterprise -->
@@ -688,6 +778,12 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
 </footer>
 
 <style>
+/* DEMO TABS */
+.demo-tabs{display:flex;justify-content:center;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.demo-tab{padding:8px 18px;border-radius:50px;border:2px solid #c4b5e8;background:#fff;color:#7c5cbf;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;font-family:inherit}
+.demo-tab.active{background:#FFB74D;border-color:#FFB74D;color:#fff}
+.demo-tab:hover:not(.active){background:var(--lavm)}
+
 /* DEMO */
 .demo-wrap{background:linear-gradient(135deg,#f0ebff 0%,#fff5eb 100%)}
 .demo-shell{display:flex;justify-content:center;padding:8px 0 0}
@@ -731,19 +827,116 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
 .pay-badge{padding:5px 12px;background:#fff;border:1px solid #e0d6f5;border-radius:20px;color:#5a3f99;font-weight:600;font-size:12px}
 .pay-badge.pp{background:#00bcd4;color:#fff;border-color:#00bcd4}
 .pay-secure{color:#10b981;font-size:12px;font-weight:600}
+
+/* ── USE CASE SECTION ── */
+.usecase-wrap{background:#1a1228}
+.usecase-wrap .s-chip{background:rgba(255,183,77,.15);color:#FFB74D;border:1px solid rgba(255,183,77,.3)}
+.usecase-wrap .s-title,.usecase-wrap .s-sub{color:#f0e8ff}
+.usecase-wrap .s-sub{color:#b9a8d4}
+.uc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:960px;margin:0 auto}
+@media(max-width:780px){.uc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.uc-grid{grid-template-columns:1fr}}
+.uc{background:#231836;border:1px solid rgba(177,156,217,.2);border-radius:18px;padding:22px 18px;transition:.3s}
+.uc:hover{border-color:#FFB74D;transform:translateY(-4px);box-shadow:0 8px 28px rgba(255,183,77,.15)}
+.uc-emoji{font-size:28px;margin-bottom:8px;display:block}
+.uc-name{font-size:15px;font-weight:800;color:#f0e8ff;margin-bottom:6px}
+.uc-desc{font-size:12px;color:#9e8fc0;line-height:1.6}
+
+/* ── CHANNEL SUPPORT SECTION ── */
+.channel-wrap{background:#1a1228}
+.channel-wrap .s-chip{background:rgba(255,183,77,.15);color:#FFB74D;border:1px solid rgba(255,183,77,.3)}
+.channel-wrap .s-title,.channel-wrap .s-sub{color:#f0e8ff}
+.channel-wrap .s-sub{color:#b9a8d4}
+.ch-row{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;max-width:860px;margin:0 auto}
+.ch-card{display:flex;align-items:center;gap:12px;background:#231836;border:1px solid rgba(177,156,217,.2);border-radius:16px;padding:16px 22px;min-width:190px;flex:1}
+.ch-icon{font-size:26px}
+.ch-info{display:flex;flex-direction:column;gap:3px}
+.ch-name{font-size:14px;font-weight:800;color:#f0e8ff}
+.ch-badge{font-size:11px;font-weight:700;padding:2px 10px;border-radius:20px;display:inline-block;width:fit-content}
+.ch-badge.live{background:#dcfce7;color:#15803d}
+.ch-badge.soon{background:rgba(255,183,77,.2);color:#FFB74D;border:1px solid rgba(255,183,77,.35)}
 </style>
 
 <script>
-// Demo Chat Bot
-const botReplies = {
-  'ดูสินค้า': 'ยินดีครับ! 🛍️ ตอนนี้มีสินค้าแนะนำ:\n• เสื้อยืด Oversize ราคา ฿299\n• กางเกง Jogger ราคา ฿459\n• Set ประหยัด ฿699\nสนใจรายการไหนครับ?',
-  'ราคาเท่าไหร่?': 'ราคาเริ่มต้น ฿199 ครับ! 💰\nมีส่วนลดพิเศษสำหรับลูกค้าใหม่ 15% ใช้โค้ด NEW15 ได้เลย 🎉',
-  'สั่งซื้อได้เลยไหม?': 'ได้เลยครับ! 🛒 กรอกข้อมูลได้เลย:\n1. ชื่อ-ที่อยู่จัดส่ง\n2. เลือกสินค้า\n3. ช่องทางชำระเงิน\nหรือจะโอน/PromptPay ก็ได้ครับ 😊',
-  'ส่งนานแค่ไหน?': 'จัดส่งทั่วไทย 2-3 วันทำการครับ 🚚\nกรุงเทพฯ ได้รับภายใน 1 วัน ค่าส่ง ฿50 หรือฟรีเมื่อซื้อครบ ฿500',
+// Demo Chat Bot — multi-vertical
+const demoVerticals = {
+  shop: {
+    greeting: 'สวัสดีครับ! ยินดีต้อนรับสู่ร้าน ShopPawsome 🐾 วันนี้ช่วยอะไรได้บ้างครับ?',
+    quickReplies: [
+      {label:'🛍️ ดูสินค้า', key:'ดูสินค้า'},
+      {label:'💰 ราคา', key:'ราคาเท่าไหร่?'},
+      {label:'🛒 สั่งซื้อ', key:'สั่งซื้อได้เลยไหม?'},
+      {label:'🚚 ส่งของ', key:'ส่งนานแค่ไหน?'},
+    ],
+    replies: {
+      'ดูสินค้า': 'ยินดีครับ! 🛍️ ตอนนี้มีสินค้าแนะนำ:\n• เสื้อยืด Oversize ราคา ฿299\n• กางเกง Jogger ราคา ฿459\n• Set ประหยัด ฿699\nสนใจรายการไหนครับ?',
+      'ราคาเท่าไหร่?': 'ราคาเริ่มต้น ฿199 ครับ! 💰\nมีส่วนลดพิเศษสำหรับลูกค้าใหม่ 15% ใช้โค้ด NEW15 ได้เลย 🎉',
+      'สั่งซื้อได้เลยไหม?': 'ได้เลยครับ! 🛒 กรอกข้อมูลได้เลย:\n1. ชื่อ-ที่อยู่จัดส่ง\n2. เลือกสินค้า\n3. ช่องทางชำระเงิน\nหรือจะโอน/PromptPay ก็ได้ครับ 😊',
+      'ส่งนานแค่ไหน?': 'จัดส่งทั่วไทย 2-3 วันทำการครับ 🚚\nกรุงเทพฯ ได้รับภายใน 1 วัน ค่าส่ง ฿50 หรือฟรีเมื่อซื้อครบ ฿500',
+    },
+  },
+  food: {
+    greeting: 'สวัสดีครับ! ร้านข้าวกล่อง PawKitchen พร้อมรับออเดอร์แล้วครับ 🍱',
+    quickReplies: [
+      {label:'🍱 เมนูวันนี้', key:'เมนูวันนี้'},
+      {label:'📦 สั่งข้าวกล่อง', key:'สั่งข้าวกล่อง'},
+      {label:'💰 ราคา', key:'ราคา'},
+      {label:'📍 จัดส่งที่ไหนได้บ้าง', key:'จัดส่งที่ไหนได้บ้าง'},
+    ],
+    replies: {
+      'เมนูวันนี้': 'เมนูวันนี้ครับ 🍱\n• ข้าวหมูแดง ฿55\n• ข้าวกะเพราไข่ดาว ฿55\n• ข้าวมันไก่ ฿60\nสนใจอะไรครับ?',
+      'สั่งข้าวกล่อง': 'รับออเดอร์ถึง 10:30 น. นะครับ 🕙\nสั่งกี่กล่อง และส่งที่อยู่ไหนครับ?',
+      'ราคา': 'ราคาเริ่ม ฿55 ครับ ฟรีค่าส่งเมื่อสั่ง 3 กล่องขึ้นไป 🚚',
+      'จัดส่งที่ไหนได้บ้าง': 'จัดส่งในรัศมี 5 กม. ครับ ค่าส่ง ฿20 หรือฟรีเมื่อซื้อครบ 3 กล่อง 📍',
+    },
+  },
+  appt: {
+    greeting: 'สวัสดีครับ! บริการซ่อมและติดตั้ง PawService ยินดีให้บริการครับ 🔧',
+    quickReplies: [
+      {label:'📅 จองนัด', key:'จองนัด'},
+      {label:'💰 ราคาบริการ', key:'ราคาบริการ'},
+      {label:'🗓️ เช็คคิว', key:'เช็คคิว'},
+      {label:'👨‍🔧 ติดต่อช่าง', key:'ติดต่อช่าง'},
+    ],
+    replies: {
+      'จองนัด': 'ยินดีจองให้ครับ 📅\nกรุณาเลือกวัน:\n• พรุ่งนี้ (เสาร์) มีว่าง 10:00, 14:00, 16:00\n• อาทิตย์ มีว่าง 9:00, 11:00\nสะดวกเวลาไหนครับ?',
+      'ราคาบริการ': 'บริการของเรา:\n• ตรวจเช็คระบบ ฿300\n• ซ่อมแซมเบื้องต้น ฿500-1,500\n• ติดตั้งอุปกรณ์ ราคาตามงาน\nนัดประเมินฟรีครับ 🔧',
+      'เช็คคิว': 'คิวว่างวันนี้เหลือ 2 ช่อง (14:00 และ 16:00) ครับ\nต้องการจองไหม?',
+      'ติดต่อช่าง': 'กำลังโอนสายให้ช่างครับ... 👨‍🔧\nหรือโทร 081-xxx-xxxx ได้เลยครับ',
+    },
+  },
 };
-const defaultReply = 'ขอบคุณที่สนใจครับ! 🐱 ทีมงานจะติดต่อกลับโดยเร็ว หรือจะทักมาได้โดยตรงที่ LINE: @meowchat นะครับ 😊';
+
+let currentVertical = 'shop';
+
+function switchDemo(verticalKey, tabEl) {
+  currentVertical = verticalKey;
+  // Update tab active state
+  document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+  tabEl.classList.add('active');
+
+  const v = demoVerticals[verticalKey];
+  // Reset messages
+  const msgs = document.getElementById('demoMsgs');
+  msgs.innerHTML = '';
+  const greeting = document.createElement('div');
+  greeting.className = 'dmsg bot show';
+  greeting.textContent = v.greeting;
+  msgs.appendChild(greeting);
+
+  // Reset quick replies
+  const quick = document.getElementById('demoQuick');
+  quick.innerHTML = '';
+  v.quickReplies.forEach(qr => {
+    const btn = document.createElement('button');
+    btn.textContent = qr.label;
+    btn.onclick = () => demoSend(qr.key);
+    quick.appendChild(btn);
+  });
+}
 
 function demoSend(text) {
+  const v = demoVerticals[currentVertical];
   const msgs = document.getElementById('demoMsgs');
   // User msg
   const u = document.createElement('div');
@@ -759,11 +952,12 @@ function demoSend(text) {
   msgs.appendChild(t);
   msgs.scrollTop = msgs.scrollHeight;
 
+  const defaultReply = 'ขอบคุณที่สนใจครับ! 🐱 ทีมงานจะติดต่อกลับโดยเร็ว หรือจะทักมาได้โดยตรงที่ LINE: @meowchat นะครับ 😊';
   setTimeout(() => {
     t.remove();
     const b = document.createElement('div');
     b.className = 'dmsg bot';
-    b.textContent = botReplies[text] || defaultReply;
+    b.textContent = (v.replies && v.replies[text]) || defaultReply;
     msgs.appendChild(b);
     requestAnimationFrame(() => b.classList.add('show'));
     msgs.scrollTop = msgs.scrollHeight;

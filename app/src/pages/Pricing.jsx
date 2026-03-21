@@ -203,8 +203,29 @@ export default function Pricing({ setSidebarOpen }) {
           />
         </div>
       </div>
+      {/* Roadmap */}
+      <div className="max-w-3xl mx-auto mt-12 p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
+        <h3 className="text-lg font-bold text-white mb-4 text-center">🗺️ Roadmap — กำลังพัฒนา</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <RoadmapItem icon="📘" title="Facebook Messenger" label="Q2 2026" />
+          <RoadmapItem icon="📸" title="Instagram DM" label="Q2 2026" />
+          <RoadmapItem icon="📅" title="ระบบจองนัดในแชท" label="Q3 2026" />
+        </div>
+      </div>
     </PageLayout>
     </>
+  );
+}
+
+function RoadmapItem({ icon, title, label }) {
+  return (
+    <div className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/[0.05]">
+      <span className="text-2xl">{icon}</span>
+      <div>
+        <p className="text-sm font-semibold text-white">{title}</p>
+        <p className="text-xs text-orange-400">{label}</p>
+      </div>
+    </div>
   );
 }
 

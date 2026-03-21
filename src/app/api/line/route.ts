@@ -1,69 +1,132 @@
-import { NextResponse } from 'next/server';
-import { Client, WebhookEvent, TextMessage } from '@line/bot-sdk';
+import { NextRequest, NextResponse } from 'next/server';
+import crypto from 'crypto';
 
-const config = {
-  channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN || 'xYbF9dlftMZI236ZgRaJKTlDAGK/ogXcaYOxh1laWaz612p3E+A+hKIczUuQRexR7JZCqurgYisd8HNjqJXFu4cExmjnf6UA8vyRu10ouHrPfWm99S3HgP8ItJQUT/1MXe32wa8fmjYJUFuASJGZ+QdB04t89/1O/w1cDnyilFU=',
-  channelSecret: process.env.LINE_CHANNEL_SECRET || 'bcf10af6467eb012fb5df3d24b0d6de9',
-};
+const LINE_CHANNEL_ACCESS_TOKEN = process.env.LINE_CHANNEL_ACCESS_TOKEN || '';
+const LINE_CHANNEL_SECRET = process.env.LINE_CHANNEL_SECRET || '';
 
-const client = new Client(config);
+const LINE_REPLY_URL = 'https://api.line.me/v2/bot/message/reply';
 
-// AI Response Function
-async function getAIResponse(userMessage: string): Promise<string> {
-  // Simple keyword-based responses (can upgrade to AI later)
-  const responses: Record<string, string> = {
-    'สวัสดี': 'สวัสดีค่ะ! 👋 ยินดีต้อนรับสู่ MeowChat 💕 มีอะไรให้ช่วยไหมคะ?',
-    'hi': 'Hello! Welcome to MeowChat! 💕',
-    'แอนนาคือใคร': 'แอนนาคือ AI Assistant ของ Mawsom ค่ะ! 😊',
-    'mawsom': 'Mawsom คือบริษัท AI ที่พัฒนาโดย กฤษฐาพงศ์ (พี่ก็อต) ค่ะ 💕',
-    'ราคา': 'MeowChat มี 3 แพ็กเกจ:\n\n🌟 Starter: ฟรี\n💼 Business: ฿2,990/เดือน\n🏢 Enterprise: ติดต่อฝ่ายขาย\n\nสนใจแพ็กเกจไหนคะ?',
-    'ติดต่อ': 'ติดต่อได้ที่:\n📧 mawsomcto@gmail.com\n📱 061-392-6371\n\nหรือ add LINE @960xboyt ได้เลยค่ะ!',
-  };
-
-  const lowerMsg = userMessage.toLowerCase();
-  
-  for (const [keyword, response] of Object.entries(responses)) {
-    if (lowerMsg.includes(keyword.toLowerCase())) {
-      return response;
-    }
-  }
-
-  return 'ขอโทษนะคะ ยังไม่เข้าใจ 😿\n\nลองถามใหม่ หรือติดต่อ mawsomcto@gmail.com ได้เลยค่ะ! 💕';
+// Verify LINE signature to ensure request is from LINE platform
+function verifyLineSignature(body: string, signature: string): boolean {
+  if (!LINE_CHANNEL_SECRET) return false;
+  const hmac = crypto.createHmac('sha256', LINE_CHANNEL_SECRET);
+  hmac.update(body);
+  const digest = hmac.digest('base64');
+  return digest === signature;
 }
 
-export async function POST(req: Request) {
+// Send reply message via LINE Messaging API
+async function replyMessage(replyToken: string, text: string): Promise<void> {
+  const response = await fetch(LINE_REPLY_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${LINE_CHANNEL_ACCESS_TOKEN}`,
+    },
+    body: JSON.stringify({
+      replyToken,
+      messages: [{ type: 'text', text }],
+    }),
+  });
+
+  if (!response.ok) {
+    const errorBody = await response.text();
+    console.error('LINE reply failed:', response.status, errorBody);
+  }
+}
+
+// Keyword-based response for text messages
+function getKeywordResponse(userMessage: string): string {
+  const msg = userMessage.trim();
+
+  if (/สวัสดี|หวัดดี/.test(msg)) {
+    return 'สวัสดีครับ! 😊 วันนี้ช่วยอะไรได้บ้างครับ?';
+  }
+  if (/ราคา|แพ็กเกจ/.test(msg)) {
+    return 'แพ็กเกจของเรามี 3 ระดับ:\n⭐ Starter ฿990/เดือน\n🚀 Business ฿2,990/เดือน\n👑 Enterprise ฿9,990/เดือน\nสนใจแพ็กเกจไหนครับ?';
+  }
+  if (/สมัคร|ทดลอง/.test(msg)) {
+    return 'สมัครได้เลยที่ https://app.meowchat.store/register ครับ ทดลองใช้ฟรี! 🎉';
+  }
+  if (/ติดต่อ|support/i.test(msg)) {
+    return 'ติดต่อทีมงานได้ที่ LINE: @meowchat หรืออีเมล support@meowchat.store ครับ';
+  }
+
+  return 'ขอบคุณที่ติดต่อมาครับ 🐱 ทีมงานจะตอบกลับโดยเร็ว!';
+}
+
+// LINE event types (minimal subset needed)
+interface LineTextMessageEvent {
+  type: 'message';
+  replyToken: string;
+  message: { type: 'text'; text: string };
+}
+
+interface LineFollowEvent {
+  type: 'follow';
+  replyToken: string;
+}
+
+interface LineUnfollowEvent {
+  type: 'unfollow';
+}
+
+type LineEvent = LineTextMessageEvent | LineFollowEvent | LineUnfollowEvent | { type: string };
+
+export async function POST(req: NextRequest): Promise<NextResponse> {
+  // Read raw body for signature verification
+  const rawBody = await req.text();
+  const signature = req.headers.get('x-line-signature') ?? '';
+
+  // Verify signature — return 200 immediately on invalid to avoid LINE retries exposing errors
+  if (!verifyLineSignature(rawBody, signature)) {
+    console.error('LINE webhook: invalid signature');
+    return NextResponse.json({ status: 'ok' });
+  }
+
+  let body: { events?: LineEvent[] };
   try {
-    const body = await req.json();
-    console.log('LINE Webhook:', JSON.stringify(body, null, 2));
+    body = JSON.parse(rawBody) as { events?: LineEvent[] };
+  } catch (err) {
+    console.error('LINE webhook: failed to parse body', err);
+    return NextResponse.json({ status: 'ok' });
+  }
 
-    const events: WebhookEvent[] = body.events || [];
+  const events: LineEvent[] = body.events ?? [];
 
+  // Process events asynchronously; do not await to respond quickly to LINE
+  void (async () => {
     for (const event of events) {
-      if (event.type === 'message' && event.message.type === 'text') {
-        const userMessage = event.message.text;
-        const replyToken = event.replyToken;
-
-        // Get AI response
-        const aiResponse = await getAIResponse(userMessage);
-
-        // Reply to user
-        const message: TextMessage = {
-          type: 'text',
-          text: aiResponse,
-        };
-
-        await client.replyMessage(replyToken, message);
-        console.log('Replied:', aiResponse);
+      try {
+        if (event.type === 'follow') {
+          const followEvent = event as LineFollowEvent;
+          await replyMessage(
+            followEvent.replyToken,
+            'สวัสดีครับ! ยินดีต้อนรับสู่ MeowChat 🐱 พิมพ์ \'ช่วยเหลือ\' เพื่อดูเมนูได้เลยครับ',
+          );
+          console.log('LINE follow event handled');
+        } else if (event.type === 'unfollow') {
+          // No reply for unfollow; just log
+          console.log('LINE unfollow event received');
+        } else if (event.type === 'message') {
+          const msgEvent = event as LineTextMessageEvent;
+          if (msgEvent.message.type === 'text') {
+            const responseText = getKeywordResponse(msgEvent.message.text);
+            await replyMessage(msgEvent.replyToken, responseText);
+            console.log('LINE message replied:', responseText);
+          }
+        }
+      } catch (err) {
+        console.error('LINE event processing error:', err);
       }
     }
+  })();
 
-    return NextResponse.json({ status: 'ok' });
-  } catch (error) {
-    console.error('LINE Webhook Error:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
-  }
+  // Respond 200 immediately so LINE does not time out
+  return NextResponse.json({ status: 'ok' });
 }
 
-export async function GET() {
-  return NextResponse.json({ status: 'MeowChat LINE Bot is running! 🐱' });
+// Health check for LINE webhook URL verification
+export async function GET(): Promise<NextResponse> {
+  return new NextResponse(null, { status: 200 });
 }

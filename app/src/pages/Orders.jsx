@@ -5,6 +5,8 @@ import {
 } from 'lucide-react';
 import PageLayout from '../components/PageLayout';
 import { ordersData } from '../data/mockData';
+import PromptPayQR from '../components/PromptPayQR';
+import SlipVerifier from '../components/SlipVerifier';
 
 const STATUS_CONFIG = {
   new:       { label: 'รับออเดอร์แล้ว', icon: '🆕', headerColor: '#F97316', bg: 'bg-orange-500/10', border: 'border-orange-500/20', text: 'text-orange-400' },
@@ -194,6 +196,29 @@ function OrderModal({ order, onClose, onMoveNext, onNotify }) {
             <span className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider block mb-4">สถานะออเดอร์</span>
             <StatusTimeline status={order.status} />
           </div>
+
+          {/* Payment section — shown when order is 'new' */}
+          {order.status === 'new' && (
+            <div className="space-y-4">
+              <div className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-4">
+                <span className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider block mb-4">
+                  QR Code ชำระเงิน
+                </span>
+                <PromptPayQR amount={order.total} orderId={order.id} />
+              </div>
+
+              <div className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-4">
+                <span className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider block mb-4">
+                  ตรวจสอบสลิปโอนเงิน
+                </span>
+                <SlipVerifier
+                  orderId={order.id}
+                  expectedAmount={order.total}
+                  onVerified={() => { onMoveNext(order.id); onClose(); }}
+                />
+              </div>
+            </div>
+          )}
 
           {/* Tracking */}
           <div>

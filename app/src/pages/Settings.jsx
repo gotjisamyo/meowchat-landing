@@ -5,6 +5,7 @@ import {
   Copy, ChevronDown, ChevronUp, Check, Loader2
 } from 'lucide-react';
 import PageLayout from '../components/PageLayout';
+import PromptPayQR from '../components/PromptPayQR';
 
 export default function Settings({ setSidebarOpen }) {
   const [activeTab, setActiveTab] = useState('profile');
@@ -391,6 +392,12 @@ function IntegrationsTab() {
   const [guideOpen, setGuideOpen] = useState(false);
   const [toast, setToast] = useState('');
 
+  // PromptPay state
+  const [ppPhone, setPpPhone] = useState('');
+  const [ppName, setPpName] = useState('');
+  const [ppSaved, setPpSaved] = useState(false);
+  const [ppQrModal, setPpQrModal] = useState(false);
+
   const handleTest = () => {
     setTestStatus('loading');
     setTimeout(() => setTestStatus('success'), 1500);
@@ -490,6 +497,86 @@ function IntegrationsTab() {
         desc="ตอบกลับ DM บน Instagram โดยอัตโนมัติ"
         onNotify={() => showToast('บันทึกแล้ว จะแจ้งคุณ')}
       />
+
+      {/* Card 4 — PromptPay */}
+      <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06] space-y-5">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl bg-orange-500/20 border border-orange-500/30">
+            💸
+          </div>
+          <div>
+            <h6 className="font-bold text-white">PromptPay / พร้อมเพย์</h6>
+            <p className="text-xs text-zinc-500">รับชำระเงินผ่าน QR Code อัตโนมัติ</p>
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <label className="text-xs font-bold text-zinc-500 uppercase tracking-wider block pl-1">
+              PromptPay Number (เบอร์โทร/เลขบัตร)
+            </label>
+            <input
+              type="text"
+              value={ppPhone}
+              onChange={e => { setPpPhone(e.target.value); setPpSaved(false); }}
+              placeholder="0XX-XXX-XXXX"
+              className="w-full bg-white/[0.03] border border-white/[0.06] rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-orange-500/40 transition-all"
+            />
+          </div>
+          <div className="space-y-2">
+            <label className="text-xs font-bold text-zinc-500 uppercase tracking-wider block pl-1">
+              ชื่อบัญชี
+            </label>
+            <input
+              type="text"
+              value={ppName}
+              onChange={e => { setPpName(e.target.value); setPpSaved(false); }}
+              placeholder="ชื่อ-นามสกุล"
+              className="w-full bg-white/[0.03] border border-white/[0.06] rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-orange-500/40 transition-all"
+            />
+          </div>
+        </div>
+
+        <div className="flex items-center gap-3 pt-1">
+          <button
+            onClick={() => { setPpSaved(true); showToast('บันทึก PromptPay แล้ว ✅'); }}
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold btn-primary text-white shadow-lg shadow-orange-500/20"
+          >
+            {ppSaved && <Check className="w-4 h-4" />}
+            บันทึก
+          </button>
+          <button
+            onClick={() => setPpQrModal(true)}
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold border border-white/[0.08] bg-white/[0.03] text-zinc-300 hover:text-white hover:bg-white/[0.06] transition-all"
+          >
+            ทดสอบ QR
+          </button>
+        </div>
+      </div>
+
+      {/* PromptPay test QR modal */}
+      {ppQrModal && (
+        <div
+          className="fixed inset-0 z-[300] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+          onClick={() => setPpQrModal(false)}
+        >
+          <div
+            className="bg-[#12121A] border border-white/[0.08] rounded-3xl p-6 w-full max-w-sm text-center"
+            onClick={e => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-bold text-white">QR ทดสอบสำหรับ ฿100</h3>
+              <button
+                onClick={() => setPpQrModal(false)}
+                className="p-2 hover:bg-white/[0.06] rounded-xl text-zinc-400 hover:text-white transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <PromptPayQR amount={100} orderId="TEST" phoneNumber={ppPhone || '0891234567'} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

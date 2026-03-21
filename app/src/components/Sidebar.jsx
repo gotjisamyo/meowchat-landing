@@ -1,20 +1,23 @@
 import {
   LayoutDashboard, BarChart3, Wallet, Building2, Code2, Settings,
-  ChevronLeft, ChevronRight, Cat, Zap, Menu, Users, CreditCard, User, BadgeDollarSign, Sparkles
+  ChevronLeft, ChevronRight, Cat, Zap, Menu, Users, CreditCard, User, BadgeDollarSign, Sparkles,
+  PieChart, BookOpen
 } from 'lucide-react';
 import UserMenu from './auth/UserMenu';
 import { useAuth } from '../context/AuthContext';
 
 const menuItems = [
-  { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { id: 'customers', label: 'Customers', icon: Users, adminOnly: true },
-  { id: 'marketing', label: 'Marketing', icon: BarChart3 },
+  { id: 'dashboard',  label: 'Dashboard',  icon: LayoutDashboard },
+  { id: 'analytics',  label: 'Analytics',  icon: PieChart },
+  { id: 'customers',  label: 'ลูกค้า CRM', icon: Users, adminOnly: true },
+  { id: 'marketing',  label: 'Marketing',  icon: BarChart3 },
   { id: 'sales',     label: 'Sales',      icon: Wallet },
   { id: 'finance',   label: 'Finance',    icon: Building2 },
   { id: 'api',       label: 'API Usage',  icon: Code2 },
   { id: 'pricing',   label: 'Pricing',    icon: BadgeDollarSign },
   { id: 'subscription', label: 'Subscription', icon: CreditCard },
   { id: 'personality', label: 'บุคลิกบอท', icon: Sparkles },
+  { id: 'automation', label: 'Automation', icon: Zap },
   { id: 'settings',  label: 'Settings',   icon: Settings },
   { id: 'profile',   label: 'My Account', icon: User },
 ];

@@ -1,65 +1,68 @@
 import { useState, useMemo } from 'react';
-import { 
-  Search, Filter, Download, MoreVertical, 
-  Users, DollarSign, TrendingUp, UserPlus,
-  Tag, Mail, Calendar, Zap
-} from 'lucide-react';
+import { Search, Download, Users, RefreshCw, MessageCircle, Star } from 'lucide-react';
 import PageLayout from '../components/PageLayout';
-import { customersData, subscriptionStats, tagColors } from '../data/mockData';
-import { useAuth } from '../context/AuthContext';
+import CustomerDrawer from '../components/CustomerDrawer';
+import { crmCustomers, crmTagColors } from '../data/mockData';
+
+const FILTER_CHIPS = [
+  { id: 'all',        label: 'ทั้งหมด' },
+  { id: 'repeat',     label: 'ซื้อซ้ำ' },
+  { id: 'vip',        label: 'VIP' },
+  { id: 'new_today',  label: 'ใหม่วันนี้' },
+  { id: 'inactive30', label: 'ไม่มีการซื้อ 30 วัน' },
+];
+
+const NOW = new Date('2026-03-19T09:00:00');
+
+function relativeTime(iso) {
+  const diff = Math.floor((NOW - new Date(iso)) / 1000);
+  if (diff < 60) return 'เมื่อกี้';
+  if (diff < 3600) return `${Math.floor(diff / 60)} น.ที่แล้ว`;
+  if (diff < 86400) return `${Math.floor(diff / 3600)} ชม.ที่แล้ว`;
+  return `${Math.floor(diff / 86400)} วันที่แล้ว`;
+}
+
+function matchesFilter(customer, filter) {
+  if (filter === 'all') return true;
+  if (filter === 'repeat') return customer.orders > 1;
+  if (filter === 'vip') return customer.tags.includes('VIP');
+  if (filter === 'new_today') {
+    const diff = (NOW - new Date(customer.lastChat)) / 1000;
+    return diff < 86400 && customer.orders <= 1;
+  }
+  if (filter === 'inactive30') {
+    const diff = (NOW - new Date(customer.lastChat)) / 86400000;
+    return diff > 30;
+  }
+  return true;
+}
 
 export default function Customers({ setSidebarOpen }) {
-  const { isAdmin } = useAuth();
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedTag, setSelectedTag] = useState('all');
-  const [selectedStatus, setSelectedStatus] = useState('all');
+  const [search, setSearch] = useState('');
+  const [filter, setFilter] = useState('all');
+  const [selected, setSelected] = useState(null);
 
-  // Get unique tags
-  const allTags = useMemo(() => {
-    const tags = new Set();
-    customersData.forEach(customer => {
-      customer.tags.forEach(tag => tags.add(tag));
+  const filtered = useMemo(() => {
+    return crmCustomers.filter(c => {
+      const q = search.toLowerCase();
+      const matchSearch =
+        !q ||
+        c.name.toLowerCase().includes(q) ||
+        c.lineId.toLowerCase().includes(q);
+      return matchSearch && matchesFilter(c, filter);
     });
-    return Array.from(tags);
-  }, []);
+  }, [search, filter]);
 
-  // Filter customers
-  const filteredCustomers = useMemo(() => {
-    return customersData.filter(customer => {
-      const matchesSearch = 
-        customer.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        customer.email.toLowerCase().includes(searchQuery.toLowerCase());
-      
-      const matchesTag = selectedTag === 'all' || customer.tags.includes(selectedTag);
-      const matchesStatus = selectedStatus === 'all' || customer.status === selectedStatus;
-      
-      return matchesSearch && matchesTag && matchesStatus;
-    });
-  }, [searchQuery, selectedTag, selectedStatus]);
-
-  // Calculate stats
-  const stats = {
-    totalCustomers: customersData.length,
-    activeCustomers: customersData.filter(c => c.status === 'active').length,
-    totalRevenue: customersData.reduce((sum, c) => sum + c.revenue, 0),
-    vipCustomers: customersData.filter(c => c.tags.includes('VIP')).length,
-  };
-
-  const formatDate = (dateStr) => {
-    const date = new Date(dateStr);
-    return date.toLocaleDateString('th-TH', { day: 'numeric', month: 'short', year: 'numeric' });
-  };
-
-  const formatNumber = (num) => {
-    if (num >= 1000000) return `฿${(num / 1000000).toFixed(1)}M`;
-    if (num >= 1000) return `฿${(num / 1000).toFixed(0)}K`;
-    return `฿${num}`;
-  };
+  // Summary stats
+  const totalCustomers = crmCustomers.length;
+  const repeatRate = Math.round((crmCustomers.filter(c => c.orders > 1).length / totalCustomers) * 100);
+  const chatToday = crmCustomers.filter(c => (NOW - new Date(c.lastChat)) / 1000 < 86400).length;
+  const vipCount = crmCustomers.filter(c => c.tags.includes('VIP')).length;
 
   return (
     <PageLayout
-      title="Customers"
-      subtitle="จัดการลูกค้าและข้อมูล"
+      title="ลูกค้า CRM"
+      subtitle="ประวัติลูกค้าและความทรงจำ AI"
       setSidebarOpen={setSidebarOpen}
       actions={
         <button className="btn-primary px-5 py-2.5 rounded-xl text-sm font-semibold text-white flex items-center gap-2">
@@ -68,252 +71,175 @@ export default function Customers({ setSidebarOpen }) {
         </button>
       }
     >
-      {/* Stats Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <StatCard 
-          icon={Users}
-          label="ลูกค้าทั้งหมด"
-          value={stats.totalCustomers.toLocaleString()}
-          change="+12.5%"
-          positive
-          color="blue"
-        />
-        <StatCard 
-          icon={TrendingUp}
-          label="ลูกค้าที่ใช้งานอยู่"
-          value={stats.activeCustomers.toLocaleString()}
-          change="+8.2%"
-          positive
-          color="green"
-        />
-        <StatCard 
-          icon={DollarSign}
-          label="รายได้รวม"
-          value={formatNumber(stats.totalRevenue)}
-          change="+15.3%"
-          positive
-          color="orange"
-        />
-        <StatCard 
-          icon={UserPlus}
-          label="ลูกค้า VIP"
-          value={stats.vipCustomers.toLocaleString()}
-          change="+5"
-          positive
-          color="purple"
-        />
+      {/* AI Memory info card */}
+      <div className="mx-6 lg:mx-8 mt-6 bg-gradient-to-r from-orange-500/10 to-pink-500/10 border border-orange-500/20 rounded-2xl px-5 py-4 flex items-start gap-3">
+        <span className="text-2xl flex-shrink-0">🧠</span>
+        <div>
+          <p className="text-white font-semibold text-sm">AI จำลูกค้าได้</p>
+          <p className="text-zinc-400 text-xs mt-0.5">
+            เมื่อลูกค้าแชทกลับมา บอทจะทักทายด้วยชื่อและรู้ประวัติการซื้อของพวกเขา — ทำให้ทุกการสนทนารู้สึกเป็นส่วนตัว
+          </p>
+        </div>
       </div>
 
-      {/* Filters */}
-      <div className="flex flex-col lg:flex-row gap-4 mb-6">
-        {/* Search */}
-        <div className="relative flex-1">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" />
+      {/* Stats row */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 px-6 lg:px-8 mt-6">
+        <StatCard icon="👥" label="ลูกค้าทั้งหมด"     value="1,247" color="blue" />
+        <StatCard icon="🔄" label="กลับมาซื้อซ้ำ"    value={`${repeatRate}%`} color="green" />
+        <StatCard icon="💬" label="แชทวันนี้"          value={String(chatToday)} color="orange" />
+        <StatCard icon="⭐" label="ลูกค้า VIP"         value={String(vipCount)} color="yellow" />
+      </div>
+
+      {/* Search + filter */}
+      <div className="px-6 lg:px-8 mt-6 space-y-3">
+        <div className="relative">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
           <input
             type="text"
-            placeholder="ค้นหาลูกค้า..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 bg-[#151520] border border-white/[0.06] rounded-xl text-white placeholder-zinc-500 focus:outline-none focus:border-orange-500/50"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            placeholder="ค้นหาชื่อ, LINE ID, เบอร์โทร"
+            className="w-full pl-11 pr-4 py-3 bg-[#151520] border border-white/[0.06] rounded-xl text-white placeholder-zinc-600 text-sm focus:outline-none focus:border-orange-500/40"
           />
         </div>
 
-        {/* Tag Filter */}
-        <div className="flex gap-2 overflow-x-auto pb-2">
-          <FilterButton 
-            label="ทั้งหมด" 
-            active={selectedTag === 'all'} 
-            onClick={() => setSelectedTag('all')} 
-          />
-          {allTags.map(tag => (
-            <FilterButton 
-              key={tag}
-              label={tag} 
-              active={selectedTag === tag} 
-              onClick={() => setSelectedTag(tag)}
-              color={tagColors[tag]?.text.replace('text-', '')}
-            />
+        <div className="flex gap-2 overflow-x-auto pb-1">
+          {FILTER_CHIPS.map(chip => (
+            <button
+              key={chip.id}
+              onClick={() => setFilter(chip.id)}
+              className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all flex-shrink-0
+                ${filter === chip.id
+                  ? 'bg-orange-500 text-white'
+                  : 'bg-white/[0.04] text-zinc-400 hover:text-white hover:bg-white/[0.08]'
+                }`}
+            >
+              {chip.label}
+            </button>
           ))}
         </div>
-
-        {/* Status Filter */}
-        <select
-          value={selectedStatus}
-          onChange={(e) => setSelectedStatus(e.target.value)}
-          className="px-4 py-3 bg-[#151520] border border-white/[0.06] rounded-xl text-white focus:outline-none focus:border-orange-500/50"
-        >
-          <option value="all">ทุกสถานะ</option>
-          <option value="active">Active</option>
-          <option value="new">New</option>
-          <option value="churned">Churned</option>
-        </select>
       </div>
 
-      {/* Results Count */}
-      <p className="text-sm text-zinc-500 mb-4">
-        แสดง {filteredCustomers.length} จาก {customersData.length} ลูกค้า
-      </p>
+      {/* Customer table */}
+      <div className="px-6 lg:px-8 mt-4 pb-8">
+        <p className="text-xs text-zinc-600 mb-3">แสดง {filtered.length} จาก {crmCustomers.length} ลูกค้า</p>
 
-      {/* Customer Table */}
-      <div className="bg-[#151520] border border-white/[0.06] rounded-3xl overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-white/[0.06]">
-                <th className="text-left px-6 py-4 text-sm font-semibold text-zinc-400">ลูกค้า</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold text-zinc-400">แผม</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold text-zinc-400">Tags</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold text-zinc-400">รายได้</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold text-zinc-400">API Calls</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold text-zinc-400">วันที่สมัคร</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold text-zinc-400">สถานะ</th>
-                <th className="px-6 py-4"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredCustomers.map((customer, idx) => (
-                <tr 
-                  key={customer.id}
-                  className="border-b border-white/[0.04] hover:bg-white/[0.02] transition-colors"
-                >
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-pink-500 flex items-center justify-center text-white font-medium">
-                        {customer.name.charAt(0)}
-                      </div>
-                      <div>
-                        <p className="font-medium text-white">{customer.name}</p>
-                        <p className="text-sm text-zinc-500">{customer.email}</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <PlanBadge plan={customer.plan} />
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex flex-wrap gap-2">
-                      {customer.tags.map(tag => (
-                        <TagBadge key={tag} tag={tag} />
-                      ))}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className="text-white font-medium">{formatNumber(customer.revenue)}</span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-2">
-                      <Zap className="w-4 h-4 text-zinc-500" />
-                      <span className="text-white">{customer.apiCalls.toLocaleString()}</span>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-2 text-zinc-400">
-                      <Calendar className="w-4 h-4" />
-                      <span>{formatDate(customer.joinDate)}</span>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <StatusBadge status={customer.status} />
-                  </td>
-                  <td className="px-6 py-4">
-                    <button className="p-2 hover:bg-white/[0.06] rounded-lg transition-colors">
-                      <MoreVertical className="w-5 h-5 text-zinc-500" />
-                    </button>
-                  </td>
+        <div className="bg-[#151520] border border-white/[0.06] rounded-2xl overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-white/[0.06]">
+                  <th className="text-left px-5 py-4 text-xs font-semibold text-zinc-500 uppercase tracking-wider">ลูกค้า</th>
+                  <th className="text-left px-5 py-4 text-xs font-semibold text-zinc-500 uppercase tracking-wider">แชทล่าสุด</th>
+                  <th className="text-left px-5 py-4 text-xs font-semibold text-zinc-500 uppercase tracking-wider">ออเดอร์</th>
+                  <th className="text-left px-5 py-4 text-xs font-semibold text-zinc-500 uppercase tracking-wider">ยอดรวม</th>
+                  <th className="text-left px-5 py-4 text-xs font-semibold text-zinc-500 uppercase tracking-wider">Tags</th>
+                  <th className="px-5 py-4" />
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {filtered.map(customer => (
+                  <tr
+                    key={customer.id}
+                    className="border-b border-white/[0.04] hover:bg-white/[0.02] transition-colors"
+                  >
+                    {/* Avatar + name */}
+                    <td className="px-5 py-4">
+                      <div className="flex items-center gap-3">
+                        <div className={`w-9 h-9 rounded-full bg-gradient-to-br ${customer.avatarColor} flex items-center justify-center text-white font-bold text-sm flex-shrink-0`}>
+                          {customer.avatar}
+                        </div>
+                        <div>
+                          <p className="text-white font-medium text-sm">{customer.name}</p>
+                          <p className="text-zinc-600 text-xs">{customer.lineId}</p>
+                        </div>
+                      </div>
+                    </td>
+
+                    {/* Last chat */}
+                    <td className="px-5 py-4">
+                      <span className="text-zinc-400 text-sm">{relativeTime(customer.lastChat)}</span>
+                    </td>
+
+                    {/* Orders */}
+                    <td className="px-5 py-4">
+                      <span className="text-white font-semibold">{customer.orders}</span>
+                    </td>
+
+                    {/* Total spend */}
+                    <td className="px-5 py-4">
+                      <span className="text-white font-semibold">฿{customer.totalSpend.toLocaleString()}</span>
+                    </td>
+
+                    {/* Tags */}
+                    <td className="px-5 py-4">
+                      <div className="flex gap-1.5 flex-wrap">
+                        {customer.tags.length === 0 && (
+                          <span className="text-zinc-700 text-xs">—</span>
+                        )}
+                        {customer.tags.map(tag => {
+                          const c = crmTagColors[tag] ?? { bg: 'bg-zinc-500/20', text: 'text-zinc-400', border: 'border-zinc-500/30' };
+                          return (
+                            <span
+                              key={tag}
+                              className={`px-2 py-0.5 text-xs font-medium rounded-full border ${c.bg} ${c.text} ${c.border}`}
+                            >
+                              {tag}
+                            </span>
+                          );
+                        })}
+                      </div>
+                    </td>
+
+                    {/* Action */}
+                    <td className="px-5 py-4">
+                      <button
+                        onClick={() => setSelected(customer)}
+                        className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-white/[0.04] border border-white/[0.08] text-zinc-300 hover:text-white hover:bg-white/[0.08] transition-colors whitespace-nowrap"
+                      >
+                        ดูประวัติ
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {filtered.length === 0 && (
+            <div className="py-16 text-center">
+              <Users className="w-10 h-10 text-zinc-700 mx-auto mb-3" />
+              <p className="text-zinc-500 text-sm">ไม่พบลูกค้าที่ตรงกับเงื่อนไข</p>
+            </div>
+          )}
         </div>
       </div>
 
-      {filteredCustomers.length === 0 && (
-        <div className="text-center py-12">
-          <Users className="w-12 h-12 text-zinc-600 mx-auto mb-4" />
-          <p className="text-zinc-400">ไม่พบลูกค้าที่ตรงกับเงื่อนไข</p>
-        </div>
+      {/* Customer detail drawer */}
+      {selected && (
+        <CustomerDrawer
+          customer={selected}
+          onClose={() => setSelected(null)}
+        />
       )}
     </PageLayout>
   );
 }
 
-function StatCard({ icon: Icon, label, value, change, positive, color }) {
-  const colorClasses = {
-    blue: 'from-blue-500 to-blue-400',
-    green: 'from-emerald-500 to-emerald-400',
-    orange: 'from-orange-500 to-orange-400',
-    purple: 'from-purple-500 to-violet-400',
+function StatCard({ icon, label, value, color }) {
+  const colorMap = {
+    blue:   'text-blue-400',
+    green:  'text-emerald-400',
+    orange: 'text-orange-400',
+    yellow: 'text-yellow-400',
   };
-
   return (
     <div className="bg-[#151520] border border-white/[0.06] rounded-2xl p-5">
-      <div className="flex items-center justify-between mb-3">
-        <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${colorClasses[color]} flex items-center justify-center`}>
-          <Icon className="w-5 h-5 text-white" />
-        </div>
-        <span className={`text-sm font-medium ${positive ? 'text-emerald-400' : 'text-red-400'}`}>
-          {change}
-        </span>
+      <div className="flex items-center gap-2 mb-3">
+        <span className="text-xl">{icon}</span>
       </div>
-      <p className="text-2xl font-bold text-white mb-1">{value}</p>
-      <p className="text-sm text-zinc-500">{label}</p>
+      <p className={`text-2xl font-bold ${colorMap[color]}`}>{value}</p>
+      <p className="text-sm text-zinc-500 mt-1">{label}</p>
     </div>
-  );
-}
-
-function FilterButton({ label, active, onClick, color }) {
-  return (
-    <button
-      onClick={onClick}
-      className={`
-        px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all
-        ${active 
-          ? 'bg-orange-500 text-white' 
-          : 'bg-white/[0.04] text-zinc-400 hover:text-white hover:bg-white/[0.08]'
-        }
-      `}
-    >
-      {label}
-    </button>
-  );
-}
-
-function PlanBadge({ plan }) {
-  const colors = {
-    free: 'bg-zinc-500/20 text-zinc-400',
-    pro: 'bg-orange-500/20 text-orange-400',
-    enterprise: 'bg-purple-500/20 text-purple-400',
-  };
-
-  return (
-    <span className={`px-3 py-1 text-xs font-medium rounded-full capitalize ${colors[plan]}`}>
-      {plan}
-    </span>
-  );
-}
-
-function TagBadge({ tag }) {
-  const colors = tagColors[tag] || { bg: 'bg-zinc-500/20', text: 'text-zinc-400', border: 'border-zinc-500/30' };
-  
-  return (
-    <span className={`px-2.5 py-1 text-xs font-medium rounded-full border ${colors.bg} ${colors.text} ${colors.border}`}>
-      {tag}
-    </span>
-  );
-}
-
-function StatusBadge({ status }) {
-  const colors = {
-    active: { bg: 'bg-emerald-500/20', text: 'text-emerald-400', label: 'ใช้งาน' },
-    new: { bg: 'bg-blue-500/20', text: 'text-blue-400', label: 'ใหม่' },
-    churned: { bg: 'bg-red-500/20', text: 'text-red-400', label: 'ยกเลิก' },
-  };
-
-  const style = colors[status] || colors.active;
-
-  return (
-    <span className={`px-3 py-1 text-xs font-medium rounded-full ${style.bg} ${style.text}`}>
-      {style.label}
-    </span>
   );
 }

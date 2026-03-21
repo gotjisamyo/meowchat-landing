@@ -21,6 +21,58 @@ import {
   customersData 
 } from '../data/mockData';
 
+// ── AI Insights helpers ───────────────────────────────────────────────────────
+
+const insightTypeStyles = {
+  up:      { border: 'border-emerald-500/40', dot: 'bg-emerald-500', btn: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/25 hover:bg-emerald-500/25' },
+  warning: { border: 'border-yellow-500/40',  dot: 'bg-yellow-500',  btn: 'bg-yellow-500/15  text-yellow-400  border-yellow-500/25  hover:bg-yellow-500/25'  },
+  info:    { border: 'border-blue-500/40',    dot: 'bg-blue-500',    btn: 'bg-blue-500/15    text-blue-400    border-blue-500/25    hover:bg-blue-500/25'    },
+};
+
+function InsightItem({ type, text, action }) {
+  const s = insightTypeStyles[type] ?? insightTypeStyles.info;
+  return (
+    <div className={`flex items-start gap-3 border-l-2 pl-3 py-0.5 ${s.border}`}>
+      <div className={`w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${s.dot}`} />
+      <p className="text-sm text-zinc-300 flex-1 leading-snug">{text}</p>
+      <button className={`flex-shrink-0 text-[11px] font-semibold border rounded-lg px-2.5 py-1 transition-colors whitespace-nowrap ${s.btn}`}>
+        {action}
+      </button>
+    </div>
+  );
+}
+
+function AiInsightsPanel() {
+  return (
+    <div className="bg-gradient-to-r from-orange-500/10 to-purple-500/10 border border-orange-500/20 rounded-2xl p-5 mb-6">
+      <div className="flex items-start gap-3">
+        <span className="text-2xl flex-shrink-0">🤖</span>
+        <div className="flex-1 min-w-0">
+          <h3 className="font-bold text-white mb-1">AI วิเคราะห์ธุรกิจของคุณ</h3>
+          <p className="text-zinc-300 text-sm mb-3">อัพเดทล่าสุด: วันนี้ 09:00 น.</p>
+          <div className="space-y-2">
+            <InsightItem
+              type="up"
+              text="ลูกค้าถาม 'ราคา' เพิ่มขึ้น 38% อาทิตย์นี้ — แนะนำส่ง Broadcast โปรโมชั่น"
+              action="ส่ง Broadcast"
+            />
+            <InsightItem
+              type="warning"
+              text="บอทตอบไม่ได้ 12 ครั้งใน 3 วัน คำถามที่พบบ่อย: 'ส่ง EMS ได้ไหม'"
+              action="เพิ่มใน FAQ"
+            />
+            <InsightItem
+              type="info"
+              text="ลูกค้า VIP 3 คนไม่ได้แชท 15+ วัน — ลองส่งข้อความหาพวกเขา"
+              action="ส่งข้อความ"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Dashboard({ setSidebarOpen }) {
   const { isAdmin } = useAuth();
   const tableColumns = ['ลูกค้า', 'วันที่', 'จำนวน', 'สถานะ'];
@@ -83,6 +135,9 @@ export default function Dashboard({ setSidebarOpen }) {
         </>
       }
     >
+      {/* ── AI Insights Panel ─────────────────────────────────────────────── */}
+      <AiInsightsPanel />
+
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         {kpiData.map((kpi, idx) => (

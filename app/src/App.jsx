@@ -16,6 +16,9 @@ import Subscription from './pages/Subscription';
 import Customers from './pages/Customers';
 import Profile from './pages/Profile';
 import BotPersonality from './pages/BotPersonality';
+import Automation from './pages/Automation';
+import Analytics from './pages/Analytics';
+import KnowledgeBase from './pages/KnowledgeBase';
 
 import Sidebar from './components/Sidebar';
 import FeedbackWidget from './components/FeedbackWidget';
@@ -51,6 +54,7 @@ function App() {
   const renderPage = (activePage) => {
     switch (activePage) {
       case 'dashboard':    return <Dashboard setSidebarOpen={() => {}} />;
+      case 'analytics':    return <Analytics setSidebarOpen={() => {}} />;
       case 'marketing':   return <Marketing setSidebarOpen={() => {}} />;
       case 'sales':       return <Sales setSidebarOpen={() => {}} />;
       case 'finance':     return <Finance setSidebarOpen={() => {}} />;
@@ -61,6 +65,8 @@ function App() {
       case 'customers':   return <Customers setSidebarOpen={() => {}} />;
       case 'profile':     return <Profile setSidebarOpen={() => {}} />;
       case 'personality': return <BotPersonality setSidebarOpen={() => {}} />;
+      case 'automation':  return <Automation setSidebarOpen={() => {}} />;
+      case 'knowledge':   return <KnowledgeBase setSidebarOpen={() => {}} />;
       default:            return <Dashboard setSidebarOpen={() => {}} />;
     }
   };

@@ -557,3 +557,14 @@ export const crmTagColors = {
   'ขาประจำ':    { bg: 'bg-orange-500/20', text: 'text-orange-400', border: 'border-orange-500/30' },
   'ลูกค้าใหม่': { bg: 'bg-blue-500/20',   text: 'text-blue-400',   border: 'border-blue-500/30' },
 };
+
+// ============== Automation & Flow Data ==============
+
+export const automationTemplates = [
+  { id: 1, icon: '🌅', name: 'ส่งข้อความต้อนรับ', description: 'ทักทายลูกค้าใหม่อัตโนมัติ', active: true },
+  { id: 2, icon: '🛒', name: 'แจ้งยืนยันออเดอร์', description: 'ส่งสรุปออเดอร์ทันที', active: false },
+  { id: 3, icon: '⏰', name: 'เตือนก่อนนัด', description: 'Reminder 1 วันก่อนนัด', active: false },
+  { id: 4, icon: '💤', name: 'ตอบนอกเวลา', description: 'ตอบอัตโนมัติหลังปิดร้าน', active: true },
+  { id: 5, icon: '🎂', name: 'อวยพรวันเกิด', description: 'ส่งโค้ดส่วนลดวันเกิด', active: false },
+  { id: 6, icon: '🔄', name: 'ติดตามลูกค้าเงียบ', description: 'Re-engage ลูกค้าใน 30 วัน', active: false },
+];

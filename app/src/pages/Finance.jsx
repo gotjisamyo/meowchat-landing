@@ -48,7 +48,7 @@ export default function Finance({ setSidebarOpen }) {
       }
     >
       {/* Financial Summaries */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         {summaries.map((item, i) => (
           <div key={i} className="group bg-[#12121A] rounded-3xl p-8 pb-8 border border-white/[0.04] hover:border-orange-500/20 transition-all relative overflow-hidden">
             <div className={`absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl ${
@@ -69,7 +69,7 @@ export default function Finance({ setSidebarOpen }) {
       </div>
 
       {/* Finance Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Revenue vs Cost Bar Chart */}
         <div className="lg:col-span-2 bg-[#12121A] rounded-3xl border border-white/[0.04] p-6 pb-8">
           <h4 className="text-lg font-bold text-white mb-6 flex items-center gap-3 leading-relaxed">

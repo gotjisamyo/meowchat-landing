@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Mail, Lock, Eye, EyeOff, Loader2, Cat } from 'lucide-react';
@@ -10,6 +10,22 @@ export default function LoginPage() {
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const emailRef = useRef(null);
+  const passRef = useRef(null);
+
+  // Force dark background on autofilled inputs
+  useEffect(() => {
+    const fix = (el) => {
+      if (!el) return;
+      el.style.backgroundColor = '#0A0A0F';
+      el.style.color = '#ffffff';
+    };
+    const t = setInterval(() => {
+      fix(emailRef.current);
+      fix(passRef.current);
+    }, 200);
+    return () => clearInterval(t);
+  }, []);
   
   const { login, isAuthenticated, error: authError } = useAuth();
   const navigate = useNavigate();
@@ -52,22 +68,16 @@ export default function LoginPage() {
       return;
     }
 
-    const result = await login(email, password);
-    
-    if (result.success) {
+    try {
+      await login(email, password);
       navigate(from, { replace: true });
-    } else {
-      setError(result.error || 'เข้าสู่ระบบไม่สำเร็จ');
+    } catch (err) {
+      setError(err.message || 'เข้าสู่ระบบไม่สำเร็จ');
     }
     
     setIsLoading(false);
   };
 
-  // Pre-fill for dev mode
-  const handleDevFill = () => {
-    setEmail('admin@meowchat.com');
-    setPassword('admin123');
-  };
 
   return (
     <div className="min-h-screen bg-[#0A0A0F] flex items-center justify-center p-4 relative overflow-hidden">
@@ -108,8 +118,9 @@ export default function LoginPage() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  ref={emailRef}
                   className="w-full pl-10 pr-4 py-3 bg-[#0A0A0F] border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500/50 focus:border-pink-500/50 transition-all"
-                  placeholder="admin@meowchat.com"
+                  placeholder="your@email.com"
                   autoComplete="email"
                 />
               </div>
@@ -129,6 +140,7 @@ export default function LoginPage() {
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  ref={passRef}
                   className="w-full pl-10 pr-12 py-3 bg-[#0A0A0F] border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500/50 focus:border-pink-500/50 transition-all"
                   placeholder="••••••••"
                   autoComplete="current-password"
@@ -186,17 +198,7 @@ export default function LoginPage() {
               )}
             </button>
           </form>
-
-          {/* Register Link */}
-          <div className="mt-6 pt-6 border-t border-white/10 text-center">
-            <p className="text-sm text-gray-500">
-              ยังไม่มีบัญชี?{' '}
-              <a href="/register" className="text-pink-400 hover:text-pink-300 transition-colors font-medium">
-                สมัครฟรี
-              </a>
-            </p>
           </div>
-        </div>
 
         {/* Footer */}
         <p className="text-center mt-6 text-gray-500 text-xs">

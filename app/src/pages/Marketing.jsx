@@ -46,7 +46,7 @@ export default function Marketing({ setSidebarOpen }) {
       }
     >
       {/* Marketing Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         {stats.map((stat, i) => (
           <div key={i} className="group bg-[#12121A] rounded-3xl p-8 border border-white/[0.04] hover:border-orange-500/20 transition-all">
             <div className="flex items-center gap-4">
@@ -80,7 +80,7 @@ export default function Marketing({ setSidebarOpen }) {
            </h4>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {marketingData.campaigns.map((campaign, i) => (
             <div key={i} className="group bg-[#12121A] rounded-3xl p-8 pb-8 border border-white/[0.04] hover:border-orange-500/20 transition-all relative overflow-hidden">
               {/* Background Decoration */}
@@ -144,7 +144,7 @@ export default function Marketing({ setSidebarOpen }) {
         <h4 className="text-lg font-bold text-white mb-6 flex items-center gap-3 leading-relaxed">
           <Users className="w-5 h-5 text-orange-400" /> Channel Distribution
         </h4>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
           {marketingData.channels.map((channel, i) => (
             <div key={i} className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.04] hover:border-orange-500/20 transition-all">
               <div className="flex items-center justify-between mb-3">

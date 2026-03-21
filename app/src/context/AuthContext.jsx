@@ -1,62 +1,13 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://api.meowchat.store';
-
 const AuthContext = createContext(null);
 
-// User roles
+const API_URL = import.meta.env.VITE_API_URL || 'https://api.meowchat.store';
+
 export const ROLES = {
   ADMIN: 'admin',
   MANAGER: 'manager',
   USER: 'user',
-};
-
-// Mock user data with roles
-const MOCK_USERS = {
-  'admin@meowchat.ai': {
-    id: 1,
-    name: 'กฤษฐาพงศ์',
-    email: 'admin@meowchat.ai',
-    role: ROLES.ADMIN,
-    avatar: null,
-    subscription: {
-      plan: 'enterprise',
-      status: 'active',
-    },
-  },
-  'manager@meowchat.ai': {
-    id: 2,
-    name: 'สมชาย วงศ์สกุล',
-    email: 'manager@meowchat.ai',
-    role: ROLES.MANAGER,
-    avatar: null,
-    subscription: {
-      plan: 'pro',
-      status: 'active',
-    },
-  },
-  'user@meowchat.ai': {
-    id: 3,
-    name: 'สมหญิง ใจดี',
-    email: 'user@meowchat.ai',
-    role: ROLES.USER,
-    avatar: null,
-    subscription: {
-      plan: 'free',
-      status: 'active',
-    },
-  },
-  'ceo@meowchat.ai': {
-    id: 1,
-    name: 'กฤษฐาพงศ์',
-    email: 'ceo@meowchat.ai',
-    role: ROLES.ADMIN,
-    avatar: null,
-    subscription: {
-      plan: 'enterprise',
-      status: 'active',
-    },
-  },
 };
 
 export function AuthProvider({ children }) {
@@ -64,11 +15,9 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Check for existing session on mount
   useEffect(() => {
     const storedUser = localStorage.getItem('meowchat_user');
     const token = localStorage.getItem('meowchat_token');
-    
     if (storedUser && token) {
       setUser(JSON.parse(storedUser));
       setIsAuthenticated(true);
@@ -77,46 +26,27 @@ export function AuthProvider({ children }) {
   }, []);
 
   const login = async (email, password) => {
-    // Try real API first
-    try {
-      const res = await fetch(`${API_URL}/api/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email.trim().toLowerCase(), password }),
-      });
-      if (res.ok) {
-        const data = await res.json();
-        const token = data.token;
-        const userData = data.user || { email, name: email.split('@')[0], role: 'user' };
-        localStorage.setItem('meowchat_token', token);
-        localStorage.setItem('meowchat_user', JSON.stringify(userData));
-        setUser(userData);
-        setIsAuthenticated(true);
-        return { success: true, user: userData };
-      }
-      const err = await res.json().catch(() => ({}));
-      return { success: false, error: err.message || 'อีเมลหรือรหัสผ่านไม่ถูกต้อง' };
-    } catch {
-      // API not available - fallback to mock
+    const res = await fetch(`${API_URL}/api/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email.trim().toLowerCase(), password }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.message || 'เข้าสู่ระบบไม่สำเร็จ');
     }
 
-    // Mock fallback (dev/demo)
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const normalizedEmail = email.trim().toLowerCase();
-        const mockUser = MOCK_USERS[normalizedEmail];
-        if (mockUser && (password === 'admin123' || password === 'password123')) {
-          const token = 'mock_jwt_token_' + Date.now();
-          localStorage.setItem('meowchat_token', token);
-          localStorage.setItem('meowchat_user', JSON.stringify(mockUser));
-          setUser(mockUser);
-          setIsAuthenticated(true);
-          resolve({ success: true, user: mockUser });
-        } else {
-          resolve({ success: false, error: 'อีเมลหรือรหัสผ่านไม่ถูกต้อง' });
-        }
-      }, 800);
-    });
+    if (data.user.role !== 'admin') {
+      throw new Error('บัญชีนี้ไม่มีสิทธิ์เข้าใช้งาน Admin Dashboard');
+    }
+
+    localStorage.setItem('meowchat_token', data.token);
+    localStorage.setItem('meowchat_user', JSON.stringify(data.user));
+    setUser(data.user);
+    setIsAuthenticated(true);
+    return { success: true, user: data.user };
   };
 
   const logout = () => {
@@ -126,42 +56,23 @@ export function AuthProvider({ children }) {
     setIsAuthenticated(false);
   };
 
-  // Check if user has specific role
-  const hasRole = (role) => {
-    if (!user) return false;
-    return user.role === role;
-  };
-
-  // Check if user is admin
+  const hasRole = (role) => user?.role === role;
   const isAdmin = () => hasRole(ROLES.ADMIN);
-
-  // Check if user is manager or admin
   const isManager = () => hasRole(ROLES.MANAGER) || hasRole(ROLES.ADMIN);
 
-  // Update user subscription (mock)
   const updateSubscription = async (plan) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const updatedUser = {
-          ...user,
-          subscription: {
-            plan,
-            status: 'active',
-          },
-        };
-        localStorage.setItem('meowchat_user', JSON.stringify(updatedUser));
-        setUser(updatedUser);
-        resolve({ success: true, plan });
-      }, 1000);
-    });
+    const updatedUser = { ...user, subscription: { plan, status: 'active' } };
+    localStorage.setItem('meowchat_user', JSON.stringify(updatedUser));
+    setUser(updatedUser);
+    return { success: true, plan };
   };
 
   return (
-    <AuthContext.Provider value={{ 
-      user, 
-      loading, 
-      isAuthenticated, 
-      login, 
+    <AuthContext.Provider value={{
+      user,
+      loading,
+      isAuthenticated,
+      login,
       logout,
       hasRole,
       isAdmin,
@@ -176,8 +87,6 @@ export function AuthProvider({ children }) {
 
 export function useAuth() {
   const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within AuthProvider');
-  }
+  if (!context) throw new Error('useAuth must be used within AuthProvider');
   return context;
 }

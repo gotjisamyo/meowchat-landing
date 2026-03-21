@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Base URL for API - ปรับตาม environment
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://api.meowchat.store';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8888';
 
 // Create axios instance
 const api = axios.create({
@@ -44,47 +44,17 @@ api.interceptors.response.use(
 
 export const authAPI = {
   login: async (email, password) => {
-    // Mock login - ใน production จะใช้ API จริง
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (email === 'admin@meowchat.ai' && password === 'admin123') {
-          const token = 'mock_jwt_token_' + Date.now();
-          const user = {
-            id: 1,
-            name: 'กฤษฐาพงศ์',
-            email: 'ceo@meowchat.ai',
-            role: 'admin',
-            avatar: null,
-          };
-          resolve({ success: true, token, user });
-        } else {
-          reject(new Error('อีเมลหรือรหัสผ่านไม่ถูกต้อง'));
-        }
-      }, 800);
-    });
-    
-    // Real API call (uncomment when backend is ready)
-    // const response = await api.post('/auth/login', { email, password });
-    // return response.data;
+    const response = await api.post('/api/auth/login', { email, password });
+    return response.data;
   },
   
   logout: async () => {
-    // Mock logout
     return Promise.resolve({ success: true });
-    
-    // Real API call
-    // const response = await api.post('/auth/logout');
-    // return response.data;
   },
   
   getCurrentUser: async () => {
-    // Mock
     const stored = localStorage.getItem('meowchat_user');
     return stored ? JSON.parse(stored) : null;
-    
-    // Real API call
-    // const response = await api.get('/auth/me');
-    // return response.data;
   },
 };
 

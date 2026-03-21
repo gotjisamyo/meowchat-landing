@@ -84,7 +84,7 @@ export default function Dashboard({ setSidebarOpen }) {
       }
     >
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         {kpiData.map((kpi, idx) => (
           <StatsCard 
             key={idx}
@@ -101,7 +101,7 @@ export default function Dashboard({ setSidebarOpen }) {
 
       {/* Admin-specific: Subscription Overview */}
       {isAdmin() && (
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 mb-6">
           {/* Subscription Stats */}
           <div className="lg:col-span-2 bg-gradient-to-br from-orange-500/10 to-purple-500/10 border border-orange-500/20 rounded-3xl p-6">
             <h3 className="text-lg font-bold text-white mb-4">สถิติ Subscription</h3>
@@ -183,7 +183,7 @@ export default function Dashboard({ setSidebarOpen }) {
       )}
 
       {/* Charts Row 1 */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Revenue Chart */}
         <ChartCard title="รายได้ & ต้นทุน" subtitle="Monthly performance" delay={400} className="lg:col-span-2">
           <ResponsiveContainer width="100%" height={300}>
@@ -248,7 +248,7 @@ export default function Dashboard({ setSidebarOpen }) {
       </div>
 
       {/* Charts Row 2 */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* API Usage */}
         <ChartCard title="การใช้งาน API รายสัปดาห์" delay={600}>
           <ResponsiveContainer width="100%" height={240}>

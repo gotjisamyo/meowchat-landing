@@ -418,3 +418,33 @@ body {
 @media (min-width: 768px) {
   .hide-desktop { display: none; }
 }
+
+/* ── Page Content Area ── */
+.content-area {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1.5rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .content-area {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .content-area {
+    padding: 1.5rem 2rem;
+  }
+}
+
+/* ── Fix browser autofill yellow background ── */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px #0A0A0F inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #ffffff;
+  transition: background-color 9999s ease-in-out 0s;
+}

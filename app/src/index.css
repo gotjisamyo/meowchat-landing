@@ -433,6 +433,11 @@ body {
   }
 }
 
+/* ── Page Transition ── */
+.page-enter {
+  animation: fadeIn 0.2s ease-out;
+}
+
 /* ── Fix browser autofill yellow background ── */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,

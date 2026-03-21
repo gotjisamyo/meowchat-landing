@@ -74,7 +74,8 @@ function AiInsightsPanel() {
 }
 
 export default function Dashboard({ setSidebarOpen }) {
-  const { isAdmin } = useAuth();
+  const { isAdmin, user } = useAuth();
+  const greeting = user?.name ? `สวัสดี ${user.name}! 👋` : 'สวัสดี! 👋';
   const tableColumns = ['ลูกค้า', 'วันที่', 'จำนวน', 'สถานะ'];
 
   // KPI data for admin vs regular user
@@ -114,8 +115,8 @@ export default function Dashboard({ setSidebarOpen }) {
   }, [isAdmin]);
 
   return (
-    <PageLayout 
-      title="Dashboard" 
+    <PageLayout
+      title={greeting}
       subtitle="ภาพรวมธุรกิจแบบเรียลไทม์"
       setSidebarOpen={setSidebarOpen}
       actions={
@@ -155,18 +156,19 @@ export default function Dashboard({ setSidebarOpen }) {
       <AiInsightsPanel />
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {kpiData.map((kpi, idx) => (
-          <StatsCard 
-            key={idx}
-            title={kpi.title}
-            value={kpi.value}
-            change={kpi.change}
-            isPositive={kpi.isPositive}
-            icon={kpi.icon}
-            color={kpi.color}
-            delay={idx * 100}
-          />
+          <div key={idx} className="hover:scale-[1.02] transition-transform">
+            <StatsCard
+              title={kpi.title}
+              value={kpi.value}
+              change={kpi.change}
+              isPositive={kpi.isPositive}
+              icon={kpi.icon}
+              color={kpi.color}
+              delay={idx * 100}
+            />
+          </div>
         ))}
       </div>
 

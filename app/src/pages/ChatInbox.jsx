@@ -262,7 +262,11 @@ export default function ChatInbox({ setSidebarOpen }) {
         {/* Conversation list */}
         <div className="flex-1 overflow-y-auto">
           {filtered.length === 0 && (
-            <p className="text-zinc-600 text-xs text-center mt-8 px-4">ไม่มีบทสนทนา</p>
+            <div className="flex flex-col items-center justify-center gap-3 py-12 px-4 text-center">
+              <span className="text-4xl">💬</span>
+              <p className="text-zinc-400 text-sm font-medium">ยังไม่มีแชท</p>
+              <p className="text-zinc-600 text-xs leading-relaxed">เมื่อลูกค้า LINE มาหา จะปรากฏที่นี่</p>
+            </div>
           )}
           {filtered.map(conv => (
             <ConvItem

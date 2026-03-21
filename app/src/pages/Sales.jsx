@@ -142,6 +142,13 @@ export default function Sales({ setSidebarOpen }) {
           <h4 className="text-lg font-bold text-white leading-relaxed">📦 ออเดอร์ล่าสุด</h4>
           <span className="text-xs text-zinc-500">5 รายการล่าสุด</span>
         </div>
+        {ordersData.length === 0 ? (
+          <div className="flex flex-col items-center justify-center gap-3 py-12 text-center">
+            <span className="text-4xl">📦</span>
+            <p className="text-zinc-400 text-sm font-medium">ยังไม่มีออเดอร์</p>
+            <p className="text-zinc-600 text-xs leading-relaxed">เมื่อลูกค้าสั่งผ่านแชท จะปรากฏที่นี่</p>
+          </div>
+        ) : (
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -180,6 +187,7 @@ export default function Sales({ setSidebarOpen }) {
             </tbody>
           </table>
         </div>
+        )}
       </div>
 
       {/* Section 4 — Recent Transactions */}

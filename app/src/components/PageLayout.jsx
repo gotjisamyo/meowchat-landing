@@ -57,7 +57,7 @@ export default function PageLayout({ title, subtitle, setSidebarOpen, children, 
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.1 }}
-        className="flex-1 w-full min-w-0 content-area"
+        className="flex-1 w-full min-w-0 content-area page-enter"
       >
         <div className="space-y-6 w-full min-w-0">
           {children}

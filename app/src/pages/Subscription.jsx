@@ -8,6 +8,8 @@ import PageLayout from '../components/PageLayout';
 import { userSubscription, subscriptionPlans, userActivityLog } from '../data/mockData';
 import { useAuth } from '../context/AuthContext';
 
+const getUsagePercentage = (used, limit) => Math.round((used / limit) * 100);
+
 export default function Subscription({ setSidebarOpen }) {
   const { user, updateSubscription } = useAuth();
   const [isUpgrading, setIsUpgrading] = useState(false);
@@ -26,9 +28,6 @@ export default function Subscription({ setSidebarOpen }) {
     return date.toLocaleDateString('th-TH', { day: 'numeric', month: 'long', year: 'numeric' });
   };
 
-  const getUsagePercentage = (used, limit) => {
-    return Math.round((used / limit) * 100);
-  };
 
   return (
     <PageLayout

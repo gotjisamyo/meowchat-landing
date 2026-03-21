@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ข้อกำหนดการใช้บริการ - MeowChat</title>
+<meta name="description" content="ข้อกำหนดและเงื่อนไขการใช้บริการ MeowChat AI Chatbot สำหรับธุรกิจไทย">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"></noscript>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#0D0D14;--card:#16161F;--border:#2A2A3A;
+  --lav:#9B7FD4;--lavs:#B19CD9;--lavm:#1E1830;
+  --peach:#FFD180;--apricot:#FFB74D;
+  --text:#E8E0F0;--gray:#9A8EB0;
+  --r:16px;
+}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.75}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(circle at 15% 85%,rgba(155,127,212,.06) 0,transparent 50%),
+             radial-gradient(circle at 85% 15%,rgba(255,183,77,.05) 0,transparent 50%)}
+
+/* NAV */
+nav{background:rgba(13,13,20,.9);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:99;padding:14px 28px;
+  display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-icon{font-size:28px}
+.logo-name{font-size:20px;font-weight:900;color:var(--lav)}
+.logo-sub{font-size:10px;color:var(--apricot);font-weight:700;letter-spacing:.5px;display:block;line-height:1}
+.back-btn{display:inline-flex;align-items:center;gap:7px;
+  padding:9px 20px;border-radius:50px;font-weight:700;font-size:14px;
+  text-decoration:none;color:var(--lavs);border:1.5px solid var(--border);
+  background:var(--card);transition:.25s}
+.back-btn:hover{border-color:var(--lav);color:var(--lav);background:var(--lavm)}
+
+/* HERO */
+.hero{position:relative;z-index:1;text-align:center;padding:60px 28px 40px;
+  border-bottom:1px solid var(--border)}
+.chip{display:inline-block;padding:6px 18px;border-radius:50px;
+  background:var(--lavm);color:var(--lav);font-size:12px;font-weight:800;
+  letter-spacing:.4px;margin-bottom:14px;border:1px solid rgba(155,127,212,.3)}
+.hero h1{font-size:clamp(28px,4vw,46px);font-weight:900;color:var(--text);margin-bottom:10px}
+.hero h1 em{font-style:normal;
+  background:linear-gradient(135deg,var(--apricot),var(--lav));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:15px;color:var(--gray)}
+
+/* CONTENT */
+.content{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:52px 28px 80px}
+
+.section{background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);padding:32px;margin-bottom:22px;transition:.25s}
+.section:hover{border-color:rgba(155,127,212,.35)}
+
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.section-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;
+  background:linear-gradient(135deg,rgba(255,183,77,.12),rgba(255,183,77,.04));
+  color:var(--apricot);border:1.5px solid rgba(255,183,77,.3)}
+.section h2{font-size:18px;font-weight:800;color:var(--text)}
+
+.section p{font-size:14px;color:var(--gray);margin-bottom:12px}
+.section p:last-child{margin-bottom:0}
+
+ul.data-list{list-style:none;margin:0;padding:0}
+ul.data-list li{font-size:14px;color:var(--gray);padding:9px 0;
+  border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:9px}
+ul.data-list li:last-child{border:none;padding-bottom:0}
+ul.data-list li::before{content:'▸';color:var(--apricot);font-weight:900;font-size:12px;margin-top:3px;flex-shrink:0}
+
+.warning-box{background:rgba(255,183,77,.07);border:1px solid rgba(255,183,77,.2);
+  border-radius:10px;padding:16px 20px;margin-top:14px}
+.warning-box p{font-size:14px;color:#FFCC80;margin:0}
+
+.contact-card{background:linear-gradient(135deg,rgba(155,127,212,.08),rgba(255,183,77,.06));
+  border:1px solid rgba(155,127,212,.25);border-radius:12px;padding:20px;margin-top:14px}
+.contact-card a{color:var(--apricot);text-decoration:none;font-weight:700}
+.contact-card a:hover{text-decoration:underline}
+
+/* FOOTER */
+footer{position:relative;z-index:1;text-align:center;padding:32px 28px;
+  border-top:1px solid var(--border)}
+footer p{font-size:13px;color:var(--gray)}
+footer a{color:var(--lavs);text-decoration:none}
+footer a:hover{color:var(--lav)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/">
+    <span class="logo-icon">🐱</span>
+    <div>
+      <div class="logo-name">MeowChat</div>
+      <span class="logo-sub">by Mawsom</span>
+    </div>
+  </a>
+  <a class="back-btn" href="/">← กลับหน้าหลัก</a>
+</nav>
+
+<div class="hero">
+  <div class="chip">📜 เอกสารทางกฎหมาย</div>
+  <h1>ข้อกำหนด<em>การใช้บริการ</em></h1>
+  <p class="hero-sub">วันที่มีผล: 1 มกราคม 2026 &nbsp;·&nbsp; MeowChat by Mawsom Company</p>
+</div>
+
+<div class="content">
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>การยอมรับข้อกำหนด</h2>
+    </div>
+    <p>การสมัครใช้งานหรือเข้าถึงบริการ MeowChat ไม่ว่าในรูปแบบใดก็ตาม ถือว่าคุณได้อ่าน เข้าใจ และยอมรับข้อกำหนดการใช้บริการฉบับนี้ทั้งหมด</p>
+    <p>หากคุณไม่ยอมรับข้อกำหนดเหล่านี้ กรุณาหยุดการใช้งานบริการทันที การใช้บริการต่อเนื่องหลังจากที่เราประกาศการเปลี่ยนแปลงข้อกำหนดถือว่าคุณยอมรับข้อกำหนดที่ปรับปรุงแล้ว</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>คำอธิบายบริการ</h2>
+    </div>
+    <p>MeowChat เป็นแพลตฟอร์ม AI Chatbot สำหรับธุรกิจไทย ออกแบบมาเพื่อทำงานร่วมกับ LINE Official Account (LINE OA) โดยมีฟีเจอร์หลักดังนี้:</p>
+    <ul class="data-list">
+      <li>ตอบแชทอัตโนมัติผ่าน LINE OA ด้วย AI ที่เข้าใจภาษาไทย 24 ชั่วโมง 7 วัน</li>
+      <li>จัดการออเดอร์และติดตามสถานะการสั่งซื้อ</li>
+      <li>อัปเดตและตรวจสอบสต็อกสินค้าแบบเรียลไทม์</li>
+      <li>ดูรายงานยอดขายและ Analytics ธุรกิจ</li>
+      <li>ระบบ CRM จัดการข้อมูลลูกค้า</li>
+      <li>เครื่องมือ Marketing Automation และโปรโมชัน</li>
+    </ul>
+    <p style="margin-top:14px">เราขอสงวนสิทธิ์ในการเปลี่ยนแปลง เพิ่ม หรือยกเลิกฟีเจอร์ได้ตลอดเวลา โดยจะแจ้งให้ทราบล่วงหน้าหากมีการเปลี่ยนแปลงที่มีนัยสำคัญ</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>บัญชีผู้ใช้และความรับผิดชอบ</h2>
+    </div>
+    <p>การสร้างและใช้งานบัญชี MeowChat มีเงื่อนไขดังนี้:</p>
+    <ul class="data-list">
+      <li>คุณต้องมีอายุอย่างน้อย 18 ปีหรือได้รับความยินยอมจากผู้ปกครองที่มีอำนาจตามกฎหมาย</li>
+      <li>ข้อมูลที่ใช้สมัครต้องเป็นความจริงและถูกต้อง คุณต้องอัปเดตข้อมูลให้เป็นปัจจุบันเสมอ</li>
+      <li>คุณรับผิดชอบในการรักษาความลับของรหัสผ่านและห้ามแชร์บัญชีกับผู้อื่น</li>
+      <li>กรุณาแจ้งเราทันทีหากพบหรือสงสัยว่ามีการใช้บัญชีโดยไม่ได้รับอนุญาต</li>
+      <li>บัญชีหนึ่งบัญชีต่อหนึ่ง LINE Official Account เว้นแต่จะสมัครแพ็กเกจ Enterprise</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>การชำระเงินและการยกเลิก</h2>
+    </div>
+    <p>ข้อกำหนดด้านการเงินและการสมัครสมาชิก:</p>
+    <ul class="data-list">
+      <li><strong style="color:var(--text)">การชำระเงิน:</strong>&nbsp;รอบบิลรายเดือน ชำระล่วงหน้าผ่านบัตรเครดิต/เดบิต หรือ QR Code พร้อมเพย์</li>
+      <li><strong style="color:var(--text)">การต่ออายุอัตโนมัติ:</strong>&nbsp;แพ็กเกจจะต่ออายุอัตโนมัติทุกเดือน จนกว่าจะยกเลิก</li>
+      <li><strong style="color:var(--text)">นโยบายการคืนเงิน:</strong>&nbsp;ค่าบริการรายเดือนที่ชำระแล้วไม่สามารถขอคืนเงินได้ ไม่ว่ากรณีใดก็ตาม</li>
+      <li><strong style="color:var(--text)">การยกเลิก:</strong>&nbsp;ยกเลิกการสมัครสมาชิกได้ตลอดเวลาผ่านหน้าตั้งค่าบัญชี มีผลเมื่อสิ้นสุดรอบบิลปัจจุบัน</li>
+      <li><strong style="color:var(--text)">การระงับบัญชี:</strong>&nbsp;หากชำระเงินไม่สำเร็จ บัญชีอาจถูกระงับชั่วคราวจนกว่าจะชำระเงินครบ</li>
+    </ul>
+    <div class="warning-box">
+      <p>⚠️ หมายเหตุ: ค่าบริการที่ชำระแล้วสำหรับรอบบิลปัจจุบันไม่สามารถขอคืนเงินได้ แต่คุณสามารถยกเลิกเพื่อไม่ให้ถูกเรียกเก็บเงินในรอบถัดไป</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>ข้อห้าม</h2>
+    </div>
+    <p>ห้ามใช้บริการ MeowChat เพื่อการกระทำดังต่อไปนี้โดยเด็ดขาด:</p>
+    <ul class="data-list">
+      <li><strong style="color:var(--text)">Spam:</strong>&nbsp;ส่งข้อความจำนวนมากโดยไม่ได้รับความยินยอม หรือกระทำการที่ละเมิดนโยบาย LINE Official Account</li>
+      <li><strong style="color:var(--text)">เนื้อหาผิดกฎหมาย:</strong>&nbsp;เผยแพร่เนื้อหาที่ผิดกฎหมาย หมิ่นประมาท ลามกอนาจาร หรือละเมิดสิทธิ์ผู้อื่น</li>
+      <li><strong style="color:var(--text)">การ Scraping:</strong>&nbsp;ใช้ Bot, Spider, หรือโปรแกรมอัตโนมัติเพื่อดึงข้อมูลจากแพลตฟอร์มของเรา</li>
+      <li><strong style="color:var(--text)">การฉ้อโกง:</strong>&nbsp;หลอกลวง แอบอ้าง หรือให้ข้อมูลเท็จใด ๆ แก่ลูกค้าหรือเรา</li>
+      <li><strong style="color:var(--text)">การทำลายระบบ:</strong>&nbsp;พยายามเข้าถึงระบบโดยไม่ได้รับอนุญาต หรือกระทำการใด ๆ ที่อาจรบกวนการทำงานของบริการ</li>
+      <li><strong style="color:var(--text)">การละเมิดลิขสิทธิ์:</strong>&nbsp;ใช้เนื้อหาหรือทรัพย์สินทางปัญญาของผู้อื่นโดยไม่ได้รับอนุญาต</li>
+    </ul>
+    <p style="margin-top:14px">การละเมิดข้อห้ามเหล่านี้อาจส่งผลให้บัญชีถูกระงับหรือยกเลิกทันที โดยไม่มีการคืนเงิน</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>ข้อจำกัดความรับผิด</h2>
+    </div>
+    <p>MeowChat ให้บริการในสถานะ "ตามที่เป็น" (As-Is) โดยมีข้อจำกัดดังนี้:</p>
+    <ul class="data-list">
+      <li>เราไม่รับประกันว่าบริการจะทำงานได้อย่างต่อเนื่องไม่มีสะดุดหรือปราศจากข้อผิดพลาด</li>
+      <li>ความแม่นยำของการตอบคำถามจาก AI ขึ้นอยู่กับข้อมูลที่ผู้ใช้ป้อนเข้าสู่ระบบ</li>
+      <li>เราไม่รับผิดชอบต่อความเสียหายทางอ้อม ความสูญเสียกำไร หรือความเสียหายที่เกิดจากการพึ่งพาข้อมูลจาก AI</li>
+      <li>ความรับผิดสูงสุดของเราต่อคุณไม่เกินค่าบริการที่คุณชำระจริงในช่วง 3 เดือนที่ผ่านมา</li>
+      <li>เราไม่รับผิดชอบต่อความเสียหายที่เกิดจากการที่ LINE หรือบุคคลที่สามหยุดให้บริการ</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>กฎหมายที่ใช้บังคับ</h2>
+    </div>
+    <p>ข้อกำหนดการใช้บริการฉบับนี้อยู่ภายใต้กฎหมายแห่งราชอาณาจักรไทย:</p>
+    <ul class="data-list">
+      <li>ข้อพิพาทใด ๆ ที่เกิดขึ้นจากการใช้บริการจะอยู่ภายใต้เขตอำนาจศาลไทย</li>
+      <li>ศาลที่มีเขตอำนาจได้แก่ ศาลแพ่งกรุงเทพใต้ หรือศาลที่มีเขตอำนาจตามกฎหมาย</li>
+      <li>เราปฏิบัติตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล (PDPA) พ.ศ. 2562</li>
+      <li>เราปฏิบัติตามพระราชบัญญัติว่าด้วยธุรกรรมทางอิเล็กทรอนิกส์ พ.ศ. 2544</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>ติดต่อเรา</h2>
+    </div>
+    <p>หากมีคำถามเกี่ยวกับข้อกำหนดการใช้บริการ หรือต้องการปรึกษาเรื่องกฎหมายที่เกี่ยวข้อง กรุณาติดต่อ:</p>
+    <div class="contact-card">
+      <p style="color:var(--text);margin-bottom:8px">⚖️ อีเมลฝ่ายกฎหมาย: <a href="mailto:legal@meowchat.store">legal@meowchat.store</a></p>
+      <p style="color:var(--gray);font-size:13px">เราจะตอบกลับภายใน 3–5 วันทำการ ข้อพิพาทส่วนใหญ่สามารถแก้ไขได้ผ่านการเจรจาโดยตรง</p>
+    </div>
+    <p style="margin-top:16px;font-size:13px">ข้อกำหนดการใช้บริการฉบับนี้มีผลบังคับใช้ตั้งแต่ 1 มกราคม 2566 และอาจมีการแก้ไขปรับปรุงโดยจะแจ้งให้ทราบล่วงหน้าอย่างน้อย 30 วัน</p>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 MeowChat by Mawsom Company · <a href="/">หน้าหลัก</a> · <a href="/privacy.html">นโยบายความเป็นส่วนตัว</a> · <a href="mailto:legal@meowchat.store">legal@meowchat.store</a></p>
+</footer>
+
+</body>
+</html>

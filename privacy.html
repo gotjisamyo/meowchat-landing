@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>นโยบายความเป็นส่วนตัว - MeowChat</title>
+<meta name="description" content="นโยบายความเป็นส่วนตัวของ MeowChat - วิธีที่เราเก็บรวบรวมและใช้ข้อมูลของคุณ">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"></noscript>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#0D0D14;--card:#16161F;--border:#2A2A3A;
+  --lav:#9B7FD4;--lavs:#B19CD9;--lavm:#1E1830;
+  --peach:#FFD180;--apricot:#FFB74D;
+  --text:#E8E0F0;--gray:#9A8EB0;
+  --r:16px;
+}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.75}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(circle at 15% 85%,rgba(155,127,212,.06) 0,transparent 50%),
+             radial-gradient(circle at 85% 15%,rgba(255,183,77,.05) 0,transparent 50%)}
+
+/* NAV */
+nav{background:rgba(13,13,20,.9);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:99;padding:14px 28px;
+  display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-icon{font-size:28px}
+.logo-name{font-size:20px;font-weight:900;color:var(--lav)}
+.logo-sub{font-size:10px;color:var(--apricot);font-weight:700;letter-spacing:.5px;display:block;line-height:1}
+.back-btn{display:inline-flex;align-items:center;gap:7px;
+  padding:9px 20px;border-radius:50px;font-weight:700;font-size:14px;
+  text-decoration:none;color:var(--lavs);border:1.5px solid var(--border);
+  background:var(--card);transition:.25s}
+.back-btn:hover{border-color:var(--lav);color:var(--lav);background:var(--lavm)}
+
+/* HERO */
+.hero{position:relative;z-index:1;text-align:center;padding:60px 28px 40px;
+  border-bottom:1px solid var(--border)}
+.chip{display:inline-block;padding:6px 18px;border-radius:50px;
+  background:var(--lavm);color:var(--lav);font-size:12px;font-weight:800;
+  letter-spacing:.4px;margin-bottom:14px;border:1px solid rgba(155,127,212,.3)}
+.hero h1{font-size:clamp(28px,4vw,46px);font-weight:900;color:var(--text);margin-bottom:10px}
+.hero h1 em{font-style:normal;
+  background:linear-gradient(135deg,var(--apricot),var(--lav));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:15px;color:var(--gray)}
+
+/* CONTENT */
+.content{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:52px 28px 80px}
+
+.section{background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);padding:32px;margin-bottom:22px;transition:.25s}
+.section:hover{border-color:rgba(155,127,212,.35)}
+
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.section-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;
+  background:linear-gradient(135deg,var(--lavm),rgba(155,127,212,.2));
+  color:var(--lav);border:1.5px solid rgba(155,127,212,.35)}
+.section h2{font-size:18px;font-weight:800;color:var(--text)}
+
+.section p{font-size:14px;color:var(--gray);margin-bottom:12px}
+.section p:last-child{margin-bottom:0}
+
+ul.data-list{list-style:none;margin:0;padding:0}
+ul.data-list li{font-size:14px;color:var(--gray);padding:9px 0;
+  border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:9px}
+ul.data-list li:last-child{border:none;padding-bottom:0}
+ul.data-list li::before{content:'🐾';font-size:12px;margin-top:2px;flex-shrink:0}
+
+.highlight-box{background:rgba(155,127,212,.07);border:1px solid rgba(155,127,212,.2);
+  border-radius:10px;padding:16px 20px;margin-top:14px}
+.highlight-box p{font-size:14px;color:var(--lavs);margin:0}
+
+.contact-card{background:linear-gradient(135deg,rgba(155,127,212,.08),rgba(255,183,77,.06));
+  border:1px solid rgba(155,127,212,.25);border-radius:12px;padding:20px;margin-top:14px}
+.contact-card a{color:var(--apricot);text-decoration:none;font-weight:700}
+.contact-card a:hover{text-decoration:underline}
+
+/* FOOTER */
+footer{position:relative;z-index:1;text-align:center;padding:32px 28px;
+  border-top:1px solid var(--border)}
+footer p{font-size:13px;color:var(--gray)}
+footer a{color:var(--lavs);text-decoration:none}
+footer a:hover{color:var(--lav)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/">
+    <span class="logo-icon">🐱</span>
+    <div>
+      <div class="logo-name">MeowChat</div>
+      <span class="logo-sub">by Mawsom</span>
+    </div>
+  </a>
+  <a class="back-btn" href="/">← กลับหน้าหลัก</a>
+</nav>
+
+<div class="hero">
+  <div class="chip">📋 เอกสารทางกฎหมาย</div>
+  <h1>นโยบายความ<em>เป็นส่วนตัว</em></h1>
+  <p class="hero-sub">วันที่มีผล: 1 มกราคม 2026 &nbsp;·&nbsp; MeowChat by Mawsom Company</p>
+</div>
+
+<div class="content">
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>ข้อมูลที่เราเก็บรวบรวม</h2>
+    </div>
+    <p>เราเก็บรวบรวมข้อมูลที่จำเป็นเพื่อให้บริการ MeowChat ได้อย่างมีประสิทธิภาพ ข้อมูลที่เก็บรวบรวมประกอบด้วย:</p>
+    <ul class="data-list">
+      <li><strong style="color:var(--text)">ข้อมูลส่วนตัว:</strong>&nbsp;ชื่อ นามสกุล และที่อยู่อีเมลที่ใช้สมัครสมาชิก</li>
+      <li><strong style="color:var(--text)">ข้อมูลธุรกิจ:</strong>&nbsp;ชื่อธุรกิจ ประเภทสินค้า/บริการ และข้อมูล LINE Official Account</li>
+      <li><strong style="color:var(--text)">ประวัติการสนทนา:</strong>&nbsp;บทสนทนาระหว่าง AI และลูกค้าผ่าน LINE OA ของคุณ</li>
+      <li><strong style="color:var(--text)">ข้อมูลการใช้งาน:</strong>&nbsp;สถิติการใช้งาน จำนวนข้อความ และข้อมูล Analytics</li>
+      <li><strong style="color:var(--text)">ข้อมูลการชำระเงิน:</strong>&nbsp;ข้อมูลที่จำเป็นสำหรับการเรียกเก็บเงินผ่านผู้ให้บริการ Payment Gateway</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>วิธีที่เราใช้ข้อมูล</h2>
+    </div>
+    <p>ข้อมูลของคุณถูกใช้เพื่อวัตถุประสงค์ดังต่อไปนี้เท่านั้น:</p>
+    <ul class="data-list">
+      <li><strong style="color:var(--text)">ให้บริการ:</strong>&nbsp;ใช้งาน AI Chatbot ตอบแชท จัดการออเดอร์ และฟีเจอร์ต่าง ๆ ของ MeowChat</li>
+      <li><strong style="color:var(--text)">ปรับปรุง AI:</strong>&nbsp;วิเคราะห์บทสนทนาเพื่อฝึก AI ให้ตอบได้แม่นยำและเป็นธรรมชาติยิ่งขึ้น</li>
+      <li><strong style="color:var(--text)">การเรียกเก็บเงิน:</strong>&nbsp;ประมวลผลการชำระเงินและออกใบเสร็จ/ใบกำกับภาษี</li>
+      <li><strong style="color:var(--text)">การสนับสนุน:</strong>&nbsp;ตอบคำถามและแก้ปัญหาทางเทคนิคให้กับผู้ใช้</li>
+      <li><strong style="color:var(--text)">การแจ้งเตือน:</strong>&nbsp;ส่งการอัปเดตสำคัญ ฟีเจอร์ใหม่ หรือประกาศเกี่ยวกับบริการ</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>การแบ่งปันข้อมูล</h2>
+    </div>
+    <p>เราให้ความสำคัญกับความเป็นส่วนตัวของคุณเป็นอย่างมาก:</p>
+    <ul class="data-list">
+      <li>เราไม่ขาย ไม่เช่า และไม่แลกเปลี่ยนข้อมูลส่วนตัวของคุณกับบุคคลภายนอกเพื่อวัตถุประสงค์เชิงพาณิชย์</li>
+      <li>แบ่งปันเฉพาะเมื่อจำเป็นกับผู้ให้บริการที่เชื่อถือได้ เช่น ผู้ให้บริการ Cloud (AWS, Google Cloud) และ Payment Gateway</li>
+      <li>อาจเปิดเผยข้อมูลตามที่กฎหมายกำหนดหรือเมื่อได้รับคำสั่งจากหน่วยงานราชการที่มีอำนาจ</li>
+      <li>บุคคลที่สามทั้งหมดที่ได้รับข้อมูลจะต้องปฏิบัติตามมาตรฐานความปลอดภัยระดับเดียวกับเรา</li>
+    </ul>
+    <div class="highlight-box">
+      <p>🔒 เราไม่เคยขายข้อมูลผู้ใช้ให้กับบุคคลที่สาม นั่นคือสัญญาของเรากับคุณ</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>ความปลอดภัยของข้อมูล</h2>
+    </div>
+    <p>เราใช้มาตรการรักษาความปลอดภัยที่เป็นมาตรฐานอุตสาหกรรม:</p>
+    <ul class="data-list">
+      <li><strong style="color:var(--text)">การเข้ารหัส:</strong>&nbsp;ข้อมูลทั้งหมดถูกเข้ารหัสด้วย AES-256 ทั้งในระหว่างส่งและจัดเก็บ</li>
+      <li><strong style="color:var(--text)">SSL/TLS:</strong>&nbsp;การสื่อสารทั้งหมดระหว่างเบราว์เซอร์และเซิร์ฟเวอร์ใช้โปรโตคอล HTTPS</li>
+      <li><strong style="color:var(--text)">PCI DSS:</strong>&nbsp;ข้อมูลบัตรเครดิตจัดการผ่านผู้ให้บริการที่ได้รับมาตรฐาน PCI DSS เท่านั้น</li>
+      <li><strong style="color:var(--text)">การเข้าถึง:</strong>&nbsp;จำกัดการเข้าถึงข้อมูลเฉพาะพนักงานที่จำเป็นต้องใช้งานจริงเท่านั้น</li>
+      <li><strong style="color:var(--text)">การตรวจสอบ:</strong>&nbsp;มีการตรวจสอบความปลอดภัยและสแกนช่องโหว่อย่างสม่ำเสมอ</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>สิทธิของผู้ใช้</h2>
+    </div>
+    <p>คุณมีสิทธิ์เต็มที่เกี่ยวกับข้อมูลส่วนตัวของคุณ ตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล (PDPA) ของไทย:</p>
+    <ul class="data-list">
+      <li><strong style="color:var(--text)">สิทธิ์รับรู้:</strong>&nbsp;ดูข้อมูลทั้งหมดที่เราเก็บรวบรวมเกี่ยวกับคุณได้ตลอดเวลา</li>
+      <li><strong style="color:var(--text)">สิทธิ์แก้ไข:</strong>&nbsp;ขอให้แก้ไขข้อมูลที่ไม่ถูกต้องหรือไม่ครบถ้วน</li>
+      <li><strong style="color:var(--text)">สิทธิ์ลบ:</strong>&nbsp;ขอลบข้อมูลส่วนตัวของคุณออกจากระบบ (อาจมีข้อจำกัดตามกฎหมาย)</li>
+      <li><strong style="color:var(--text)">สิทธิ์คัดค้าน:</strong>&nbsp;คัดค้านการประมวลผลข้อมูลในบางกรณี</li>
+      <li><strong style="color:var(--text)">สิทธิ์โอนย้าย:</strong>&nbsp;ขอรับข้อมูลของคุณในรูปแบบที่สามารถนำไปใช้งานต่อได้</li>
+    </ul>
+    <p style="margin-top:14px">ในการใช้สิทธิ์เหล่านี้ กรุณาติดต่อเราผ่านอีเมลด้านล่าง เราจะดำเนินการภายใน 30 วันทำการ</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>ติดต่อเรา</h2>
+    </div>
+    <p>หากมีคำถามเกี่ยวกับนโยบายความเป็นส่วนตัวหรือต้องการใช้สิทธิ์ของคุณ กรุณาติดต่อเราได้ที่:</p>
+    <div class="contact-card">
+      <p style="color:var(--text);margin-bottom:8px">📧 อีเมลฝ่ายความเป็นส่วนตัว: <a href="mailto:privacy@meowchat.store">privacy@meowchat.store</a></p>
+      <p style="color:var(--gray);font-size:13px">เราจะตอบกลับภายใน 2–3 วันทำการ และดำเนินการตามคำขอของคุณภายใน 30 วัน</p>
+    </div>
+    <p style="margin-top:16px;font-size:13px">นโยบายนี้อาจมีการเปลี่ยนแปลงเป็นครั้งคราว หากมีการเปลี่ยนแปลงที่สำคัญ เราจะแจ้งให้ทราบล่วงหน้าผ่านอีเมลหรือหน้าเว็บไซต์</p>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 MeowChat by Mawsom Company · <a href="/">หน้าหลัก</a> · <a href="/terms.html">ข้อกำหนดการใช้บริการ</a> · <a href="mailto:privacy@meowchat.store">privacy@meowchat.store</a></p>
+</footer>
+
+</body>
+</html>

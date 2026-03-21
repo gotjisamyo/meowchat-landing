@@ -137,22 +137,23 @@ export const subscriptionPlans = [
   {
     id: 'pro',
     name: 'Pro',
-    price: 299,
+    price: 590,
     period: 'เดือน',
     description: 'สำหรับธุรกิจที่กำลังเติบโต',
     features: [
       'AI Chatbot 5 ตัว',
-      '10,000 API Calls/เดือน',
+      '10,000 ข้อความ/เดือน',
+      'LINE OA Integration',
       'Advanced Analytics',
-      'LINE Integration',
       'Custom Branding',
       'Priority Support',
       '5 Team Members',
       'Webhook Integration',
     ],
     notIncluded: [
-      'Unlimited API Calls',
+      'Unlimited ข้อความ',
       'Dedicated Support',
+      'Human Handoff',
     ],
     cta: 'อัพเกรดเป็น Pro',
     popular: true,
@@ -161,7 +162,7 @@ export const subscriptionPlans = [
   {
     id: 'enterprise',
     name: 'Enterprise',
-    price: 999,
+    price: 1990,
     period: 'เดือน',
     description: 'สำหรับองค์กรขนาดใหญ่',
     features: [
@@ -314,11 +315,11 @@ export const userSubscription = {
   status: 'active',
   startDate: '2025-06-15',
   nextBillingDate: '2026-04-15',
-  amount: 299,
+  amount: 590,
   paymentMethod: 'Credit Card',
   lastPayment: {
     date: '2026-03-15',
-    amount: 299,
+    amount: 590,
     status: 'completed',
   },
   usage: {
@@ -330,11 +331,11 @@ export const userSubscription = {
     teamLimit: 5,
   },
   paymentHistory: [
-    { id: 1, date: '2026-03-15', amount: 299, status: 'completed', method: 'Credit Card' },
-    { id: 2, date: '2026-02-15', amount: 299, status: 'completed', method: 'Credit Card' },
-    { id: 3, date: '2026-01-15', amount: 299, status: 'completed', method: 'Credit Card' },
-    { id: 4, date: '2025-12-15', amount: 299, status: 'completed', method: 'Credit Card' },
-    { id: 5, date: '2025-11-15', amount: 299, status: 'completed', method: 'Credit Card' },
+    { id: 1, date: '2026-03-15', amount: 590, status: 'completed', method: 'Credit Card' },
+    { id: 2, date: '2026-02-15', amount: 590, status: 'completed', method: 'Credit Card' },
+    { id: 3, date: '2026-01-15', amount: 590, status: 'completed', method: 'Credit Card' },
+    { id: 4, date: '2025-12-15', amount: 590, status: 'completed', method: 'Credit Card' },
+    { id: 5, date: '2025-11-15', amount: 590, status: 'completed', method: 'Credit Card' },
   ],
 };
 

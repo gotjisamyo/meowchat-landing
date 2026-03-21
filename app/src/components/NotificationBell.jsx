@@ -50,9 +50,9 @@ export default function NotificationBell() {
             <h3 className="font-semibold text-white text-sm">การแจ้งเตือน</h3>
             <span className="text-xs text-zinc-500">ทั้งหมดอ่านแล้ว</span>
           </div>
-          <div className="divide-y divide-white/[0.04]">
+          <div className="divide-y divide-white/[0.04] bg-[#1A1A24]">
             {notifications.map(n => (
-              <div key={n.id} className="p-4 hover:bg-white/[0.03] cursor-pointer">
+              <div key={n.id} className="p-4 hover:bg-white/[0.05] cursor-pointer bg-[#1A1A24]">
                 <div className="flex items-start gap-3">
                   <span className="text-lg">{n.icon}</span>
                   <div className="flex-1 min-w-0">

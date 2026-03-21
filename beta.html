@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Beta Tester — MeowChat | เป็น 100 คนแรก ทดลองใช้ฟรี 3 เดือน</title>
+<meta name="description" content="สมัครเป็น Beta Tester ของ MeowChat ใช้ฟรี 3 เดือน พร้อม setup ฟรี และ feedback ของคุณจะกำหนด feature ถัดไป">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="MeowChat Beta — ใช้ฟรี 3 เดือน">
+<meta property="og:description" content="สมัครเป็น 100 คนแรกที่ทดลองใช้ MeowChat AI Chatbot สำหรับธุรกิจไทย">
+<meta property="og:url" content="https://meowchat.store/beta">
+<meta property="og:image" content="https://meowchat.store/assets/og-image.png">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-icon.png">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"></noscript>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#FFFDF5;--lav:#8E6FBB;--lavs:#B19CD9;--lavm:#EDE8F8;
+  --peach:#FFD180;--apricot:#FFB74D;
+  --dark:#5D4E6D;--gray:#7A6B8A;
+  --r:24px;
+  --sh:0 8px 28px rgba(142,111,187,.13);
+  --sh2:0 18px 45px rgba(255,183,77,.22)
+}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--dark);overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(circle at 15% 85%,rgba(177,156,217,.07) 0,transparent 50%),
+             radial-gradient(circle at 85% 15%,rgba(255,209,128,.07) 0,transparent 50%)}
+
+/* NAV */
+nav{background:rgba(255,253,245,.94);backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(177,156,217,.18);
+  position:sticky;top:0;z-index:99;box-shadow:0 2px 16px rgba(142,111,187,.09)}
+.nav-inner{max-width:1140px;margin:0 auto;padding:13px 28px;
+  display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-icon{font-size:34px;animation:bob 2.4s ease-in-out infinite;display:block}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-6px) rotate(4deg)}}
+.logo-name{font-size:22px;font-weight:900;color:var(--lav);line-height:1.1}
+.logo-sub{font-size:10px;color:var(--apricot);font-weight:700;letter-spacing:.5px}
+.nav-links{display:flex;gap:6px}
+.nav-links a{color:var(--gray);text-decoration:none;font-weight:700;font-size:14px;
+  padding:8px 16px;border-radius:50px;transition:.25s}
+.nav-links a:hover,.nav-links a.active{color:var(--lav);background:var(--lavm)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  padding:11px 26px;border-radius:50px;font-weight:800;font-size:14px;
+  text-decoration:none;border:none;cursor:pointer;transition:.3s}
+.btn-p{background:linear-gradient(135deg,#FFD180,#FFB74D);color:#fff;
+  box-shadow:0 4px 18px rgba(255,183,77,.4)}
+.btn-p:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 8px 26px rgba(255,183,77,.5)}
+.btn-o{background:#fff;border:2px solid var(--lavs);color:var(--lav)}
+.btn-o:hover{background:var(--lavm);transform:translateY(-2px)}
+
+/* HAMBURGER */
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;z-index:1001}
+.hamburger span{display:block;width:24px;height:2px;background:var(--lav);margin:6px 0;border-radius:2px;transition:.3s}
+@media(max-width:768px){.hamburger{display:block}.nav-links,.nav-inner .btn-p{display:none}}
+
+/* HERO SECTION */
+.beta-hero{position:relative;z-index:1;padding:60px 28px 48px;text-align:center;
+  background:radial-gradient(ellipse at 50% 20%,rgba(177,156,217,.15),transparent 55%),
+             radial-gradient(ellipse at 50% 80%,rgba(255,209,128,.12),transparent 55%),
+             var(--bg)}
+.paw{position:absolute;font-size:22px;opacity:.08;animation:pf 7s ease-in-out infinite;user-select:none;pointer-events:none}
+.paw:nth-child(1){left:3%;top:12%}.paw:nth-child(2){left:9%;top:70%;animation-delay:2s}
+.paw:nth-child(3){right:4%;top:18%;animation-delay:4s}.paw:nth-child(4){right:11%;top:72%;animation-delay:1.5s}
+@keyframes pf{0%,100%{transform:translateY(0)rotate(-12deg)}50%{transform:translateY(-18px)rotate(14deg)}}
+.beta-hero-inner{max-width:640px;margin:0 auto;position:relative;z-index:1}
+
+/* PROGRESS BADGE */
+.progress-wrap{margin-bottom:28px}
+.progress-badge{display:inline-flex;align-items:center;gap:10px;
+  padding:10px 24px;border-radius:50px;
+  background:linear-gradient(135deg,var(--lavm),#fff);
+  border:2px solid var(--lavs);color:var(--lav);font-weight:800;font-size:14px;
+  box-shadow:var(--sh);animation:fd .5s ease both}
+@keyframes fd{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:none}}
+.progress-bar-outer{width:260px;height:10px;background:#E8E0F5;border-radius:10px;margin:10px auto 0;overflow:hidden}
+.progress-bar-inner{height:100%;border-radius:10px;
+  background:linear-gradient(90deg,var(--lav),var(--apricot));
+  transition:width 1.2s cubic-bezier(.22,.8,.44,1)}
+.progress-count{font-size:12px;color:var(--gray);font-weight:700;margin-top:6px}
+.count-num{color:var(--lav);font-weight:900;font-size:16px}
+
+/* HEADLINE */
+.beta-hero h1{font-size:clamp(26px,4vw,46px);font-weight:900;line-height:1.2;
+  color:var(--dark);margin-bottom:16px;animation:fu .7s .1s ease both}
+@keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.beta-hero h1 em{font-style:normal;
+  background:linear-gradient(135deg,var(--apricot),var(--lav));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.beta-sub{font-size:16px;color:var(--gray);line-height:1.75;margin-bottom:32px;
+  animation:fu .7s .2s ease both}
+
+/* BENEFITS */
+.benefits-strip{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;
+  margin-bottom:44px;animation:fu .7s .3s ease both}
+.benefit-item{display:flex;align-items:center;gap:8px;
+  background:#fff;padding:12px 20px;border-radius:18px;
+  box-shadow:var(--sh);border:2px solid var(--lavm);font-size:13px;font-weight:700;color:var(--dark)}
+.benefit-item .b-ico{font-size:20px}
+
+/* FORM SECTION */
+.form-section{position:relative;z-index:1;padding:0 28px 80px}
+.form-card{max-width:600px;margin:0 auto;background:#fff;border-radius:28px;
+  box-shadow:0 12px 48px rgba(142,111,187,.15);border:2px solid var(--lavm);padding:40px 36px}
+@media(max-width:540px){.form-card{padding:28px 20px;border-radius:20px}}
+.form-card h2{font-size:22px;font-weight:900;color:var(--dark);margin-bottom:6px}
+.form-card .form-sub{font-size:13px;color:var(--gray);margin-bottom:28px}
+
+.field{margin-bottom:20px}
+.field label{display:block;font-size:13px;font-weight:800;color:var(--dark);margin-bottom:7px}
+.field label .req{color:var(--apricot)}
+.field input,.field select,.field textarea{
+  width:100%;padding:12px 16px;border:2px solid #EDE8F8;border-radius:14px;
+  font-family:'Nunito',sans-serif;font-size:14px;color:var(--dark);background:#FAFAF8;
+  transition:.25s;outline:none}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:var(--lavs);background:#fff;box-shadow:0 0 0 3px rgba(177,156,217,.15)}
+.field textarea{resize:vertical;min-height:90px;line-height:1.6}
+
+/* CHECKBOXES */
+.cb-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:400px){.cb-grid{grid-template-columns:1fr}}
+.cb-item{display:flex;align-items:center;gap:9px;
+  padding:10px 14px;border:2px solid #EDE8F8;border-radius:12px;
+  cursor:pointer;transition:.2s;font-size:13px;font-weight:700;color:var(--gray);
+  user-select:none}
+.cb-item:hover{border-color:var(--lavs);color:var(--lav);background:var(--lavm)}
+.cb-item input[type="checkbox"]{width:16px;height:16px;accent-color:var(--lav);cursor:pointer;flex-shrink:0}
+.cb-item.checked{border-color:var(--lav);background:var(--lavm);color:var(--lav)}
+
+/* SUBMIT */
+.btn-submit{width:100%;padding:16px;border-radius:50px;font-size:16px;font-weight:900;
+  background:linear-gradient(135deg,#FFD180,#FFB74D);color:#fff;
+  box-shadow:0 6px 24px rgba(255,183,77,.45);border:none;cursor:pointer;
+  transition:.3s;margin-top:8px}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(255,183,77,.55)}
+.btn-submit:active{transform:translateY(0)}
+.btn-submit:disabled{opacity:.7;cursor:not-allowed;transform:none}
+
+/* SUCCESS STATE */
+.success-box{display:none;text-align:center;padding:32px 16px}
+.success-box .s-emoji{font-size:56px;margin-bottom:16px;display:block;
+  animation:pop .4s cubic-bezier(.18,.89,.32,1.28) both}
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+.success-box h3{font-size:22px;font-weight:900;color:var(--lav);margin-bottom:10px}
+.success-box p{font-size:15px;color:var(--gray);line-height:1.7}
+
+/* FOOTER */
+footer{background:#FFF5EB;color:var(--dark);padding:40px 28px;text-align:center;z-index:1;position:relative}
+.ft-copy{font-size:12px;opacity:.6;color:var(--gray)}
+.ft-copy strong{color:var(--lav)}
+.ft-back{display:inline-flex;align-items:center;gap:6px;color:var(--lav);
+  text-decoration:none;font-weight:700;font-size:13px;margin-bottom:16px;
+  padding:8px 18px;border-radius:50px;border:2px solid var(--lavs);transition:.25s}
+.ft-back:hover{background:var(--lavm)}
+
+@keyframes countUp{from{transform:scale(1.4);color:var(--apricot)}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+<div class="nav-inner">
+  <a class="logo" href="/">
+    <span class="logo-icon">🐱</span>
+    <div><div class="logo-name">MeowChat</div><div class="logo-sub">by Mawsom</div></div>
+  </a>
+  <div class="nav-links">
+    <a href="/#features">Features</a>
+    <a href="/#pricing">ราคา</a>
+    <a href="/beta" class="active">Beta</a>
+    <a href="/#contact">ติดต่อ</a>
+  </div>
+  <a href="/beta" class="btn btn-p">สมัคร Beta 🐾</a>
+  <button class="hamburger" aria-label="เปิดเมนู" type="button"><span></span><span></span><span></span></button>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="beta-hero">
+  <span class="paw">🐾</span><span class="paw">🐾</span>
+  <span class="paw">🐾</span><span class="paw">🐾</span>
+  <div class="beta-hero-inner">
+
+    <!-- PROGRESS BADGE -->
+    <div class="progress-wrap">
+      <div class="progress-badge">🔥 รับสมัคร Beta Tester</div>
+      <div class="progress-bar-outer">
+        <div class="progress-bar-inner" id="progressBar" style="width:0%"></div>
+      </div>
+      <div class="progress-count">ลงทะเบียนแล้ว <span class="count-num" id="countNum">0</span>/100 คน</div>
+    </div>
+
+    <h1>เป็น <em>100 คนแรก</em><br>ทดลองใช้ฟรี 3 เดือน</h1>
+    <p class="beta-sub">MeowChat AI Chatbot สำหรับธุรกิจไทย — ตอบแชทอัตโนมัติ ปิดการขาย จัดการออเดอร์<br>คุณช่วยเราทดสอบ เราดูแลคุณฟรีตลอด 3 เดือน</p>
+
+    <!-- BENEFITS -->
+    <div class="benefits-strip">
+      <div class="benefit-item"><span class="b-ico">🎁</span> ใช้ฟรี 3 เดือน (มูลค่า 8,970 บาท)</div>
+      <div class="benefit-item"><span class="b-ico">⚙️</span> ช่วย setup ฟรี</div>
+      <div class="benefit-item"><span class="b-ico">💡</span> Feedback ของคุณกำหนด feature ถัดไป</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section">
+  <div class="form-card">
+    <h2>📋 กรอกข้อมูลเพื่อสมัคร</h2>
+    <p class="form-sub">ใช้เวลาไม่ถึง 2 นาที — ทีมงานจะติดต่อกลับทาง LINE ภายใน 24 ชม.</p>
+
+    <!-- SUCCESS STATE -->
+    <div class="success-box" id="successBox">
+      <span class="s-emoji">🎉</span>
+      <h3>ลงทะเบียนสำเร็จ!</h3>
+      <p>ขอบคุณมากครับ 🙏<br>ทีมงานจะติดต่อกลับทาง LINE ภายใน 24 ชม.<br>เพื่อเริ่ม setup MeowChat ให้ร้านคุณ</p>
+    </div>
+
+    <!-- FORM -->
+    <form id="betaForm" novalidate>
+
+      <div class="field">
+        <label for="name">ชื่อ-นามสกุล (หรือชื่อร้าน) <span class="req">*</span></label>
+        <input type="text" id="name" name="name" placeholder="เช่น คุณสมหญิง / ร้านขนมสมใจ" required autocomplete="name">
+      </div>
+
+      <div class="field">
+        <label for="contact">เบอร์โทร / LINE ID <span class="req">*</span></label>
+        <input type="text" id="contact" name="contact" placeholder="เช่น 0812345678 หรือ @myshop" required autocomplete="tel">
+      </div>
+
+      <div class="field">
+        <label for="bizType">ประเภทธุรกิจ <span class="req">*</span></label>
+        <select id="bizType" name="bizType" required>
+          <option value="" disabled selected>-- เลือกประเภทธุรกิจ --</option>
+          <option value="food">ร้านอาหาร</option>
+          <option value="fashion">แฟชั่น/เสื้อผ้า</option>
+          <option value="beauty">ความงาม/สปา</option>
+          <option value="baby">สินค้าแม่และเด็ก</option>
+          <option value="electronics">อุปกรณ์อิเล็กทรอนิกส์</option>
+          <option value="other">อื่นๆ</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>แพลตฟอร์มที่ขาย (เลือกได้หลายอย่าง) <span class="req">*</span></label>
+        <div class="cb-grid" id="platformGrid">
+          <label class="cb-item" id="cb-facebook">
+            <input type="checkbox" name="platform" value="facebook"> Facebook
+          </label>
+          <label class="cb-item" id="cb-line">
+            <input type="checkbox" name="platform" value="line"> LINE
+          </label>
+          <label class="cb-item" id="cb-instagram">
+            <input type="checkbox" name="platform" value="instagram"> Instagram
+          </label>
+          <label class="cb-item" id="cb-shopee">
+            <input type="checkbox" name="platform" value="shopee"> Shopee
+          </label>
+          <label class="cb-item" id="cb-lazada">
+            <input type="checkbox" name="platform" value="lazada"> Lazada
+          </label>
+          <label class="cb-item" id="cb-tiktok">
+            <input type="checkbox" name="platform" value="tiktok"> TikTok Shop
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="orderVolume">จำนวนออเดอร์/วัน <span class="req">*</span></label>
+        <select id="orderVolume" name="orderVolume" required>
+          <option value="" disabled selected>-- เลือกจำนวนออเดอร์ --</option>
+          <option value="lt10">น้อยกว่า 10 ออเดอร์</option>
+          <option value="10-50">10 – 50 ออเดอร์</option>
+          <option value="50-100">50 – 100 ออเดอร์</option>
+          <option value="100+">มากกว่า 100 ออเดอร์</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="problem">ปัญหาหลักที่เจอตอนนี้ <span class="req">*</span></label>
+        <textarea id="problem" name="problem" rows="4"
+          placeholder="เช่น ตอบแชทไม่ทัน พลาดออเดอร์กลางคืน ต้องการรายงานยอดขาย ฯลฯ"
+          required></textarea>
+      </div>
+
+      <button type="submit" class="btn-submit" id="submitBtn">
+        สมัครเป็น Beta Tester 🐾
+      </button>
+
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="/" class="ft-back">← กลับหน้าหลัก</a>
+  <div class="ft-copy">© 2024 <strong>MeowChat</strong> by Mawsom Company · AI Chatbot สำหรับธุรกิจไทย</div>
+</footer>
+
+<script>
+// Animate count from 0 to 23
+(function() {
+  const MOCK_COUNT = 23;
+  const MAX = 100;
+  const numEl = document.getElementById('countNum');
+  const barEl = document.getElementById('progressBar');
+
+  // Short delay so animation is visible
+  let current = 0;
+  const step = () => {
+    current++;
+    numEl.textContent = current;
+    if (current < MOCK_COUNT) requestAnimationFrame(step);
+  };
+  setTimeout(() => {
+    requestAnimationFrame(step);
+    // Animate bar
+    barEl.style.width = (MOCK_COUNT / MAX * 100) + '%';
+  }, 400);
+})();
+
+// Checkbox visual state
+document.querySelectorAll('.cb-item input[type="checkbox"]').forEach(cb => {
+  cb.addEventListener('change', () => {
+    cb.closest('.cb-item').classList.toggle('checked', cb.checked);
+  });
+});
+
+// Form submit
+document.getElementById('betaForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById('name').value.trim();
+  const contact = document.getElementById('contact').value.trim();
+  const bizType = document.getElementById('bizType').value;
+  const orderVolume = document.getElementById('orderVolume').value;
+  const problem = document.getElementById('problem').value.trim();
+  const platforms = Array.from(document.querySelectorAll('input[name="platform"]:checked')).map(c => c.value);
+
+  // Basic validation
+  if (!name || !contact || !bizType || !orderVolume || !problem) {
+    alert('กรุณากรอกข้อมูลที่มีเครื่องหมาย * ให้ครบ');
+    return;
+  }
+  if (platforms.length === 0) {
+    alert('กรุณาเลือกแพลตฟอร์มที่ขายอย่างน้อย 1 อย่าง');
+    return;
+  }
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'กำลังบันทึก...';
+
+  // Save to localStorage
+  const entry = { name, contact, bizType, platforms, orderVolume, problem, createdAt: new Date().toISOString() };
+  const existing = JSON.parse(localStorage.getItem('meowchat_beta_signups') || '[]');
+  existing.push(entry);
+  localStorage.setItem('meowchat_beta_signups', JSON.stringify(existing));
+
+  // Show success
+  setTimeout(() => {
+    document.getElementById('betaForm').style.display = 'none';
+    const successBox = document.getElementById('successBox');
+    successBox.style.display = 'block';
+
+    // Bump counter
+    const numEl = document.getElementById('countNum');
+    const newCount = parseInt(numEl.textContent, 10) + 1;
+    numEl.textContent = newCount;
+    document.getElementById('progressBar').style.width = (newCount / 100 * 100) + '%';
+  }, 600);
+});
+</script>
+</body>
+</html>

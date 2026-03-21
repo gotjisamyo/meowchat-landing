@@ -17,6 +17,7 @@ import Customers from './pages/Customers';
 import Profile from './pages/Profile';
 
 import Sidebar from './components/Sidebar';
+import FeedbackWidget from './components/FeedbackWidget';
 import { useState, useEffect } from 'react';
 
 function AdminLayout({ children }) {
@@ -78,6 +79,8 @@ function App() {
                 <AdminLayout>
                   {renderPage}
                 </AdminLayout>
+                {/* FeedbackWidget is always visible when the user is logged in */}
+                <FeedbackWidget />
               </ProtectedRoute>
             }
           />

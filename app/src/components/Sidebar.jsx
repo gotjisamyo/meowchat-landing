@@ -1,13 +1,14 @@
 import {
   LayoutDashboard, BarChart3, Wallet, Building2, Code2, Settings,
   ChevronLeft, ChevronRight, Cat, Zap, Menu, Users, CreditCard, User, BadgeDollarSign, Sparkles,
-  PieChart, BookOpen
+  PieChart, BookOpen, MessageSquare
 } from 'lucide-react';
 import UserMenu from './auth/UserMenu';
 import { useAuth } from '../context/AuthContext';
 
 const menuItems = [
   { id: 'dashboard',  label: 'Dashboard',  icon: LayoutDashboard },
+  { id: 'inbox',      label: 'กล่องข้อความ', icon: MessageSquare },
   { id: 'analytics',  label: 'Analytics',  icon: PieChart },
   { id: 'customers',  label: 'ลูกค้า CRM', icon: Users, adminOnly: true },
   { id: 'marketing',  label: 'Marketing',  icon: BarChart3 },
@@ -135,6 +136,11 @@ function SidebarContent({ activePage, setActivePage, menuItems, isCollapsed, tog
               {!isCollapsed && (
                 <>
                   <span className="font-semibold text-sm">{item.label}</span>
+                  {item.id === 'inbox' && (
+                    <span className="ml-auto mr-6 bg-red-500 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center flex-shrink-0">
+                      2
+                    </span>
+                  )}
                   <div className="absolute right-3 top-1/2 -translate-y-1/2 w-1.5 h-6 bg-orange-500 rounded-r-full" />
                 </>
               )}

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Menu, Bell, Search, Cat } from 'lucide-react';
+import NotificationBell from './NotificationBell';
 
 export default function PageLayout({ title, subtitle, setSidebarOpen, children, actions }) {
   return (
@@ -23,10 +24,7 @@ export default function PageLayout({ title, subtitle, setSidebarOpen, children, 
           </div>
           <span className="font-bold text-white text-sm">MeowChat</span>
         </div>
-        <button className="relative p-2 hover:bg-white/[0.06] rounded-xl text-zinc-400 transition-colors">
-          <Bell className="w-5 h-5" />
-          <span className="absolute top-2 right-2 w-2 h-2 bg-orange-500 rounded-full" />
-        </button>
+        <NotificationBell />
       </header>
 
       {/* Desktop Header */}
@@ -48,10 +46,7 @@ export default function PageLayout({ title, subtitle, setSidebarOpen, children, 
           </div>
 
           {/* Notifications */}
-          <button className="relative p-2.5 bg-white/[0.03] border border-white/[0.06] rounded-xl text-zinc-400 hover:text-white hover:bg-white/[0.06] transition-all">
-            <Bell className="w-5 h-5" />
-            <span className="absolute top-2 right-2 w-2 h-2 bg-orange-500 rounded-full" />
-          </button>
+          <NotificationBell />
 
           {actions && <div className="flex items-center gap-3">{actions}</div>}
         </div>

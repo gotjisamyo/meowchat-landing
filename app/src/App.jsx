@@ -4,6 +4,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
+import Onboarding from './pages/Onboarding';
 import Marketing from './pages/Marketing';
 import Sales from './pages/Sales';
 import Finance from './pages/Finance';
@@ -78,7 +79,17 @@ function App() {
           {/* Public Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          
+
+          {/* Onboarding — requires auth, shown before the main app for new users */}
+          <Route
+            path="/onboarding"
+            element={
+              <ProtectedRoute>
+                <Onboarding />
+              </ProtectedRoute>
+            }
+          />
+
           {/* Protected Routes */}
           <Route
             path="/*"
@@ -92,9 +103,16 @@ function App() {
               </ProtectedRoute>
             }
           />
-          
-          {/* Redirect root to dashboard */}
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+
+          {/* Redirect root: new users go to onboarding; returning users go to dashboard */}
+          <Route
+            path="/"
+            element={
+              localStorage.getItem('onboardingComplete')
+                ? <Navigate to="/dashboard" replace />
+                : <Navigate to="/onboarding" replace />
+            }
+          />
         </Routes>
       </Router>
     </AuthProvider>

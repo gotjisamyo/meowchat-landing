@@ -560,6 +560,48 @@ export const crmTagColors = {
 
 // ============== Automation & Flow Data ==============
 
+// ============== Chat Inbox Data ==============
+
+export const chatInboxData = [
+  {
+    id: 1, status: 'bot', unread: 0,
+    customer: { name: 'คุณแนน', avatar: 'น', color: '#FF6B35', lineId: '@nan_shop' },
+    lastMessage: 'ขอบคุณนะคะ ได้รับแล้ว', lastTime: '08:45',
+    tags: ['VIP'],
+    messages: [
+      { id:1, from:'customer', text:'สวัสดีค่ะ', time:'08:30' },
+      { id:2, from:'bot', text:'สวัสดีครับ! 🐱 วันนี้ช่วยอะไรได้บ้างครับ?', time:'08:30' },
+      { id:3, from:'customer', text:'มีเสื้อ oversize สีดำไหมคะ', time:'08:32' },
+      { id:4, from:'bot', text:'มีครับ! ราคา ฿299 ทุกไซส์ S-XL ครับ 😊', time:'08:32' },
+      { id:5, from:'customer', text:'ขอบคุณนะคะ ได้รับแล้ว', time:'08:45' },
+    ],
+  },
+  {
+    id: 2, status: 'waiting', unread: 2,
+    customer: { name: 'พี่โอ้', avatar: 'โ', color: '#8B5CF6', lineId: '@oh_bkk' },
+    lastMessage: 'อยากคุยกับคนได้ไหมครับ?', lastTime: '09:10',
+    tags: [],
+    messages: [
+      { id:1, from:'customer', text:'อยากสั่งของจำนวนมาก ราคาขายส่งยังไง', time:'09:05' },
+      { id:2, from:'bot', text:'ขออภัยครับ ขอส่งต่อให้เจ้าของร้านนะครับ ⚡', time:'09:05' },
+      { id:3, from:'system', text:'น้องมีม ส่งต่อให้เจ้าของร้าน', time:'09:05' },
+      { id:4, from:'customer', text:'อยากคุยกับคนได้ไหมครับ?', time:'09:10' },
+    ],
+  },
+  {
+    id: 3, status: 'human', unread: 0,
+    customer: { name: 'น้องฝ้าย', avatar: 'ฝ', color: '#10B981', lineId: '@fai2546' },
+    lastMessage: 'ได้เลยครับ รอสักครู่', lastTime: '09:20',
+    tags: ['ขาประจำ'],
+    messages: [
+      { id:1, from:'customer', text:'มีโปรโมชั่นอะไรบ้างคะ', time:'09:15' },
+      { id:2, from:'bot', text:'ซื้อ 2 ชิ้น ลด 15% ครับ 🎉', time:'09:15' },
+      { id:3, from:'customer', text:'ซื้อ 5 ชิ้น ได้ส่วนลดพิเศษไหม', time:'09:17' },
+      { id:4, from:'owner', text:'ได้เลยครับ รอสักครู่', time:'09:20' },
+    ],
+  },
+];
+
 export const automationTemplates = [
   { id: 1, icon: '🌅', name: 'ส่งข้อความต้อนรับ', description: 'ทักทายลูกค้าใหม่อัตโนมัติ', active: true },
   { id: 2, icon: '🛒', name: 'แจ้งยืนยันออเดอร์', description: 'ส่งสรุปออเดอร์ทันที', active: false },

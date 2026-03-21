@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { 
-  User, Bell, Shield, Palette, Key, 
-  ChevronRight, Save, Upload, Eye, EyeOff, Trash2, RotateCcw, X
+import {
+  User, Bell, Shield, Palette, Key, Link2,
+  ChevronRight, Save, Upload, Eye, EyeOff, Trash2, RotateCcw, X,
+  Copy, ChevronDown, ChevronUp, Check, Loader2
 } from 'lucide-react';
 import PageLayout from '../components/PageLayout';
 
@@ -14,6 +15,7 @@ export default function Settings({ setSidebarOpen }) {
     { id: 'security', label: 'Security', icon: Shield },
     { id: 'appearance', label: 'Appearance', icon: Palette },
     { id: 'api-keys', label: 'API Keys', icon: Key },
+    { id: 'integrations', label: 'การเชื่อมต่อ', icon: Link2 },
   ];
 
   return (
@@ -78,6 +80,7 @@ export default function Settings({ setSidebarOpen }) {
           {activeTab === 'security' && <SecurityTab />}
           {activeTab === 'appearance' && <AppearanceTab />}
           {activeTab === 'api-keys' && <ApiKeysTab />}
+          {activeTab === 'integrations' && <IntegrationsTab />}
         </div>
       </div>
     </PageLayout>
@@ -285,7 +288,7 @@ function ApiKeysTab() {
           Create New Key
         </button>
       </div>
-      
+
       {/* API Keys List */}
       <div className="space-y-3">
         {[
@@ -308,6 +311,217 @@ function ApiKeysTab() {
             <p className="text-xs text-zinc-500">Last used: {apiKey.lastUsed}</p>
           </div>
         ))}
+      </div>
+    </div>
+  );
+}
+
+// Reusable masked input with eye + copy buttons
+function SecretField({ label, value }) {
+  const [visible, setVisible] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(value).catch(() => {});
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
+
+  return (
+    <div className="space-y-2">
+      <label className="text-xs font-bold text-zinc-500 uppercase tracking-wider block pl-1">{label}</label>
+      <div className="flex items-center gap-2">
+        <div className="flex-1 flex items-center bg-white/[0.03] border border-white/[0.06] rounded-xl px-3 py-2.5 gap-2">
+          <input
+            type={visible ? 'text' : 'password'}
+            defaultValue={value}
+            className="flex-1 bg-transparent text-sm text-zinc-300 outline-none font-mono"
+          />
+        </div>
+        <button
+          onClick={() => setVisible(v => !v)}
+          className="p-2.5 bg-white/[0.03] border border-white/[0.06] rounded-xl text-zinc-400 hover:text-white transition-colors"
+          title={visible ? 'ซ่อน' : 'แสดง'}
+        >
+          {visible ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+        </button>
+        <button
+          onClick={handleCopy}
+          className="p-2.5 bg-white/[0.03] border border-white/[0.06] rounded-xl text-zinc-400 hover:text-white transition-colors"
+          title="คัดลอก"
+        >
+          {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// Reusable read-only URL field with copy button
+function WebhookField({ label, url }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(url).catch(() => {});
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
+
+  return (
+    <div className="space-y-2">
+      <label className="text-xs font-bold text-zinc-500 uppercase tracking-wider block pl-1">{label}</label>
+      <div className="flex items-center gap-2">
+        <div className="flex-1 flex items-center bg-white/[0.02] border border-white/[0.06] rounded-xl px-3 py-2.5">
+          <span className="text-sm text-zinc-400 font-mono truncate">{url}</span>
+        </div>
+        <button
+          onClick={handleCopy}
+          className="p-2.5 bg-white/[0.03] border border-white/[0.06] rounded-xl text-zinc-400 hover:text-white transition-colors"
+          title="คัดลอก"
+        >
+          {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function IntegrationsTab() {
+  const [testStatus, setTestStatus] = useState('idle'); // 'idle' | 'loading' | 'success'
+  const [guideOpen, setGuideOpen] = useState(false);
+  const [toast, setToast] = useState('');
+
+  const handleTest = () => {
+    setTestStatus('loading');
+    setTimeout(() => setTestStatus('success'), 1500);
+  };
+
+  const showToast = (msg) => {
+    setToast(msg);
+    setTimeout(() => setToast(''), 2500);
+  };
+
+  return (
+    <div className="space-y-6 relative">
+      <h5 className="text-xl font-bold text-white mb-6">การเชื่อมต่อ</h5>
+
+      {/* Toast */}
+      {toast && (
+        <div className="fixed bottom-6 right-6 z-50 bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-sm font-semibold px-5 py-3 rounded-2xl shadow-xl">
+          {toast}
+        </div>
+      )}
+
+      {/* Card 1 — LINE Official Account */}
+      <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06] space-y-5">
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            {/* LINE logo mark */}
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style={{ background: '#06C755' }}>
+              💬
+            </div>
+            <div>
+              <h6 className="font-bold text-white">LINE Official Account</h6>
+              <p className="text-xs text-zinc-500">เชื่อมต่อบอทกับ LINE OA ของคุณ</p>
+            </div>
+          </div>
+          <span className="flex items-center gap-1.5 text-xs font-semibold text-zinc-400 bg-white/[0.04] border border-white/[0.06] px-3 py-1.5 rounded-full">
+            <span className="w-2 h-2 rounded-full bg-zinc-500 inline-block" />
+            ยังไม่เชื่อมต่อ
+          </span>
+        </div>
+
+        {/* Fields */}
+        <SecretField label="Channel Access Token" value="ey_placeholder_access_token_xxxxxxxxxxxx" />
+        <SecretField label="Channel Secret" value="placeholder_channel_secret_xxxxxxxx" />
+        <WebhookField label="Webhook URL (วางที่ LINE Console)" url="https://api.meowchat.store/api/line/webhook" />
+
+        {/* Collapsible guide */}
+        <div className="rounded-xl border border-white/[0.06] overflow-hidden">
+          <button
+            onClick={() => setGuideOpen(o => !o)}
+            className="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold text-zinc-400 hover:text-white hover:bg-white/[0.03] transition-colors"
+          >
+            <span>วิธีตั้งค่า</span>
+            {guideOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+          </button>
+          {guideOpen && (
+            <ol className="px-4 pb-4 space-y-2 text-sm text-zinc-400">
+              <li className="flex gap-2"><span className="font-bold text-orange-400">1.</span> เข้าไปที่ LINE Developers Console และเลือก Provider ของคุณ</li>
+              <li className="flex gap-2"><span className="font-bold text-orange-400">2.</span> สร้าง Channel ประเภท Messaging API แล้วคัดลอก Channel Access Token และ Channel Secret มาวางด้านบน</li>
+              <li className="flex gap-2"><span className="font-bold text-orange-400">3.</span> ใน Channel Settings ไปที่ Messaging API → Webhook Settings แล้ววาง Webhook URL ด้านบน</li>
+              <li className="flex gap-2"><span className="font-bold text-orange-400">4.</span> เปิดใช้งาน "Use webhook" แล้วกด "Verify" เพื่อทดสอบการเชื่อมต่อ</li>
+            </ol>
+          )}
+        </div>
+
+        {/* Actions */}
+        <div className="flex items-center gap-3 pt-1">
+          <button
+            onClick={handleTest}
+            disabled={testStatus === 'loading'}
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold border border-white/[0.08] bg-white/[0.03] text-zinc-300 hover:text-white hover:bg-white/[0.06] transition-all disabled:opacity-60"
+          >
+            {testStatus === 'loading' && <Loader2 className="w-4 h-4 animate-spin" />}
+            {testStatus === 'success' && <Check className="w-4 h-4 text-emerald-400" />}
+            {testStatus === 'success' ? 'เชื่อมต่อสำเร็จ!' : 'ทดสอบการเชื่อมต่อ'}
+          </button>
+          <button className="px-5 py-2.5 rounded-xl text-sm font-semibold btn-primary text-white shadow-lg shadow-orange-500/20">
+            บันทึก
+          </button>
+        </div>
+      </div>
+
+      {/* Card 2 — Facebook Messenger */}
+      <ComingSoonCard
+        emoji="💙"
+        color="#1877F2"
+        title="Facebook Messenger"
+        desc="เชื่อมต่อบอทกับ Facebook Page ของคุณ"
+        onNotify={() => showToast('บันทึกแล้ว จะแจ้งคุณ')}
+      />
+
+      {/* Card 3 — Instagram DM */}
+      <ComingSoonCard
+        emoji="📸"
+        color="#E1306C"
+        title="Instagram DM"
+        desc="ตอบกลับ DM บน Instagram โดยอัตโนมัติ"
+        onNotify={() => showToast('บันทึกแล้ว จะแจ้งคุณ')}
+      />
+    </div>
+  );
+}
+
+function ComingSoonCard({ emoji, color, title, desc, onNotify }) {
+  return (
+    <div className="relative p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06] overflow-hidden">
+      {/* Gray overlay */}
+      <div className="absolute inset-0 bg-[#0A0A0F]/60 backdrop-blur-[1px] z-10 rounded-2xl" />
+
+      {/* Content (behind overlay) */}
+      <div className="flex items-center gap-3 mb-4">
+        <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style={{ background: color }}>
+          {emoji}
+        </div>
+        <div>
+          <h6 className="font-bold text-white">{title}</h6>
+          <p className="text-xs text-zinc-500">{desc}</p>
+        </div>
+      </div>
+
+      {/* Overlay content */}
+      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-3">
+        <span className="text-xs font-bold text-white bg-zinc-700/80 border border-white/10 px-3 py-1 rounded-full">
+          🔜 เร็วๆ นี้
+        </span>
+        <button
+          onClick={onNotify}
+          className="px-5 py-2 rounded-xl text-sm font-semibold bg-white/[0.06] border border-white/[0.10] text-zinc-300 hover:text-white hover:bg-white/[0.10] transition-all"
+        >
+          แจ้งเตือนเมื่อพร้อม
+        </button>
       </div>
     </div>
   );

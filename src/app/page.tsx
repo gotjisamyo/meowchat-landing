@@ -231,6 +231,10 @@ const FAQS = [
     a: "ราคาที่แสดงยังไม่รวม VAT 7% สำหรับผู้ประกอบการที่ต้องการใบกำกับภาษี กรุณาติดต่อทีมงานผ่าน LINE เพื่อขอใบกำกับภาษีได้ทันที",
   },
   {
+    q: "AI จะตอบข้อมูลผิดหรือสร้างข้อมูลเท็จได้ไหม? (Hallucination)",
+    a: "MeowChat ใช้ 'Grounded AI' — bot ตอบได้เฉพาะข้อมูลจาก Knowledge Base ที่คุณอัปโหลดเท่านั้น ไม่คาดเดาหรือสร้างข้อมูลขึ้นเอง ถ้าลูกค้าถามนอกขอบเขต bot จะแจ้งว่า 'ไม่มีข้อมูลในระบบ' และส่งต่อแอดมินอัตโนมัติ",
+  },
+  {
     q: "MeowChat ต่างจาก LINE OA Manager ธรรมดาอย่างไร?",
     a: "LINE OA Manager ตอบได้เฉพาะ keyword ที่ตั้งไว้ล่วงหน้า แต่ MeowChat ใช้ AI จริง ที่เข้าใจประโยคธรรมชาติ จำบริบทการสนทนา วิเคราะห์ความต้องการ และปิดการขายได้โดยอัตโนมัติ ไม่ต้องตั้งค่าทุก keyword",
   },
@@ -690,13 +694,21 @@ export default function Home() {
             </div>
             <div className="flex flex-col md:flex-row items-center justify-center gap-8">
               <div className="text-center">
-                <div className="w-48 h-48 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <div className="text-gray-400 text-sm text-center p-4">
-                    <div className="text-6xl mb-2">📱</div>
-                    QR Code<br/>LINE @960xboyt
+                <a
+                  href="https://line.me/ti/p/@960xboyt"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-48 h-48 bg-white rounded-2xl flex flex-col items-center justify-center mx-auto mb-4 hover:bg-gray-100 transition-colors cursor-pointer border-4 border-green-500 group"
+                >
+                  <div className="text-5xl mb-2">💬</div>
+                  <div className="text-gray-800 font-bold text-sm text-center leading-tight">
+                    เพิ่มเพื่อน LINE<br/>@960xboyt
                   </div>
-                </div>
-                <p className="text-gray-400 text-sm">แสกน QR ด้วยกล้อง LINE</p>
+                  <div className="mt-2 bg-green-500 group-hover:bg-green-600 text-white text-xs px-3 py-1 rounded-full font-bold transition-colors">
+                    คลิกเพื่อเพิ่มเพื่อน
+                  </div>
+                </a>
+                <p className="text-gray-400 text-sm">คลิก หรือ แสกน QR ด้วย LINE</p>
               </div>
               <div className="text-gray-500 font-bold text-xl">หรือ</div>
               <div className="text-center space-y-4">
@@ -723,9 +735,10 @@ export default function Home() {
         <section className="mb-24">
           <div className="glass rounded-3xl p-12 text-center bg-gradient-to-br from-purple-500/10 to-cyan-500/5 border-purple-500/20">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">พร้อมเปลี่ยนแชทให้เป็นเงินแล้วใช่ไหม?</h2>
-            <p className="text-gray-400 mb-8 max-w-xl mx-auto">
+            <p className="text-gray-400 max-w-xl mx-auto">
               เริ่มต้นฟรี ไม่ต้องใส่บัตรเครดิต ทีม onboarding พร้อมช่วยทุกขั้นตอน
             </p>
+            <p className="text-gray-600 text-xs mt-2 mb-8">ดำเนินการโดยบริษัทจดทะเบียนในไทย · ข้อมูลบนเซิร์ฟเวอร์ไทย · ยกเลิกได้ทุกเวลา · ไม่มีสัญญาผูกมัด</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="https://line.me/ti/p/@960xboyt"
@@ -785,6 +798,14 @@ export default function Home() {
                 <li className="text-white font-medium">🇹🇭 ภาษาไทย</li>
                 <li className="text-gray-400">🇬🇧 English (AI supported)</li>
               </ul>
+            </div>
+          </div>
+          <div className="border-t border-white/5 pt-4 mt-4 text-center text-gray-600 text-xs space-y-1">
+            <p>© 2567–2568 MeowChat · AI Chatbot สำหรับธุรกิจไทย</p>
+            <p>จดทะเบียนในประเทศไทย · ก่อตั้ง พ.ศ. 2567 · ติดต่อ: support@meowchat.store</p>
+            <div className="flex justify-center gap-4 mt-2">
+              <a href="/privacy" className="hover:text-gray-400 transition-colors">นโยบายความเป็นส่วนตัว</a>
+              <a href="/terms" className="hover:text-gray-400 transition-colors">ข้อกำหนดการใช้งาน</a>
             </div>
           </div>
           <div className="border-t border-white/5 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-600 text-xs">

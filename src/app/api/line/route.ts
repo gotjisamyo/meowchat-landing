@@ -12,12 +12,18 @@ const log = (level: 'info' | 'error' | 'warn', event: string, data?: object) => 
 };
 
 // --- Conversation state tracking ---
+// NOTE: This in-memory Map is a best-effort cache only. On Vercel serverless,
+// every cold start creates a fresh instance and the Map is lost. This means
+// messageCount and lastTopic reset on cold starts. For true persistence across
+// instances, replace this with Vercel KV (Upstash Redis) or a similar edge-
+// compatible store (e.g. `@vercel/kv`).
 interface ConversationState {
   lastTopic: string;
   messageCount: number;
   lastSeen: Date;
 }
 
+// In-memory warm-instance cache (not exported — Next.js Route files only allow HTTP method exports).
 const conversationState = new Map<string, ConversationState>();
 
 function getOrCreateState(userId: string): ConversationState {
@@ -108,10 +114,10 @@ function getKeywordResponse(userMessage: string, userId: string): [string, strin
   if (/ราคา|แพ็กเกจ|ค่าใช้จ่าย|ราคาเท่าไหร่|ต้องจ่าย/.test(msg)) {
     return [
       'แพ็กเกจของเรามี 4 ระดับครับ 💰\n\n' +
-        '🐱 Free ฿0/เดือน — 300 ข้อความ\n' +
-        '⭐ Starter ฿199/เดือน — 2,000 ข้อความ\n' +
-        '🚀 Pro ฿590/เดือน — 10,000 ข้อความ\n' +
-        '👑 Enterprise ฿1,990/เดือน — ไม่จำกัด\n\n' +
+        '🐱 Starter ฿0/เดือน — 1 LINE OA, 100 ข้อความ/เดือน\n' +
+        '⭐ Pro ฿999/เดือน — 2 LINE OA, LINE + Messenger, 3,000 ข้อความ/เดือน\n' +
+        '🚀 Business ฿2,990/เดือน — 3 LINE OA, LINE + Messenger ไม่จำกัด, SalesAgent, API integration\n' +
+        '👑 Enterprise ราคาตามขนาดธุรกิจ — ไม่จำกัดทุกอย่าง\n\n' +
         'สมัครทดลองใช้ฟรีได้เลยที่ https://app.meowchat.store/register ครับ 🎉\n' +
         'อยากทราบรายละเอียดแพ็กเกจไหนเป็นพิเศษครับ?',
       'pricing',
@@ -343,6 +349,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
         if (event.type === 'follow') {
           const followEvent = event as LineFollowEvent;
+          // Welcome message is always static — does not depend on conversation state,
+          // which may have been reset by a cold start.
           updateState(userId, 'follow');
           await replyMessage(
             followEvent.replyToken,

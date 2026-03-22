@@ -58,7 +58,7 @@ const PRICING = [
     badge: "ยอดนิยม · 8 ใน 10 เลือก",
     features: [
       "LINE 3 OA + Messenger ไม่จำกัด",
-      "ตอบแชทอัตโนมัติไม่จำกัด",
+      "ตอบแชทอัตโนมัติไม่จำกัด (ไม่มี fair-use cap)",
       "AI SalesAgent ปิดการขาย",
       "เชื่อมต่อ API / Webhook หลังบ้าน",
       "รายงาน MRR / Conversion",
@@ -66,7 +66,7 @@ const PRICING = [
     ],
     cta: "สมัครเลย",
     highlight: true,
-    subNote: "คุ้มกว่าจ้างแอดมิน 1 คน ถึง 5 เท่า",
+    subNote: "คุ้มกว่าจ้างแอดมิน 1 คน ถึง 5 เท่า · ราคานี้ครอบคลุม 3 OA ไม่คิดเพิ่ม",
   },
   {
     name: "Enterprise",
@@ -201,6 +201,10 @@ const FAQS = [
   {
     q: "เริ่มใช้งานได้เลยไหม ต้องรอทีมติดต่อกลับไหม?",
     a: "แผน Starter เริ่มได้ฟรีทันที ไม่ต้องรอ! แผน Mini และ Pro สมัครและชำระเงินออนไลน์ได้เลย เริ่มใช้งานภายใน 24 ชั่วโมง สำหรับ Business และ Enterprise ทีมงานจะติดต่อกลับภายใน 2 ชั่วโมงเพื่อ onboarding ส่วนตัว",
+  },
+  {
+    q: "ถ้าใช้ครบโควต้าแล้วจะเกิดอะไรขึ้น?",
+    a: "Bot จะยังทำงานต่อ แต่จะเปลี่ยนเป็น 'soft limit mode' — ตอบข้อความง่ายๆ ได้ต่อ แต่ปิดฟีเจอร์ advanced AI ชั่วคราว คุณจะได้รับแจ้งเตือนทาง LINE เมื่อใช้ถึง 80% เพื่อ upgrade ล่วงหน้า ไม่มีการตัดการเชื่อมต่อกะทันหัน และสามารถซื้อ top-up เพิ่มเติมได้ทุกเวลา",
   },
   {
     q: "MeowChat รองรับภาษาอังกฤษได้ไหม?",
@@ -378,6 +382,9 @@ export default function Home() {
           <p className="text-gray-400 text-lg md:text-xl max-w-2xl mb-4">
             แอดมินหมดแรงตอบแชทซ้ำๆ ทุกวัน? MeowChat จัดการให้ — ตอบคำถาม ส่งราคา ปิดออเดอร์ และจองนัดอัตโนมัติ บน LINE และ Messenger
           </p>
+          <p className="text-gray-500 text-sm mb-2">
+            รองรับ: <span className="text-white font-medium">LINE</span> · <span className="text-white font-medium">Facebook Messenger</span> · <span className="text-gray-400">WhatsApp</span> · <span className="text-gray-400">Zalo</span>
+          </p>
           <p className="text-gray-500 text-sm mb-10">
             Also available in English · ตอบได้ทั้งไทยและอังกฤษ · Bilingual AI
           </p>
@@ -487,7 +494,7 @@ export default function Home() {
             <div className="text-4xl flex-shrink-0">🙋</div>
             <div>
               <h3 className="font-bold mb-1">ไม่ถนัด tech ก็ใช้ได้</h3>
-              <p className="text-gray-400 text-sm">ไม่ต้องรู้จัก &quot;Knowledge Base&quot;, &quot;API&quot; หรือ &quot;Webhook&quot; — เพียงแค่บอกว่าธุรกิจคุณทำอะไร ทีมงานเราช่วยตั้งค่าให้ทั้งหมดฟรี (แผน Pro ขึ้นไป) พร้อม LINE support ภาษาไทยตลอดเวลา</p>
+              <p className="text-gray-400 text-sm">ไม่ต้องรู้จัก &quot;Knowledge Base&quot;, &quot;API&quot; หรือ &quot;Webhook&quot; — เพียงแค่บอกว่าธุรกิจคุณทำอะไร เราช่วยตั้งค่าให้เองทาง LINE ทุกแผน (ฟรีไม่มีค่าใช้จ่ายเพิ่ม) พร้อมวิดีโอ tutorial ภาษาไทยให้ดูแบบ step-by-step</p>
             </div>
             <a
               href="https://line.me/ti/p/@960xboyt"

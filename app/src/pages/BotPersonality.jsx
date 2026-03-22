@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PageLayout from '../components/PageLayout';
 import PersonalityEditor from '../components/PersonalityEditor';
+import { Globe } from 'lucide-react';
 
 // Preset personality templates for quick-select
 const PRESETS = [
@@ -60,6 +61,7 @@ const PRESETS = [
 export default function BotPersonality({ setSidebarOpen }) {
   const [selectedPreset, setSelectedPreset] = useState('kawaii');
   const [appliedPersonality, setAppliedPersonality] = useState(PRESETS[0].personality);
+  const [englishEnabled, setEnglishEnabled] = useState(false);
 
   const handleSelectPreset = (preset) => {
     setSelectedPreset(preset.id);
@@ -105,6 +107,49 @@ export default function BotPersonality({ setSidebarOpen }) {
       </div>
 
       <PersonalityEditor key={selectedPreset} initialPersonality={appliedPersonality} />
+
+      {/* ─── ภาษาที่รองรับ ─── */}
+      <div className="mt-8 bg-white/[0.02] border border-white/[0.06] rounded-2xl p-5 space-y-4 max-w-xl">
+        <div className="flex items-center gap-2 mb-1">
+          <Globe className="w-4 h-4 text-orange-400" />
+          <p className="text-sm font-bold text-white">ภาษาที่รองรับ</p>
+        </div>
+        <div className="flex flex-wrap gap-3">
+          {/* Thai — always on */}
+          <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl border bg-emerald-500/10 border-emerald-500/30 text-emerald-400 text-sm font-semibold">
+            <span>🇹🇭</span>
+            <span>ภาษาไทย</span>
+            <span className="text-xs bg-emerald-500/20 px-1.5 py-0.5 rounded-full">เปิดเสมอ</span>
+          </div>
+
+          {/* English — toggleable */}
+          <button
+            onClick={() => setEnglishEnabled((v) => !v)}
+            className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl border text-sm font-semibold transition-all duration-200 ${
+              englishEnabled
+                ? 'bg-orange-500/15 border-orange-500/40 text-orange-300'
+                : 'bg-white/[0.03] border-white/[0.08] text-zinc-400 hover:border-white/20 hover:text-zinc-200'
+            }`}
+          >
+            <span>🌍</span>
+            <span>English</span>
+            <span className={`text-xs px-1.5 py-0.5 rounded-full ${
+              englishEnabled ? 'bg-orange-500/20 text-orange-400' : 'bg-white/[0.06] text-zinc-500'
+            }`}>
+              {englishEnabled ? 'เปิด' : 'ปิด'}
+            </span>
+          </button>
+        </div>
+
+        {englishEnabled && (
+          <div className="flex items-start gap-2.5 bg-orange-500/5 border border-orange-500/20 rounded-xl px-4 py-3">
+            <Globe className="w-4 h-4 text-orange-400 mt-0.5 flex-shrink-0" />
+            <p className="text-xs text-orange-300 leading-relaxed">
+              บอทจะตอบเป็นภาษาอังกฤษเมื่อลูกค้าส่งข้อความภาษาอังกฤษมา — เหมาะสำหรับโรงแรม, ทัวร์, และธุรกิจท่องเที่ยว
+            </p>
+          </div>
+        )}
+      </div>
     </PageLayout>
   );
 }

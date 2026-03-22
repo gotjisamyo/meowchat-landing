@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Send, Bot, User, AlertCircle, ChevronDown, ArrowLeft } from 'lucide-react';
+import { Search, Send, Bot, User, AlertCircle, ChevronDown, ArrowLeft, Calendar } from 'lucide-react';
 import { chatInboxData } from '../data/mockData';
 
 // Stats derived from conversations
@@ -106,6 +106,10 @@ const QUICK_REPLIES = [
   'ส่งข้อมูลให้แล้วครับ ✅',
 ];
 
+const SERVICES = ['โยคะ (กลุ่ม)', 'ติวสด (1:1)', 'คลาสวาดภาพ', 'ว่ายน้ำ', 'นวดอโรมา', 'อื่นๆ'];
+
+const emptyBooking = { service: '', date: '', time: '', people: 1 };
+
 export default function ChatInbox({ setSidebarOpen }) {
   const [conversations, setConversations] = useState(chatInboxData);
   const [activeId, setActiveId] = useState(null);
@@ -114,8 +118,31 @@ export default function ChatInbox({ setSidebarOpen }) {
   const [inputText, setInputText] = useState('');
   // Mobile view state: 'list' shows conversation list, 'chat' shows chat panel
   const [mobileView, setMobileView] = useState('list');
+  // Group/class booking state
+  const [showBookingPanel, setShowBookingPanel] = useState(false);
+  const [booking, setBooking] = useState(emptyBooking);
+  const [bookingConfirmed, setBookingConfirmed] = useState(false);
   const messagesEndRef = useRef(null);
   const textareaRef = useRef(null);
+
+  function handleBookingSubmit() {
+    if (!booking.service || !booking.date || !booking.time) return;
+    const msg = `📅 จองคลาส: ${booking.service} — ${booking.date} เวลา ${booking.time} น. จำนวน ${booking.people} คน`;
+    // Add as a system note in the active conversation
+    setConversations((prev) => prev.map((c) => {
+      if (c.id !== activeId) return c;
+      return {
+        ...c,
+        messages: [...c.messages, { id: Date.now(), from: 'system', text: msg, time: now() }],
+      };
+    }));
+    setBookingConfirmed(true);
+    setTimeout(() => {
+      setBookingConfirmed(false);
+      setShowBookingPanel(false);
+      setBooking(emptyBooking);
+    }, 2000);
+  }
 
   const stats = getStats(conversations);
   const activeConv = conversations.find(c => c.id === activeId) || null;
@@ -357,6 +384,104 @@ export default function ChatInbox({ setSidebarOpen }) {
                   </button>
                 )}
               </div>
+            </div>
+
+            {/* ─── กลุ่ม/คลาส Booking Panel ─── */}
+            <div className="flex-shrink-0 border-b border-white/[0.06] bg-[#0A0A0F]/80">
+              <button
+                onClick={() => setShowBookingPanel((v) => !v)}
+                className="w-full flex items-center justify-between px-5 py-2.5 hover:bg-white/[0.03] transition-all"
+              >
+                <span className="flex items-center gap-2 text-xs font-semibold text-zinc-400">
+                  <Calendar className="w-3.5 h-3.5 text-orange-400" />
+                  กลุ่ม/คลาส — สร้างการจอง
+                </span>
+                <ChevronDown
+                  className={`w-4 h-4 text-zinc-500 transition-transform duration-200 ${showBookingPanel ? 'rotate-180' : ''}`}
+                />
+              </button>
+
+              <AnimatePresence>
+                {showBookingPanel && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-5 pb-4 space-y-3">
+                      {bookingConfirmed ? (
+                        <div className="flex items-center gap-2 py-3 text-emerald-400 text-sm font-semibold">
+                          ✅ บันทึกการจองแล้ว
+                        </div>
+                      ) : (
+                          <div className="grid grid-cols-2 gap-3">
+                            {/* Service dropdown */}
+                            <div className="col-span-2">
+                              <label className="block text-[10px] font-semibold text-zinc-500 uppercase tracking-wider mb-1">บริการ/คลาส</label>
+                              <select
+                                value={booking.service}
+                                onChange={(e) => setBooking({ ...booking, service: e.target.value })}
+                                className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-orange-500/50 transition-all appearance-none"
+                              >
+                                <option value="">เลือกบริการ...</option>
+                                {SERVICES.map((s) => <option key={s} value={s}>{s}</option>)}
+                              </select>
+                            </div>
+                            {/* Date */}
+                            <div>
+                              <label className="block text-[10px] font-semibold text-zinc-500 uppercase tracking-wider mb-1">วันที่</label>
+                              <input
+                                type="date"
+                                value={booking.date}
+                                onChange={(e) => setBooking({ ...booking, date: e.target.value })}
+                                className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-orange-500/50 transition-all"
+                              />
+                            </div>
+                            {/* Time */}
+                            <div>
+                              <label className="block text-[10px] font-semibold text-zinc-500 uppercase tracking-wider mb-1">เวลา</label>
+                              <input
+                                type="time"
+                                value={booking.time}
+                                onChange={(e) => setBooking({ ...booking, time: e.target.value })}
+                                className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-orange-500/50 transition-all"
+                              />
+                            </div>
+                            {/* Number of people */}
+                            <div className="col-span-2 flex items-center gap-3">
+                              <label className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider whitespace-nowrap">จำนวนคน</label>
+                              <div className="flex items-center gap-2">
+                                <button
+                                  onClick={() => setBooking((b) => ({ ...b, people: Math.max(1, b.people - 1) }))}
+                                  className="w-7 h-7 rounded-lg bg-white/[0.06] hover:bg-white/[0.10] text-zinc-300 font-bold transition-all"
+                                >
+                                  −
+                                </button>
+                                <span className="text-sm text-white font-semibold w-6 text-center">{booking.people}</span>
+                                <button
+                                  onClick={() => setBooking((b) => ({ ...b, people: b.people + 1 }))}
+                                  className="w-7 h-7 rounded-lg bg-white/[0.06] hover:bg-white/[0.10] text-zinc-300 font-bold transition-all"
+                                >
+                                  +
+                                </button>
+                              </div>
+                              <button
+                                onClick={handleBookingSubmit}
+                                disabled={!booking.service || !booking.date || !booking.time}
+                                className="ml-auto flex items-center gap-1.5 px-4 py-2 rounded-xl bg-orange-500 hover:bg-orange-400 disabled:opacity-40 disabled:cursor-not-allowed text-white text-xs font-semibold transition-all"
+                              >
+                                <Calendar className="w-3.5 h-3.5" />
+                                สร้างการจอง
+                              </button>
+                            </div>
+                          </div>
+                      )}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             {/* Chat area */}

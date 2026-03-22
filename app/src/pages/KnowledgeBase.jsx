@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Package, HelpCircle, Store, Bot,
-  Plus, Pencil, Trash2, Upload, Send,
+  Plus, Pencil, Trash2, Upload, Send, Search,
   CheckCircle, ToggleLeft, ToggleRight,
   ChevronDown, Save,
 } from 'lucide-react';
@@ -340,6 +340,67 @@ function AITestTab({ products, faqs, storeInfo }) {
           </button>
         ))}
       </div>
+
+      {/* ─── AI Product Search Demo ─── */}
+      <AIProductSearchDemo products={products} />
+    </div>
+  );
+}
+
+// Demo section: show how bot replies when customer types a product name
+function AIProductSearchDemo({ products }) {
+  const DEMO_QUERIES = [
+    { label: 'เสื้อยืด', answer: null },
+    { label: 'กางเกง Jogger', answer: null },
+    { label: 'ถุงผ้า', answer: null },
+  ];
+
+  function buildAnswer(query) {
+    const q = query.toLowerCase();
+    // Find a matching product using the same helper logic as mockAIAnswer
+    for (const p of products) {
+      const nameLower = p.name.toLowerCase();
+      const words = nameLower.split(/\s+/).filter((w) => w.length > 1);
+      if (nameLower.includes(q) || q.includes(nameLower) || words.some((w) => q.includes(w))) {
+        if (!p.active || p.stock === 0) {
+          return `❌ ${p.name} หมดสต็อกแล้วครับ ราคาปกติ ฿${p.price.toLocaleString()}/${p.unit}`;
+        }
+        return `${p.name} ราคา ฿${p.price.toLocaleString()} มีสต็อก ${p.stock} ${p.unit} ต้องการสั่งซื้อไหมครับ? 🛍️`;
+      }
+    }
+    return 'ขออภัยครับ ไม่พบสินค้าที่ตรงกัน';
+  }
+
+  const rows = DEMO_QUERIES.map((dq) => ({ ...dq, answer: buildAnswer(dq.label) }));
+
+  return (
+    <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-5 space-y-4 max-w-2xl">
+      <div className="flex items-center gap-2">
+        <Search className="w-4 h-4 text-orange-400" />
+        <p className="text-sm font-bold text-white">ทดสอบค้นหา AI</p>
+      </div>
+      <p className="text-xs text-zinc-500 leading-relaxed">
+        เมื่อลูกค้าพิมพ์ชื่อสินค้า บอทจะตอบกลับพร้อมราคาและสต็อกทันที — เหมาะสำหรับร้านค้า B2B, อะไหล่รถ, และสินค้า FMCG
+      </p>
+      <div className="space-y-3">
+        {rows.map((row) => (
+          <div key={row.label} className="flex flex-col gap-1.5">
+            {/* Customer message */}
+            <div className="flex justify-end">
+              <div className="bg-orange-500 text-white text-sm px-4 py-2 rounded-2xl rounded-br-sm max-w-[70%]">
+                {row.label}
+              </div>
+            </div>
+            {/* Bot reply */}
+            <div className="flex justify-start">
+              <div className="bg-white/[0.06] text-zinc-300 text-sm px-4 py-2 rounded-2xl rounded-bl-sm max-w-[80%] whitespace-pre-line">
+                <span className="text-[10px] text-zinc-500 block mb-0.5">🤖 บอท</span>
+                {row.answer}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -432,6 +493,9 @@ function ProductsTabConnected({ products, setProducts }) {
   const fileRef = useRef(null);
   const emptyForm = { name: '', price: '', unit: '', category: '', description: '', stock: '' };
   const [form, setForm] = useState(emptyForm);
+  // Search & category filter state
+  const [productSearch, setProductSearch] = useState('');
+  const [categoryFilter, setCategoryFilter] = useState('ทั้งหมด');
 
   const handleSubmit = () => {
     if (!form.name || !form.price) return;
@@ -463,6 +527,16 @@ function ProductsTabConnected({ products, setProducts }) {
   const toggleActive = (id) => setProducts((prev) => prev.map((p) => (p.id === id ? { ...p, active: !p.active } : p)));
   const deleteProduct = (id) => setProducts((prev) => prev.filter((p) => p.id !== id));
 
+  // Derive unique category list from current products
+  const categories = ['ทั้งหมด', ...Array.from(new Set(products.map((p) => p.category).filter(Boolean)))];
+
+  // Apply search + category filter
+  const visibleProducts = products.filter((p) => {
+    const matchSearch = productSearch.trim() === '' || p.name.toLowerCase().includes(productSearch.toLowerCase());
+    const matchCat = categoryFilter === 'ทั้งหมด' || p.category === categoryFilter;
+    return matchSearch && matchCat;
+  });
+
   return (
     <div className="space-y-5">
       <div className="flex flex-wrap gap-3 items-center justify-between">
@@ -483,6 +557,35 @@ function ProductsTabConnected({ products, setProducts }) {
             <Plus className="w-4 h-4" />
             เพิ่มสินค้า
           </button>
+        </div>
+      </div>
+
+      {/* Search + category filter bar */}
+      <div className="flex flex-col sm:flex-row gap-3">
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
+          <input
+            type="text"
+            value={productSearch}
+            onChange={(e) => setProductSearch(e.target.value)}
+            placeholder="ค้นหาสินค้า..."
+            className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl pl-9 pr-4 py-2.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-orange-500/50 transition-all"
+          />
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setCategoryFilter(cat)}
+              className={`px-3 py-2 rounded-xl text-xs font-semibold border transition-all ${
+                categoryFilter === cat
+                  ? 'bg-orange-500/20 border-orange-500/40 text-orange-300'
+                  : 'bg-white/[0.03] border-white/[0.08] text-zinc-400 hover:border-white/20 hover:text-zinc-200'
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -521,7 +624,7 @@ function ProductsTabConnected({ products, setProducts }) {
             </tr>
           </thead>
           <tbody className="divide-y divide-white/[0.04]">
-            {products.map((p) => (
+            {visibleProducts.map((p) => (
               <tr key={p.id} className="hover:bg-white/[0.02] transition-colors">
                 <td className="px-4 py-3 text-white font-medium">{p.name}</td>
                 <td className="px-4 py-3 text-zinc-300">฿{p.price.toLocaleString()}/{p.unit}</td>
@@ -545,7 +648,11 @@ function ProductsTabConnected({ products, setProducts }) {
             ))}
           </tbody>
         </table>
-        {products.length === 0 && <p className="text-center py-12 text-zinc-600 text-sm">ยังไม่มีสินค้า — กด "เพิ่มสินค้า" เพื่อเริ่มต้น</p>}
+        {visibleProducts.length === 0 && (
+          <p className="text-center py-12 text-zinc-600 text-sm">
+            {products.length === 0 ? 'ยังไม่มีสินค้า — กด "เพิ่มสินค้า" เพื่อเริ่มต้น' : 'ไม่พบสินค้าที่ตรงกับการค้นหา'}
+          </p>
+        )}
       </div>
     </div>
   );

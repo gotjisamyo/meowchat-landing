@@ -90,6 +90,21 @@ export default function SuperAdminLogin({ onSuccess }) {
               </>
             )}
           </button>
+
+          {/* Forgot password */}
+          <div className="text-center">
+            <button
+              type="button"
+              onClick={() =>
+                alert(
+                  'ติดต่อทีม MeowChat ที่ support@meowchat.store เพื่อรีเซ็ตรหัสผ่านครับ'
+                )
+              }
+              className="text-xs text-zinc-400 hover:underline"
+            >
+              ลืมรหัสผ่าน?
+            </button>
+          </div>
         </form>
 
         <p className="text-center text-zinc-700 text-xs mt-6">

@@ -277,7 +277,7 @@ export default function Dashboard({ setSidebarOpen }) {
         const usagePct = Math.round((userMessageUsage.used / userMessageUsage.limit) * 100);
         if (isAdmin() || usagePct < 70) return null;
         return (
-          <div className="mb-2 p-4 bg-amber-500/10 border border-amber-500/30 rounded-2xl flex items-start gap-3">
+          <div className="mb-2 p-4 bg-amber-500/10 border border-amber-500/30 rounded-2xl flex flex-wrap items-start gap-3">
             <AlertTriangle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between gap-2 mb-1.5">
@@ -294,7 +294,7 @@ export default function Dashboard({ setSidebarOpen }) {
             <a
               href="#"
               onClick={e => { e.preventDefault(); }}
-              className="flex-shrink-0 flex items-center gap-1 px-3 py-1.5 bg-orange-500 hover:bg-orange-400 text-white text-xs font-bold rounded-lg transition-colors"
+              className="w-full sm:w-auto flex-shrink-0 flex items-center justify-center gap-1 px-3 py-1.5 bg-orange-500 hover:bg-orange-400 text-white text-xs font-bold rounded-lg transition-colors"
             >
               อัพเกรด <ArrowUpRight className="w-3 h-3" />
             </a>
@@ -330,7 +330,7 @@ export default function Dashboard({ setSidebarOpen }) {
 
       {/* Referral nudge card — non-admin users only */}
       {!isAdmin() && (
-        <div className="mt-4 p-4 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-2xl flex items-center justify-between">
+        <div className="mt-4 p-4 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-2xl flex flex-wrap items-center justify-between gap-3">
           <div>
             <p className="text-sm font-semibold text-white">🎁 แนะนำเพื่อน รับเดือนฟรี!</p>
             <p className="text-xs text-zinc-400">คุณมีเพื่อน 12 คนที่สมัครแล้ว ได้ฟรี 3 เดือน</p>

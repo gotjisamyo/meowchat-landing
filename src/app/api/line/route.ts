@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
+import { conversationState, type ConversationState } from './state';
 
 const LINE_CHANNEL_ACCESS_TOKEN = process.env.LINE_CHANNEL_ACCESS_TOKEN || '';
 const LINE_CHANNEL_SECRET = process.env.LINE_CHANNEL_SECRET || '';
@@ -10,21 +11,6 @@ const LINE_REPLY_URL = 'https://api.line.me/v2/bot/message/reply';
 const log = (level: 'info' | 'error' | 'warn', event: string, data?: object) => {
   console.log(JSON.stringify({ level, event, timestamp: new Date().toISOString(), ...data }));
 };
-
-// --- Conversation state tracking ---
-// NOTE: This in-memory Map is a best-effort cache only. On Vercel serverless,
-// every cold start creates a fresh instance and the Map is lost. This means
-// messageCount and lastTopic reset on cold starts. For true persistence across
-// instances, replace this with Vercel KV (Upstash Redis) or a similar edge-
-// compatible store (e.g. `@vercel/kv`).
-interface ConversationState {
-  lastTopic: string;
-  messageCount: number;
-  lastSeen: Date;
-}
-
-// In-memory warm-instance cache (not exported — Next.js Route files only allow HTTP method exports).
-const conversationState = new Map<string, ConversationState>();
 
 function getOrCreateState(userId: string): ConversationState {
   if (!conversationState.has(userId)) {

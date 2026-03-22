@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { conversationState } from '../route';
+import { conversationState } from '../state';
 
 // Stable identifier for this warm serverless instance — useful for spotting cold starts in logs.
 const instanceId = process.env.VERCEL_DEPLOYMENT_ID ?? `local-${Date.now()}`;

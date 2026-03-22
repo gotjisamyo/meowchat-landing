@@ -5,7 +5,7 @@ import {
 import {
   Users, Code2, CreditCard, TrendingUp, UserPlus, UserMinus,
   ChevronRight, RefreshCw, Calendar, Crown, Zap,
-  AlertTriangle, ShoppingCart, Send, ToggleLeft, ToggleRight, ClipboardList
+  AlertTriangle, ArrowUpRight, ShoppingCart, Send, ToggleLeft, ToggleRight, ClipboardList
 } from 'lucide-react';
 import PageLayout from '../components/PageLayout';
 import StatsCard from '../components/StatsCard';
@@ -246,7 +246,7 @@ export default function Dashboard({ setSidebarOpen }) {
             <span className="text-sm text-zinc-400">Today</span>
             <ChevronRight className="w-4 h-4 text-zinc-600" />
           </div>
-          
+
           {/* Refresh Button */}
           <button className="btn-secondary px-4 py-2.5 rounded-xl text-sm font-semibold flex items-center gap-2">
             <RefreshCw className="w-4 h-4" />
@@ -267,6 +267,32 @@ export default function Dashboard({ setSidebarOpen }) {
             className="px-4 py-2 bg-orange-500 text-white rounded-xl text-sm font-semibold hover:bg-orange-400 transition"
           >
             ตั้งค่าเลย →
+          </a>
+        </div>
+      )}
+
+      {/* Usage Limit Warning — show to non-admin users near quota */}
+      {!isAdmin() && (
+        <div className="mb-2 p-4 bg-amber-500/10 border border-amber-500/30 rounded-2xl flex items-start gap-3">
+          <AlertTriangle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center justify-between gap-2 mb-1.5">
+              <span className="text-sm font-semibold text-amber-300">ข้อความเดือนนี้: 8,430 / 10,000</span>
+              <span className="text-xs text-amber-400 font-medium">84%</span>
+            </div>
+            <div className="h-1.5 bg-white/10 rounded-full overflow-hidden mb-2">
+              <div className="h-full bg-gradient-to-r from-amber-500 to-orange-500 rounded-full" style={{ width: '84%' }} />
+            </div>
+            <p className="text-xs text-amber-400/80">
+              เหลืออีก 1,570 ข้อความ — อัพเกรดเพื่อใช้งานต่อเนื่องโดยไม่สะดุด
+            </p>
+          </div>
+          <a
+            href="#"
+            onClick={e => { e.preventDefault(); }}
+            className="flex-shrink-0 flex items-center gap-1 px-3 py-1.5 bg-orange-500 hover:bg-orange-400 text-white text-xs font-bold rounded-lg transition-colors"
+          >
+            อัพเกรด <ArrowUpRight className="w-3 h-3" />
           </a>
         </div>
       )}
@@ -331,21 +357,21 @@ export default function Dashboard({ setSidebarOpen }) {
           <ChartCard title="แผมตามจำนวน" subtitle="Plan distribution" delay={300} className="lg:col-span-1">
             <ResponsiveContainer width="100%" height={140}>
               <PieChart>
-                <Pie 
-                  data={planDistribution} 
-                  cx="50%" 
-                  cy="50%" 
-                  innerRadius={35} 
-                  outerRadius={60} 
-                  paddingAngle={4} 
+                <Pie
+                  data={planDistribution}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={35}
+                  outerRadius={60}
+                  paddingAngle={4}
                   dataKey="value"
                 >
                   {planDistribution.map((entry, index) => (
                     <Cell key={index} fill={entry.color} cornerRadius={4} />
                   ))}
                 </Pie>
-                <Tooltip 
-                  contentStyle={{ backgroundColor: '#1A1A24', border: 'none', borderRadius: '12px' }} 
+                <Tooltip
+                  contentStyle={{ backgroundColor: '#1A1A24', border: 'none', borderRadius: '12px' }}
                 />
               </PieChart>
             </ResponsiveContainer>
@@ -399,8 +425,8 @@ export default function Dashboard({ setSidebarOpen }) {
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" vertical={false} />
               <XAxis dataKey="month" stroke="#52525B" fontSize={11} tickLine={false} axisLine={false} />
               <YAxis stroke="#52525B" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v/1000}k`} />
-              <Tooltip 
-                contentStyle={{ backgroundColor: '#1A1A24', border: 'none', borderRadius: '12px', boxShadow: '0 8px 32px rgba(0,0,0,0.4)' }} 
+              <Tooltip
+                contentStyle={{ backgroundColor: '#1A1A24', border: 'none', borderRadius: '12px', boxShadow: '0 8px 32px rgba(0,0,0,0.4)' }}
                 labelStyle={{ color: '#A1A1AA' }}
                 formatter={(v) => `฿${v.toLocaleString()}`}
               />
@@ -415,21 +441,21 @@ export default function Dashboard({ setSidebarOpen }) {
         <ChartCard title="ยอดขายตามหมวดหมู่" subtitle="By product category" delay={500}>
           <ResponsiveContainer width="100%" height={180}>
             <PieChart>
-              <Pie 
-                data={salesByCategory} 
-                cx="50%" 
-                cy="50%" 
-                innerRadius={55} 
-                outerRadius={85} 
-                paddingAngle={4} 
+              <Pie
+                data={salesByCategory}
+                cx="50%"
+                cy="50%"
+                innerRadius={55}
+                outerRadius={85}
+                paddingAngle={4}
                 dataKey="value"
               >
                 {salesByCategory.map((entry, index) => (
                   <Cell key={index} fill={entry.color} cornerRadius={8} />
                 ))}
               </Pie>
-              <Tooltip 
-                contentStyle={{ backgroundColor: '#1A1A24', border: 'none', borderRadius: '12px' }} 
+              <Tooltip
+                contentStyle={{ backgroundColor: '#1A1A24', border: 'none', borderRadius: '12px' }}
               />
             </PieChart>
           </ResponsiveContainer>
@@ -454,7 +480,7 @@ export default function Dashboard({ setSidebarOpen }) {
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" vertical={false} />
               <XAxis dataKey="day" stroke="#52525B" fontSize={11} tickLine={false} axisLine={false} />
               <YAxis stroke="#52525B" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v/1000}k`} />
-              <Tooltip 
+              <Tooltip
                 contentStyle={{ backgroundColor: '#1A1A24', border: 'none', borderRadius: '12px' }}
                 formatter={(v) => [v.toLocaleString(), 'Calls']}
               />
@@ -476,7 +502,7 @@ export default function Dashboard({ setSidebarOpen }) {
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" vertical={false} />
               <XAxis dataKey="month" stroke="#52525B" fontSize={11} tickLine={false} axisLine={false} />
               <YAxis stroke="#52525B" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v/1000}k`} />
-              <Tooltip 
+              <Tooltip
                 contentStyle={{ backgroundColor: '#1A1A24', border: 'none', borderRadius: '12px' }}
               />
               <Area type="monotone" dataKey="users" stroke="#F7C548" strokeWidth={3} fillOpacity={1} fill="url(#usersGrad)" />
@@ -517,8 +543,8 @@ export default function Dashboard({ setSidebarOpen }) {
                     <td className="py-4">
                       <span className={`
                         px-3 py-1 text-xs font-medium rounded-full capitalize
-                        ${customer.plan === 'enterprise' ? 'bg-purple-500/20 text-purple-400' : 
-                          customer.plan === 'pro' ? 'bg-orange-500/20 text-orange-400' : 
+                        ${customer.plan === 'enterprise' ? 'bg-purple-500/20 text-purple-400' :
+                          customer.plan === 'pro' ? 'bg-orange-500/20 text-orange-400' :
                           'bg-zinc-500/20 text-zinc-400'}
                       `}>
                         {customer.plan}
@@ -549,9 +575,9 @@ export default function Dashboard({ setSidebarOpen }) {
       )}
 
       {/* Recent Transactions Table */}
-      <DataTable 
-        title="รายการล่าสุด" 
-        columns={tableColumns} 
+      <DataTable
+        title="รายการล่าสุด"
+        columns={tableColumns}
         data={recentTransactions}
         delay={800}
       />

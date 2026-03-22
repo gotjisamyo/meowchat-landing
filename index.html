@@ -32,6 +32,24 @@
 <link rel="alternate" hreflang="en" href="https://meowchat.store/en">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/apple-icon.png">
+<!-- GA4: replace G-XXXXXXXXXX with your Measurement ID from analytics.google.com -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script> -->
+<!-- Facebook Pixel: replace YOUR_PIXEL_ID with your Pixel ID from business.facebook.com -->
+<!-- <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', 'YOUR_PIXEL_ID');
+  fbq('track', 'PageView');
+</script> -->
 
 <!-- Structured Data -->
 <script type="application/ld+json">
@@ -78,15 +96,15 @@
 {
   "@context": "https://schema.org",
   "@type": "Product",
-  "name": "MeowChat Business",
-  "description": "AI Chatbot สำหรับธุรกิจไทย เริ่มต้นฟรี อัพเกรด Pro เพียง 590 บาท/เดือน",
+  "name": "MeowChat Pro",
+  "description": "AI Chatbot สำหรับธุรกิจไทย เริ่มต้นฟรี อัพเกรดเป็น Pro ฿590/เดือน",
   "brand": {
     "@type": "Brand",
     "name": "MeowChat"
   },
   "offers": {
     "@type": "Offer",
-    "price": "2990",
+    "price": "590",
     "priceCurrency": "THB",
     "availability": "https://schema.org/InStock"
   }
@@ -387,9 +405,9 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
       <a href="beta.html" class="btn btn-o">Beta ฟรี 3 เดือน 🔥</a>
     </div>
     <div class="stats-row">
-      <div class="stat"><span class="stat-ico">🐾</span><div><div class="stat-n">10K+</div><div class="stat-l">Active Users</div></div></div>
-      <div class="stat"><span class="stat-ico">🏪</span><div><div class="stat-n" >2,000+</div><div class="stat-l">ร้านค้า</div></div></div>
-      <div class="stat"><span class="stat-ico">💬</span><div><div class="stat-n">5,000+</div><div class="stat-l">Completed Chats</div></div></div>
+      <div class="stat"><span class="stat-ico">🐾</span><div><div class="stat-n">Beta</div><div class="stat-l">รับ 100 คนแรก</div></div></div>
+      <div class="stat"><span class="stat-ico">🏪</span><div><div class="stat-n">6+</div><div class="stat-l">ประเภทธุรกิจ</div></div></div>
+      <div class="stat"><span class="stat-ico">💬</span><div><div class="stat-n">24/7</div><div class="stat-l">ตอบแชทอัตโนมัติ</div></div></div>
     </div>
   </div>
 </section>
@@ -631,52 +649,51 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
 <div class="pc">
   <div style="font-size:48px;margin-bottom:8px">🐱</div>
   <div class="pc-name">Free</div>
-  <div class="pc-hint">สำหรับร้านที่เพิ่งเริ่มต้น</div>
-  <div class="pc-price"><sup>฿</sup>0<small>/ตลอดไป</small></div>
+  <div class="pc-hint">สำหรับร้านเริ่มต้น</div>
+  <div class="pc-price"><sup style="font-size:22px">฿</sup>0<small>/เดือน</small></div>
   <ul class="pc-list">
-    <li>AI Chatbot 1 ตัว</li>
-    <li>ตอบแชท 100 ครั้ง/เดือน</li>
-    <li>LINE OA เชื่อมต่อ 1 บัญชี</li>
-    <li>Basic Analytics</li>
+    <li>ข้อความ 300 ครั้ง/เดือน</li>
+    <li>เชื่อมต่อ LINE Official 1 บัญชี</li>
+    <li>AI เข้าใจภาษาไทย</li>
+    <li>Dashboard พื้นฐาน</li>
   </ul>
-  <a href="https://app.meowchat.store/register" class="btn btn-o">เริ่มต้นฟรี</a>
-  <p class="cta-note">ไม่ต้องใส่บัตรเครดิต</p>
+  <a href="https://app.meowchat.store/register" class="btn btn-o">สมัครฟรี ไม่ต้องใส่บัตร</a>
 </div>
 
 <!-- Pro (Popular) -->
 <div class="pc pop">
   <div class="pop-lbl">🐾 ยอดนิยม</div>
-  <div style="font-size:48px;margin-bottom:8px">🚀</div>
+  <img class="pc-ico" src="assets/icon-business.png" alt="Pro Cat">
   <div class="pc-name">Pro</div>
-  <div class="pc-hint">สำหรับธุรกิจที่กำลังเติบโต</div>
+  <div class="pc-hint">สำหรับธุรกิจที่เติบโต</div>
   <div class="pc-price"><sup>฿</sup>590<small>/เดือน</small></div>
   <ul class="pc-list">
-    <li>AI Chatbot 5 ตัว</li>
-    <li>ตอบแชท 10,000 ครั้ง/เดือน</li>
-    <li>LINE OA ได้ 5 บัญชี</li>
+    <li>ข้อความ 10,000/เดือน (≈330 แชท/วัน)</li>
+    <li>เชื่อมต่อ LINE ได้ 3 บัญชี</li>
     <li>จัดการออเดอร์อัตโนมัติ</li>
-    <li>Dashboard & Analytics</li>
+    <li>อัพเดทสต็อก Real-time</li>
+    <li>Human Handoff (โอนให้คนตอบ)</li>
+    <li>Dashboard + Analytics ครบ</li>
     <li>ส่ง Broadcast ไม่จำกัด</li>
     <li>Priority Support</li>
   </ul>
-  <a href="https://app.meowchat.store/register" class="btn btn-p">อัพเกรดเป็น Pro</a>
-  <p class="cta-note">ทดลองใช้ Pro ฟรี 14 วัน</p>
+  <a href="https://app.meowchat.store/register" class="btn btn-p">ทดลองใช้ Pro ฟรี 14 วัน</a>
 </div>
 
 <!-- Enterprise -->
 <div class="pc">
   <div style="font-size:48px;margin-bottom:8px">👑</div>
   <div class="pc-name">Enterprise</div>
-  <div class="pc-hint">สำหรับองค์กรและแบรนด์ใหญ่</div>
+  <div class="pc-hint">สำหรับองค์กรและแฟรนไชส์</div>
   <div class="pc-price"><sup>฿</sup>1,990<small>/เดือน</small></div>
   <ul class="pc-list">
-    <li>AI Chatbot ไม่จำกัด</li>
-    <li>ตอบแชทไม่จำกัด</li>
-    <li>LINE OA ไม่จำกัด</li>
-    <li>Human Handoff (โอนให้คนตอบ)</li>
+    <li>ข้อความไม่จำกัด</li>
+    <li>เชื่อมต่อ LINE ไม่จำกัด</li>
     <li>Multi-branch หลายสาขา</li>
-    <li>API Integration</li>
-    <li>Dedicated Support 24/7</li>
+    <li>Facebook Messenger (เร็วๆ นี้)</li>
+    <li>Instagram DM (เร็วๆ นี้)</li>
+    <li>API Integration + Webhook</li>
+    <li>ทีม Support ส่วนตัว 24/7</li>
   </ul>
   <a href="https://line.me/ti/p/@960xboyt" class="btn btn-o">ติดต่อฝ่ายขาย</a>
 </div>

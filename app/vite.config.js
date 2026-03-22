@@ -4,10 +4,10 @@ import tailwindcss from '@tailwindcss/vite'
 
 // Vite 8 uses rolldown which requires manualChunks as a function
 const vendorChunks = {
-  'vendor-react': ['react', 'react-dom'],
+  'vendor-react': ['react', 'react-dom', 'react-router-dom'],
   'vendor-framer': ['framer-motion'],
   'vendor-lucide': ['lucide-react'],
-  'vendor-router': ['react-router-dom'],
+  'vendor-charts': ['recharts', 'd3-', 'victory-'],
 };
 
 export default defineConfig({

@@ -30,6 +30,7 @@ export default function MobileNav() {
           {[
             { href: "#features", label: "ฟีเจอร์" },
             { href: "#how-it-works", label: "วิธีใช้" },
+            { href: "#booking", label: "การจอง" },
             { href: "#use-cases", label: "ใช้กับธุรกิจอะไร" },
             { href: "#pricing", label: "ราคา" },
             { href: "#faq", label: "FAQ" },

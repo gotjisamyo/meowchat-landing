@@ -391,6 +391,54 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Booking System Details */}
+        <section id="booking" className="mb-24">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">ระบบจองนัดหมายครบทุกความต้องการ</h2>
+            <p className="text-gray-400 max-w-xl mx-auto">ไม่ใช่แค่จองคิว — รองรับทุก workflow ของธุรกิจคุณ</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                icon: "🔄",
+                title: "จองซ้ำอัตโนมัติ",
+                desc: "ตั้งตารางคงที่รายสัปดาห์/รายเดือน เช่น นักเรียน A มาทุกวันเสาร์ 10:00 ระบบจัดการ recurring booking ให้อัตโนมัติ",
+              },
+              {
+                icon: "👥",
+                title: "หลายหมอ/ครู/ช่าง",
+                desc: "บริหาร calendar ของ staff หลายคนพร้อมกัน ลูกค้าเลือกผู้ให้บริการที่ต้องการได้ หรือให้ระบบจัดให้อัตโนมัติ",
+              },
+              {
+                icon: "🎯",
+                title: "จัดการ Capacity",
+                desc: "กำหนดจำนวนสูงสุดต่อคลาส/slot เมื่อเต็มระบบปิดอัตโนมัติ รองรับ waitlist และแจ้งเตือนเมื่อมีที่ว่าง",
+              },
+              {
+                icon: "💳",
+                title: "รับมัดจำและชำระเงิน",
+                desc: "เก็บมัดจำผ่าน QR PromptPay หรือบัตรเครดิตตอนจอง ลดการเบี้ยวนัดได้มากกว่า 60%",
+              },
+              {
+                icon: "📲",
+                title: "Reminder อัตโนมัติ",
+                desc: "ส่ง reminder ทาง LINE 24 ชม. และ 2 ชม. ก่อนนัด พร้อมลิงก์ reschedule หรือยืนยัน 1 คลิก",
+              },
+              {
+                icon: "📈",
+                title: "รายงาน Booking",
+                desc: "วิเคราะห์ no-show rate, popular time slots, revenue per staff และ customer retention ในแดชบอร์ดเดียว",
+              },
+            ].map((card) => (
+              <div key={card.title} className="glass p-6 rounded-2xl hover:border-purple-500/30 transition-colors">
+                <div className="text-4xl mb-4">{card.icon}</div>
+                <h3 className="font-bold mb-2">{card.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">{card.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* B2B Use Cases */}
         <section id="use-cases" className="mb-24">
           <div className="text-center mb-12">

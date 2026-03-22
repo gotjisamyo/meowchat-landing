@@ -11,7 +11,7 @@ const PRICING = [
     badge: null,
     features: [
       "รองรับ LINE 1 ช่องทาง",
-      "ตอบแชทอัตโนมัติ 100 ข้อความ/เดือน",
+      "Bot ตอบอัตโนมัติ 100 ครั้ง/เดือน (ข้อความที่ bot ส่งออก)",
       "AI วิเคราะห์ลูกค้าระดับต้น",
       "แดชบอร์ดพื้นฐาน",
     ],
@@ -142,24 +142,32 @@ const TESTIMONIALS = [
     biz: "ร้านขายเสื้อผ้าออนไลน์ @fashionbkk",
     text: "ก่อนใช้ MeowChat แอดมินต้องตอบแชท 300-400 ข้อความต่อวัน ตอนนี้ bot จัดการได้ 80% ยอดขายเพิ่ม 40% ใน 2 เดือน",
     stars: 5,
+    date: "ธันวาคม 2567",
+    lineOA: "@fashionbkk",
   },
   {
     name: "ดร.พรชัย ลิมปิชัย",
     biz: "คลินิกทันตกรรม Smile Clinic",
     text: "ระบบจองนัดอัตโนมัติลด no-show จาก 25% เหลือ 8% ลูกค้าได้รับ reminder ทาง LINE ทุกคน ประทับใจมาก",
     stars: 5,
+    date: "มกราคม 2568",
+    lineOA: "@smileclinic_th",
   },
   {
     name: "Mr. James Thornton",
     biz: "Phuket Boat Charter Co.",
     text: "MeowChat handles both Thai and English inquiries perfectly. Our booking rate increased 60% after integration. Best investment for our tourism business.",
     stars: 5,
+    date: "กุมภาพันธ์ 2568",
+    lineOA: "@phuketboatcharter",
   },
   {
     name: "คุณอนันต์ ศรีสุวรรณ",
     biz: "โรงเรียนสอนภาษา LinguaMax",
     text: "จัดการสมัครเรียน จองคลาส และชำระเงินผ่าน LINE ได้ครบ ลดภาระแอดมิน 60% และนักเรียนใหม่เพิ่ม 35%",
     stars: 5,
+    date: "มีนาคม 2568",
+    lineOA: "@linguamax",
   },
 ];
 
@@ -472,6 +480,8 @@ export default function Home() {
                 <div>
                   <div className="font-bold text-sm">{t.name}</div>
                   <div className="text-gray-500 text-xs">{t.biz}</div>
+                  <div className="text-gray-600 text-xs">{t.date}</div>
+                  <div className="text-green-500 text-xs mt-1">LINE: {t.lineOA}</div>
                 </div>
               </div>
             ))}
@@ -487,6 +497,30 @@ export default function Home() {
           <PricingSection plans={PRICING} />
         </section>
 
+        {/* Payment Methods */}
+        <section className="mb-24">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3">ชำระเงินสะดวก หลากหลายช่องทาง</h2>
+            <p className="text-gray-400 text-sm">ไม่มีค่าธรรมเนียมเพิ่มเติม · ออกใบกำกับภาษีได้</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+            {[
+              { icon: "📱", label: "QR พร้อมเพย์" },
+              { icon: "💳", label: "บัตรเครดิต/เดบิต" },
+              { icon: "🏦", label: "โอนธนาคาร" },
+              { icon: "💰", label: "LINE Pay" },
+            ].map((method) => (
+              <div key={method.label} className="glass rounded-2xl p-6 flex flex-col items-center justify-center gap-2 text-center">
+                <div className="text-4xl">{method.icon}</div>
+                <div className="text-sm font-medium text-gray-300">{method.label}</div>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-gray-500 text-xs mt-6">
+            ราคาที่แสดงยังไม่รวม VAT 7% · สำหรับใบกำกับภาษีติดต่อ support@meowchat.store
+          </p>
+        </section>
+
         {/* FAQ */}
         <section id="faq" className="mb-24">
           <div className="text-center mb-12">
@@ -494,6 +528,44 @@ export default function Home() {
             <p className="text-gray-400">ไม่เจอคำตอบที่ต้องการ? ทักหา MeowChat ได้เลย</p>
           </div>
           <FAQSection faqs={FAQS} />
+        </section>
+
+        {/* Live Demo */}
+        <section className="mb-24">
+          <div className="glass rounded-3xl p-8 md:p-12 border-purple-500/20">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold mb-3">ทดลองคุยกับ MeowBot ได้เลย</h2>
+              <p className="text-gray-400">ไม่ต้องสมัคร ทดสอบได้ทันที — เพียงแสกน QR หรือคลิกลิงก์</p>
+            </div>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+              <div className="text-center">
+                <div className="w-48 h-48 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <div className="text-gray-400 text-sm text-center p-4">
+                    <div className="text-6xl mb-2">📱</div>
+                    QR Code<br/>LINE @960xboyt
+                  </div>
+                </div>
+                <p className="text-gray-400 text-sm">แสกน QR ด้วยกล้อง LINE</p>
+              </div>
+              <div className="text-gray-500 font-bold text-xl">หรือ</div>
+              <div className="text-center space-y-4">
+                <p className="text-gray-300 font-medium">ลองถามบอทว่า:</p>
+                <div className="space-y-2">
+                  {["💬 \"ราคาเท่าไหร่?\"", "💬 \"มีแผนฟรีไหม?\"", "💬 \"ช่วยอะไรได้บ้าง?\"", "💬 \"How much does it cost?\""].map(q => (
+                    <div key={q} className="glass px-4 py-2 rounded-lg text-sm text-gray-300">{q}</div>
+                  ))}
+                </div>
+                <a
+                  href="https://line.me/ti/p/@960xboyt"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-full font-bold transition-all transform hover:scale-105"
+                >
+                  เปิด LINE แชทเลย →
+                </a>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* CTA Banner */}

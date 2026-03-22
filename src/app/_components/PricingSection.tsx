@@ -74,7 +74,7 @@ export default function PricingSection({ plans }: { plans: PricingPlan[] }) {
             {plan.freeNote && plan.monthly === 0 && (
               <p className="text-gray-500 text-xs mb-2">{plan.freeNote}</p>
             )}
-            <ul className="text-gray-400 text-sm space-y-3 mb-8 flex-1 mt-4">
+            <ul className="text-gray-400 text-sm space-y-3 mt-4">
               {plan.features.map((f) => (
                 <li key={f} className="flex items-start gap-2">
                   <span className="text-green-400 mt-0.5 flex-shrink-0">✓</span>
@@ -82,6 +82,10 @@ export default function PricingSection({ plans }: { plans: PricingPlan[] }) {
                 </li>
               ))}
             </ul>
+            {plan.monthly === 0 && (
+              <p className="text-gray-500 text-xs mt-2">* นับเฉพาะข้อความที่ bot ตอบออกไป ไม่นับข้อความที่ลูกค้าส่งมา</p>
+            )}
+            <div className="mb-8 flex-1" />
             <a
               href="https://line.me/ti/p/@960xboyt"
               target="_blank"

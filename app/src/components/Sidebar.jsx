@@ -1,7 +1,7 @@
 import {
   LayoutDashboard, BarChart3, Wallet, Building2, Code2, Settings,
   ChevronLeft, ChevronRight, Cat, Zap, Users, CreditCard, User, BadgeDollarSign, Sparkles,
-  PieChart, BookOpen, MessageSquare, Package, Library, HelpCircle
+  PieChart, BookOpen, MessageSquare, Package, Library, HelpCircle, Calendar
 } from 'lucide-react';
 import UserMenu from './auth/UserMenu';
 import { useAuth } from '../context/AuthContext';
@@ -14,6 +14,7 @@ const menuSections = [
       { id: 'dashboard',  label: 'Dashboard',    icon: LayoutDashboard },
       { id: 'inbox',      label: 'กล่องข้อความ',  icon: MessageSquare },
       { id: 'orders',     label: 'ออเดอร์',       icon: Package },
+      { id: 'booking',    label: 'นัดหมาย',       icon: Calendar },
       { id: 'customers',  label: 'ลูกค้า CRM',    icon: Users, adminOnly: true },
     ],
   },

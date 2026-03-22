@@ -145,6 +145,28 @@ export const subscriptionPlans = [
     color: 'gray',
   },
   {
+    id: 'starter',
+    name: 'Starter',
+    price: 199,
+    period: 'เดือน',
+    description: 'สำหรับผู้เริ่มต้นธุรกิจ',
+    features: [
+      'ข้อความ 2,000/เดือน (≈65 แชท/วัน)',
+      'LINE Official Account 1 บัญชี',
+      'AI เข้าใจภาษาไทย',
+      'Dashboard พื้นฐาน',
+      '2 Team Members',
+    ],
+    notIncluded: [
+      'Human Handoff',
+      'Custom Branding',
+      'Advanced Analytics',
+    ],
+    cta: 'สมัคร Starter',
+    popular: false,
+    color: 'blue',
+  },
+  {
     id: 'pro',
     name: 'Pro',
     price: 590,

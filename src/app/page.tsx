@@ -437,30 +437,59 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Demo Video */}
+        {/* Demo / Live Bot */}
         <section id="demo-video" className="mb-24">
           <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold mb-3">ดูการทำงานจริงใน 2 นาที</h2>
-            <p className="text-gray-400">เห็นว่าลูกค้าจริงใช้ MeowChat ทำงานอย่างไร</p>
+            <h2 className="text-2xl md:text-3xl font-bold mb-3">ทดลองคุยกับ AI จริงๆ ได้เลย — ฟรี ไม่ต้องสมัคร</h2>
+            <p className="text-gray-400">ไม่ใช่ตัวอย่าง — นี่คือ bot จริงที่ธุรกิจไทยใช้งานอยู่</p>
           </div>
-          <div className="relative w-full aspect-video rounded-3xl overflow-hidden border border-white/10 bg-zinc-900 flex items-center justify-center">
-            {/* Video placeholder — replace src with real YouTube/Loom embed URL when available */}
-            <div className="text-center">
-              <div className="w-20 h-20 rounded-full bg-purple-600/80 flex items-center justify-center mx-auto mb-4 cursor-pointer hover:bg-purple-600 transition-colors">
-                <span className="text-white text-3xl ml-1">▶</span>
+          <div className="glass rounded-3xl p-8 md:p-12 border-purple-500/20">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-10">
+              {/* Left: What to try */}
+              <div className="flex-1 max-w-sm">
+                <p className="text-gray-300 font-semibold mb-4 text-lg">ลองถามบอทว่า:</p>
+                <div className="space-y-3">
+                  {[
+                    { emoji: "💬", text: "\"ราคาเท่าไหร่?\"" },
+                    { emoji: "📅", text: "\"จองนัดได้ไหม?\"" },
+                    { emoji: "🔧", text: "\"ตั้งค่ายากไหม?\"" },
+                    { emoji: "🌐", text: "\"How much does it cost?\"" },
+                    { emoji: "🏢", text: "\"เหมาะกับธุรกิจฉันไหม?\"" },
+                  ].map((q) => (
+                    <div key={q.text} className="flex items-center gap-3 glass px-4 py-2.5 rounded-xl text-sm text-gray-300">
+                      <span className="text-base">{q.emoji}</span>
+                      <span>{q.text}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <p className="text-gray-400 text-sm">วิดีโอสาธิต: การตั้งค่า LINE OA + บอทตอบลูกค้าจริง</p>
-              <a
-                href="https://line.me/ti/p/@960xboyt"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block mt-4 text-purple-400 hover:text-purple-300 text-sm underline"
-              >
-                หรือทดลองคุยกับบอทตัวจริงได้เลย →
-              </a>
+
+              {/* Divider */}
+              <div className="text-gray-600 font-bold text-lg hidden md:block">→</div>
+              <div className="text-gray-600 font-bold text-lg md:hidden">↓</div>
+
+              {/* Right: CTA */}
+              <div className="flex-1 max-w-sm text-center space-y-5">
+                <div className="w-20 h-20 rounded-full bg-green-500/20 border-2 border-green-500/40 flex items-center justify-center mx-auto">
+                  <span className="text-4xl">🤖</span>
+                </div>
+                <div>
+                  <p className="text-white font-bold text-lg mb-1">MeowBot พร้อมตอบทันที</p>
+                  <p className="text-gray-400 text-sm">ตอบ 24/7 · ทั้งไทยและอังกฤษ · ตอบจริงไม่ใช่ script</p>
+                </div>
+                <a
+                  href="https://line.me/ti/p/@960xboyt"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-8 py-3.5 rounded-full font-bold text-base transition-all transform hover:scale-105 w-full justify-center"
+                >
+                  <span className="text-xl">💬</span>
+                  เปิด LINE แชทกับบอทเลย
+                </a>
+                <p className="text-gray-600 text-xs">LINE: @960xboyt · ฟรี ไม่ต้องสมัคร ไม่ต้องใส่บัตรเครดิต</p>
+              </div>
             </div>
           </div>
-          <p className="text-center text-gray-500 text-xs mt-4">* วิดีโอเต็มจะพร้อมเร็วๆ นี้ — ทดลองบอทจริงได้ทันทีผ่าน LINE</p>
         </section>
 
         {/* Features */}

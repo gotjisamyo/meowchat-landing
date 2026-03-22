@@ -836,6 +836,7 @@ export default function Home() {
             <div className="flex justify-center gap-4 mt-2">
               <a href="/privacy" className="hover:text-gray-400 transition-colors">นโยบายความเป็นส่วนตัว</a>
               <a href="/terms" className="hover:text-gray-400 transition-colors">ข้อกำหนดการใช้งาน</a>
+              <a href="/dpa" className="hover:text-gray-400 transition-colors">DPA</a>
             </div>
           </div>
           <div className="border-t border-white/5 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-600 text-xs">
@@ -843,6 +844,7 @@ export default function Home() {
             <div className="flex gap-4">
               <a href="/privacy" className="hover:text-white transition-colors">นโยบายความเป็นส่วนตัว</a>
               <a href="/terms" className="hover:text-white transition-colors">เงื่อนไขการใช้งาน</a>
+              <a href="/dpa" className="hover:text-white transition-colors">DPA</a>
               <span className="text-green-500">🔒 PDPA 2562</span>
             </div>
           </div>

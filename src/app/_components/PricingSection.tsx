@@ -11,6 +11,7 @@ interface PricingPlan {
   highlight: boolean;
   subNote?: string;
   freeNote?: string;
+  startingNote?: string;
 }
 
 export default function PricingSection({ plans }: { plans: PricingPlan[] }) {
@@ -55,6 +56,11 @@ export default function PricingSection({ plans }: { plans: PricingPlan[] }) {
               </div>
             )}
             <h3 className="text-xl font-bold mb-2">{plan.name}</h3>
+            {plan.monthly !== null && plan.monthly > 0 && (
+              <div className="text-xs text-green-400 bg-green-400/10 border border-green-400/20 rounded-full px-3 py-1 mb-3 self-start">
+                ✓ ทดลองฟรี 14 วัน · ไม่ต้องใส่บัตรเครดิต
+              </div>
+            )}
             {plan.monthly !== null ? (
               <div className="text-4xl font-bold mb-1">
                 ฿{annual && plan.annual !== null ? plan.annual.toLocaleString() : plan.monthly.toLocaleString()}
@@ -62,6 +68,9 @@ export default function PricingSection({ plans }: { plans: PricingPlan[] }) {
               </div>
             ) : (
               <div className="text-gray-400 mb-1 font-bold text-xl">ราคาตามขนาดธุรกิจ</div>
+            )}
+            {plan.startingNote && (
+              <div className="text-purple-400 text-sm font-medium mb-4">{plan.startingNote}</div>
             )}
             {annual && plan.monthly !== null && plan.monthly > 0 && (
               <div className="text-green-400 text-xs mb-2">

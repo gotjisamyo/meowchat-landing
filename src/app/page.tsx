@@ -67,6 +67,7 @@ const PRICING = [
     ],
     cta: "ติดต่อฝ่ายขาย",
     highlight: false,
+    startingNote: "จาก ฿5,990/เดือน",
   },
 ];
 
@@ -332,7 +333,7 @@ export default function Home() {
               🚀 ทดลองฟรี 14 วัน — ตั้งค่าได้ใน 5 นาที
             </a>
             <a
-              href="#how-it-works"
+              href="#demo-video"
               className="border border-white/20 hover:border-white/40 text-white px-8 py-3.5 rounded-full font-medium transition-all text-lg"
             >
               ดูตัวอย่างจริง 2 นาที →
@@ -363,6 +364,32 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </section>
+
+        {/* Demo Video */}
+        <section id="demo-video" className="mb-24">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3">ดูการทำงานจริงใน 2 นาที</h2>
+            <p className="text-gray-400">เห็นว่าลูกค้าจริงใช้ MeowChat ทำงานอย่างไร</p>
+          </div>
+          <div className="relative w-full aspect-video rounded-3xl overflow-hidden border border-white/10 bg-zinc-900 flex items-center justify-center">
+            {/* Video placeholder — replace src with real YouTube/Loom embed URL when available */}
+            <div className="text-center">
+              <div className="w-20 h-20 rounded-full bg-purple-600/80 flex items-center justify-center mx-auto mb-4 cursor-pointer hover:bg-purple-600 transition-colors">
+                <span className="text-white text-3xl ml-1">▶</span>
+              </div>
+              <p className="text-gray-400 text-sm">วิดีโอสาธิต: การตั้งค่า LINE OA + บอทตอบลูกค้าจริง</p>
+              <a
+                href="https://line.me/ti/p/@960xboyt"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-4 text-purple-400 hover:text-purple-300 text-sm underline"
+              >
+                หรือทดลองคุยกับบอทตัวจริงได้เลย →
+              </a>
+            </div>
+          </div>
+          <p className="text-center text-gray-500 text-xs mt-4">* วิดีโอเต็มจะพร้อมเร็วๆ นี้ — ทดลองบอทจริงได้ทันทีผ่าน LINE</p>
         </section>
 
         {/* Features */}

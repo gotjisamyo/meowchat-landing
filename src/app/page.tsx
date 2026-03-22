@@ -20,12 +20,28 @@ const PRICING = [
     freeNote: "ฟรีตลอดชีพ ไม่มีวันหมดอายุ",
   },
   {
+    name: "Pro",
+    monthly: 999,
+    annual: 799,
+    badge: null,
+    features: [
+      "รองรับ LINE + Messenger",
+      "ตอบแชทอัตโนมัติ 3,000 ข้อความ/เดือน",
+      "AI ตอบคำถาม & ปิดออเดอร์",
+      "ระบบจองนัดหมายอัตโนมัติ",
+      "รายงานพื้นฐาน",
+    ],
+    cta: "เริ่มใช้ Pro",
+    highlight: false,
+    subNote: "เหมาะสำหรับ SME ที่เพิ่งเริ่ม",
+  },
+  {
     name: "Business",
     monthly: 2990,
     annual: 2490,
     badge: "ยอดนิยม · 8 ใน 10 เลือก",
     features: [
-      "LINE + Messenger ไม่จำกัด",
+      "LINE 3 OA + Messenger ไม่จำกัด",
       "ตอบแชทอัตโนมัติไม่จำกัด",
       "AI SalesAgent ปิดการขาย",
       "เชื่อมต่อ API หลังบ้าน",
@@ -217,6 +233,21 @@ const B2B_USE_CASES = [
     title: "B2B & ทีมขาย",
     desc: "Qualify lead อัตโนมัติ กระจาย lead ให้เซลส์ที่ว่าง และติดตาม pipeline แบบ real-time",
   },
+  {
+    icon: "💪",
+    title: "ฟิตเนส & Wellness",
+    desc: "จองคลาส Yoga/Pilates ซ้ำรายสัปดาห์ จัดการ capacity ของแต่ละคลาส และส่ง reminder อัตโนมัติ",
+  },
+  {
+    icon: "🚚",
+    title: "Logistics & ขนส่ง",
+    desc: "แจ้งสถานะพัสดุ real-time รับ inquiry B2B และเชื่อมต่อ API tracking ภายในผ่าน webhook",
+  },
+  {
+    icon: "🐾",
+    title: "สัตวแพทย์ & Pet Shop",
+    desc: "จองนัดหมอ ส่ง vaccine reminder ดูประวัติสัตว์เลี้ยง และรับออเดอร์อาหาร/อุปกรณ์",
+  },
 ];
 
 function StarRating({ count }: { count: number }) {
@@ -246,6 +277,7 @@ export default function Home() {
         <div className="hidden md:flex gap-6 text-sm font-medium text-gray-400">
           <a href="#features" className="hover:text-white transition-colors">ฟีเจอร์</a>
           <a href="#how-it-works" className="hover:text-white transition-colors">วิธีใช้</a>
+          <a href="#booking" className="hover:text-white transition-colors">การจอง</a>
           <a href="#use-cases" className="hover:text-white transition-colors">ใช้กับธุรกิจอะไร</a>
           <a href="#pricing" className="hover:text-white transition-colors">ราคา</a>
           <a href="#faq" className="hover:text-white transition-colors">FAQ</a>

@@ -77,7 +77,7 @@ export default function Pricing({ setSidebarOpen }) {
     )}
     <PageLayout
       title="Pricing"
-      subtitle="เลือกแผมที่เหมาะกับธุรกิจของคุณ"
+      subtitle="เลือกแผนที่เหมาะกับธุรกิจของคุณ"
       setSidebarOpen={setSidebarOpen}
     >
       {/* Header */}
@@ -87,7 +87,7 @@ export default function Pricing({ setSidebarOpen }) {
           <span>Simple, Transparent Pricing</span>
         </div>
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-          เลือกแผมที่ใช่สำหรับคุณ
+          เลือกแผนที่ใช่สำหรับคุณ
         </h2>
         <p className="text-zinc-400 text-lg">
           เริ่มต้นฟรี และอัพเกรดเมื่อพร้อม ไม่มีค่าใช้จ่ายซ่อนเร้น
@@ -235,7 +235,7 @@ export default function Pricing({ setSidebarOpen }) {
                       กำลังอัพเกรด...
                     </span>
                   ) : isCurrentPlan ? (
-                    'แผมปัจจุบัน'
+                    'แผนปัจจุบัน'
                   ) : !user ? (
                     'เข้าสู่ระบบเพื่อเลือก'
                   ) : (
@@ -253,12 +253,12 @@ export default function Pricing({ setSidebarOpen }) {
         <h3 className="text-2xl font-bold text-white text-center mb-8">คำถามที่พบบ่อย</h3>
         <div className="grid gap-4">
           <FaqItem 
-            question="สามารถยกเลิกแผมได้ตลอดเวลาหรือไม่?"
+            question="สามารถยกเลิกแผนได้ตลอดเวลาหรือไม่?"
             answer="ใช่ค่ะ สามารถยกเลิกได้ตลอดเวลา และจะไม่ถูกเรียกเก็บเงินเพิ่มหลังจากหมดรอบเดือน"
           />
           <FaqItem 
             question="มีการทดลองใช้ฟรีหรือไม่?"
-            answer="แผม Free สามารถใช้งานได้ตลอดไปโดยไม่มีค่าใช้จ่าย ส่วน Pro และ Enterprise สามารถทดลองใช้ได้ 14 วัน"
+            answer="แผน Free สามารถใช้งานได้ตลอดไปโดยไม่มีค่าใช้จ่าย ส่วน Pro และ Enterprise สามารถทดลองใช้ได้ 14 วัน"
           />
           <FaqItem 
             question="รับประกันเงินคืนหรือไม่?"

@@ -708,6 +708,51 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
 </div>
 </section>
 
+<!-- TESTIMONIALS (beta testers) -->
+<section class="sec test-wrap" id="beta-reviews">
+<div class="sec-hd">
+  <div class="s-chip">⭐ รีวิวจากผู้ใช้จริง</div>
+  <h2 class="s-title">เสียงจากเจ้าของร้าน</h2>
+  <p class="s-sub">Beta testers ที่ใช้งานจริงในช่วง 30 วันแรก</p>
+</div>
+<div class="test-grid">
+
+<div class="test-card reveal">
+  <p class="test-quote">"ก่อนหน้านี้ต้องนั่งตอบแชทเองทุกวัน วันนี้บอทตอบได้ 90% ฉันแค่รับเงิน"</p>
+  <div class="test-user">
+    <div class="test-ava">🧁</div>
+    <div>
+      <div class="test-name">คุณมณีรัตน์</div>
+      <div class="test-role">เจ้าของร้านขนมปัง</div>
+    </div>
+  </div>
+</div>
+
+<div class="test-card reveal">
+  <p class="test-quote">"ลูกค้าจองผ่านแชทได้เลย ไม่ต้องโทรหา ยอดงานเพิ่มขึ้น 30% เดือนแรก"</p>
+  <div class="test-user">
+    <div class="test-ava">❄️</div>
+    <div>
+      <div class="test-name">คุณธีระ</div>
+      <div class="test-role">ร้านซ่อม AC</div>
+    </div>
+  </div>
+</div>
+
+<div class="test-card reveal">
+  <p class="test-quote">"ลองมาหลายเจ้าแล้ว MeowChat เดียวที่ตั้งค่าง่าย ภาษาไทยสมบูรณ์มาก"</p>
+  <div class="test-user">
+    <div class="test-ava">💆</div>
+    <div>
+      <div class="test-name">คุณสุภาพร</div>
+      <div class="test-role">ร้านนวดสปา</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /test-grid -->
+</section>
+
 <!-- CTA -->
 <section class="cta" id="contact">
   <span class="cta-cats">😺🐱😸</span>
@@ -838,6 +883,23 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
 .rv-name{font-weight:700;font-size:14px;color:#222}
 .rv-role{font-size:12px;color:#888;margin-top:2px}
 .rev-more{text-align:center;margin-top:28px;color:#777;font-size:15px}
+
+/* BETA TESTIMONIALS */
+.test-wrap{background:#1a1228}
+.test-wrap .s-chip{background:rgba(255,183,77,.15);color:#FFB74D;border:1px solid rgba(255,183,77,.3)}
+.test-wrap .s-title{color:#f0e8ff}
+.test-wrap .s-sub{color:#b9a8d4}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:980px;margin:32px auto 0}
+@media(max-width:860px){.test-grid{grid-template-columns:1fr;max-width:420px}}
+.test-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:28px 24px;
+  box-shadow:0 4px 24px rgba(0,0,0,.25);opacity:0;transform:translateY(16px);transition:all .5s ease}
+.test-card.show{opacity:1;transform:translateY(0)}
+.test-card:hover{border-color:rgba(255,183,77,.3);background:rgba(255,255,255,.07)}
+.test-quote{font-size:15px;line-height:1.75;color:#e8dff8;font-style:italic;margin-bottom:20px}
+.test-user{display:flex;align-items:center;gap:14px}
+.test-ava{width:44px;height:44px;border-radius:50%;background:rgba(142,111,187,.25);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.test-name{font-weight:700;font-size:14px;color:#fff}
+.test-role{font-size:12px;color:#9b85c4;margin-top:2px}
 
 /* PAYMENT METHODS */
 .pay-methods{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin-top:28px;padding:16px;background:#fff9f5;border-radius:16px;border:1px solid #fde8d8;font-size:13px;color:#888}

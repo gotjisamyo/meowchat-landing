@@ -5,10 +5,17 @@ import OmiseCheckout from '../components/OmiseCheckout';
 import { subscriptionPlans } from '../data/mockData';
 import { useAuth } from '../context/AuthContext';
 
+// Annual pricing: 10 months price billed yearly (≈17% off)
+const ANNUAL_PRICES = {
+  pro: { monthly: 490, yearly: 5880, savings: 1180 },
+  enterprise: { monthly: 1658, yearly: 19900, savings: 3980 },
+};
+
 export default function Pricing({ setSidebarOpen }) {
   const { user, updateSubscription } = useAuth();
   const [loadingPlan, setLoadingPlan] = useState(null);
   const [checkoutPlan, setCheckoutPlan] = useState(null); // plan object for modal
+  const [billing, setBilling] = useState('monthly'); // 'monthly' | 'annual'
 
   const handleSelectPlan = (planId) => {
     if (!user) return;
@@ -21,6 +28,15 @@ export default function Pricing({ setSidebarOpen }) {
   const handlePaymentSuccess = (plan) => {
     updateSubscription(plan.id);
     setCheckoutPlan(null);
+  };
+
+  const getDisplayPrice = (plan) => {
+    if (plan.price === 0 || !ANNUAL_PRICES[plan.id]) return { price: plan.price, original: null, savings: null, yearlyTotal: null };
+    if (billing === 'annual') {
+      const a = ANNUAL_PRICES[plan.id];
+      return { price: a.monthly, original: plan.price, savings: a.savings, yearlyTotal: a.yearly };
+    }
+    return { price: plan.price, original: null, savings: null, yearlyTotal: null };
   };
 
   const getPlanIcon = (color) => {
@@ -76,6 +92,35 @@ export default function Pricing({ setSidebarOpen }) {
         <p className="text-zinc-400 text-lg">
           เริ่มต้นฟรี และอัพเกรดเมื่อพร้อม ไม่มีค่าใช้จ่ายซ่อนเร้น
         </p>
+
+        {/* Billing toggle */}
+        <div className="flex items-center justify-center gap-3 mt-6">
+          <div className="flex items-center p-1 rounded-xl bg-white/[0.04] border border-white/[0.08]">
+            <button
+              onClick={() => setBilling('monthly')}
+              className={`px-5 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${
+                billing === 'monthly'
+                  ? 'bg-white/[0.1] text-white shadow'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              รายเดือน
+            </button>
+            <button
+              onClick={() => setBilling('annual')}
+              className={`flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${
+                billing === 'annual'
+                  ? 'bg-white/[0.1] text-white shadow'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              รายปี (ประหยัด 2 เดือน)
+              <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                ประหยัด 17%
+              </span>
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Pricing Cards */}
@@ -123,10 +168,28 @@ export default function Pricing({ setSidebarOpen }) {
                   <h3 className="text-xl font-bold text-white mb-1">{plan.name}</h3>
                   <p className="text-sm text-zinc-500 mb-4">{plan.description}</p>
                   
-                  <div className="flex items-baseline justify-center gap-1">
-                    <span className="text-4xl font-bold text-white">฿{plan.price}</span>
-                    {plan.price > 0 && <span className="text-zinc-500">/{plan.period}</span>}
-                  </div>
+                  {(() => {
+                    const dp = getDisplayPrice(plan);
+                    return (
+                      <div className="flex flex-col items-center gap-1">
+                        {dp.original && (
+                          <span className="text-zinc-500 line-through text-sm">฿{dp.original}/เดือน</span>
+                        )}
+                        <div className="flex items-baseline justify-center gap-1">
+                          <span className="text-4xl font-bold text-white transition-all duration-300">฿{dp.price}</span>
+                          {plan.price > 0 && <span className="text-zinc-500">/เดือน</span>}
+                        </div>
+                        {dp.yearlyTotal && (
+                          <span className="text-xs text-zinc-500">จ่าย ฿{dp.yearlyTotal.toLocaleString()}/ปี</span>
+                        )}
+                        {dp.savings && (
+                          <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                            ประหยัด ฿{dp.savings.toLocaleString()}
+                          </span>
+                        )}
+                      </div>
+                    );
+                  })()}
                   
                   {getCurrentPlanBadge(plan.id)}
                 </div>

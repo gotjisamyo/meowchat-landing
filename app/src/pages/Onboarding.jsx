@@ -409,13 +409,26 @@ function Step5({ data, setData, onFinish, onBack }) {
   const [testing, setTesting] = useState(false);
   const [testResult, setTestResult] = useState(null);
 
-  const handleTest = () => {
+  const handleTest = async () => {
     setTesting(true);
     setTestResult(null);
-    setTimeout(() => {
+    try {
+      const res = await fetch('https://api.meowchat.store/api/line/test', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: data.lineToken }),
+      });
+      if (res.ok) {
+        setTestResult('success');
+      } else {
+        setTestResult('error');
+      }
+    } catch {
+      // Network error or backend not reachable
+      setTestResult('error');
+    } finally {
       setTesting(false);
-      setTestResult('success');
-    }, 1500);
+    }
   };
 
   const EyeIcon = ({ show }) => (
@@ -508,17 +521,29 @@ function Step5({ data, setData, onFinish, onBack }) {
       </div>
 
       {/* Test button + result */}
-      <div className="flex items-center gap-3">
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center gap-3">
+          <button
+            onClick={handleTest}
+            disabled={!data.lineToken || !data.lineSecret || testing}
+            className="px-5 py-2.5 rounded-xl font-semibold text-sm border border-orange-500/50 text-orange-400 hover:bg-orange-500/10 disabled:opacity-40 disabled:cursor-not-allowed transition"
+          >
+            {testing ? 'กำลังทดสอบ...' : 'ทดสอบการเชื่อมต่อ'}
+          </button>
+          {testResult === 'success' && (
+            <span className="text-sm font-semibold text-emerald-400">✅ เชื่อมต่อสำเร็จ</span>
+          )}
+          {testResult === 'error' && (
+            <span className="text-sm font-semibold text-red-400">❌ ไม่สามารถเชื่อมต่อได้ กรุณาตรวจสอบ Channel Access Token อีกครั้ง</span>
+          )}
+        </div>
+        <p className="text-xs text-zinc-500">หาก Channel Access Token ไม่ถูกต้อง บอทจะไม่สามารถตอบข้อความได้</p>
         <button
-          onClick={handleTest}
-          disabled={!data.lineToken || !data.lineSecret || testing}
-          className="px-5 py-2.5 rounded-xl font-semibold text-sm border border-orange-500/50 text-orange-400 hover:bg-orange-500/10 disabled:opacity-40 disabled:cursor-not-allowed transition"
+          onClick={onFinish}
+          className="self-start text-xs text-zinc-400 hover:text-orange-400 transition underline underline-offset-2"
         >
-          {testing ? 'กำลังทดสอบ...' : 'ทดสอบ'}
+          ข้ามขั้นตอนนี้ก่อน
         </button>
-        {testResult === 'success' && (
-          <span className="text-sm font-semibold text-emerald-400">✅ เชื่อมต่อสำเร็จ</span>
-        )}
       </div>
 
       <div className="flex justify-between mt-2">

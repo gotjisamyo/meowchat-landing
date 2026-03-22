@@ -2,6 +2,7 @@ import Image from "next/image";
 import MobileNav from "./_components/MobileNav";
 import PricingSection from "./_components/PricingSection";
 import FAQSection from "./_components/FAQSection";
+import DemoPlayground from "./_components/DemoPlayground";
 
 const PRICING = [
   {
@@ -437,59 +438,13 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Demo / Live Bot */}
+        {/* Interactive Demo Playground */}
         <section id="demo-video" className="mb-24">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold mb-3">ทดลองคุยกับ AI จริงๆ ได้เลย — ฟรี ไม่ต้องสมัคร</h2>
-            <p className="text-gray-400">ไม่ใช่ตัวอย่าง — นี่คือ bot จริงที่ธุรกิจไทยใช้งานอยู่</p>
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">ทดลองปรับแต่ง AI Bot ของคุณเอง</h2>
+            <p className="text-gray-400 max-w-xl mx-auto">ตั้งค่าบุคลิก เลือกประเภทธุรกิจ แล้วคุยกับ bot ได้เลย — ไม่ต้องสมัคร</p>
           </div>
-          <div className="glass rounded-3xl p-8 md:p-12 border-purple-500/20">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-10">
-              {/* Left: What to try */}
-              <div className="flex-1 max-w-sm">
-                <p className="text-gray-300 font-semibold mb-4 text-lg">ลองถามบอทว่า:</p>
-                <div className="space-y-3">
-                  {[
-                    { emoji: "💬", text: "\"ราคาเท่าไหร่?\"" },
-                    { emoji: "📅", text: "\"จองนัดได้ไหม?\"" },
-                    { emoji: "🔧", text: "\"ตั้งค่ายากไหม?\"" },
-                    { emoji: "🌐", text: "\"How much does it cost?\"" },
-                    { emoji: "🏢", text: "\"เหมาะกับธุรกิจฉันไหม?\"" },
-                  ].map((q) => (
-                    <div key={q.text} className="flex items-center gap-3 glass px-4 py-2.5 rounded-xl text-sm text-gray-300">
-                      <span className="text-base">{q.emoji}</span>
-                      <span>{q.text}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Divider */}
-              <div className="text-gray-600 font-bold text-lg hidden md:block">→</div>
-              <div className="text-gray-600 font-bold text-lg md:hidden">↓</div>
-
-              {/* Right: CTA */}
-              <div className="flex-1 max-w-sm text-center space-y-5">
-                <div className="w-20 h-20 rounded-full bg-green-500/20 border-2 border-green-500/40 flex items-center justify-center mx-auto">
-                  <span className="text-4xl">🤖</span>
-                </div>
-                <div>
-                  <p className="text-white font-bold text-lg mb-1">MeowBot พร้อมตอบทันที</p>
-                  <p className="text-gray-400 text-sm">ตอบ 24/7 · ทั้งไทยและอังกฤษ · ตอบจริงไม่ใช่ script</p>
-                </div>
-                <a
-                  href="https://line.me/ti/p/@960xboyt"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-8 py-3.5 rounded-full font-bold text-base transition-all transform hover:scale-105 w-full justify-center"
-                >
-                  <span className="text-xl">💬</span>
-                  เปิด LINE แชทกับบอทเลย
-                </a>
-                <p className="text-gray-600 text-xs">LINE: @960xboyt · ฟรี ไม่ต้องสมัคร ไม่ต้องใส่บัตรเครดิต</p>
-              </div>
-            </div>
-          </div>
+          <DemoPlayground />
         </section>
 
         {/* Features */}

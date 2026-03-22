@@ -271,31 +271,36 @@ export default function Dashboard({ setSidebarOpen }) {
         </div>
       )}
 
-      {/* Usage Limit Warning — show to non-admin users near quota */}
-      {!isAdmin() && (
-        <div className="mb-2 p-4 bg-amber-500/10 border border-amber-500/30 rounded-2xl flex items-start gap-3">
-          <AlertTriangle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center justify-between gap-2 mb-1.5">
-              <span className="text-sm font-semibold text-amber-300">ข้อความเดือนนี้: 8,430 / 10,000</span>
-              <span className="text-xs text-amber-400 font-medium">84%</span>
+      {/* Usage Limit Warning — show to non-admin users only when usage >= 70% */}
+      {(() => {
+        const userMessageUsage = { used: 8430, limit: 10000 }; // will come from real API
+        const usagePct = Math.round((userMessageUsage.used / userMessageUsage.limit) * 100);
+        if (isAdmin() || usagePct < 70) return null;
+        return (
+          <div className="mb-2 p-4 bg-amber-500/10 border border-amber-500/30 rounded-2xl flex items-start gap-3">
+            <AlertTriangle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center justify-between gap-2 mb-1.5">
+                <span className="text-sm font-semibold text-amber-300">ข้อความเดือนนี้: {userMessageUsage.used.toLocaleString()} / {userMessageUsage.limit.toLocaleString()}</span>
+                <span className="text-xs text-amber-400 font-medium">{usagePct}%</span>
+              </div>
+              <div className="h-1.5 bg-white/10 rounded-full overflow-hidden mb-2">
+                <div className="h-full bg-gradient-to-r from-amber-500 to-orange-500 rounded-full" style={{ width: `${usagePct}%` }} />
+              </div>
+              <p className="text-xs text-amber-400/80">
+                เหลืออีก {(userMessageUsage.limit - userMessageUsage.used).toLocaleString()} ข้อความ — อัพเกรดเพื่อใช้งานต่อเนื่องโดยไม่สะดุด
+              </p>
             </div>
-            <div className="h-1.5 bg-white/10 rounded-full overflow-hidden mb-2">
-              <div className="h-full bg-gradient-to-r from-amber-500 to-orange-500 rounded-full" style={{ width: '84%' }} />
-            </div>
-            <p className="text-xs text-amber-400/80">
-              เหลืออีก 1,570 ข้อความ — อัพเกรดเพื่อใช้งานต่อเนื่องโดยไม่สะดุด
-            </p>
+            <a
+              href="#"
+              onClick={e => { e.preventDefault(); }}
+              className="flex-shrink-0 flex items-center gap-1 px-3 py-1.5 bg-orange-500 hover:bg-orange-400 text-white text-xs font-bold rounded-lg transition-colors"
+            >
+              อัพเกรด <ArrowUpRight className="w-3 h-3" />
+            </a>
           </div>
-          <a
-            href="#"
-            onClick={e => { e.preventDefault(); }}
-            className="flex-shrink-0 flex items-center gap-1 px-3 py-1.5 bg-orange-500 hover:bg-orange-400 text-white text-xs font-bold rounded-lg transition-colors"
-          >
-            อัพเกรด <ArrowUpRight className="w-3 h-3" />
-          </a>
-        </div>
-      )}
+        );
+      })()}
 
       {/* ── AI Insights Panel ─────────────────────────────────────────────── */}
       <AiInsightsPanel />

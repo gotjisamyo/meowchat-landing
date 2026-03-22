@@ -1,4 +1,5 @@
-import { TrendingUp, Users, UserPlus, AlertTriangle, MessageSquare, DollarSign, ArrowUpRight } from 'lucide-react';
+import { useState } from 'react';
+import { TrendingUp, Users, UserPlus, AlertTriangle, MessageSquare, DollarSign, ArrowUpRight, Send, Download, FileWarning, RefreshCw } from 'lucide-react';
 
 const mrrData = [
   { month: 'ต.ค.', value: 41000, label: '฿41K' },
@@ -33,6 +34,75 @@ const planColors = {
 
 const maxMrr = Math.max(...mrrData.map((d) => d.value));
 
+const QUICK_ACTIONS = [
+  {
+    id: 'broadcast',
+    icon: Send,
+    label: 'ส่ง Broadcast ทดสอบ',
+    color: 'bg-orange-500/15 border-orange-500/30 text-orange-400 hover:bg-orange-500/25',
+    toast: 'ส่ง Broadcast ทดสอบสำเร็จแล้ว ✅',
+  },
+  {
+    id: 'export',
+    icon: Download,
+    label: 'Export ข้อมูลลูกค้า',
+    color: 'bg-blue-500/15 border-blue-500/30 text-blue-400 hover:bg-blue-500/25',
+    toast: 'กำลัง Export ข้อมูลลูกค้า... ไฟล์จะพร้อมใน 1-2 นาที 📥',
+  },
+  {
+    id: 'errors',
+    icon: FileWarning,
+    label: 'ดู Error Logs',
+    color: 'bg-red-500/15 border-red-500/30 text-red-400 hover:bg-red-500/25',
+    toast: 'เปิด Error Logs แล้ว — พบ 3 errors ใน 24 ชม. ที่ผ่านมา ⚠️',
+  },
+  {
+    id: 'restart',
+    icon: RefreshCw,
+    label: 'รีสตาร์ท AI Worker',
+    color: 'bg-purple-500/15 border-purple-500/30 text-purple-400 hover:bg-purple-500/25',
+    toast: 'รีสตาร์ท AI Worker สำเร็จ — Worker พร้อมทำงานแล้ว 🚀',
+  },
+];
+
+function QuickActionsCard() {
+  const [toastMsg, setToastMsg] = useState(null);
+
+  const handleAction = (action) => {
+    setToastMsg(action.toast);
+    setTimeout(() => setToastMsg(null), 3000);
+  };
+
+  return (
+    <div className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-6">
+      <h2 className="text-white font-bold mb-1">Quick Actions</h2>
+      <p className="text-zinc-500 text-sm mb-5">ดำเนินการด่วนสำหรับแอดมิน</p>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        {QUICK_ACTIONS.map((action) => {
+          const Icon = action.icon;
+          return (
+            <button
+              key={action.id}
+              onClick={() => handleAction(action)}
+              className={`flex flex-col items-center gap-2.5 px-3 py-4 rounded-xl border text-sm font-semibold transition-all duration-150 ${action.color}`}
+            >
+              <Icon className="w-5 h-5" />
+              <span className="text-center leading-snug">{action.label}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Inline toast notification */}
+      {toastMsg && (
+        <div className="mt-4 px-4 py-3 bg-emerald-500/15 border border-emerald-500/30 rounded-xl text-emerald-400 text-sm font-medium transition-all">
+          {toastMsg}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function SAOverview() {
   return (
     <div className="p-6 lg:p-8 space-y-8">
@@ -51,6 +121,9 @@ export default function SAOverview() {
         <KpiCard icon={<TrendingUp className="w-5 h-5" />} label="ARPU" value="฿507" change="+฿45 vs เดือนก่อน" color="purple" />
         <KpiCard icon={<MessageSquare className="w-5 h-5" />} label="Messages/Day" value="48,290" change="+8% WoW" color="cyan" />
       </div>
+
+      {/* Quick Actions */}
+      <QuickActionsCard />
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
         {/* MRR Chart */}

@@ -11,13 +11,29 @@ const PRICING = [
     badge: null,
     features: [
       "รองรับ LINE 1 ช่องทาง",
-      "Bot ตอบอัตโนมัติ 100 ครั้ง/เดือน (ข้อความที่ bot ส่งออก)",
+      "Bot ตอบอัตโนมัติ 300 ครั้ง/เดือน",
       "AI วิเคราะห์ลูกค้าระดับต้น",
       "แดชบอร์ดพื้นฐาน",
     ],
     cta: "เริ่มฟรีเลย",
     highlight: false,
     freeNote: "ฟรีตลอดชีพ ไม่มีวันหมดอายุ",
+  },
+  {
+    name: "Mini",
+    monthly: 299,
+    annual: 249,
+    badge: null,
+    features: [
+      "รองรับ LINE 1 ช่องทาง",
+      "Bot ตอบอัตโนมัติ 1,000 ครั้ง/เดือน",
+      "AI ตอบคำถาม & ส่งราคาสินค้า",
+      "ระบบจองนัดพื้นฐาน",
+      "แดชบอร์ดพื้นฐาน",
+    ],
+    cta: "เริ่มใช้ Mini",
+    highlight: false,
+    subNote: "เหมาะสำหรับ solopreneur และธุรกิจเพิ่งเริ่ม",
   },
   {
     name: "Pro",
@@ -75,7 +91,7 @@ const FEATURES = [
   {
     icon: "🤖",
     title: "ตอบแทนแอดมิน 24/7 ไม่มีวันลา",
-    desc: "เรียนรู้สไตล์แบรนด์คุณ ตอบได้ทั้งไทยและอังกฤษ พร้อมส่งต่อให้แอดมินอัตโนมัติเมื่อจำเป็น",
+    desc: "เรียนรู้สไตล์แบรนด์คุณ ตอบได้ทั้งไทยและอังกฤษ ส่งรูป ไฟล์ PDF และลิงก์ได้ พร้อมส่งต่อแอดมินอัตโนมัติ",
   },
   {
     icon: "📊",
@@ -111,6 +127,11 @@ const FEATURES = [
     icon: "🔒",
     title: "ปลอดภัย & PDPA Compliant",
     desc: "ข้อมูลลูกค้าเข้ารหัส AES-256 และได้รับรองตาม พ.ร.บ.คุ้มครองข้อมูลส่วนบุคคล 2562",
+  },
+  {
+    icon: "📦",
+    title: "ติดตามสถานะงาน/ออเดอร์",
+    desc: "ลูกค้าถามสถานะซ่อม พัสดุ หรือออเดอร์ผ่าน LINE ได้เลย bot ตอบด้วยเลขงานและสถานะล่าสุดอัตโนมัติ",
   },
 ];
 
@@ -265,6 +286,26 @@ const B2B_USE_CASES = [
     icon: "🔧",
     title: "ช่าง & อู่ซ่อมบำรุง",
     desc: "จองนัดซ่อม แจ้งสถานะรถเสร็จ ส่ง reminder บำรุงรักษา และรับ pre-approve ค่าใช้จ่ายผ่าน LINE",
+  },
+  {
+    icon: "💒",
+    title: "งานแต่งงาน & Event",
+    desc: "จัดการ inquiry ลูกค้า, นัดดู venue, ส่ง timeline และประสานงาน vendor ผ่าน LINE ได้ครบ",
+  },
+  {
+    icon: "✂️",
+    title: "ร้านตัดผม & เสริมสวย",
+    desc: "จองช่างที่ต้องการ จัดการ walk-in + appointment พร้อม Reminder และ no-show tracking",
+  },
+  {
+    icon: "🏢",
+    title: "นิติบุคคล & Property",
+    desc: "รับแจ้งซ่อม track ticket สถานะ แจ้งค่าส่วนกลาง และ broadcast ข่าวสารถึงลูกบ้านทุกคน",
+  },
+  {
+    icon: "🚗",
+    title: "เช่ารถ & Fleet",
+    desc: "เช็คความพร้อมรถ จองออนไลน์ รับมัดจำ และส่ง reminder คืนรถอัตโนมัติผ่าน LINE",
   },
 ];
 
@@ -489,7 +530,7 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">MeowChat เหมาะกับธุรกิจอะไร?</h2>
             <p className="text-gray-400 max-w-xl mx-auto">ใช้ได้กับทุกอุตสาหกรรม เชื่อมต่อกับ POS, ERP, delivery platforms และระบบเดิมของคุณผ่าน API</p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {B2B_USE_CASES.map((uc) => (
               <div key={uc.title} className="glass p-6 rounded-2xl flex gap-4 hover:border-purple-500/30 transition-colors">
                 <div className="text-3xl flex-shrink-0">{uc.icon}</div>

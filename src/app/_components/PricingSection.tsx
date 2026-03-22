@@ -40,7 +40,7 @@ export default function PricingSection({ plans }: { plans: PricingPlan[] }) {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
         {plans.map((plan) => (
           <div
             key={plan.name}
@@ -115,11 +115,12 @@ export default function PricingSection({ plans }: { plans: PricingPlan[] }) {
       <div className="mt-16">
         <h3 className="text-center text-xl font-bold mb-6 text-gray-200">ช่องทางที่รองรับในแต่ละแผน</h3>
         <div className="glass rounded-2xl overflow-x-auto">
-          <table className="w-full min-w-[560px] text-sm">
+          <table className="w-full min-w-[680px] text-sm">
             <thead>
               <tr className="border-b border-white/10">
                 <th className="text-left px-6 py-4 font-semibold text-gray-300">ช่องทาง</th>
                 <th className="px-4 py-4 font-semibold text-gray-300 text-center">Starter</th>
+                <th className="px-4 py-4 font-semibold text-gray-300 text-center">Mini</th>
                 <th className="px-4 py-4 font-semibold text-gray-300 text-center">Pro</th>
                 <th className="px-4 py-4 font-semibold text-purple-300 text-center">Business</th>
                 <th className="px-4 py-4 font-semibold text-gray-300 text-center">Enterprise</th>
@@ -130,6 +131,7 @@ export default function PricingSection({ plans }: { plans: PricingPlan[] }) {
                 {
                   channel: "LINE OA",
                   starter: "✓ 1 OA",
+                  mini: "✓ 1 OA",
                   pro: "✓ 2 OA",
                   business: "✓ 3 OA",
                   enterprise: "✓ ไม่จำกัด",
@@ -138,6 +140,7 @@ export default function PricingSection({ plans }: { plans: PricingPlan[] }) {
                 {
                   channel: "Facebook Messenger",
                   starter: null,
+                  mini: null,
                   pro: "✓",
                   business: "✓",
                   enterprise: "✓",
@@ -146,6 +149,7 @@ export default function PricingSection({ plans }: { plans: PricingPlan[] }) {
                 {
                   channel: "WhatsApp",
                   starter: null,
+                  mini: null,
                   pro: null,
                   business: null,
                   enterprise: "✓",
@@ -154,6 +158,7 @@ export default function PricingSection({ plans }: { plans: PricingPlan[] }) {
                 {
                   channel: "Zalo",
                   starter: null,
+                  mini: null,
                   pro: null,
                   business: null,
                   enterprise: "✓",
@@ -162,6 +167,7 @@ export default function PricingSection({ plans }: { plans: PricingPlan[] }) {
                 {
                   channel: "Instagram DM",
                   starter: null,
+                  mini: null,
                   pro: null,
                   business: null,
                   enterprise: null,
@@ -172,16 +178,24 @@ export default function PricingSection({ plans }: { plans: PricingPlan[] }) {
                   <td className="px-6 py-3 font-medium text-gray-300">{row.channel}</td>
                   {row.comingSoon ? (
                     <>
-                      <td className="px-4 py-3 text-center text-gray-500 text-xs">เร็วๆ นี้</td>
-                      <td className="px-4 py-3 text-center text-gray-500 text-xs">เร็วๆ นี้</td>
-                      <td className="px-4 py-3 text-center text-gray-500 text-xs">เร็วๆ นี้</td>
-                      <td className="px-4 py-3 text-center text-gray-500 text-xs">เร็วๆ นี้</td>
+                      <td className="px-4 py-3 text-center text-gray-500 text-xs">เร็วๆ นี้ (Q3 2568)</td>
+                      <td className="px-4 py-3 text-center text-gray-500 text-xs">เร็วๆ นี้ (Q3 2568)</td>
+                      <td className="px-4 py-3 text-center text-gray-500 text-xs">เร็วๆ นี้ (Q3 2568)</td>
+                      <td className="px-4 py-3 text-center text-gray-500 text-xs">เร็วๆ นี้ (Q3 2568)</td>
+                      <td className="px-4 py-3 text-center text-gray-500 text-xs">เร็วๆ นี้ (Q3 2568)</td>
                     </>
                   ) : (
                     <>
                       <td className="px-4 py-3 text-center">
                         {row.starter ? (
                           <span className="text-green-400">{row.starter}</span>
+                        ) : (
+                          <span className="text-gray-600">—</span>
+                        )}
+                      </td>
+                      <td className="px-4 py-3 text-center">
+                        {row.mini ? (
+                          <span className="text-green-400">{row.mini}</span>
                         ) : (
                           <span className="text-gray-600">—</span>
                         )}

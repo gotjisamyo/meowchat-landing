@@ -367,9 +367,9 @@ export const subscriptionStats = {
   churned: 778,
   newThisMonth: 234,
   revenue: {
-    monthly: 2450000,
-    yearly: 29400000,
-    avgPerUser: 290,
+    monthly: 95490,
+    yearly: 1145880,
+    avgPerUser: 729, // 95490 / 131 paying users (118 Pro + 13 Enterprise)
   },
   byPlan: {
     free: 4123,

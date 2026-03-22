@@ -1,9 +1,9 @@
 import { TrendingUp, DollarSign, Users, ArrowUpRight, Rocket } from 'lucide-react';
 
 const planRevenue = [
-  { plan: 'Free', color: 'bg-zinc-500', textColor: 'text-zinc-400', borderColor: 'border-zinc-500/30', count: 89, price: 0, total: 0, pct: 0 },
-  { plan: 'Pro ฿590', color: 'bg-orange-500', textColor: 'text-orange-400', borderColor: 'border-orange-500/30', count: 78, price: 590, total: 46020, pct: 54 },
-  { plan: 'Enterprise ฿1,990', color: 'bg-purple-500', textColor: 'text-purple-400', borderColor: 'border-purple-500/30', count: 20, price: 1990, total: 39800, pct: 46 },
+  { plan: 'Free', color: 'bg-zinc-500', textColor: 'text-zinc-400', borderColor: 'border-zinc-500/30', count: 56, price: 0, total: 0, pct: 0 },
+  { plan: 'Pro ฿590', color: 'bg-orange-500', textColor: 'text-orange-400', borderColor: 'border-orange-500/30', count: 118, price: 590, total: 69620, pct: 73 },
+  { plan: 'Enterprise ฿1,990', color: 'bg-purple-500', textColor: 'text-purple-400', borderColor: 'border-purple-500/30', count: 13, price: 1990, total: 25870, pct: 27 },
 ];
 
 const monthlyData = [
@@ -12,12 +12,12 @@ const monthlyData = [
   { month: 'ธ.ค. 2025', mrr: 63000, newCustomers: 28, churn: 1, churnRevenue: 590 },
   { month: 'ม.ค. 2026', mrr: 71000, newCustomers: 25, churn: 3, churnRevenue: 1770 },
   { month: 'ก.พ. 2026', mrr: 82000, newCustomers: 30, churn: 2, churnRevenue: 1180 },
-  { month: 'มี.ค. 2026', mrr: 94810, newCustomers: 34, churn: 4, churnRevenue: 2360 },
+  { month: 'มี.ค. 2026', mrr: 95490, newCustomers: 34, churn: 4, churnRevenue: 2360 },
 ];
 
 export default function SARevenue() {
-  const totalMRR = 85820;
-  const arpu = 507;
+  const totalMRR = 95490;
+  const arpu = Math.round(95490 / 131); // 131 paying users (118 Pro + 13 Enterprise)
   const avgLifeMonths = 14;
   const ltv = arpu * avgLifeMonths;
   const cacMarketing = 8500;
@@ -37,15 +37,15 @@ export default function SARevenue() {
         <MetricCard
           icon={<DollarSign className="w-5 h-5" />}
           label="MRR (March)"
-          value="฿94,810"
+          value="฿95,490"
           sub="+18% MoM"
           color="green"
         />
         <MetricCard
           icon={<TrendingUp className="w-5 h-5" />}
           label="Annual Run Rate"
-          value={`฿${(arr).toLocaleString()}`}
-          sub="฿1,137,840/year"
+          value={`฿${arr.toLocaleString()}`}
+          sub="฿1,145,880/year"
           color="orange"
           highlight
         />
@@ -113,16 +113,16 @@ export default function SARevenue() {
 
           <div className="mt-6 pt-4 border-t border-white/[0.06] space-y-2">
             <div className="flex justify-between text-sm">
-              <span className="text-zinc-500">Paid MRR (Pro + Enterprise)</span>
-              <span className="text-white font-semibold">฿85,820</span>
+              <span className="text-zinc-500">Pro MRR (118 × ฿590)</span>
+              <span className="text-orange-400 font-semibold">฿69,620</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-zinc-500">New MRR this month est.</span>
-              <span className="text-green-400 font-semibold">+฿8,990</span>
+              <span className="text-zinc-500">Enterprise MRR (13 × ฿1,990)</span>
+              <span className="text-purple-400 font-semibold">฿25,870</span>
             </div>
             <div className="flex justify-between text-sm pt-2 border-t border-white/[0.04]">
               <span className="text-zinc-300 font-semibold">Total MRR (March)</span>
-              <span className="text-green-400 font-bold">฿94,810</span>
+              <span className="text-green-400 font-bold">฿95,490</span>
             </div>
           </div>
         </div>
@@ -167,17 +167,50 @@ export default function SARevenue() {
         />
         <SummaryCard
           title="Net New MRR"
-          value="+฿12,810"
-          detail="Expansion + new signups"
+          value="+฿6,710"
+          detail="New + Expansion − Churn"
           color="green"
         />
         <SummaryCard
           title="Annual Run Rate"
-          value="฿1,137,840"
+          value="฿1,145,880"
           detail="On track for ฿1.1M ARR"
           color="orange"
           rocket
         />
+      </div>
+
+      {/* MRR Movement Waterfall */}
+      <div className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-6">
+        <h2 className="text-white font-bold mb-1">MRR Movement (March 2026)</h2>
+        <p className="text-zinc-500 text-sm mb-6">การเปลี่ยนแปลง MRR แยกตามประเภท</p>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <WaterfallCard
+            label="New MRR"
+            value="+฿8,260"
+            detail="14 new Pro × ฿590"
+            color="green"
+          />
+          <WaterfallCard
+            label="Expansion MRR"
+            value="+฿1,990"
+            detail="1 upgrade Free→Enterprise"
+            color="blue"
+          />
+          <WaterfallCard
+            label="Churned MRR"
+            value="-฿3,540"
+            detail="6 Pro churned × ฿590"
+            color="red"
+          />
+          <WaterfallCard
+            label="Net New MRR"
+            value="+฿6,710"
+            detail="New + Expansion − Churn"
+            color="blue"
+            highlight
+          />
+        </div>
       </div>
     </div>
   );
@@ -213,6 +246,22 @@ function SummaryCard({ title, value, detail, color, rocket }) {
       <p className={`text-2xl font-bold mt-1 ${colorMap[color].split(' ')[1]}`}>
         {value} {rocket && <Rocket className="w-5 h-5 inline ml-1" />}
       </p>
+      <p className="text-zinc-600 text-xs mt-1">{detail}</p>
+    </div>
+  );
+}
+
+function WaterfallCard({ label, value, detail, color, highlight }) {
+  const colorMap = {
+    green: { text: 'text-green-400', border: 'border-green-500/20', bg: 'bg-green-500/10' },
+    red: { text: 'text-red-400', border: 'border-red-500/20', bg: 'bg-red-500/10' },
+    blue: { text: 'text-blue-400', border: 'border-blue-500/20', bg: 'bg-blue-500/10' },
+  };
+  const c = colorMap[color];
+  return (
+    <div className={`${c.bg} border ${c.border} ${highlight ? 'ring-1 ring-blue-500/30' : ''} rounded-2xl p-5`}>
+      <p className="text-zinc-400 text-xs mb-2">{label}</p>
+      <p className={`text-2xl font-extrabold ${c.text}`}>{value}</p>
       <p className="text-zinc-600 text-xs mt-1">{detail}</p>
     </div>
   );

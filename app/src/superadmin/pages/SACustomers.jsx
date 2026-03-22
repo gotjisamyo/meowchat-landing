@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Search, ChevronDown, Eye, ArrowUpCircle, MessageSquare, Ban, CheckCircle, KeyRound, X } from 'lucide-react';
+import { Search, ChevronDown, Eye, ArrowUpCircle, MessageSquare, Ban, CheckCircle, KeyRound, X, Download } from 'lucide-react';
 
 const CUSTOMERS = [
   { id: 1, shop: 'ร้านแนน Fashion', owner: 'คุณแนน สมิตา', email: 'nan@gmail.com', plan: 'enterprise', type: 'แฟชั่น', messages: 45230, limit: 999999, revenue: 1990, joined: '2025-08-15', status: 'active' },
@@ -34,6 +34,32 @@ export default function SACustomers() {
   const showToast = (msg) => {
     setToast(msg);
     setTimeout(() => setToast(''), 2500);
+  };
+
+  const exportCSV = () => {
+    const headers = ['ID', 'Shop', 'Owner', 'Email', 'Plan', 'Type', 'Messages', 'MRR (฿)', 'Joined', 'Status'];
+    const rows = customers.map((c) => [
+      c.id,
+      c.shop,
+      c.owner,
+      c.email,
+      planLabel[c.plan],
+      c.type,
+      c.messages,
+      c.revenue,
+      c.joined,
+      c.status,
+    ]);
+    const csvString = [headers, ...rows].map((r) => r.map((v) => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\n');
+    const blob = new Blob([csvString], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const date = new Date().toISOString().slice(0, 10);
+    a.href = url;
+    a.download = `meowchat-customers-${date}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('ส่งออก CSV เรียบร้อย');
   };
 
   const allTypes = [...new Set(CUSTOMERS.map((c) => c.type))];
@@ -78,9 +104,18 @@ export default function SACustomers() {
         </div>
       )}
 
-      <div>
-        <h1 className="text-2xl font-extrabold text-white">ลูกค้าทั้งหมด</h1>
-        <p className="text-zinc-500 text-sm mt-1">จัดการ Shop Owners ทุกราย · {customers.length} accounts</p>
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-extrabold text-white">ลูกค้าทั้งหมด</h1>
+          <p className="text-zinc-500 text-sm mt-1">จัดการ Shop Owners ทุกราย · {customers.length} accounts</p>
+        </div>
+        <button
+          onClick={exportCSV}
+          className="flex items-center gap-2 bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-zinc-300 px-4 py-2.5 rounded-xl text-sm font-medium transition-all flex-shrink-0"
+        >
+          <Download className="w-4 h-4" />
+          Export CSV
+        </button>
       </div>
 
       {/* Stats summary */}

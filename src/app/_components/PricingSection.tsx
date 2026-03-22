@@ -114,6 +114,22 @@ export default function PricingSection({ plans }: { plans: PricingPlan[] }) {
         ))}
       </div>
 
+      {/* Message count guide */}
+      <div className="mt-12 glass rounded-2xl border border-white/10 px-6 py-5 max-w-2xl mx-auto">
+        <div className="flex items-start gap-3">
+          <span className="text-2xl flex-shrink-0">💬</span>
+          <div>
+            <p className="font-semibold text-sm text-white mb-3">ใช้กี่ครั้งต่อเดือน?</p>
+            <ul className="text-gray-400 text-xs space-y-1.5">
+              <li>ธุรกิจขนาดเล็ก รับแชท 5–20 ข้อความ/วัน ≈ 150–600 ครั้ง/เดือน → <span className="text-purple-300 font-medium">Starter หรือ Mini</span></li>
+              <li>SME ปกติ รับแชท 30–100 ข้อความ/วัน ≈ 900–3,000 ครั้ง/เดือน → <span className="text-purple-300 font-medium">Mini หรือ Pro</span></li>
+              <li>ธุรกิจมีสายงานเดียว แชทหนาแน่น 100+ ข้อความ/วัน → <span className="text-purple-300 font-medium">Business (ไม่จำกัด)</span></li>
+            </ul>
+            <p className="text-gray-500 text-xs mt-2">หมายเหตุ: 1 ครั้ง = 1 ข้อความที่ bot ส่งออกไป (ไม่นับข้อความที่ลูกค้าส่งเข้ามา)</p>
+          </div>
+        </div>
+      </div>
+
       {/* Channel Matrix */}
       <div className="mt-16">
         <h3 className="text-center text-xl font-bold mb-6 text-gray-200">ช่องทางที่รองรับในแต่ละแผน</h3>
@@ -232,6 +248,11 @@ export default function PricingSection({ plans }: { plans: PricingPlan[] }) {
           </table>
         </div>
       </div>
+
+      {/* Per-OA add-on note */}
+      <p className="text-gray-400 text-sm text-center mt-4">
+        💡 ต้องการ LINE OA มากกว่า 3 ช่อง? เพิ่มได้ ฿500/OA/เดือน (แผน Business ขึ้นไป) หรือเลือก Enterprise สำหรับ OA ไม่จำกัด
+      </p>
     </>
   );
 }

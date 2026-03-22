@@ -618,6 +618,7 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
       <span class="ch-name">Facebook Messenger</span>
       <span class="ch-badge soon">🔜 เร็วๆ นี้</span>
     </div>
+    <a class="ch-notify" onclick="alert('ขอบคุณ! เราจะแจ้งเตือนคุณทาง LINE เมื่อ Facebook/Instagram พร้อมใช้งาน 🐱')">รับแจ้งเตือนเมื่อพร้อม</a>
   </div>
   <div class="ch-card">
     <span class="ch-icon">🌸</span>
@@ -625,6 +626,7 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
       <span class="ch-name">Instagram DM</span>
       <span class="ch-badge soon">🔜 กำลังพัฒนา</span>
     </div>
+    <a class="ch-notify" onclick="alert('ขอบคุณ! เราจะแจ้งเตือนคุณทาง LINE เมื่อ Facebook/Instagram พร้อมใช้งาน 🐱')">รับแจ้งเตือนเมื่อพร้อม</a>
   </div>
   <div class="ch-card">
     <span class="ch-icon">💬</span>
@@ -705,6 +707,11 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
   <span class="pay-badge">💳 บัตรเครดิต/เดบิต</span>
   <span class="pay-badge">🏦 โอนธนาคาร</span>
   <span class="pay-secure">🔒 ปลอดภัย 100% by Omise</span>
+</div>
+<div class="pdpa-note">
+  🔒 ข้อมูลของคุณปลอดภัย — MeowChat ปฏิบัติตาม พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล (PDPA) 2562
+  และมาตรฐาน ISO 27001 · ข้อมูลไม่ถูกแชร์กับบุคคลภายนอก
+  <a href="/privacy.html" style="color:var(--apricot);text-decoration:underline">นโยบายความเป็นส่วนตัว</a>
 </div>
 </section>
 
@@ -934,6 +941,8 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
 .ch-badge{font-size:11px;font-weight:700;padding:2px 10px;border-radius:20px;display:inline-block;width:fit-content}
 .ch-badge.live{background:#dcfce7;color:#15803d}
 .ch-badge.soon{background:rgba(255,183,77,.2);color:#FFB74D;border:1px solid rgba(255,183,77,.35)}
+.ch-notify{margin-left:auto;font-size:12px;color:var(--apricot);text-decoration:underline;cursor:pointer}
+.pdpa-note{text-align:center;color:#9CA3AF;font-size:13px;margin-top:24px;padding:12px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.6}
 </style>
 
 <script>
@@ -970,18 +979,19 @@ const demoVerticals = {
     },
   },
   appt: {
-    greeting: 'สวัสดีครับ! บริการซ่อมและติดตั้ง PawService ยินดีให้บริการครับ 🔧',
+    greeting: 'สวัสดีครับ! 🐱 วันนี้อยากนัดหมายนวดแผนไทยหรือสปาครับ?',
     quickReplies: [
-      {label:'📅 จองนัด', key:'จองนัด'},
+      {label:'💆 นวดพรุ่งนี้', key:'อยากนวดพรุ่งนี้บ่าย 2'},
       {label:'💰 ราคาบริการ', key:'ราคาบริการ'},
-      {label:'🗓️ เช็คคิว', key:'เช็คคิว'},
-      {label:'👨‍🔧 ติดต่อช่าง', key:'ติดต่อช่าง'},
+      {label:'🗓️ ดูคิวว่าง', key:'ดูคิวว่าง'},
+      {label:'📍 ที่อยู่ร้าน', key:'ที่อยู่ร้าน'},
     ],
     replies: {
-      'จองนัด': 'ยินดีจองให้ครับ 📅\nกรุณาเลือกวัน:\n• พรุ่งนี้ (เสาร์) มีว่าง 10:00, 14:00, 16:00\n• อาทิตย์ มีว่าง 9:00, 11:00\nสะดวกเวลาไหนครับ?',
-      'ราคาบริการ': 'บริการของเรา:\n• ตรวจเช็คระบบ ฿300\n• ซ่อมแซมเบื้องต้น ฿500-1,500\n• ติดตั้งอุปกรณ์ ราคาตามงาน\nนัดประเมินฟรีครับ 🔧',
-      'เช็คคิว': 'คิวว่างวันนี้เหลือ 2 ช่อง (14:00 และ 16:00) ครับ\nต้องการจองไหม?',
-      'ติดต่อช่าง': 'กำลังโอนสายให้ช่างครับ... 👨‍🔧\nหรือโทร 081-xxx-xxxx ได้เลยครับ',
+      'อยากนวดพรุ่งนี้บ่าย 2': 'ได้เลยครับ! 🌸 วันพรุ่งนี้เวลา 14:00 น. ยืนยันชื่อและเบอร์โทรด้วยนะครับ',
+      'สมหมาย 0812345678': '✅ จองเรียบร้อยแล้วครับ! คุณสมหมาย วันพรุ่งนี้ 14:00 น. นวดแผนไทย 1 ชั่วโมง จะส่ง reminder ก่อน 1 ชั่วโมงนะครับ 🐾',
+      'ราคาบริการ': 'บริการของเรา 🌸\n• นวดแผนไทย 1 ชม. ฿350\n• นวดน้ำมัน 1 ชม. ฿450\n• สปาหน้า ฿550\n• แพ็กเกจคู่ลด 10% ครับ',
+      'ดูคิวว่าง': 'คิวว่างพรุ่งนี้ครับ 🗓️\n• 10:00 น. ✅\n• 14:00 น. ✅\n• 16:00 น. ✅\nสะดวกช่วงไหนครับ?',
+      'ที่อยู่ร้าน': 'ร้านอยู่ที่ถนนสุขุมวิท ซอย 11 ครับ 📍\nจอดรถฟรีในอาคาร เปิด 9:00-20:00 ทุกวัน',
     },
   },
 };

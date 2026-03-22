@@ -12,7 +12,12 @@ function verifyLineSignature(body: string, signature: string): boolean {
   const hmac = crypto.createHmac('sha256', LINE_CHANNEL_SECRET);
   hmac.update(body);
   const digest = hmac.digest('base64');
-  return digest === signature;
+  // Use timing-safe comparison to prevent timing attacks
+  try {
+    return crypto.timingSafeEqual(Buffer.from(digest, 'base64'), Buffer.from(signature, 'base64'));
+  } catch {
+    return false;
+  }
 }
 
 // Send reply message via LINE Messaging API
@@ -43,7 +48,7 @@ function getKeywordResponse(userMessage: string): string {
     return 'สวัสดีครับ! 😊 วันนี้ช่วยอะไรได้บ้างครับ?';
   }
   if (/ราคา|แพ็กเกจ/.test(msg)) {
-    return 'แพ็กเกจของเรามี 3 ระดับ:\n⭐ Starter ฿990/เดือน\n🚀 Business ฿2,990/เดือน\n👑 Enterprise ฿9,990/เดือน\nสนใจแพ็กเกจไหนครับ?';
+    return 'แพ็กเกจของเรามี 3 ระดับ:\n🐱 Free ฿0/เดือน (300 ข้อความ)\n🚀 Pro ฿590/เดือน (10,000 ข้อความ)\n👑 Enterprise ฿1,990/เดือน (ไม่จำกัด)\nสมัครฟรีได้ที่ https://app.meowchat.store/register ครับ 🐾';
   }
   if (/สมัคร|ทดลอง/.test(msg)) {
     return 'สมัครได้เลยที่ https://app.meowchat.store/register ครับ ทดลองใช้ฟรี! 🎉';

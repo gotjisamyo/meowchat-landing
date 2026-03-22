@@ -44,7 +44,7 @@ const PRICING = [
       "LINE 3 OA + Messenger ไม่จำกัด",
       "ตอบแชทอัตโนมัติไม่จำกัด",
       "AI SalesAgent ปิดการขาย",
-      "เชื่อมต่อ API หลังบ้าน",
+      "เชื่อมต่อ API / Webhook หลังบ้าน",
       "รายงาน MRR / Conversion",
       "ตั้งค่า Persona Bot ได้",
     ],
@@ -209,6 +209,10 @@ const FAQS = [
     q: "ชำระเงินด้วยอะไรได้บ้าง?",
     a: "รองรับการชำระด้วยบัตรเครดิต/เดบิต, QR พร้อมเพย์, และโอนธนาคาร (กสิกร, SCB, กรุงเทพ) โดยไม่มีค่าธรรมเนียมเพิ่มเติม",
   },
+  {
+    q: "มี API หรือ Webhook ให้นักพัฒนาใช้งานไหม?",
+    a: "แผน Business และ Enterprise รองรับ REST API และ Webhook สำหรับเชื่อมต่อกับระบบภายใน เช่น ERP, CRM, สต็อก, POS ติดต่อทีมงานผ่าน LINE เพื่อรับ API documentation และ sandbox environment",
+  },
 ];
 
 const B2B_USE_CASES = [
@@ -235,7 +239,7 @@ const B2B_USE_CASES = [
   {
     icon: "🍜",
     title: "ร้านอาหาร & F&B",
-    desc: "รับออเดอร์ จองโต๊ะ แจ้งคิวรอ และส่งเมนูแนะนำตามประวัติลูกค้า",
+    desc: "รับออเดอร์ จองโต๊ะ แจ้งคิวรอ ส่งเมนูแนะนำ และจัดการ Loyalty stamp / reward points สำหรับลูกค้าประจำ",
   },
   {
     icon: "🏗️",
@@ -256,6 +260,11 @@ const B2B_USE_CASES = [
     icon: "🐾",
     title: "สัตวแพทย์ & Pet Shop",
     desc: "จองนัดหมอ ส่ง vaccine reminder ดูประวัติสัตว์เลี้ยง และรับออเดอร์อาหาร/อุปกรณ์",
+  },
+  {
+    icon: "🔧",
+    title: "ช่าง & อู่ซ่อมบำรุง",
+    desc: "จองนัดซ่อม แจ้งสถานะรถเสร็จ ส่ง reminder บำรุงรักษา และรับ pre-approve ค่าใช้จ่ายผ่าน LINE",
   },
 ];
 
@@ -478,7 +487,7 @@ export default function Home() {
         <section id="use-cases" className="mb-24">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">MeowChat เหมาะกับธุรกิจอะไร?</h2>
-            <p className="text-gray-400 max-w-xl mx-auto">ใช้ได้กับทุกอุตสาหกรรม ตั้งแต่ SME ไปจนถึงองค์กรขนาดใหญ่</p>
+            <p className="text-gray-400 max-w-xl mx-auto">ใช้ได้กับทุกอุตสาหกรรม เชื่อมต่อกับ POS, ERP, delivery platforms และระบบเดิมของคุณผ่าน API</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {B2B_USE_CASES.map((uc) => (
@@ -490,6 +499,48 @@ export default function Home() {
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* Security / Data */}
+        <section className="mb-24">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3">ข้อมูลของคุณปลอดภัย 100%</h2>
+            <p className="text-gray-400 max-w-xl mx-auto">ออกแบบมาสำหรับธุรกิจที่จัดการข้อมูลสำคัญ — คลินิก, กฎหมาย, การเงิน</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {[
+              {
+                icon: "🔐",
+                title: "เข้ารหัส AES-256",
+                desc: "ข้อมูลทุกชิ้นถูกเข้ารหัสทั้งขณะส่งและขณะจัดเก็บ ไม่มีใครอ่านข้อมูลคุณได้นอกจากระบบของคุณเอง",
+              },
+              {
+                icon: "🇹🇭",
+                title: "เซิร์ฟเวอร์ในไทย",
+                desc: "ข้อมูลไม่ออกนอกประเทศ จัดเก็บในประเทศไทยตามข้อกำหนด พ.ร.บ.คุ้มครองข้อมูลส่วนบุคคล พ.ศ.2562",
+              },
+              {
+                icon: "🏢",
+                title: "Private Server (Enterprise)",
+                desc: "ติดตั้งบน Server ส่วนตัวของคุณได้ ข้อมูลอยู่ใน infrastructure ของธุรกิจคุณโดยสมบูรณ์",
+              },
+              {
+                icon: "📋",
+                title: "DPA & Compliance",
+                desc: "มี Data Processing Agreement ให้ลงนาม รองรับ PDPA 2562 และ audit trail สำหรับการตรวจสอบ",
+              },
+            ].map((card) => (
+              <div key={card.title} className="glass p-6 rounded-2xl hover:border-purple-500/30 transition-colors">
+                <div className="text-4xl mb-4">{card.icon}</div>
+                <h3 className="font-bold mb-2">{card.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">{card.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 text-center">
+            <a href="/privacy" className="text-purple-400 hover:text-purple-300 text-sm underline mr-6">อ่านนโยบายความเป็นส่วนตัว →</a>
+            <a href="https://line.me/ti/p/@960xboyt" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300 text-sm underline">ขอ Data Processing Agreement (DPA) →</a>
           </div>
         </section>
 

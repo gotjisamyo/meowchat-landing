@@ -107,8 +107,9 @@ function getKeywordResponse(userMessage: string, userId: string): [string, strin
   // Pricing / packages
   if (/ราคา|แพ็กเกจ|ค่าใช้จ่าย|ราคาเท่าไหร่|ต้องจ่าย/.test(msg)) {
     return [
-      'แพ็กเกจของเรามี 3 ระดับครับ 💰\n\n' +
+      'แพ็กเกจของเรามี 4 ระดับครับ 💰\n\n' +
         '🐱 Free ฿0/เดือน — 300 ข้อความ\n' +
+        '⭐ Starter ฿199/เดือน — 2,000 ข้อความ\n' +
         '🚀 Pro ฿590/เดือน — 10,000 ข้อความ\n' +
         '👑 Enterprise ฿1,990/เดือน — ไม่จำกัด\n\n' +
         'สมัครทดลองใช้ฟรีได้เลยที่ https://app.meowchat.store/register ครับ 🎉\n' +

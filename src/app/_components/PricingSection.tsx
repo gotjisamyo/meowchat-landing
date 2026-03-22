@@ -125,7 +125,7 @@ export default function PricingSection({ plans }: { plans: PricingPlan[] }) {
               <li>SME ปกติ รับแชท 30–100 ข้อความ/วัน ≈ 900–3,000 ครั้ง/เดือน → <span className="text-purple-300 font-medium">Mini หรือ Pro</span></li>
               <li>ธุรกิจมีสายงานเดียว แชทหนาแน่น 100+ ข้อความ/วัน → <span className="text-purple-300 font-medium">Business (ไม่จำกัด)</span></li>
             </ul>
-            <p className="text-gray-500 text-xs mt-2">หมายเหตุ: 1 ครั้ง = 1 ข้อความที่ bot ส่งออกไป (ไม่นับข้อความที่ลูกค้าส่งเข้ามา)</p>
+            <p className="text-gray-500 text-xs mt-2">หมายเหตุ: 1 ครั้ง = 1 ข้อความที่ bot ส่งออกไป (ไม่นับข้อความที่ลูกค้าส่งเข้ามา)<br />· Top-up เพิ่ม: ฿99 / 500 ครั้ง หรือ ฿199 / 1,000 ครั้ง (ซื้อได้ทุกเวลา ไม่มีวันหมดอายุ)</p>
           </div>
         </div>
       </div>

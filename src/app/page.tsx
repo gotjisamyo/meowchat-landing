@@ -204,7 +204,7 @@ const FAQS = [
   },
   {
     q: "ถ้าใช้ครบโควต้าแล้วจะเกิดอะไรขึ้น?",
-    a: "Bot จะยังทำงานต่อ แต่จะเปลี่ยนเป็น 'soft limit mode' — ตอบข้อความง่ายๆ ได้ต่อ แต่ปิดฟีเจอร์ advanced AI ชั่วคราว คุณจะได้รับแจ้งเตือนทาง LINE เมื่อใช้ถึง 80% เพื่อ upgrade ล่วงหน้า ไม่มีการตัดการเชื่อมต่อกะทันหัน และสามารถซื้อ top-up เพิ่มเติมได้ทุกเวลา",
+    a: "Bot จะยังทำงานต่อ แต่จะเปลี่ยนเป็น 'soft limit mode' — ตอบข้อความง่ายๆ ได้ต่อ แต่ปิดฟีเจอร์ advanced AI ชั่วคราว คุณจะได้รับแจ้งเตือนทาง LINE เมื่อใช้ถึง 80% เพื่อ upgrade ล่วงหน้า ไม่มีการตัดการเชื่อมต่อกะทันหัน และสามารถซื้อ top-up ได้ทุกเวลา: ฿99 / 500 ครั้ง หรือ ฿199 / 1,000 ครั้ง (ไม่มีวันหมดอายุ)",
   },
   {
     q: "MeowChat รองรับภาษาอังกฤษได้ไหม?",
@@ -387,7 +387,7 @@ export default function Home() {
             แอดมินหมดแรงตอบแชทซ้ำๆ ทุกวัน? MeowChat จัดการให้ — ตอบคำถาม ส่งราคา ปิดออเดอร์ และจองนัดอัตโนมัติ บน LINE และ Messenger
           </p>
           <p className="text-gray-500 text-sm mb-2">
-            รองรับ: <span className="text-white font-medium">LINE</span> · <span className="text-white font-medium">Facebook Messenger</span> · <span className="text-gray-400">WhatsApp</span> · <span className="text-gray-400">Zalo</span>
+            รองรับ: <span className="text-white font-medium">LINE</span> · <span className="text-white font-medium">Facebook Messenger</span><span className="text-purple-400 text-xs ml-1">(Pro+)</span> · <span className="text-gray-400">WhatsApp</span> · <span className="text-gray-400">Zalo</span>
           </p>
           <p className="text-gray-500 text-sm mb-10">
             Also available in English · ตอบได้ทั้งไทยและอังกฤษ · Bilingual AI
@@ -802,7 +802,7 @@ export default function Home() {
           </div>
           <div className="border-t border-white/5 pt-4 mt-4 text-center text-gray-600 text-xs space-y-1">
             <p>© 2567–2568 MeowChat · AI Chatbot สำหรับธุรกิจไทย</p>
-            <p>จดทะเบียนในประเทศไทย · ก่อตั้ง พ.ศ. 2567 · ติดต่อ: support@meowchat.store</p>
+            <p>ให้บริการโดยบริษัทจดทะเบียนในประเทศไทย · ก่อตั้ง พ.ศ. 2567 · ข้อมูลจัดเก็บในเซิร์ฟเวอร์ไทย · ติดต่อ: support@meowchat.store</p>
             <div className="flex justify-center gap-4 mt-2">
               <a href="/privacy" className="hover:text-gray-400 transition-colors">นโยบายความเป็นส่วนตัว</a>
               <a href="/terms" className="hover:text-gray-400 transition-colors">ข้อกำหนดการใช้งาน</a>

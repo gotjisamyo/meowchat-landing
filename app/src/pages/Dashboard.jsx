@@ -328,6 +328,17 @@ export default function Dashboard({ setSidebarOpen }) {
         ))}
       </div>
 
+      {/* Referral nudge card — non-admin users only */}
+      {!isAdmin() && (
+        <div className="mt-4 p-4 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-2xl flex items-center justify-between">
+          <div>
+            <p className="text-sm font-semibold text-white">🎁 แนะนำเพื่อน รับเดือนฟรี!</p>
+            <p className="text-xs text-zinc-400">คุณมีเพื่อน 12 คนที่สมัครแล้ว ได้ฟรี 3 เดือน</p>
+          </div>
+          <button onClick={() => {}} className="px-3 py-1.5 bg-purple-500 text-white text-xs font-bold rounded-lg">ดูรางวัล</button>
+        </div>
+      )}
+
       {/* Admin-specific: Subscription Overview */}
       {isAdmin() && (
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 mb-6">

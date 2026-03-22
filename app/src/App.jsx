@@ -26,6 +26,7 @@ const Orders = lazy(() => import('./pages/Orders'));
 const Booking = lazy(() => import('./pages/Booking'));
 const HelpCenter = lazy(() => import('./pages/HelpCenter'));
 const Templates = lazy(() => import('./pages/Templates'));
+const Referral = lazy(() => import('./pages/Referral'));
 
 import Sidebar from './components/Sidebar';
 import FeedbackWidget from './components/FeedbackWidget';
@@ -90,6 +91,7 @@ function App() {
       case 'booking':     return <Booking setSidebarOpen={() => {}} />;
       case 'help':        return <HelpCenter setSidebarOpen={() => {}} />;
       case 'templates':   return <Templates setSidebarOpen={() => {}} />;
+      case 'referral':    return <Referral setSidebarOpen={() => {}} />;
       default:            return <Dashboard setSidebarOpen={() => {}} />;
     }
   };

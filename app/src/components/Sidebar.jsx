@@ -1,7 +1,7 @@
 import {
   LayoutDashboard, BarChart3, Wallet, Building2, Code2, Settings,
   ChevronLeft, ChevronRight, Cat, Zap, Users, CreditCard, User, BadgeDollarSign, Sparkles,
-  PieChart, BookOpen, MessageSquare, Package, Library, HelpCircle, Calendar
+  PieChart, BookOpen, MessageSquare, Package, Library, HelpCircle, Calendar, Gift
 } from 'lucide-react';
 import UserMenu from './auth/UserMenu';
 import { useAuth } from '../context/AuthContext';
@@ -27,12 +27,18 @@ const menuSections = [
     ],
   },
   {
+    label: 'การตลาด',
+    items: [
+      { id: 'marketing',  label: 'Marketing',     icon: BarChart3 },
+      { id: 'referral',   label: 'แนะนำเพื่อน',   icon: Gift },
+    ],
+  },
+  {
     label: 'วิเคราะห์',
     items: [
       { id: 'analytics',  label: 'Analytics',     icon: PieChart },
       { id: 'sales',      label: 'Sales',         icon: Wallet },
       { id: 'finance',    label: 'Finance',       icon: Building2 },
-      { id: 'marketing',  label: 'Marketing',     icon: BarChart3 },
     ],
   },
   {

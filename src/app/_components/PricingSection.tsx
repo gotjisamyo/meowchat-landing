@@ -92,7 +92,10 @@ export default function PricingSection({ plans }: { plans: PricingPlan[] }) {
               ))}
             </ul>
             {plan.monthly === 0 && (
-              <p className="text-gray-500 text-xs mt-2">* นับเฉพาะข้อความที่ bot ตอบออกไป ไม่นับข้อความที่ลูกค้าส่งมา</p>
+              <p className="text-gray-500 text-xs mt-2">* 1 &quot;ครั้ง&quot; = 1 ข้อความที่ bot ส่งออกไป (ไม่นับข้อความที่ลูกค้าส่งหาบอท) เช่น ลูกค้าถาม 1 คำถาม → bot ตอบ 1 ข้อความ = ใช้ไป 1 ครั้ง</p>
+            )}
+            {plan.monthly === 299 && (
+              <p className="text-gray-500 text-xs mt-2">* 1 ครั้ง = 1 ข้อความที่ bot ส่งออก</p>
             )}
             <div className="mb-8 flex-1" />
             <a
@@ -115,7 +118,7 @@ export default function PricingSection({ plans }: { plans: PricingPlan[] }) {
       <div className="mt-16">
         <h3 className="text-center text-xl font-bold mb-6 text-gray-200">ช่องทางที่รองรับในแต่ละแผน</h3>
         <div className="glass rounded-2xl overflow-x-auto">
-          <table className="w-full min-w-[680px] text-sm">
+          <table className="w-full min-w-[800px] text-sm">
             <thead>
               <tr className="border-b border-white/10">
                 <th className="text-left px-6 py-4 font-semibold text-gray-300">ช่องทาง</th>

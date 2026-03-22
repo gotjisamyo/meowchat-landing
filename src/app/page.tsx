@@ -474,6 +474,21 @@ export default function Home() {
               </div>
             ))}
           </div>
+          <div className="mt-8 glass rounded-2xl p-6 flex flex-col md:flex-row items-center gap-6 border-green-500/20 bg-green-500/5">
+            <div className="text-4xl flex-shrink-0">🙋</div>
+            <div>
+              <h3 className="font-bold mb-1">ไม่ถนัด tech ก็ใช้ได้</h3>
+              <p className="text-gray-400 text-sm">ไม่ต้องรู้จัก &quot;Knowledge Base&quot;, &quot;API&quot; หรือ &quot;Webhook&quot; — เพียงแค่บอกว่าธุรกิจคุณทำอะไร ทีมงานเราช่วยตั้งค่าให้ทั้งหมดฟรี (แผน Pro ขึ้นไป) พร้อม LINE support ภาษาไทยตลอดเวลา</p>
+            </div>
+            <a
+              href="https://line.me/ti/p/@960xboyt"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-shrink-0 bg-green-500 hover:bg-green-600 text-white px-6 py-2.5 rounded-full font-bold text-sm transition-all whitespace-nowrap"
+            >
+              ให้เราช่วยตั้งค่า
+            </a>
+          </div>
         </section>
 
         {/* Booking System Details */}
@@ -492,17 +507,17 @@ export default function Home() {
               {
                 icon: "👥",
                 title: "หลายหมอ/ครู/ช่าง",
-                desc: "บริหาร calendar ของ staff หลายคนพร้อมกัน ลูกค้าเลือกผู้ให้บริการที่ต้องการได้ หรือให้ระบบจัดให้อัตโนมัติ",
+                desc: "บริหาร calendar ของ staff หลายคนพร้อมกัน ลูกค้าเลือกผู้ให้บริการที่ต้องการได้ หรือให้ระบบจัดให้อัตโนมัติ (รองรับตั้งแต่แผน Pro ขึ้นไป)",
               },
               {
                 icon: "🎯",
                 title: "จัดการ Capacity",
-                desc: "กำหนดจำนวนสูงสุดต่อคลาส/slot เมื่อเต็มระบบปิดอัตโนมัติ รองรับ waitlist และแจ้งเตือนเมื่อมีที่ว่าง",
+                desc: "กำหนดจำนวนสูงสุดต่อคลาส/slot เมื่อเต็มระบบปิดอัตโนมัติ รองรับ waitlist และแจ้งเตือนเมื่อมีที่ว่าง (รองรับตั้งแต่แผน Mini ขึ้นไป)",
               },
               {
                 icon: "💳",
                 title: "รับมัดจำและชำระเงิน",
-                desc: "เก็บมัดจำผ่าน QR PromptPay หรือบัตรเครดิตตอนจอง ลดการเบี้ยวนัดได้มากกว่า 60%",
+                desc: "เก็บมัดจำผ่าน QR PromptPay หรือบัตรเครดิตตอนจอง ลดการเบี้ยวนัดได้มากกว่า 60% (รองรับตั้งแต่แผน Mini ขึ้นไป)",
               },
               {
                 icon: "📲",
@@ -580,8 +595,9 @@ export default function Home() {
             ))}
           </div>
           <div className="mt-8 text-center">
+            <p className="text-gray-500 text-xs mb-4 max-w-lg mx-auto">สำหรับธุรกิจที่ต้องการเอกสาร DPA, รายงาน Security Audit หรือ SLA ติดต่อเราผ่าน LINE ได้ทันที</p>
             <a href="/privacy" className="text-purple-400 hover:text-purple-300 text-sm underline mr-6">อ่านนโยบายความเป็นส่วนตัว →</a>
-            <a href="https://line.me/ti/p/@960xboyt" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300 text-sm underline">ขอ Data Processing Agreement (DPA) →</a>
+            <a href="https://line.me/ti/p/@960xboyt" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300 text-sm underline">ดาวน์โหลด / ขอ DPA สำหรับองค์กร →</a>
           </div>
         </section>
 

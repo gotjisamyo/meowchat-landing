@@ -46,10 +46,10 @@ export default function RegisterPage() {
       const result = await register(form.email, form.password, form.businessName);
       setIsLoading(false);
       setSuccess(true);
-      // If API returned token → auto-login → go to dashboard
+      // If API returned token → auto-login → go to onboarding
       // Otherwise fallback to login page
       if (result.token) {
-        setTimeout(() => navigate('/dashboard'), 1500);
+        setTimeout(() => navigate('/onboarding'), 1500);
       } else {
         setTimeout(() => navigate('/login'), 2000);
       }
@@ -89,7 +89,7 @@ export default function RegisterPage() {
               </div>
               <h2 className="text-white font-bold text-xl mb-2">สมัครสำเร็จ!</h2>
               <p className="text-gray-400 text-sm">ยินดีต้อนรับสู่ MeowChat</p>
-              <p className="text-gray-500 text-xs mt-2">กำลังพาไปหน้า Dashboard...</p>
+              <p className="text-gray-500 text-xs mt-2">กำลังพาไปตั้งค่าบอท...</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">

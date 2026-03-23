@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const API_URL = import.meta.env.VITE_API_URL || 'https://api.meowchat.store';
+
 // ── Step 1: Business Type ─────────────────────────────────────────────────────
 
 const BUSINESS_TYPES = [
@@ -415,10 +417,16 @@ function Step5({ data, setData, onFinish, onBack }) {
     setTesting(true);
     setTestResult(null);
     try {
-      const res = await fetch('https://api.meowchat.store/api/line/test', {
+      const res = await fetch(`${API_URL}/api/line/test`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ token: data.lineToken }),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('meowchat_token')}`,
+        },
+        body: JSON.stringify({
+          channelAccessToken: data.lineToken,
+          channelSecret: data.lineSecret,
+        }),
       });
       if (res.ok) {
         setTestResult('success');
@@ -560,10 +568,49 @@ function Step5({ data, setData, onFinish, onBack }) {
 
 // ── Completion Screen ─────────────────────────────────────────────────────────
 
-function CompletionScreen({ botName, navigate }) {
-  const handleGoDashboard = () => {
-    localStorage.setItem('onboardingComplete', 'true');
-    navigate('/');
+function CompletionScreen({ botName, onboardingData, navigate }) {
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState(null);
+
+  const handleGoDashboard = async () => {
+    setSaving(true);
+    setSaveError(null);
+    try {
+      const payload = {
+        businessType: onboardingData.businessType,
+        shopName: onboardingData.shopName,
+        contact: onboardingData.contact,
+        openTime: onboardingData.openTime,
+        closeTime: onboardingData.closeTime,
+        platforms: Array.from(onboardingData.platforms),
+        botName: onboardingData.botName,
+        botStyle: onboardingData.botStyle,
+        products: onboardingData.products,
+        lineToken: onboardingData.lineToken,
+        lineSecret: onboardingData.lineSecret,
+      };
+
+      const res = await fetch(`${API_URL}/api/bots/setup`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('meowchat_token')}`,
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.message || 'บันทึกข้อมูลไม่สำเร็จ');
+      }
+
+      localStorage.setItem('onboardingComplete', 'true');
+      navigate('/dashboard');
+    } catch (err) {
+      setSaveError(err.message || 'เกิดข้อผิดพลาด กรุณาลองใหม่');
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (
@@ -587,11 +634,18 @@ function CompletionScreen({ botName, navigate }) {
         พร้อมตอบแชทแล้ว
       </p>
 
+      {saveError && (
+        <div className="mb-4 px-5 py-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm max-w-sm">
+          {saveError}
+        </div>
+      )}
+
       <button
         onClick={handleGoDashboard}
-        className="px-8 py-4 rounded-2xl font-bold text-lg bg-orange-500 text-white hover:bg-orange-400 transition shadow-lg shadow-orange-500/25"
+        disabled={saving}
+        className="px-8 py-4 rounded-2xl font-bold text-lg bg-orange-500 text-white hover:bg-orange-400 disabled:opacity-50 disabled:cursor-not-allowed transition shadow-lg shadow-orange-500/25"
       >
-        ไปดู Dashboard →
+        {saving ? 'กำลังบันทึก...' : 'ไปดู Dashboard →'}
       </button>
     </div>
   );
@@ -649,7 +703,7 @@ export default function Onboarding() {
   const finish = () => setDone(true);
 
   if (done) {
-    return <CompletionScreen botName={data.botName} navigate={navigate} />;
+    return <CompletionScreen botName={data.botName} onboardingData={data} navigate={navigate} />;
   }
 
   return (

@@ -53,7 +53,7 @@ export function AuthProvider({ children }) {
     const res = await fetch(`${API_URL}/api/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email.trim().toLowerCase(), password, businessName }),
+      body: JSON.stringify({ email: email.trim().toLowerCase(), password, name: businessName }),
     });
 
     const data = await res.json();

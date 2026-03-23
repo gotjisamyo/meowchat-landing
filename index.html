@@ -530,8 +530,18 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
 </div>
 <div class="demo-tabs">
   <button class="demo-tab active" onclick="switchDemo('shop',this)">🛍️ ร้านค้าออนไลน์</button>
-  <button class="demo-tab" onclick="switchDemo('food',this)">🍱 ร้านอาหาร / เดลิเวอรี่</button>
-  <button class="demo-tab" onclick="switchDemo('appt',this)">💆 นัดหมาย / บริการ</button>
+  <button class="demo-tab" onclick="switchDemo('food',this)">🍱 ร้านอาหาร</button>
+  <button class="demo-tab" onclick="switchDemo('appt',this)">💆 นัดหมาย</button>
+  <button class="demo-tab" onclick="switchDemo('clinic',this)">🏥 คลินิก</button>
+  <button class="demo-tab" onclick="switchDemo('hotel',this)">🏨 โรงแรม</button>
+  <button class="demo-tab" onclick="switchDemo('school',this)">🎓 สถาบันสอน</button>
+</div>
+<div class="demo-persona-row">
+  <span class="demo-persona-label">บุคลิก AI:</span>
+  <button class="demo-persona active" onclick="setPersona('friendly',this)">😊 เป็นกันเอง</button>
+  <button class="demo-persona" onclick="setPersona('formal',this)">👔 ทางการ</button>
+  <button class="demo-persona" onclick="setPersona('sales',this)">🔥 ขายเก่ง</button>
+  <button class="demo-persona" onclick="setPersona('cute',this)">🌸 น่ารัก</button>
 </div>
 <div class="demo-shell">
   <div class="demo-phone">
@@ -703,7 +713,7 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
 <div class="sec-hd">
   <div class="s-chip">💕 ราคา</div>
   <h2 class="s-title">เลือกแพ็กเกจที่ใช่</h2>
-  <p class="s-sub">เริ่มต้นฟรี อัพเกรดได้ตามการเติบโตของธุรกิจ</p>
+  <p class="s-sub">เริ่มต้นฟรี อัพเกรดได้ตามการเติบโตของธุรกิจ<br><small style="font-size:13px;opacity:.75">1 ข้อความ = AI ตอบ 1 ครั้ง • ไม่นับข้อความที่คนตอบเอง • ไม่นับ broadcast</small></p>
 </div>
 <div class="pri-grid">
 
@@ -711,13 +721,14 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
 <div class="pc">
   <div style="font-size:48px;margin-bottom:8px">🐱</div>
   <div class="pc-name">Free</div>
-  <div class="pc-hint">สำหรับร้านเริ่มต้น</div>
+  <div class="pc-hint">ลองใช้ฟรี ไม่ต้องใส่บัตร</div>
   <div class="pc-price"><sup style="font-size:22px">฿</sup>0<small>/เดือน</small></div>
   <ul class="pc-list">
-    <li>ข้อความ 300 ครั้ง/เดือน</li>
-    <li>เชื่อมต่อ LINE Official 1 บัญชี</li>
-    <li>AI เข้าใจภาษาไทย</li>
+    <li>300 ข้อความ/เดือน</li>
+    <li>LINE OA 1 บัญชี</li>
+    <li>AI ภาษาไทย</li>
     <li>Dashboard พื้นฐาน</li>
+    <li>ตั้งค่าด้วยตัวเองผ่านคู่มือ</li>
   </ul>
   <a href="https://app.meowchat.store/register" class="btn btn-o">สมัครฟรี ไม่ต้องใส่บัตร</a>
 </div>
@@ -726,14 +737,16 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
 <div class="pc">
   <div style="font-size:48px;margin-bottom:8px">🚀</div>
   <div class="pc-name">Starter</div>
-  <div class="pc-hint">สำหรับผู้เริ่มต้นธุรกิจ</div>
+  <div class="pc-hint">สำหรับร้านที่เริ่มรับแชทจริงจัง</div>
   <div class="pc-price"><sup>฿</sup>199<small>/เดือน</small></div>
   <ul class="pc-list">
-    <li>ข้อความ 2,000/เดือน (≈65 แชท/วัน)</li>
-    <li>LINE Official Account 1 บัญชี</li>
-    <li>AI เข้าใจภาษาไทย</li>
-    <li>Dashboard พื้นฐาน</li>
+    <li>2,000 ข้อความ/เดือน <span style="font-size:11px;opacity:.65">(≈65/วัน)</span></li>
+    <li>LINE OA 1 บัญชี · เพิ่มได้ +฿500/OA</li>
+    <li>เติมข้อความเพิ่ม ฿99 ต่อ 500 ครั้ง</li>
+    <li>AI ภาษาไทย · ปรับบุคลิกได้</li>
+    <li>Dashboard + Human Handoff</li>
     <li>2 Team Members</li>
+    <li>ช่วยตั้งค่าผ่านกลุ่ม LINE ฟรี</li>
   </ul>
   <a href="https://app.meowchat.store/register" class="btn btn-o">สมัคร Starter</a>
 </div>
@@ -746,14 +759,15 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
   <div class="pc-hint">สำหรับธุรกิจที่เติบโต</div>
   <div class="pc-price"><sup>฿</sup>590<small>/เดือน</small></div>
   <ul class="pc-list">
-    <li>ข้อความ 10,000/เดือน (≈330 แชท/วัน)</li>
-    <li>เชื่อมต่อ LINE ได้ 3 บัญชี</li>
+    <li>10,000 ข้อความ/เดือน <span style="font-size:11px;opacity:.65">(≈330/วัน)</span></li>
+    <li>LINE OA 3 บัญชี · เพิ่มได้ +฿500/OA</li>
+    <li>Facebook Messenger <span style="font-size:11px;background:#fff3e0;color:#e65100;padding:1px 7px;border-radius:8px;font-weight:700">เร็วๆนี้</span></li>
+    <li>เติมข้อความเพิ่ม ฿99 ต่อ 500 ครั้ง</li>
     <li>จัดการออเดอร์อัตโนมัติ</li>
     <li>อัพเดทสต็อก Real-time</li>
-    <li>Human Handoff (โอนให้คนตอบ)</li>
-    <li>Dashboard + Analytics ครบ</li>
-    <li>ส่ง Broadcast ไม่จำกัด</li>
-    <li>Priority Support</li>
+    <li>Human Handoff + Analytics ครบ</li>
+    <li>Broadcast ไม่จำกัด</li>
+    <li>Priority Support + ช่วยตั้งค่า</li>
   </ul>
   <a href="https://app.meowchat.store/register" class="btn btn-p">ทดลองใช้ Pro ฟรี 14 วัน</a>
 </div>
@@ -765,18 +779,22 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
   <div class="pc-hint">สำหรับองค์กรและแฟรนไชส์</div>
   <div class="pc-price"><sup>฿</sup>1,990<small>/เดือน</small></div>
   <ul class="pc-list">
-    <li>ข้อความไม่จำกัด</li>
-    <li>เชื่อมต่อ LINE ไม่จำกัด</li>
+    <li>ข้อความ fair-use ไม่จำกัด <span style="font-size:11px;opacity:.65">(≤50,000/เดือน)</span></li>
+    <li>LINE OA ไม่จำกัดบัญชี</li>
+    <li>Messenger + Instagram DM <span style="font-size:11px;background:#fff3e0;color:#e65100;padding:1px 7px;border-radius:8px;font-weight:700">เร็วๆนี้</span></li>
     <li>Multi-branch หลายสาขา</li>
-    <li>Facebook Messenger (เร็วๆ นี้)</li>
-    <li>Instagram DM (เร็วๆ นี้)</li>
     <li>API Integration + Webhook</li>
     <li>ทีม Support ส่วนตัว 24/7</li>
+    <li>ช่วยตั้งค่าและ onboard ครบถ้วน</li>
   </ul>
   <a href="https://line.me/ti/p/@960xboyt" class="btn btn-o">ติดต่อฝ่ายขาย</a>
 </div>
 
 </div><!-- /pri-grid -->
+<div style="text-align:center;margin-top:24px;padding:16px;background:#fef9f5;border-radius:14px;border:1px solid #fde8d0;font-size:13px;color:#7a6b8a;max-width:680px;margin-left:auto;margin-right:auto;line-height:1.8">
+  📊 <strong>ข้อความหมดก่อนสิ้นเดือน?</strong> เติมได้เลย ฿99 ต่อ 500 ครั้ง ไม่ต้องรอรอบบิล<br>
+  🏪 <strong>ดูแลหลาย LINE OA?</strong> เพิ่ม OA ได้ทุกแพ็กเกจ ในราคา ฿500 ต่อบัญชี/เดือน
+</div>
 <div class="pay-methods">
   <span>รับชำระเงินผ่าน</span>
   <span class="pay-badge pp">💸 PromptPay</span>
@@ -785,9 +803,9 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
   <span class="pay-secure">🔒 ปลอดภัย 100% by Omise</span>
 </div>
 <div class="pdpa-note">
-  🔒 ข้อมูลของคุณปลอดภัย — MeowChat ปฏิบัติตาม พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล (PDPA) 2562
-  และมาตรฐาน ISO 27001 · ข้อมูลไม่ถูกแชร์กับบุคคลภายนอก
-  <a href="/privacy.html" style="color:var(--apricot);text-decoration:underline">นโยบายความเป็นส่วนตัว</a>
+  🔒 ข้อมูลของคุณปลอดภัย — MeowChat ปฏิบัติตาม พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล (PDPA) 2562 · ข้อมูลไม่ถูกแชร์กับบุคคลภายนอก ไม่นำไปเป็น training data
+  · <a href="/privacy.html" style="color:var(--apricot);text-decoration:underline">นโยบายความเป็นส่วนตัว</a>
+  · <a href="/dpa.html" style="color:var(--apricot);text-decoration:underline">ข้อตกลงการประมวลผลข้อมูล (DPA)</a>
 </div>
 </section>
 
@@ -899,6 +917,26 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
     <button class="faq-q" onclick="toggleFaq(this)">รองรับหลายสาขาได้ไหม?</button>
     <div class="faq-a"><div class="faq-a-inner">ได้เลย แพ็กเกจ Pro รองรับ 3 LINE OA และแพ็กเกจ Enterprise รองรับไม่จำกัด เหมาะกับธุรกิจแฟรนไชส์หรือร้านที่มีหลายสาขา แต่ละสาขาจัดการแยกกันได้อิสระ</div></div>
   </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">MeowChat ต่างจากแชทบอทธรรมดายังไง?</button>
+    <div class="faq-a"><div class="faq-a-inner">แชทบอทธรรมดาตอบแค่ keyword ที่ตั้งไว้ MeowChat ใช้ Large Language Model (LLM) จริงๆ ที่เข้าใจความหมายและ context ลูกค้าถามนอก script ก็ตอบได้ ปรับบุคลิก น้ำเสียง ตั้งชื่อบอทได้ ไม่ใช่แค่ Q&A ธรรมดา ลองเล่น demo ด้านบนเพื่อเห็นความแตกต่างได้เลย</div></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">ข้อความหมดก่อนสิ้นเดือน ทำยังไง?</button>
+    <div class="faq-a"><div class="faq-a-inner">เติมได้เลยทันที ฿99 ต่อ 500 ครั้ง ไม่ต้องรอสิ้นเดือน ถ้าข้อความหมด AI จะหยุดตอบอัตโนมัติโดยไม่แสดงข้อผิดพลาดให้ลูกค้าเห็น พร้อมส่งแจ้งเตือนให้คุณทางอีเมลและ LINE ทันที</div></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">ดูแลหลาย LINE OA ได้ไหม? (agency หรือแฟรนไชส์)</button>
+    <div class="faq-a"><div class="faq-a-inner">ได้เลย แต่ละ OA จัดการแยกกันอิสระ Starter เพิ่ม OA ได้ +฿500/บัญชี Pro รวม 3 OA (เพิ่มได้ +฿500/OA) Enterprise ไม่จำกัด Agency ที่ดูแลหลายลูกค้าสามารถใช้ account เดียวจัดการ OA ทั้งหมดได้จากที่เดียว</div></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">MeowChat จะเอาข้อมูลลูกค้าฉันไปทำอะไร?</button>
+    <div class="faq-a"><div class="faq-a-inner">ไม่นำข้อมูลของคุณไปเป็น training data ครับ ข้อมูลของคุณเป็นของคุณเท่านั้น ใช้เพียงเพื่อให้ AI ตอบลูกค้าตามที่คุณตั้งค่าไว้ หากต้องการรายละเอียดด้านกฎหมาย ดูที่ <a href="/dpa.html" style="color:var(--apricot)">ข้อตกลงการประมวลผลข้อมูล (DPA)</a></div></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">Mawsom Company คือใคร? MeowChat จะยังอยู่ไหมในระยะยาว?</button>
+    <div class="faq-a"><div class="faq-a-inner">Mawsom Company Limited บริษัทไทยที่ดำเนินกิจการในกรุงเทพฯ ผู้พัฒนา MeowChat เราไม่ใช่ startup ที่จะหายไปในคืนเดียว มีทีมงานดูแลระบบและ support ตลอด การสมัครใช้งานไม่มีสัญญาผูกมัด ยกเลิกได้ทุกเมื่อ ข้อมูลยังอยู่ 30 วัน</div></div>
+  </div>
 </div>
 </section>
 
@@ -965,8 +1003,8 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
     <div class="ft-legal">
       <a href="/privacy.html">นโยบายความเป็นส่วนตัว</a>
       <a href="/terms.html">ข้อกำหนดการใช้งาน</a>
+      <a href="/dpa.html">ข้อตกลงการประมวลผลข้อมูล (DPA)</a>
       <a href="#">นโยบายคุกกี้</a>
-      <a href="#">GDPR Compliance</a>
     </div>
   </div>
 </div>
@@ -979,10 +1017,15 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
 
 <style>
 /* DEMO TABS */
-.demo-tabs{display:flex;justify-content:center;gap:8px;margin-bottom:20px;flex-wrap:wrap}
-.demo-tab{padding:8px 18px;border-radius:50px;border:2px solid #c4b5e8;background:#fff;color:#7c5cbf;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;font-family:inherit}
+.demo-tabs{display:flex;justify-content:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.demo-tab{padding:7px 15px;border-radius:50px;border:2px solid #c4b5e8;background:#fff;color:#7c5cbf;font-size:12px;font-weight:700;cursor:pointer;transition:.2s;font-family:inherit}
 .demo-tab.active{background:#FFB74D;border-color:#FFB74D;color:#fff}
 .demo-tab:hover:not(.active){background:var(--lavm)}
+.demo-persona-row{display:flex;align-items:center;justify-content:center;gap:7px;margin-bottom:16px;flex-wrap:wrap}
+.demo-persona-label{font-size:12px;font-weight:700;color:#9b85c4}
+.demo-persona{padding:5px 13px;border-radius:50px;border:2px solid #c4b5e8;background:#fff;color:#7c5cbf;font-size:12px;font-weight:700;cursor:pointer;transition:.2s;font-family:inherit}
+.demo-persona.active{background:#8E6FBB;border-color:#8E6FBB;color:#fff}
+.demo-persona:hover:not(.active){background:var(--lavm)}
 
 /* DEMO */
 .demo-wrap{background:linear-gradient(135deg,#f0ebff 0%,#fff5eb 100%)}
@@ -1113,74 +1156,283 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
 </style>
 
 <script>
-// Demo Chat Bot — multi-vertical
+// Demo Chat Bot — multi-vertical + personality
 const demoVerticals = {
   shop: {
-    greeting: 'สวัสดีครับ! ยินดีต้อนรับสู่ร้าน ShopPawsome 🐾 วันนี้ช่วยอะไรได้บ้างครับ?',
+    name: 'ShopPawsome',
+    greeting: {
+      friendly: 'สวัสดีครับ! ยินดีต้อนรับสู่ร้าน ShopPawsome 🐾 วันนี้ช่วยอะไรได้บ้างครับ?',
+      formal: 'สวัสดีครับ ยินดีต้อนรับสู่ร้าน ShopPawsome ท่านสนใจสินค้าหรือบริการด้านใดครับ?',
+      sales: 'สวัสดีครับ! 🔥 มีโปรวันนี้เท่านั้น! ลด 20% ทุกรายการ สั่งเลยก่อนหมดนะครับ!',
+      cute: 'สวัสดีค่า~! ยินดีต้อนรับสู่ ShopPawsome 🌸🐱 วันนี้ช่วยอะไรได้บ้างเลยค่า?',
+    },
     quickReplies: [
       {label:'🛍️ ดูสินค้า', key:'ดูสินค้า'},
-      {label:'💰 ราคา', key:'ราคาเท่าไหร่?'},
-      {label:'🛒 สั่งซื้อ', key:'สั่งซื้อได้เลยไหม?'},
-      {label:'🚚 ส่งของ', key:'ส่งนานแค่ไหน?'},
+      {label:'💰 ราคา', key:'ราคาเท่าไหร่'},
+      {label:'🛒 สั่งซื้อ', key:'สั่งซื้อ'},
+      {label:'🚚 ส่งของ', key:'ส่งนานแค่ไหน'},
     ],
     replies: {
-      'ดูสินค้า': 'ยินดีครับ! 🛍️ ตอนนี้มีสินค้าแนะนำ:\n• เสื้อยืด Oversize ราคา ฿299\n• กางเกง Jogger ราคา ฿459\n• Set ประหยัด ฿699\nสนใจรายการไหนครับ?',
-      'ราคาเท่าไหร่?': 'ราคาเริ่มต้น ฿199 ครับ! 💰\nมีส่วนลดพิเศษสำหรับลูกค้าใหม่ 15% ใช้โค้ด NEW15 ได้เลย 🎉',
-      'สั่งซื้อได้เลยไหม?': 'ได้เลยครับ! 🛒 กรอกข้อมูลได้เลย:\n1. ชื่อ-ที่อยู่จัดส่ง\n2. เลือกสินค้า\n3. ช่องทางชำระเงิน\nหรือจะโอน/PromptPay ก็ได้ครับ 😊',
-      'ส่งนานแค่ไหน?': 'จัดส่งทั่วไทย 2-3 วันทำการครับ 🚚\nกรุงเทพฯ ได้รับภายใน 1 วัน ค่าส่ง ฿50 หรือฟรีเมื่อซื้อครบ ฿500',
+      'ดูสินค้า': {
+        friendly: 'ยินดีครับ! 🛍️ ตอนนี้มีสินค้าแนะนำ:\n• เสื้อยืด Oversize ราคา ฿299\n• กางเกง Jogger ราคา ฿459\n• Set ประหยัด ฿699\nสนใจรายการไหนครับ?',
+        formal: 'ขอแนะนำสินค้าในขณะนี้ครับ:\n• เสื้อยืด Oversize ราคา ฿299\n• กางเกง Jogger ราคา ฿459\n• Set ประหยัด ฿699\nท่านสนใจรายการใดเป็นพิเศษครับ?',
+        sales: '🔥 HOT! สินค้าขายดีประจำสัปดาห์:\n• เสื้อยืด Oversize ฿299 (เหลือ 3 ตัว!)\n• กางเกง Jogger ฿459 (bestseller!)\n• Set ประหยัด ฿699 ลด 15% วันนี้เท่านั้น!\nตัดสินใจเลยนะครับ 💥',
+        cute: 'มีของน่ารักเยอะเลยค่า~ 🌸\n• เสื้อยืด Oversize ฿299 💕\n• กางเกง Jogger ฿459 ✨\n• Set ประหยัด ฿699 🎀\nชอบตัวไหนบอกได้เลยนะค่า!',
+      },
+      'ราคาเท่าไหร่': {
+        friendly: 'ราคาเริ่มต้น ฿199 ครับ! 💰 ลูกค้าใหม่รับโค้ดส่วนลด NEW15 ทันที 🎉',
+        formal: 'ราคาสินค้าเริ่มต้นที่ ฿199 ครับ ลูกค้าใหม่ได้รับส่วนลด 15% เมื่อใช้รหัส NEW15',
+        sales: '💥 ราคาพิเศษวันนี้! เริ่มต้นเพียง ฿169 (ลดจาก ฿199) ใช้โค้ด FLASH20 ด่วน! หมดเที่ยงคืนนี้!',
+        cute: 'ราคาน่ารักมากเลยค่า~ เริ่มแค่ ฿199 💕 ลูกค้าใหม่ใช้โค้ด NEW15 ลดได้ 15% เลยนะค่า 🎀',
+      },
+      'สั่งซื้อ': {
+        friendly: 'ได้เลยครับ! 🛒 แจ้งชื่อ-ที่อยู่ และรายการสินค้าได้เลยครับ โอน/PromptPay รองรับครับ 😊',
+        formal: 'กรุณาระบุข้อมูลดังต่อไปนี้ครับ:\n1. ชื่อ-ที่อยู่จัดส่ง\n2. รายการสินค้าที่ต้องการ\n3. ช่องทางชำระเงิน\nขอบพระคุณครับ',
+        sales: '⚡ สั่งเดี๋ยวนี้เลย! ยิ่งเร็วยิ่งดี สต็อกมีจำกัด! แจ้งชื่อ-ที่อยู่มาได้เลยครับ 🏃💨',
+        cute: 'ได้เลยนะค่า~ 🌸 บอกชื่อ ที่อยู่ และสินค้าที่ชอบมาได้เลยค่า โอนหรือ PromptPay ได้ทั้งคู่นะค่า 💕',
+      },
+      'ส่งนานแค่ไหน': {
+        friendly: 'จัดส่งทั่วไทย 2-3 วันทำการครับ 🚚 กรุงเทพฯ ภายใน 1 วัน ค่าส่ง ฿50 หรือฟรีเมื่อซื้อครบ ฿500',
+        formal: 'ระยะเวลาจัดส่งทั่วประเทศ 2-3 วันทำการครับ กรุงเทพฯ และปริมณฑล 1 วัน ค่าจัดส่ง ฿50 หรือยกเว้นเมื่อซื้อครบ ฿500',
+        sales: '🚀 จัดส่งฟรี! ซื้อครบ ฿500 เท่านั้น! กรุงเทพฯ ได้ใน 1 วัน ต่างจังหวัด 2-3 วัน สั่งเลยก่อนหมดเวลา!',
+        cute: 'ส่งเร็วมากเลยค่า~ 🚚✨ กรุงเทพฯ ได้พรุ่งนี้เลย! ต่างจังหวัด 2-3 วันนะค่า ฟรีค่าส่งเมื่อซื้อครบ ฿500 ด้วย 🎀',
+      },
     },
   },
   food: {
-    greeting: 'สวัสดีครับ! ร้านข้าวกล่อง PawKitchen พร้อมรับออเดอร์แล้วครับ 🍱',
+    name: 'PawKitchen',
+    greeting: {
+      friendly: 'สวัสดีครับ! ร้านข้าวกล่อง PawKitchen พร้อมรับออเดอร์แล้วครับ 🍱',
+      formal: 'สวัสดีครับ ร้าน PawKitchen ยินดีรับออเดอร์ท่านครับ วันนี้สนใจเมนูใดครับ?',
+      sales: '🍱 สวัสดีครับ! วันนี้มีเมนูพิเศษ ฟรีน้ำ 1 ขวดทุกออเดอร์! สั่งเดี๋ยวนี้เลยครับ 🔥',
+      cute: 'สวัสดีค่า~! PawKitchen พร้อมทำอาหารอร่อยๆ ให้ค่า 🍱🐱 วันนี้อยากกินอะไรค่า?',
+    },
     quickReplies: [
       {label:'🍱 เมนูวันนี้', key:'เมนูวันนี้'},
-      {label:'📦 สั่งข้าวกล่อง', key:'สั่งข้าวกล่อง'},
+      {label:'📦 สั่งข้าว', key:'สั่งข้าวกล่อง'},
       {label:'💰 ราคา', key:'ราคา'},
-      {label:'📍 จัดส่งที่ไหนได้บ้าง', key:'จัดส่งที่ไหนได้บ้าง'},
+      {label:'📍 ส่งได้ไหม', key:'จัดส่งที่ไหนได้บ้าง'},
     ],
     replies: {
-      'เมนูวันนี้': 'เมนูวันนี้ครับ 🍱\n• ข้าวหมูแดง ฿55\n• ข้าวกะเพราไข่ดาว ฿55\n• ข้าวมันไก่ ฿60\nสนใจอะไรครับ?',
-      'สั่งข้าวกล่อง': 'รับออเดอร์ถึง 10:30 น. นะครับ 🕙\nสั่งกี่กล่อง และส่งที่อยู่ไหนครับ?',
-      'ราคา': 'ราคาเริ่ม ฿55 ครับ ฟรีค่าส่งเมื่อสั่ง 3 กล่องขึ้นไป 🚚',
-      'จัดส่งที่ไหนได้บ้าง': 'จัดส่งในรัศมี 5 กม. ครับ ค่าส่ง ฿20 หรือฟรีเมื่อซื้อครบ 3 กล่อง 📍',
+      'เมนูวันนี้': {
+        friendly: 'เมนูวันนี้ครับ 🍱\n• ข้าวหมูแดง ฿55\n• ข้าวกะเพราไข่ดาว ฿55\n• ข้าวมันไก่ ฿60\nสนใจอะไรครับ?',
+        formal: 'เมนูประจำวันนี้ครับ:\n• ข้าวหมูแดง ฿55\n• ข้าวกะเพราไข่ดาว ฿55\n• ข้าวมันไก่ ฿60\nท่านสนใจรายการใดครับ?',
+        sales: '🔥 เมนูยอดฮิตวันนี้! สั่งคู่รับฟรีน้ำ!\n• ข้าวหมูแดง ฿55 (ขายดี!)\n• ข้าวกะเพราไข่ดาว ฿55\n• ข้าวมันไก่ ฿60\nสั่ง 3 กล่องขึ้นไปฟรีค่าส่ง! ⚡',
+        cute: 'เมนูอร่อยๆ ของวันนี้ค่า 🌸\n• ข้าวหมูแดง ฿55 💕\n• ข้าวกะเพราไข่ดาว ฿55 🌶️\n• ข้าวมันไก่ ฿60 🐔\nชอบเมนูไหนบอกได้เลยนะค่า~!',
+      },
+      'สั่งข้าวกล่อง': {
+        friendly: 'รับออเดอร์ถึง 10:30 น. นะครับ 🕙 สั่งกี่กล่อง และส่งที่อยู่ไหนครับ?',
+        formal: 'รับออเดอร์ถึงเวลา 10:30 น. ครับ กรุณาระบุจำนวนกล่องและที่อยู่จัดส่งครับ',
+        sales: '⚡ รีบสั่งด่วน! รับออเดอร์ถึง 10:30 น. เท่านั้น! สั่ง 3 กล่องขึ้นไปฟรีค่าส่งทันที! 🎁',
+        cute: 'รับออเดอร์ถึง 10:30 น. นะค่า~ 🕙💕 บอกจำนวนกล่องและที่อยู่มาได้เลยนะค่า!',
+      },
+      'ราคา': {
+        friendly: 'ราคาเริ่ม ฿55 ครับ ฟรีค่าส่งเมื่อสั่ง 3 กล่องขึ้นไป 🚚',
+        formal: 'ราคาเริ่มต้นที่ ฿55 ต่อกล่องครับ ยกเว้นค่าจัดส่งเมื่อสั่ง 3 กล่องขึ้นไป',
+        sales: '💥 ราคาสุดคุ้ม เริ่มแค่ ฿55! สั่ง 3 กล่องฟรีค่าส่ง! สั่งเดี๋ยวนี้ประหยัดกว่า!',
+        cute: 'ราคาน่ารักมากค่า~ เริ่มแค่ ฿55 เท่านั้นเลย 🌸 สั่ง 3 กล่องฟรีค่าส่งด้วยนะค่า 🎀',
+      },
+      'จัดส่งที่ไหนได้บ้าง': {
+        friendly: 'จัดส่งในรัศมี 5 กม. ครับ ค่าส่ง ฿20 หรือฟรีเมื่อสั่ง 3 กล่องขึ้นไป 📍',
+        formal: 'พื้นที่จัดส่งในรัศมี 5 กิโลเมตรครับ ค่าบริการจัดส่ง ฿20 หรือยกเว้นเมื่อสั่ง 3 กล่องขึ้นไป',
+        sales: '🚀 ส่งถึงบ้านฟรี! สั่ง 3 กล่องขึ้นไปฟรีค่าส่งทันที! รัศมี 5 กม. จัดส่งใน 45 นาที!',
+        cute: 'ส่งในรัศมี 5 กม. นะค่า 📍🚗 ค่าส่งแค่ ฿20 หรือสั่ง 3 กล่องขึ้นไปฟรีเลยค่า~ 💕',
+      },
     },
   },
   appt: {
-    greeting: 'สวัสดีครับ! 🐱 วันนี้อยากนัดหมายนวดแผนไทยหรือสปาครับ?',
+    name: 'PawSpa',
+    greeting: {
+      friendly: 'สวัสดีครับ! 🌸 PawSpa ยินดีให้บริการ วันนี้สนใจนวดหรือสปาครับ?',
+      formal: 'สวัสดีครับ ยินดีต้อนรับสู่ PawSpa ท่านสนใจนัดหมายบริการใดครับ?',
+      sales: '🌸 สวัสดีครับ! ตอนนี้มีโปรแพ็กเกจคู่ลด 20%! จองวันนี้รับส่วนลดทันทีครับ!',
+      cute: 'สวัสดีค่า~ PawSpa มาแล้วค่า 🌸🐱 วันนี้อยากนวดหรือทำสปาแบบไหนค่า?',
+    },
     quickReplies: [
-      {label:'💆 นวดพรุ่งนี้', key:'อยากนวดพรุ่งนี้บ่าย 2'},
+      {label:'💆 จองนัด', key:'จองนัดนวด'},
       {label:'💰 ราคาบริการ', key:'ราคาบริการ'},
-      {label:'🗓️ ดูคิวว่าง', key:'ดูคิวว่าง'},
-      {label:'📍 ที่อยู่ร้าน', key:'ที่อยู่ร้าน'},
+      {label:'🗓️ คิวว่าง', key:'ดูคิวว่าง'},
+      {label:'📍 ที่อยู่', key:'ที่อยู่ร้าน'},
     ],
     replies: {
-      'อยากนวดพรุ่งนี้บ่าย 2': 'ได้เลยครับ! 🌸 วันพรุ่งนี้เวลา 14:00 น. ยืนยันชื่อและเบอร์โทรด้วยนะครับ',
-      'สมหมาย 0812345678': '✅ จองเรียบร้อยแล้วครับ! คุณสมหมาย วันพรุ่งนี้ 14:00 น. นวดแผนไทย 1 ชั่วโมง จะส่ง reminder ก่อน 1 ชั่วโมงนะครับ 🐾',
-      'ราคาบริการ': 'บริการของเรา 🌸\n• นวดแผนไทย 1 ชม. ฿350\n• นวดน้ำมัน 1 ชม. ฿450\n• สปาหน้า ฿550\n• แพ็กเกจคู่ลด 10% ครับ',
-      'ดูคิวว่าง': 'คิวว่างพรุ่งนี้ครับ 🗓️\n• 10:00 น. ✅\n• 14:00 น. ✅\n• 16:00 น. ✅\nสะดวกช่วงไหนครับ?',
-      'ที่อยู่ร้าน': 'ร้านอยู่ที่ถนนสุขุมวิท ซอย 11 ครับ 📍\nจอดรถฟรีในอาคาร เปิด 9:00-20:00 ทุกวัน',
+      'จองนัดนวด': {
+        friendly: 'ได้เลยครับ! 🌸 วันและเวลาที่ต้องการครับ? แจ้งชื่อและเบอร์ด้วยนะครับ',
+        formal: 'กรุณาระบุวันที่ เวลา และประเภทบริการที่ต้องการครับ พร้อมชื่อและเบอร์ติดต่อครับ',
+        sales: '⚡ จองเลยก่อนคิวเต็ม! วันนี้มีโปรพิเศษนวด 2 ต่อ 1! แจ้งวันเวลาได้เลยครับ 🔥',
+        cute: 'จองได้เลยนะค่า~ 🌸💕 บอกวันเวลาที่สะดวก พร้อมชื่อและเบอร์ติดต่อมาได้เลยค่า!',
+      },
+      'ราคาบริการ': {
+        friendly: 'บริการของเรา 🌸\n• นวดแผนไทย 1 ชม. ฿350\n• นวดน้ำมัน 1 ชม. ฿450\n• สปาหน้า ฿550\n• แพ็กเกจคู่ลด 10% ครับ',
+        formal: 'อัตราค่าบริการมีดังนี้ครับ:\n• นวดแผนไทย 1 ชั่วโมง ฿350\n• นวดน้ำมัน 1 ชั่วโมง ฿450\n• สปาหน้า ฿550\n• แพ็กเกจคู่ลดราคา 10%',
+        sales: '💥 ราคาพิเศษวันนี้!\n• นวดแผนไทย ฿350 → ฿299 (จองด่วน!)\n• นวดน้ำมัน ฿450 → ฿380\n• แพ็กเกจคู่ลด 20%! จองเลยก่อนเต็ม! 🔥',
+        cute: 'บริการน่ารักๆ ของเราค่า~ 🌸\n• นวดแผนไทย ฿350 💆\n• นวดน้ำมัน ฿450 ✨\n• สปาหน้า ฿550 🧖\n• แพ็กเกจคู่ลด 10% ด้วยนะค่า 💕',
+      },
+      'ดูคิวว่าง': {
+        friendly: 'คิวว่างพรุ่งนี้ครับ 🗓️\n• 10:00 น. ✅\n• 14:00 น. ✅\n• 16:00 น. ✅\nสะดวกช่วงไหนครับ?',
+        formal: 'คิวว่างสำหรับพรุ่งนี้มีดังนี้ครับ:\n• 10:00 น. ว่าง\n• 14:00 น. ว่าง\n• 16:00 น. ว่าง\nท่านสะดวกช่วงเวลาใดครับ?',
+        sales: '🔥 คิวว่างน้อยมาก! รีบจองด่วน!\n• 10:00 น. ✅ เหลือ 1 ที่!\n• 14:00 น. ✅\n• 16:00 น. ✅\nจองเดี๋ยวนี้เลยครับ!',
+        cute: 'มีคิวว่างพรุ่งนี้นะค่า~ 🗓️✨\n• 10:00 น. ✅ ว่างค่า\n• 14:00 น. ✅ ว่างค่า\n• 16:00 น. ✅ ว่างค่า\nสะดวกช่วงไหนค่า? 🌸',
+      },
+      'ที่อยู่ร้าน': {
+        friendly: 'ร้านอยู่ที่สุขุมวิท ซอย 11 ครับ 📍 จอดรถฟรีในอาคาร เปิด 9:00-20:00 ทุกวัน',
+        formal: 'ร้านตั้งอยู่ที่ถนนสุขุมวิท ซอย 11 ครับ มีที่จอดรถในอาคารโดยไม่มีค่าใช้จ่าย เปิดทำการ 9:00-20:00 น. ทุกวัน',
+        sales: '📍 ใกล้ BTS อโศก 5 นาทีเท่านั้น! จอดรถฟรี! มาแล้วจะชอบแน่นอนครับ 🌟',
+        cute: 'อยู่ที่สุขุมวิท ซอย 11 ค่า~ 📍💕 จอดรถฟรีในอาคาร เปิดทุกวัน 9:00-20:00 นะค่า ยินดีต้อนรับเสมอค่า 🌸',
+      },
+    },
+  },
+  clinic: {
+    name: 'PawClinic',
+    greeting: {
+      friendly: 'สวัสดีครับ! 🏥 คลินิก PawClinic ยินดีให้บริการ วันนี้มีอาการอะไรครับ?',
+      formal: 'สวัสดีครับ ยินดีต้อนรับสู่คลินิก PawClinic ท่านต้องการนัดพบแพทย์หรือสอบถามข้อมูลครับ?',
+      sales: '🏥 สวัสดีครับ! ตรวจสุขภาพวันนี้รับส่วนลด 15%! จองเลยครับ 🎉',
+      cute: 'สวัสดีค่า~ PawClinic พร้อมดูแลสุขภาพค่า 🏥💕 มีอาการอะไรให้ช่วยไหมค่า?',
+    },
+    quickReplies: [
+      {label:'🗓️ จองนัดแพทย์', key:'จองนัดแพทย์'},
+      {label:'💊 ถามอาการ', key:'ถามอาการ'},
+      {label:'💰 ค่าบริการ', key:'ค่าบริการ'},
+      {label:'⏰ เวลาทำการ', key:'เวลาทำการ'},
+    ],
+    replies: {
+      'จองนัดแพทย์': {
+        friendly: 'ได้เลยครับ! 🗓️ แพทย์ว่างวันพรุ่งนี้เวลา 9:00 11:00 และ 14:00 น. สะดวกช่วงไหนครับ?',
+        formal: 'ขอทราบวันและเวลาที่ท่านสะดวกครับ แพทย์ว่างวันพรุ่งนี้ที่ 9:00 11:00 และ 14:00 น.',
+        sales: '⚡ จองด่วน! คิวพรุ่งนี้เหลือน้อยมาก! ตรวจวันนี้รับส่วนลด 15%! แจ้งเวลาที่สะดวกเลยครับ!',
+        cute: 'ได้เลยนะค่า~ 🌸 มีแพทย์ว่างพรุ่งนี้ที่ 9:00 11:00 และ 14:00 น. ค่า สะดวกช่วงไหนค่า?',
+      },
+      'ถามอาการ': {
+        friendly: 'แจ้งอาการได้เลยครับ AI จะช่วยประเมินเบื้องต้นและแนะนำแพทย์ผู้เชี่ยวชาญที่เหมาะสมครับ 🏥',
+        formal: 'กรุณาระบุอาการที่ท่านมีครับ ระบบจะช่วยประเมินเบื้องต้นและแนะนำแนวทางการรักษาที่เหมาะสม',
+        sales: '🔥 ปรึกษาฟรี! แจ้งอาการมาได้เลยครับ AI ประเมินเบื้องต้นฟรี พร้อมแนะนำแพทย์ที่ดีที่สุด!',
+        cute: 'บอกอาการมาได้เลยนะค่า~ 💕 AI จะช่วยดูเบื้องต้นและแนะนำให้ค่า ไม่ต้องกังวลนะค่า 🌸',
+      },
+      'ค่าบริการ': {
+        friendly: 'ค่าบริการครับ 💊\n• ตรวจทั่วไป ฿300\n• ตรวจเฉพาะทาง ฿500-800\n• ตรวจสุขภาพแพ็กเกจ ฿1,200\nมีประกันสุขภาพรองรับครับ',
+        formal: 'อัตราค่าบริการมีดังนี้ครับ:\n• ตรวจโรคทั่วไป ฿300\n• พบแพทย์เฉพาะทาง ฿500-800\n• ชุดตรวจสุขภาพ ฿1,200\nรองรับประกันสุขภาพหลายบริษัท',
+        sales: '💥 โปรตรวจสุขภาพ ฿999 (ปกติ ฿1,200)! วันนี้เท่านั้น! รวมเจาะเลือด ตรวจ EKG ฟรี!',
+        cute: 'ค่าบริการน่ารักนะค่า~ 🌸\n• ตรวจทั่วไป ฿300 💊\n• เฉพาะทาง ฿500-800\n• แพ็กเกจสุขภาพ ฿1,200\nมีประกันก็รองรับได้นะค่า 💕',
+      },
+      'เวลาทำการ': {
+        friendly: 'เปิดทำการครับ 🕐\n• จันทร์-ศุกร์: 8:00-20:00 น.\n• เสาร์-อาทิตย์: 9:00-17:00 น.',
+        formal: 'เวลาทำการของคลินิกครับ:\n• วันจันทร์-ศุกร์: 8:00-20:00 น.\n• วันเสาร์-อาทิตย์: 9:00-17:00 น.',
+        sales: '⏰ เปิดยาว 8:00-20:00 น.! ไม่ต้องลางาน มาหลังเลิกงานได้ เสาร์-อาทิตย์ก็เปิดด้วย!',
+        cute: 'เปิดทุกวันเลยนะค่า~ ⏰💕\n• จันทร์-ศุกร์ 8:00-20:00 น.\n• เสาร์-อาทิตย์ 9:00-17:00 น.\nยินดีต้อนรับทุกเวลาค่า 🌸',
+      },
+    },
+  },
+  hotel: {
+    name: 'PawHotel',
+    greeting: {
+      friendly: 'สวัสดีครับ! 🏨 PawHotel ยินดีให้บริการ วันที่ต้องการเช็คอินครับ?',
+      formal: 'สวัสดีครับ ยินดีต้อนรับสู่ PawHotel ท่านต้องการจองห้องพักหรือสอบถามข้อมูลครับ?',
+      sales: '🏨 สวัสดีครับ! จองวันนี้ราคาพิเศษ ลด 25%! ห้องว่างมีจำกัดครับ 🔥',
+      cute: 'สวัสดีค่า~ PawHotel ยินดีต้อนรับค่า 🏨💕 จะจองห้องหรือถามข้อมูลอะไรค่า?',
+    },
+    quickReplies: [
+      {label:'🛏️ จองห้อง', key:'จองห้องพัก'},
+      {label:'💰 ราคาห้อง', key:'ราคาห้องพัก'},
+      {label:'🗓️ ห้องว่าง', key:'เช็คห้องว่าง'},
+      {label:'🍳 อาหารเช้า', key:'อาหารเช้า'},
+    ],
+    replies: {
+      'จองห้องพัก': {
+        friendly: 'ยินดีจองให้ครับ! 🛏️ แจ้งวันเช็คอิน เช็คเอาต์ และจำนวนผู้เข้าพักด้วยนะครับ',
+        formal: 'กรุณาระบุวันที่เช็คอิน เช็คเอาต์ จำนวนผู้เข้าพัก และประเภทห้องที่ต้องการครับ',
+        sales: '⚡ จองด่วน! ราคาวันนี้ถูกที่สุด! แจ้งวันเช็คอิน-เอาต์ มาได้เลย ห้องว่างเหลือน้อยมาก! 🔥',
+        cute: 'จองให้เลยค่า~ 🛏️🌸 บอกวันเช็คอิน เช็คเอาต์ และจำนวนคนมาได้นะค่า 💕',
+      },
+      'ราคาห้องพัก': {
+        friendly: 'ราคาห้องพักครับ 🏨\n• Standard ฿1,200/คืน\n• Deluxe ฿1,800/คืน\n• Suite ฿2,800/คืน\nรวมอาหารเช้าสำหรับ 2 ท่าน',
+        formal: 'อัตราค่าห้องพักมีดังนี้ครับ:\n• Standard ฿1,200/คืน\n• Deluxe ฿1,800/คืน\n• Suite ฿2,800/คืน\nรวมอาหารเช้า 2 ท่านทุกประเภทห้อง',
+        sales: '💥 ราคาพิเศษวันนี้! Standard ฿960/คืน (ลด 20%)! Deluxe ฿1,440! จองก่อนหมดสิ้นเดือนนี้! 🔥',
+        cute: 'ราคาน่ารักมากเลยค่า~ 🌸\n• Standard ฿1,200/คืน 💕\n• Deluxe ฿1,800/คืน ✨\n• Suite ฿2,800/คืน 👑\nรวมอาหารเช้าทุกห้องเลยนะค่า!',
+      },
+      'เช็คห้องว่าง': {
+        friendly: 'แจ้งวันที่ต้องการเลยครับ จะเช็คห้องว่างให้ทันที 🗓️',
+        formal: 'กรุณาระบุวันที่เช็คอินและเช็คเอาต์ที่ต้องการครับ จะตรวจสอบห้องว่างให้ครับ',
+        sales: '⚡ เช็คได้เลย! แต่รีบหน่อยนะครับ ช่วงวีคเอนด์ห้องเต็มเร็วมาก! แจ้งวันที่ด่วนเลย!',
+        cute: 'บอกวันที่มาได้เลยนะค่า~ 🗓️💕 จะเช็คให้ทันทีเลยค่า ไม่ต้องรอนานค่า 🌸',
+      },
+      'อาหารเช้า': {
+        friendly: 'รวมอาหารเช้าบุฟเฟ่ต์ทุกห้องครับ! 🍳 มีทั้งไทยและนานาชาติ เสิร์ฟ 6:30-10:00 น.',
+        formal: 'ทุกประเภทห้องรวมอาหารเช้าบุฟเฟ่ต์นานาชาติครับ เสิร์ฟที่ห้องอาหารชั้น 1 เวลา 6:30-10:00 น.',
+        sales: '🍳 รวมอาหารเช้าบุฟเฟ่ต์ฟรีทุกห้อง! ไทย+ฝรั่ง ครบ! ราคานี้คุ้มมากครับ จองก่อนหมด! 🔥',
+        cute: 'รวมอาหารเช้าบุฟเฟ่ต์ทุกห้องเลยค่า~ 🍳💕 มีทั้งเมนูไทยและนานาชาติ เสิร์ฟ 6:30-10:00 น. อร่อยมากเลยค่า!',
+      },
+    },
+  },
+  school: {
+    name: 'PawAcademy',
+    greeting: {
+      friendly: 'สวัสดีครับ! 🎓 PawAcademy ยินดีให้บริการ สนใจหลักสูตรไหนครับ?',
+      formal: 'สวัสดีครับ ยินดีต้อนรับสู่ PawAcademy ท่านสนใจสมัครเรียนหรือสอบถามข้อมูลหลักสูตรครับ?',
+      sales: '🎓 สวัสดีครับ! สมัครเรียนวันนี้รับส่วนลด Early Bird 30%! จำนวนจำกัดครับ 🔥',
+      cute: 'สวัสดีค่า~ PawAcademy ยินดีต้อนรับค่า 🎓💕 สนใจเรียนอะไรค่า? ช่วยแนะนำได้เลยนะค่า!',
+    },
+    quickReplies: [
+      {label:'📚 ดูหลักสูตร', key:'ดูหลักสูตร'},
+      {label:'💰 ค่าเรียน', key:'ค่าเรียน'},
+      {label:'📅 ตารางเรียน', key:'ตารางเรียน'},
+      {label:'🎓 สมัครเรียน', key:'สมัครเรียน'},
+    ],
+    replies: {
+      'ดูหลักสูตร': {
+        friendly: 'หลักสูตรของเราครับ 📚\n• ภาษาอังกฤษ (ทุกระดับ)\n• คณิตศาสตร์ ม.ต้น-ปลาย\n• วิทยาศาสตร์\n• IELTS / TOEIC Prep\nสนใจอะไรครับ?',
+        formal: 'หลักสูตรที่เปิดสอนมีดังนี้ครับ:\n• ภาษาอังกฤษทุกระดับ\n• คณิตศาสตร์ระดับมัธยม\n• วิทยาศาสตร์\n• เตรียมสอบ IELTS / TOEIC\nท่านสนใจหลักสูตรใดครับ?',
+        sales: '🔥 หลักสูตรยอดนิยม!\n• English ลดเหลือ ฿1,999/เดือน!\n• IELTS Prep ผ่านรับประกัน!\n• คณิต-วิทย์ ม.ปลาย สอบติดมั่นใจ!\nสมัครวันนี้รับส่วนลด Early Bird! ⚡',
+        cute: 'มีหลักสูตรน่าเรียนเยอะเลยค่า~ 📚🌸\n• ภาษาอังกฤษ 💕\n• คณิตศาสตร์ ✏️\n• วิทยาศาสตร์ 🔬\n• IELTS / TOEIC 📝\nชอบเรียนอะไรค่า?',
+      },
+      'ค่าเรียน': {
+        friendly: 'ค่าเรียนครับ 💰\n• กลุ่ม (5-8 คน): ฿1,500/เดือน\n• กึ่งส่วนตัว (3-4 คน): ฿2,500/เดือน\n• ส่วนตัว: ฿4,000/เดือน',
+        formal: 'อัตราค่าเรียนมีดังนี้ครับ:\n• ห้องกลุ่ม (5-8 คน): ฿1,500/เดือน\n• ห้องกึ่งส่วนตัว (3-4 คน): ฿2,500/เดือน\n• เรียนส่วนตัว: ฿4,000/เดือน',
+        sales: '💥 Early Bird ลด 30%! เหลือแค่:\n• กลุ่ม ฿1,050/เดือน (ปกติ ฿1,500)!\n• ส่วนตัว ฿2,800/เดือน!\nสมัครก่อนสิ้นเดือนนี้ด่วน! ⚡',
+        cute: 'ราคาคุ้มค่ามากเลยค่า~ 💕\n• กลุ่ม ฿1,500/เดือน 🌸\n• กึ่งส่วนตัว ฿2,500/เดือน ✨\n• ส่วนตัว ฿4,000/เดือน 👑\nเลือกแบบที่ชอบได้เลยนะค่า!',
+      },
+      'ตารางเรียน': {
+        friendly: 'เรียนได้ทุกวันครับ 📅\n• จันทร์-ศุกร์: 15:00-21:00 น.\n• เสาร์-อาทิตย์: 9:00-18:00 น.\nเลือกเวลาที่สะดวกได้เลยครับ',
+        formal: 'ตารางเรียนครับ:\n• วันจันทร์-ศุกร์: 15:00-21:00 น.\n• วันเสาร์-อาทิตย์: 9:00-18:00 น.\nท่านสะดวกช่วงเวลาใดครับ?',
+        sales: '⏰ เรียนได้ทุกวัน ยืดหยุ่นสุด! ช่วยปรับตารางให้เหมาะกับคุณ! เสาร์-อาทิตย์ก็เรียนได้! จองเลยครับ!',
+        cute: 'เรียนได้ทุกวันเลยค่า~ 📅💕\n• จันทร์-ศุกร์ 15:00-21:00 น.\n• เสาร์-อาทิตย์ 9:00-18:00 น.\nสะดวกช่วงไหนบอกได้เลยนะค่า 🌸',
+      },
+      'สมัครเรียน': {
+        friendly: 'สมัครได้เลยครับ! 🎓 แจ้งชื่อ อายุ ระดับการเรียน และหลักสูตรที่สนใจได้เลยครับ',
+        formal: 'กรุณาระบุข้อมูลดังต่อไปนี้ครับ: ชื่อ-นามสกุล อายุ ระดับการศึกษา และหลักสูตรที่ต้องการ จะดำเนินการให้ครับ',
+        sales: '⚡ สมัครเดี๋ยวนี้รับส่วนลด 30%! แจ้งชื่อ อายุ และหลักสูตรที่สนใจมาเลย ก่อนโปรหมดอายุ! 🔥',
+        cute: 'สมัครได้เลยนะค่า~ 🎓🌸 บอกชื่อ อายุ ระดับเรียน และหลักสูตรที่ชอบมาได้เลยค่า 💕 ยินดีมากเลยค่า!',
+      },
     },
   },
 };
 
 let currentVertical = 'shop';
+let currentPersona = 'friendly';
 
-function switchDemo(verticalKey, tabEl) {
-  currentVertical = verticalKey;
-  // Update tab active state
-  document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
-  tabEl.classList.add('active');
+const personaNames = {
+  friendly: '😊 เป็นกันเอง',
+  formal: '👔 ทางการ',
+  sales: '🔥 ขายเก่ง',
+  cute: '🌸 น่ารัก',
+};
 
-  const v = demoVerticals[verticalKey];
-  // Reset messages
+function setPersona(key, el) {
+  currentPersona = key;
+  document.querySelectorAll('.demo-persona').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  const nameEl = document.querySelector('.demo-name');
+  if (nameEl) nameEl.textContent = (demoVerticals[currentVertical]?.name || 'MeowChat AI') + ' · ' + personaNames[key];
+  refreshDemo();
+}
+
+function refreshDemo() {
+  const v = demoVerticals[currentVertical];
   const msgs = document.getElementById('demoMsgs');
   msgs.innerHTML = '';
   const greeting = document.createElement('div');
   greeting.className = 'dmsg bot show';
-  greeting.textContent = v.greeting;
+  greeting.textContent = v.greeting[currentPersona] || v.greeting.friendly;
   msgs.appendChild(greeting);
-
-  // Reset quick replies
   const quick = document.getElementById('demoQuick');
   quick.innerHTML = '';
   v.quickReplies.forEach(qr => {
@@ -1189,6 +1441,15 @@ function switchDemo(verticalKey, tabEl) {
     btn.onclick = () => demoSend(qr.key);
     quick.appendChild(btn);
   });
+}
+
+function switchDemo(verticalKey, tabEl) {
+  currentVertical = verticalKey;
+  document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+  tabEl.classList.add('active');
+  const nameEl = document.querySelector('.demo-name');
+  if (nameEl) nameEl.textContent = (demoVerticals[verticalKey]?.name || 'MeowChat AI') + ' · ' + personaNames[currentPersona];
+  refreshDemo();
 }
 
 function demoSend(text) {
@@ -1213,7 +1474,9 @@ function demoSend(text) {
     t.remove();
     const b = document.createElement('div');
     b.className = 'dmsg bot';
-    b.textContent = (v.replies && v.replies[text]) || defaultReply;
+    const replyEntry = v.replies && v.replies[text];
+    const rawReply = replyEntry ? (replyEntry[currentPersona] || replyEntry.friendly) : defaultReply;
+    b.textContent = rawReply;
     msgs.appendChild(b);
     requestAnimationFrame(() => b.classList.add('show'));
     msgs.scrollTop = msgs.scrollHeight;

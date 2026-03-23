@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ข้อตกลงการประมวลผลข้อมูล (DPA) - MeowChat</title>
+<meta name="description" content="ข้อตกลงการประมวลผลข้อมูลส่วนบุคคลของ MeowChat ตาม พ.ร.บ. PDPA 2562">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"></noscript>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#FFFDF5;--card:#fff;--border:#EDE8F8;
+  --lav:#8E6FBB;--lavs:#B19CD9;--lavm:#EDE8F8;
+  --peach:#FFD180;--apricot:#FFB74D;
+  --dark:#5D4E6D;--gray:#7A6B8A;
+  --r:16px;
+}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--dark);overflow-x:hidden;line-height:1.8}
+
+nav{background:rgba(255,253,245,.95);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:99;padding:14px 28px;
+  display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:20px;font-weight:900;color:var(--lav);text-decoration:none;display:flex;align-items:center;gap:8px}
+.nav-back{font-size:14px;font-weight:700;color:var(--gray);text-decoration:none;padding:7px 16px;border-radius:50px;border:1.5px solid var(--lavs);transition:.2s}
+.nav-back:hover{background:var(--lavm);color:var(--lav)}
+
+.container{max-width:780px;margin:0 auto;padding:48px 24px 80px}
+.page-header{text-align:center;margin-bottom:48px;padding-bottom:32px;border-bottom:2px solid var(--border)}
+.page-chip{display:inline-block;padding:6px 18px;border-radius:50px;background:var(--lavm);color:var(--lav);font-size:12px;font-weight:800;letter-spacing:.4px;margin-bottom:12px}
+.page-title{font-size:clamp(24px,4vw,36px);font-weight:900;color:var(--dark);margin-bottom:8px}
+.page-sub{font-size:15px;color:var(--gray)}
+.page-meta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.page-meta span{font-size:13px;color:var(--gray);background:var(--lavm);padding:4px 12px;border-radius:20px;font-weight:700}
+
+.section{margin-bottom:36px}
+.section h2{font-size:18px;font-weight:900;color:var(--dark);margin-bottom:14px;padding-left:14px;border-left:4px solid var(--apricot)}
+.section p{font-size:14px;color:var(--gray);margin-bottom:10px}
+.section ul{padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.section ul li{font-size:14px;color:var(--gray)}
+.section ul li::marker{color:var(--apricot)}
+.section strong{color:var(--dark)}
+
+.highlight-box{background:var(--lavm);border-radius:var(--r);padding:20px 24px;margin:20px 0;border-left:4px solid var(--lav)}
+.highlight-box p{color:var(--dark);font-size:14px;margin:0}
+
+.table-wrap{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:var(--lavm);color:var(--dark);font-weight:800;padding:10px 14px;text-align:left;border:1px solid var(--border)}
+td{padding:9px 14px;border:1px solid var(--border);color:var(--gray);vertical-align:top}
+tr:nth-child(even) td{background:#faf8ff}
+
+.contact-box{background:#fff;border:2px solid var(--border);border-radius:var(--r);padding:24px;margin-top:32px}
+.contact-box h3{font-size:16px;font-weight:900;color:var(--dark);margin-bottom:12px}
+.contact-box a{color:var(--lav);font-weight:700}
+
+footer{text-align:center;padding:32px 24px;background:#FFF5EB;color:var(--gray);font-size:13px;border-top:1px solid var(--border)}
+footer a{color:var(--lav);text-decoration:none;font-weight:600}
+footer a:hover{color:var(--apricot)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/"><span>🐱</span> MeowChat</a>
+  <a class="nav-back" href="/">← กลับหน้าแรก</a>
+</nav>
+
+<div class="container">
+
+<div class="page-header">
+  <div class="page-chip">📄 เอกสารกฎหมาย</div>
+  <h1 class="page-title">ข้อตกลงการประมวลผลข้อมูลส่วนบุคคล</h1>
+  <p class="page-sub">Data Processing Agreement (DPA)</p>
+  <div class="page-meta">
+    <span>📅 มีผลบังคับใช้: 1 มกราคม 2568</span>
+    <span>🔄 อัพเดทล่าสุด: มีนาคม 2569</span>
+    <span>🇹🇭 เป็นไปตาม พ.ร.บ. PDPA 2562</span>
+  </div>
+</div>
+
+<div class="highlight-box">
+  <p>📋 <strong>สรุปสำหรับเจ้าของธุรกิจ:</strong> เมื่อคุณใช้ MeowChat คุณเป็น "ผู้ควบคุมข้อมูล" (Data Controller) และ Mawsom Company เป็น "ผู้ประมวลผลข้อมูล" (Data Processor) ตาม พ.ร.บ. PDPA เราประมวลผลข้อมูลตามคำสั่งของคุณเท่านั้น ไม่นำไปใช้เพื่อวัตถุประสงค์อื่น</p>
+</div>
+
+<div class="section">
+  <h2>1. คู่สัญญา</h2>
+  <p><strong>ผู้ประมวลผลข้อมูล (Data Processor):</strong><br>
+  Mawsom Company Limited<br>
+  ผู้ให้บริการ MeowChat ที่ meowchat.store<br>
+  อีเมล: <a href="mailto:dpa@meowchat.store">dpa@meowchat.store</a></p>
+  <p><strong>ผู้ควบคุมข้อมูล (Data Controller):</strong><br>
+  ผู้ใช้บริการ MeowChat (เจ้าของธุรกิจ) ที่ได้ยอมรับข้อกำหนดการใช้งาน</p>
+</div>
+
+<div class="section">
+  <h2>2. วัตถุประสงค์ของการประมวลผลข้อมูล</h2>
+  <p>Mawsom Company ประมวลผลข้อมูลส่วนบุคคลในฐานะผู้ประมวลผลข้อมูล เพื่อวัตถุประสงค์ดังต่อไปนี้เท่านั้น:</p>
+  <ul>
+    <li>ให้บริการตอบแชทอัตโนมัติผ่าน AI บน LINE OA และช่องทางที่รองรับ</li>
+    <li>จัดเก็บประวัติการสนทนาเพื่อให้ AI ตอบได้ต่อเนื่องและแม่นยำ</li>
+    <li>ประมวลผลข้อมูลออเดอร์ การจองนัด และข้อมูลลูกค้าตามที่ผู้ควบคุมข้อมูลกำหนด</li>
+    <li>ให้บริการ Dashboard วิเคราะห์ข้อมูลแก่ผู้ควบคุมข้อมูล</li>
+    <li>รักษาความปลอดภัยและความพร้อมใช้งานของระบบ</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>3. ประเภทข้อมูลที่ประมวลผล</h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th>ประเภทข้อมูล</th><th>ตัวอย่าง</th><th>วัตถุประสงค์</th></tr>
+      <tr><td>ข้อมูลประจำตัว</td><td>ชื่อ, LINE ID, เบอร์โทร</td><td>ระบุตัวตนลูกค้า</td></tr>
+      <tr><td>ข้อมูลการสื่อสาร</td><td>ข้อความแชท, ประวัติสนทนา</td><td>AI ตอบคำถาม</td></tr>
+      <tr><td>ข้อมูลธุรกรรม</td><td>ออเดอร์, ที่อยู่จัดส่ง</td><td>จัดการคำสั่งซื้อ</td></tr>
+      <tr><td>ข้อมูลการนัดหมาย</td><td>วันเวลานัด, ประเภทบริการ</td><td>ระบบจองนัด</td></tr>
+      <tr><td>ข้อมูลการใช้งาน</td><td>สถิติแชท, เวลาตอบ</td><td>Dashboard วิเคราะห์</td></tr>
+    </table>
+  </div>
+  <p><strong>ข้อมูลที่ไม่ประมวลผล:</strong> ข้อมูลชีวมิติ, ข้อมูลสุขภาพ, ข้อมูลศาสนา, ข้อมูลพันธุกรรม เว้นแต่ผู้ควบคุมข้อมูลได้รับความยินยอมโดยชัดแจ้งและแจ้งให้เราทราบ</p>
+</div>
+
+<div class="section">
+  <h2>4. ข้อผูกพันของ Mawsom Company (ผู้ประมวลผล)</h2>
+  <ul>
+    <li><strong>ประมวลผลตามคำสั่งเท่านั้น:</strong> ไม่ประมวลผลข้อมูลเกินกว่าที่ผู้ควบคุมข้อมูลสั่ง</li>
+    <li><strong>ไม่นำไปใช้เป็น training data:</strong> ข้อมูลลูกค้าของคุณจะไม่ถูกใช้ฝึกโมเดล AI ใดๆ</li>
+    <li><strong>รักษาความลับ:</strong> พนักงานและผู้รับเหมาทุกรายลงนามข้อตกลงรักษาความลับ</li>
+    <li><strong>แจ้งเหตุละเมิด:</strong> แจ้งภายใน 72 ชั่วโมงหากพบการละเมิดข้อมูล</li>
+    <li><strong>ช่วยเรื่องสิทธิ์:</strong> สนับสนุนการตอบคำขอสิทธิ์เจ้าของข้อมูลตาม PDPA</li>
+    <li><strong>ลบข้อมูลเมื่อสิ้นสุดสัญญา:</strong> ลบหรือส่งคืนข้อมูลภายใน 30 วันหลังยกเลิกบัญชี</li>
+    <li><strong>ตรวจสอบได้:</strong> อนุญาตให้ผู้ควบคุมข้อมูลหรือผู้ตรวจสอบที่ได้รับมอบอำนาจตรวจสอบการปฏิบัติตามข้อตกลงนี้</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>5. มาตรการรักษาความปลอดภัย</h2>
+  <ul>
+    <li>เข้ารหัสข้อมูลขณะส่ง (TLS 1.2+) และขณะจัดเก็บ (AES-256)</li>
+    <li>ระบบ Multi-tenant Isolation — ข้อมูลแต่ละร้านแยกกันสมบูรณ์</li>
+    <li>การควบคุมสิทธิ์การเข้าถึงแบบ Role-Based Access Control (RBAC)</li>
+    <li>Log การเข้าถึงข้อมูลและตรวจสอบทุก 30 วัน</li>
+    <li>Backup อัตโนมัติและทดสอบการกู้คืนข้อมูล</li>
+    <li>Penetration testing ประจำปี</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>6. ผู้ประมวลผลย่อย (Sub-processors)</h2>
+  <p>เราใช้บริการจากบุคคลภายนอกดังต่อไปนี้ โดยทุกรายลงนามข้อตกลงการประมวลผลข้อมูลกับเรา:</p>
+  <div class="table-wrap">
+    <table>
+      <tr><th>ผู้ให้บริการ</th><th>วัตถุประสงค์</th><th>ที่ตั้งเซิร์ฟเวอร์</th></tr>
+      <tr><td>Amazon Web Services (AWS)</td><td>โครงสร้างพื้นฐานระบบ</td><td>สิงคโปร์ / ไทย</td></tr>
+      <tr><td>OpenAI / Anthropic</td><td>โมเดล AI สำหรับตอบแชท</td><td>สหรัฐอเมริกา</td></tr>
+      <tr><td>LINE Corporation</td><td>ส่งรับข้อความผ่าน LINE</td><td>ญี่ปุ่น / ไทย</td></tr>
+      <tr><td>Omise (Opn Payments)</td><td>ระบบชำระเงิน</td><td>ไทย</td></tr>
+    </table>
+  </div>
+  <p>เราจะแจ้งให้ทราบล่วงหน้าหากมีการเพิ่มหรือเปลี่ยนผู้ประมวลผลย่อยที่มีนัยสำคัญ</p>
+</div>
+
+<div class="section">
+  <h2>7. การโอนข้อมูลระหว่างประเทศ</h2>
+  <p>ข้อมูลส่วนหนึ่งอาจถูกประมวลผลนอกประเทศไทย (เช่น บริการ AI ของ OpenAI/Anthropic ในสหรัฐอเมริกา) เราดำเนินการตามมาตรา 28 แห่ง พ.ร.บ. PDPA 2562 โดย:</p>
+  <ul>
+    <li>ใช้ผู้ประมวลผลย่อยที่มีมาตรฐานการคุ้มครองข้อมูลเทียบเท่าหรือสูงกว่า</li>
+    <li>ทำสัญญา Data Processing Agreement กับผู้ประมวลผลย่อยทุกราย</li>
+    <li>ส่งเฉพาะข้อมูลที่จำเป็นสำหรับบริการนั้นๆ เท่านั้น (data minimization)</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>8. ระยะเวลาการจัดเก็บข้อมูล</h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th>ประเภทข้อมูล</th><th>ระยะเวลาจัดเก็บ</th></tr>
+      <tr><td>ประวัติการสนทนา</td><td>ตลอดอายุบัญชี + 30 วันหลังยกเลิก</td></tr>
+      <tr><td>ข้อมูลออเดอร์</td><td>3 ปี (ตามกฎหมายบัญชี)</td></tr>
+      <tr><td>Log ระบบ</td><td>90 วัน</td></tr>
+      <tr><td>ข้อมูลการชำระเงิน</td><td>5 ปี (ตามกฎหมายการเงิน)</td></tr>
+      <tr><td>ข้อมูลบัญชีผู้ใช้</td><td>ตลอดอายุบัญชี + 30 วันหลังยกเลิก</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h2>9. สิทธิ์ของเจ้าของข้อมูล (ลูกค้าของคุณ)</h2>
+  <p>ในฐานะผู้ควบคุมข้อมูล คุณมีหน้าที่รับผิดชอบการตอบสนองต่อสิทธิ์ของเจ้าของข้อมูล โดย MeowChat ช่วยสนับสนุนดังนี้:</p>
+  <ul>
+    <li><strong>สิทธิ์เข้าถึง:</strong> Export ประวัติลูกค้าได้จาก Dashboard</li>
+    <li><strong>สิทธิ์แก้ไข:</strong> แก้ไขข้อมูลลูกค้าได้โดยตรงในระบบ</li>
+    <li><strong>สิทธิ์ลบ:</strong> ลบข้อมูลลูกค้ารายบุคคลได้จาก Dashboard หรือติดต่อ support</li>
+    <li><strong>สิทธิ์คัดค้าน:</strong> ปิดการประมวลผลข้อมูลลูกค้ารายนั้นได้</li>
+    <li><strong>สิทธิ์โอนย้าย:</strong> Export ข้อมูลในรูปแบบ CSV / JSON</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>10. ความรับผิดชอบและการชดเชย</h2>
+  <p>Mawsom Company รับผิดชอบในความเสียหายที่เกิดจากการละเมิดข้อตกลงนี้โดยตรง ทั้งนี้ ความรับผิดสูงสุดจำกัดที่มูลค่าค่าบริการที่คุณชำระในช่วง 12 เดือนก่อนเกิดเหตุ เว้นแต่เกิดจากความประมาทเลินเล่ออย่างร้ายแรงหรือเจตนา</p>
+</div>
+
+<div class="section">
+  <h2>11. การเปลี่ยนแปลงข้อตกลง</h2>
+  <p>เราจะแจ้งการเปลี่ยนแปลงสาระสำคัญล่วงหน้าอย่างน้อย 30 วัน ผ่านอีเมลที่ลงทะเบียน หากคุณใช้บริการต่อหลังจากวันมีผล ถือว่ายอมรับข้อตกลงที่แก้ไขแล้ว</p>
+</div>
+
+<div class="section">
+  <h2>12. กฎหมายที่ใช้บังคับ</h2>
+  <p>ข้อตกลงนี้อยู่ภายใต้กฎหมายไทย รวมถึง พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA) ข้อพิพาทให้ระงับโดยศาลที่มีเขตอำนาจในกรุงเทพมหานคร</p>
+</div>
+
+<div class="section">
+  <h2>13. การยอมรับข้อตกลง</h2>
+  <div class="highlight-box">
+    <p>การสมัครและใช้บริการ MeowChat ถือว่าคุณได้อ่านและยอมรับข้อตกลงการประมวลผลข้อมูลนี้แล้ว หากต้องการสัญญา DPA แยกต่างหากสำหรับองค์กร กรุณาติดต่อ <a href="mailto:dpa@meowchat.store">dpa@meowchat.store</a></p>
+  </div>
+</div>
+
+<div class="contact-box">
+  <h3>📬 ติดต่อเจ้าหน้าที่คุ้มครองข้อมูล</h3>
+  <p>หากมีคำถามเกี่ยวกับการประมวลผลข้อมูลหรือต้องการใช้สิทธิ์:</p>
+  <p style="margin-top:12px">
+    📧 อีเมล: <a href="mailto:dpa@meowchat.store">dpa@meowchat.store</a><br>
+    💬 LINE: <a href="https://line.me/ti/p/@960xboyt">@MeowChat</a><br>
+    🏢 บริษัท: Mawsom Company Limited, กรุงเทพมหานคร ประเทศไทย
+  </p>
+  <p style="margin-top:12px;font-size:13px;color:#9A8EB0">เราตอบกลับภายใน 3 วันทำการ สำหรับคำขอเร่งด่วนโปรดระบุ "URGENT" ในหัวข้ออีเมล</p>
+</div>
+
+</div><!-- /container -->
+
+<footer>
+  <p>© 2026 <strong>MeowChat</strong> by Mawsom Company ·
+  <a href="/">หน้าแรก</a> ·
+  <a href="/privacy.html">นโยบายความเป็นส่วนตัว</a> ·
+  <a href="/terms.html">ข้อกำหนดการใช้งาน</a>
+  </p>
+</footer>
+
+</body>
+</html>

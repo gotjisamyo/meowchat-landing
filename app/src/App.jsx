@@ -27,6 +27,8 @@ const Booking = lazy(() => import('./pages/Booking'));
 const HelpCenter = lazy(() => import('./pages/HelpCenter'));
 const Templates = lazy(() => import('./pages/Templates'));
 const Referral = lazy(() => import('./pages/Referral'));
+const Privacy = lazy(() => import('./pages/Privacy'));
+const LineSetupGuide = lazy(() => import('./pages/LineSetupGuide'));
 
 import Sidebar from './components/Sidebar';
 import FeedbackWidget from './components/FeedbackWidget';
@@ -107,6 +109,8 @@ function App() {
             {/* Public Routes */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/line-setup-guide" element={<LineSetupGuide />} />
 
             {/* Onboarding — requires auth, shown before the main app for new users */}
             <Route

@@ -468,7 +468,17 @@ function Step5({ data, setData, onFinish, onBack }) {
 
       {/* Instructions card */}
       <div className="bg-blue-500/5 border border-blue-500/20 rounded-2xl p-4 space-y-2.5">
-        <p className="text-sm font-semibold text-blue-300 mb-1">วิธีเชื่อมต่อ</p>
+        <div className="flex items-center justify-between mb-1">
+          <p className="text-sm font-semibold text-blue-300">วิธีเชื่อมต่อ</p>
+          <a
+            href="/line-setup-guide"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs text-orange-400 hover:text-orange-300 transition underline underline-offset-2"
+          >
+            ดูคู่มือแบบละเอียด →
+          </a>
+        </div>
         {[
           'ไปที่ LINE Official Account Manager',
           'Settings → Messaging API → เปิดใช้งาน',

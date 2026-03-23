@@ -203,7 +203,7 @@ export default function LoginPage() {
         {/* Footer */}
         <p className="text-center mt-6 text-gray-500 text-xs">
           © 2026 MeowChat. All rights reserved. &nbsp;·&nbsp;
-          <a href="https://meowchat.store/privacy.html" className="hover:text-gray-300 transition-colors">นโยบายความเป็นส่วนตัว</a>
+          <a href="/privacy" className="hover:text-gray-300 transition-colors">นโยบายความเป็นส่วนตัว</a>
           &nbsp;·&nbsp;
           <a href="https://meowchat.store/terms.html" className="hover:text-gray-300 transition-colors">ข้อกำหนดการใช้บริการ</a>
         </p>

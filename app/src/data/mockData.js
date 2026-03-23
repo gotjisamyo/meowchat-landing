@@ -151,14 +151,14 @@ export const subscriptionPlans = [
     period: 'เดือน',
     description: 'สำหรับผู้เริ่มต้นธุรกิจ',
     features: [
-      'ข้อความ 3,000/เดือน (≈100 แชท/วัน)',
+      'ข้อความ 3,000/เดือน (≈100 ครั้งที่ AI ตอบ/วัน)',
+      '✅ AI Auto Reply ภาษาไทย',
       'LINE Official Account 1 บัญชี',
-      'AI เข้าใจภาษาไทย',
       'Dashboard พื้นฐาน',
+      'Human Handoff (โอนให้คนตอบ)',
       '2 Team Members',
     ],
     notIncluded: [
-      'Human Handoff',
       'Custom Branding',
       'Advanced Analytics',
     ],

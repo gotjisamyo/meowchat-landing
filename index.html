@@ -261,6 +261,19 @@ nav{background:rgba(255,253,245,.94);backdrop-filter:blur(18px);
 .cta p{font-size:16px;color:var(--gray);margin-bottom:28px}
 .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
+/* ── LEAD CAPTURE ── */
+.lead-wrap{background:linear-gradient(135deg,#fff8f3,#fef3ff);border-top:1px solid #fde8d0;padding:56px 28px;text-align:center}
+.lead-wrap h3{font-size:clamp(20px,3vw,28px);font-weight:900;color:var(--dark);margin-bottom:8px}
+.lead-wrap p{font-size:15px;color:var(--gray);margin-bottom:24px}
+.lead-form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;max-width:480px;margin:0 auto}
+.lead-input{flex:1;min-width:220px;padding:12px 16px;border-radius:12px;border:1.5px solid #ddd;font-size:15px;font-family:inherit;background:#fff;color:var(--dark);outline:none;transition:border-color .2s}
+.lead-input:focus{border-color:var(--apricot)}
+.lead-btn{padding:12px 24px;border-radius:12px;background:linear-gradient(135deg,var(--apricot),#e85d04);color:#fff;font-size:15px;font-weight:800;border:none;cursor:pointer;white-space:nowrap;transition:opacity .2s;font-family:inherit}
+.lead-btn:hover{opacity:.9}
+.lead-btn:disabled{opacity:.6;cursor:not-allowed}
+.lead-success{display:none;margin-top:16px;padding:10px 20px;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:10px;color:#2e7d32;font-weight:700;font-size:14px}
+.lead-note{font-size:12px;color:#bbb;margin-top:12px}
+
 /* ── FOOTER ── */
 footer{background:#FFF5EB;color:var(--dark);padding:56px 28px 32px;text-align:center;position:relative;overflow:hidden;z-index:1}
 footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
@@ -716,7 +729,7 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
 <div class="sec-hd">
   <div class="s-chip">💕 ราคา</div>
   <h2 class="s-title">เลือกแพ็กเกจที่ใช่</h2>
-  <p class="s-sub">เริ่มต้นฟรี อัพเกรดได้ตามการเติบโตของธุรกิจ<br><small style="font-size:13px;opacity:.75">1 ข้อความ = AI ตอบ 1 ครั้ง • ไม่นับข้อความที่คนตอบเอง • ไม่นับ broadcast</small></p>
+  <p class="s-sub">เริ่มต้นฟรี อัพเกรดได้ตามการเติบโตของธุรกิจ<br><small style="font-size:13px;opacity:.75">1 ข้อความ = AI ตอบ 1 ครั้ง • ไม่นับข้อความที่คนตอบเอง • ไม่นับ broadcast • ทุกแพ็กเกจมี AI Auto Reply</small></p>
 </div>
 <div class="pri-grid">
 
@@ -743,10 +756,10 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
   <div class="pc-hint">สำหรับร้านที่เริ่มรับแชทจริงจัง</div>
   <div class="pc-price"><sup>฿</sup>199<small>/เดือน</small></div>
   <ul class="pc-list">
-    <li>2,000 ข้อความ/เดือน <span style="font-size:11px;opacity:.65">(≈65/วัน)</span></li>
+    <li>2,000 ข้อความ/เดือน <span style="font-size:11px;opacity:.65">(≈65 ครั้งที่ AI ตอบ/วัน)</span></li>
+    <li>✅ AI Auto Reply ภาษาไทย · ปรับบุคลิกได้</li>
     <li>LINE OA 1 บัญชี · เพิ่มได้ +฿500/OA</li>
     <li>เติมข้อความเพิ่ม ฿99 ต่อ 500 ครั้ง</li>
-    <li>AI ภาษาไทย · ปรับบุคลิกได้</li>
     <li>Dashboard + Human Handoff</li>
     <li>2 Team Members</li>
     <li>ช่วยตั้งค่าผ่านกลุ่ม LINE ฟรี</li>
@@ -941,6 +954,24 @@ footer::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:
     <div class="faq-a"><div class="faq-a-inner">Mawsom Company Limited บริษัทไทยที่ดำเนินกิจการในกรุงเทพฯ ผู้พัฒนา MeowChat เราไม่ใช่ startup ที่จะหายไปในคืนเดียว มีทีมงานดูแลระบบและ support ตลอด การสมัครใช้งานไม่มีสัญญาผูกมัด ยกเลิกได้ทุกเมื่อ ข้อมูลยังอยู่ 30 วัน</div></div>
   </div>
 </div>
+</section>
+
+<!-- LEAD CAPTURE -->
+<section class="lead-wrap" id="notify">
+  <h3>สนใจแต่ยังไม่พร้อมสมัคร? 💌</h3>
+  <p>รับข่าวสารและโปรโมชั่นก่อนใคร ไม่มี spam แจ้งเตือนเฉพาะโปรพิเศษเท่านั้น</p>
+  <div class="lead-form">
+    <input
+      id="leadInput"
+      class="lead-input"
+      type="text"
+      placeholder="อีเมลหรือเบอร์โทรศัพท์"
+      aria-label="อีเมลหรือเบอร์โทรศัพท์"
+    />
+    <button class="lead-btn" id="leadBtn" onclick="submitLead()">แจ้งเตือนฉัน 🔔</button>
+  </div>
+  <div class="lead-success" id="leadSuccess">✅ บันทึกแล้ว! เราจะแจ้งคุณเมื่อมีโปรโมชั่น</div>
+  <p class="lead-note">🔒 ข้อมูลของคุณปลอดภัย ไม่ถูกแชร์กับบุคคลภายนอก</p>
 </section>
 
 <!-- FOOTER -->
@@ -1564,6 +1595,42 @@ function toggleFaq(btn) {
   document.querySelectorAll('.faq-item.faq-open').forEach(el => el.classList.remove('faq-open'))
   // Open clicked if it was closed
   if (!isOpen) item.classList.add('faq-open')
+}
+
+// ── Lead Capture ────────────────────────────────────────────────────────────
+async function submitLead() {
+  const input = document.getElementById('leadInput');
+  const btn = document.getElementById('leadBtn');
+  const success = document.getElementById('leadSuccess');
+  const value = (input.value || '').trim();
+
+  if (!value) { input.focus(); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'กำลังบันทึก...';
+
+  const API_URL = 'https://api.meowchat.store';
+
+  try {
+    const res = await fetch(`${API_URL}/api/leads`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ contact: value, source: 'landing_notify' }),
+    });
+    if (!res.ok) throw new Error('api_fail');
+  } catch (e) {
+    // Fallback: บันทึก localStorage ไว้ก่อน
+    try {
+      const existing = JSON.parse(localStorage.getItem('meowchat_leads') || '[]');
+      existing.push({ contact: value, source: 'landing_notify', ts: Date.now() });
+      localStorage.setItem('meowchat_leads', JSON.stringify(existing));
+    } catch (_) {}
+  }
+
+  // แสดงผลสำเร็จ
+  input.style.display = 'none';
+  btn.style.display = 'none';
+  success.style.display = 'block';
 }
 </script>
 </body>

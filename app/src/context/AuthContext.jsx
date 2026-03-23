@@ -68,7 +68,15 @@ export function AuthProvider({ children }) {
     // For now just log - will be connected when key is available
     console.log('[MeowChat] New user registered:', email, '- welcome email pending Resend API key');
 
-    return { success: true };
+    // If API returns token + user, auto-login
+    if (data.token && data.user) {
+      localStorage.setItem('meowchat_token', data.token);
+      localStorage.setItem('meowchat_user', JSON.stringify(data.user));
+      setUser(data.user);
+      setIsAuthenticated(true);
+    }
+
+    return { success: true, token: data.token || null, user: data.user || null };
   };
 
   const logout = () => {

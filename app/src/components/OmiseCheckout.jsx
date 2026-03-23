@@ -4,7 +4,7 @@ import { X, CreditCard, Lock, Loader2, CheckCircle } from 'lucide-react';
 // Omise.js is loaded via script tag in index.html
 // window.Omise must be available before this component mounts
 
-export default function OmiseCheckout({ plan, onClose, onSuccess }) {
+export default function OmiseCheckout({ plan, billing = 'monthly', onClose, onSuccess }) {
   const [step, setStep] = useState('form'); // form | processing | success
   const [error, setError] = useState('');
   const [form, setForm] = useState({
@@ -75,7 +75,12 @@ export default function OmiseCheckout({ plan, onClose, onSuccess }) {
             body: JSON.stringify({
               token: response.id,
               planId: plan.id,
-              amount: plan.price * 100, // Omise uses satang (smallest unit)
+              // Annual = price * 12 months * 0.83 (17% off), Monthly = price as-is
+              // Omise uses satang (smallest unit, multiply by 100)
+              amount: billing === 'annual'
+                ? Math.round(plan.price * 12 * 0.83) * 100
+                : plan.price * 100,
+              billing,
             }),
           }
         );
@@ -103,7 +108,12 @@ export default function OmiseCheckout({ plan, onClose, onSuccess }) {
         <div className="flex items-center justify-between p-6 border-b border-white/[0.06]">
           <div>
             <h2 className="text-lg font-bold text-white">ชำระเงิน</h2>
-            <p className="text-sm text-zinc-500">แผม {plan.name} — ฿{plan.price}/เดือน</p>
+            <p className="text-sm text-zinc-500">
+              แผน {plan.name} —{' '}
+              {billing === 'annual'
+                ? `฿${Math.round(plan.price * 12 * 0.83).toLocaleString()}/ปี (ประหยัด 17%)`
+                : `฿${plan.price}/เดือน`}
+            </p>
           </div>
           <button onClick={onClose} className="p-2 hover:bg-white/[0.06] rounded-xl text-zinc-400">
             <X className="w-5 h-5" />
@@ -201,7 +211,9 @@ export default function OmiseCheckout({ plan, onClose, onSuccess }) {
                     กำลังประมวลผล...
                   </span>
                 ) : (
-                  `ชำระ ฿${plan.price}`
+                  billing === 'annual'
+                    ? `ชำระ ฿${Math.round(plan.price * 12 * 0.83).toLocaleString()}`
+                    : `ชำระ ฿${plan.price}`
                 )}
               </button>
 

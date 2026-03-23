@@ -102,6 +102,7 @@ export default function Pricing({ setSidebarOpen }) {
     {checkoutPlan && (
       <OmiseCheckout
         plan={checkoutPlan}
+        billing={billing}
         onClose={() => setCheckoutPlan(null)}
         onSuccess={handlePaymentSuccess}
       />

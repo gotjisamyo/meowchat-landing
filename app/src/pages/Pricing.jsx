@@ -5,10 +5,11 @@ import OmiseCheckout from '../components/OmiseCheckout';
 import { subscriptionPlans as FALLBACK_PLANS } from '../data/mockData';
 import { useAuth } from '../context/AuthContext';
 
-// Annual pricing: 10 months price billed yearly (≈17% off)
+// Annual pricing
 const ANNUAL_PRICES = {
-  pro: { monthly: 490, yearly: 5880, savings: 1180 },
-  enterprise: { monthly: 1658, yearly: 19900, savings: 3980 },
+  starter: { monthly: 312, yearly: 3744, savings: 936 },   // 20% off
+  pro: { monthly: 454, yearly: 5448, savings: 1632 },       // 23% off
+  enterprise: { monthly: 2990, yearly: 35880, savings: 10920 }, // 23% off
 };
 
 // Normalize API response to match mockData shape

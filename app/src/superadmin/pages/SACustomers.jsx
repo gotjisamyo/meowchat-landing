@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { Search, ChevronDown, Eye, ArrowUpCircle, MessageSquare, Ban, CheckCircle, KeyRound, X, Download } from 'lucide-react';
 
 const CUSTOMERS = [
-  { id: 1, shop: 'ร้านแนน Fashion', owner: 'คุณแนน สมิตา', email: 'nan@gmail.com', plan: 'enterprise', type: 'แฟชั่น', messages: 45230, limit: 999999, revenue: 1990, joined: '2025-08-15', status: 'active' },
+  { id: 1, shop: 'ร้านแนน Fashion', owner: 'คุณแนน สมิตา', email: 'nan@gmail.com', plan: 'enterprise', type: 'แฟชั่น', messages: 45230, limit: 999999, revenue: 3900, joined: '2025-08-15', status: 'active' },
   { id: 2, shop: 'ครัวป้าบอล', owner: 'พี่บอล วิชัย', email: 'ball@gmail.com', plan: 'pro', type: 'ร้านอาหาร', messages: 9847, limit: 10000, revenue: 590, joined: '2025-09-01', status: 'active' },
   { id: 3, shop: 'สปาออย', owner: 'น้องออย', email: 'oy@gmail.com', plan: 'pro', type: 'สปา/ความงาม', messages: 7234, limit: 10000, revenue: 590, joined: '2025-10-12', status: 'active' },
   { id: 4, shop: 'เสื้อผ้าฝ้าย', owner: 'น้องฝ้าย', email: 'fai@gmail.com', plan: 'free', type: 'แฟชั่น', messages: 87, limit: 100, revenue: 0, joined: '2025-11-20', status: 'active' },
   { id: 5, shop: 'ช่างแอร์บัว', owner: 'พี่บัว', email: 'bua@gmail.com', plan: 'pro', type: 'บริการ', messages: 5621, limit: 10000, revenue: 590, joined: '2025-12-01', status: 'active' },
-  { id: 6, shop: 'คอร์ส Excel Pro', owner: 'อาจารย์นิด', email: 'nid@gmail.com', plan: 'enterprise', type: 'การศึกษา', messages: 38492, limit: 999999, revenue: 1990, joined: '2026-01-05', status: 'active' },
+  { id: 6, shop: 'คอร์ส Excel Pro', owner: 'อาจารย์นิด', email: 'nid@gmail.com', plan: 'enterprise', type: 'การศึกษา', messages: 38492, limit: 999999, revenue: 3900, joined: '2026-01-05', status: 'active' },
   { id: 7, shop: 'ทัวร์เชียงใหม่', owner: 'คุณกอล์ฟ', email: 'golf@gmail.com', plan: 'pro', type: 'ท่องเที่ยว', messages: 4103, limit: 10000, revenue: 590, joined: '2026-01-18', status: 'active' },
   { id: 8, shop: 'หอพักดาวรุ่ง', owner: 'คุณดาว', email: 'dao@gmail.com', plan: 'free', type: 'อสังหา', messages: 43, limit: 100, revenue: 0, joined: '2026-02-10', status: 'active' },
   { id: 9, shop: 'ขนมไทยป้ามา', owner: 'ป้ามา', email: 'ma@gmail.com', plan: 'pro', type: 'ร้านอาหาร', messages: 8901, limit: 10000, revenue: 590, joined: '2026-02-28', status: 'active' },

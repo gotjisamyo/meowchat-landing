@@ -147,11 +147,11 @@ export const subscriptionPlans = [
   {
     id: 'starter',
     name: 'Starter',
-    price: 199,
+    price: 390,
     period: 'เดือน',
     description: 'สำหรับผู้เริ่มต้นธุรกิจ',
     features: [
-      'ข้อความ 2,000/เดือน (≈65 แชท/วัน)',
+      'ข้อความ 3,000/เดือน (≈100 แชท/วัน)',
       'LINE Official Account 1 บัญชี',
       'AI เข้าใจภาษาไทย',
       'Dashboard พื้นฐาน',
@@ -173,7 +173,7 @@ export const subscriptionPlans = [
     period: 'เดือน',
     description: 'สำหรับธุรกิจที่กำลังเติบโต',
     features: [
-      'ข้อความ 10,000/เดือน (≈330 แชท/วัน)',
+      'ข้อความ 15,000/เดือน (≈500 แชท/วัน)',
       'LINE Official Account 3 บัญชี',
       'Human Handoff (โอนให้คนตอบ)',
       'Advanced Analytics',
@@ -193,7 +193,7 @@ export const subscriptionPlans = [
   {
     id: 'enterprise',
     name: 'Enterprise',
-    price: 1990,
+    price: 3900,
     period: 'เดือน',
     description: 'สำหรับองค์กรขนาดใหญ่',
     features: [

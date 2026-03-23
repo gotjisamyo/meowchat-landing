@@ -2,8 +2,8 @@ import { TrendingUp, DollarSign, Users, ArrowUpRight, Rocket } from 'lucide-reac
 
 const planRevenue = [
   { plan: 'Free', color: 'bg-zinc-500', textColor: 'text-zinc-400', borderColor: 'border-zinc-500/30', count: 56, price: 0, total: 0, pct: 0 },
-  { plan: 'Pro ฿590', color: 'bg-orange-500', textColor: 'text-orange-400', borderColor: 'border-orange-500/30', count: 118, price: 590, total: 69620, pct: 73 },
-  { plan: 'Enterprise ฿1,990', color: 'bg-purple-500', textColor: 'text-purple-400', borderColor: 'border-purple-500/30', count: 13, price: 1990, total: 25870, pct: 27 },
+  { plan: 'Pro ฿590', color: 'bg-orange-500', textColor: 'text-orange-400', borderColor: 'border-orange-500/30', count: 118, price: 590, total: 69620, pct: 58 },
+  { plan: 'Enterprise ฿3,900', color: 'bg-purple-500', textColor: 'text-purple-400', borderColor: 'border-purple-500/30', count: 13, price: 3900, total: 50700, pct: 42 },
 ];
 
 const monthlyData = [
@@ -12,12 +12,12 @@ const monthlyData = [
   { month: 'ธ.ค. 2025', mrr: 63000, newCustomers: 28, churn: 1, churnRevenue: 590 },
   { month: 'ม.ค. 2026', mrr: 71000, newCustomers: 25, churn: 3, churnRevenue: 1770 },
   { month: 'ก.พ. 2026', mrr: 82000, newCustomers: 30, churn: 2, churnRevenue: 1180 },
-  { month: 'มี.ค. 2026', mrr: 95490, newCustomers: 34, churn: 4, churnRevenue: 2360 },
+  { month: 'มี.ค. 2026', mrr: 120320, newCustomers: 34, churn: 4, churnRevenue: 2360 },
 ];
 
 export default function SARevenue() {
-  const totalMRR = 95490;
-  const arpu = Math.round(95490 / 131); // 131 paying users (118 Pro + 13 Enterprise)
+  const totalMRR = 120320;
+  const arpu = Math.round(120320 / 131); // 131 paying users (118 Pro + 13 Enterprise)
   const avgLifeMonths = 14;
   const ltv = arpu * avgLifeMonths;
   const cacMarketing = 8500;
@@ -37,7 +37,7 @@ export default function SARevenue() {
         <MetricCard
           icon={<DollarSign className="w-5 h-5" />}
           label="MRR (March)"
-          value="฿95,490"
+          value="฿120,320"
           sub="+18% MoM"
           color="green"
         />
@@ -45,7 +45,7 @@ export default function SARevenue() {
           icon={<TrendingUp className="w-5 h-5" />}
           label="Annual Run Rate"
           value={`฿${arr.toLocaleString()}`}
-          sub="฿1,145,880/year"
+          sub="฿1,443,840/year"
           color="orange"
           highlight
         />
@@ -117,12 +117,12 @@ export default function SARevenue() {
               <span className="text-orange-400 font-semibold">฿69,620</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-zinc-500">Enterprise MRR (13 × ฿1,990)</span>
-              <span className="text-purple-400 font-semibold">฿25,870</span>
+              <span className="text-zinc-500">Enterprise MRR (13 × ฿3,900)</span>
+              <span className="text-purple-400 font-semibold">฿50,700</span>
             </div>
             <div className="flex justify-between text-sm pt-2 border-t border-white/[0.04]">
               <span className="text-zinc-300 font-semibold">Total MRR (March)</span>
-              <span className="text-green-400 font-bold">฿95,490</span>
+              <span className="text-green-400 font-bold">฿120,320</span>
             </div>
           </div>
         </div>
@@ -162,7 +162,7 @@ export default function SARevenue() {
         <SummaryCard
           title="Churn This Month"
           value="-฿2,360"
-          detail="4 customers cancelled"
+          detail="4 customers cancelled (4 × ฿590)"
           color="red"
         />
         <SummaryCard
@@ -173,8 +173,8 @@ export default function SARevenue() {
         />
         <SummaryCard
           title="Annual Run Rate"
-          value="฿1,145,880"
-          detail="On track for ฿1.1M ARR"
+          value="฿1,443,840"
+          detail="On track for ฿1.4M ARR"
           color="orange"
           rocket
         />
@@ -193,7 +193,7 @@ export default function SARevenue() {
           />
           <WaterfallCard
             label="Expansion MRR"
-            value="+฿1,990"
+            value="+฿3,900"
             detail="1 upgrade Free→Enterprise"
             color="blue"
           />

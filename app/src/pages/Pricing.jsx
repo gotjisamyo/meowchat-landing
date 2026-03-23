@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Check, X, Zap, Crown, Rocket, Loader2, Sparkles } from 'lucide-react';
 import PageLayout from '../components/PageLayout';
 import OmiseCheckout from '../components/OmiseCheckout';
-import { subscriptionPlans } from '../data/mockData';
+import { subscriptionPlans as FALLBACK_PLANS } from '../data/mockData';
 import { useAuth } from '../context/AuthContext';
 
 // Annual pricing: 10 months price billed yearly (≈17% off)
@@ -11,11 +11,42 @@ const ANNUAL_PRICES = {
   enterprise: { monthly: 1658, yearly: 19900, savings: 3980 },
 };
 
+// Normalize API response to match mockData shape
+function normalizePlan(plan) {
+  return {
+    id: plan.id || plan.plan_id || plan.slug,
+    name: plan.name,
+    price: plan.price ?? plan.price_thb ?? 0,
+    period: plan.period || 'เดือน',
+    description: plan.description || '',
+    features: plan.features || [],
+    notIncluded: plan.not_included || plan.notIncluded || [],
+    cta: plan.cta || (plan.price === 0 ? 'สมัครฟรี ไม่ต้องใส่บัตร' : `สมัคร ${plan.name}`),
+    popular: plan.popular ?? false,
+    color: plan.color || 'gray',
+  };
+}
+
 export default function Pricing({ setSidebarOpen }) {
   const { user, updateSubscription } = useAuth();
   const [loadingPlan, setLoadingPlan] = useState(null);
   const [checkoutPlan, setCheckoutPlan] = useState(null); // plan object for modal
   const [billing, setBilling] = useState('monthly'); // 'monthly' | 'annual'
+  const [subscriptionPlans, setSubscriptionPlans] = useState(FALLBACK_PLANS);
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL || 'https://api.meowchat.store'}/api/plans`)
+      .then(r => r.json())
+      .then(data => {
+        const raw = data.plans || data;
+        if (Array.isArray(raw) && raw.length > 0) {
+          setSubscriptionPlans(raw.map(normalizePlan));
+        }
+      })
+      .catch(() => {
+        // keep FALLBACK_PLANS already in state
+      });
+  }, []);
 
   const handleSelectPlan = (planId) => {
     if (!user) return;

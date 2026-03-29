@@ -16,21 +16,49 @@ export function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('meowchat_user');
-    const token = localStorage.getItem('meowchat_token');
-    // Clear stale/fake tokens that don't look like real JWTs
-    if (token && !token.startsWith('eyJ')) {
-      localStorage.removeItem('meowchat_token');
-      localStorage.removeItem('meowchat_user');
-      localStorage.removeItem('onboardingComplete');
+    const initAuth = async () => {
+      const storedUser = localStorage.getItem('meowchat_user');
+      const token = localStorage.getItem('meowchat_token');
+
+      // Clear stale/fake tokens
+      if (token && !token.startsWith('eyJ')) {
+        localStorage.removeItem('meowchat_token');
+        localStorage.removeItem('meowchat_user');
+        localStorage.removeItem('onboardingComplete');
+        setLoading(false);
+        return;
+      }
+
+      if (token) {
+        try {
+          // Verify token and get latest role/profile from server
+          const res = await fetch(`${API_URL}/api/auth/me`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+          });
+          
+          if (res.ok) {
+            const data = await res.json();
+            setUser(data.user);
+            setIsAuthenticated(true);
+            localStorage.setItem('meowchat_user', JSON.stringify(data.user));
+          } else {
+            // Token invalid or expired
+            localStorage.removeItem('meowchat_token');
+            localStorage.removeItem('meowchat_user');
+          }
+        } catch (error) {
+          console.error('Auth sync error:', error);
+          // Fallback to stored user if offline/error
+          if (storedUser) {
+            setUser(JSON.parse(storedUser));
+            setIsAuthenticated(true);
+          }
+        }
+      }
       setLoading(false);
-      return;
-    }
-    if (storedUser && token) {
-      setUser(JSON.parse(storedUser));
-      setIsAuthenticated(true);
-    }
-    setLoading(false);
+    };
+
+    initAuth();
   }, []);
 
   const login = async (email, password) => {

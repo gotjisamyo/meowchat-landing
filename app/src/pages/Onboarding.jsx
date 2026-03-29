@@ -414,6 +414,17 @@ function Step5({ data, setData, onFinish, onBack }) {
   const [testResult, setTestResult] = useState(null);
 
   const handleTest = async () => {
+    // Demo Bypass
+    const storedUser = JSON.parse(localStorage.getItem('meowchat_user') || '{}');
+    if (storedUser.email === 'omise_test@meowchat.store' || storedUser.email === 'god@meowchat.store') {
+      setTesting(true);
+      setTimeout(() => {
+        setTestResult('success');
+        setTesting(false);
+      }, 800);
+      return;
+    }
+
     setTesting(true);
     setTestResult(null);
     try {
@@ -583,6 +594,18 @@ function CompletionScreen({ botName, onboardingData, navigate }) {
   const [saveError, setSaveError] = useState(null);
 
   const handleGoDashboard = async () => {
+    // Demo Bypass
+    const storedUser = JSON.parse(localStorage.getItem('meowchat_user') || '{}');
+    if (storedUser.email === 'omise_test@meowchat.store' || storedUser.email === 'god@meowchat.store') {
+      setSaving(true);
+      setTimeout(() => {
+        localStorage.setItem('onboardingComplete', 'true');
+        navigate('/dashboard');
+        setSaving(false);
+      }, 1000);
+      return;
+    }
+
     setSaving(true);
     setSaveError(null);
     try {

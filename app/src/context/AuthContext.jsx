@@ -42,6 +42,7 @@ export function AuthProvider({ children }) {
       const mockToken = 'mock_token_for_demo';
       localStorage.setItem('meowchat_token', mockToken);
       localStorage.setItem('meowchat_user', JSON.stringify(mockUser));
+      localStorage.setItem('onboardingComplete', 'true'); // Bypass onboarding
       setUser(mockUser);
       setIsAuthenticated(true);
       return { success: true, user: mockUser };

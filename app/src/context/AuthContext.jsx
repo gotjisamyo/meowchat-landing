@@ -26,28 +26,6 @@ export function AuthProvider({ children }) {
   }, []);
 
   const login = async (email, password) => {
-    // Demo Bypass for Omise Reviewers
-    const normalizedEmail = email.trim().toLowerCase();
-    if (
-      (normalizedEmail === 'omise_test@meowchat.store' && password === 'omise1234') ||
-      (normalizedEmail === 'god@meowchat.store' && password === 'god1234')
-    ) {
-      const mockUser = {
-        id: normalizedEmail === 'god@meowchat.store' ? 1 : 999,
-        email: normalizedEmail,
-        name: normalizedEmail === 'god@meowchat.store' ? 'พี่ก็อต (God Admin)' : 'Omise Reviewer',
-        role: 'admin',
-        subscription: { plan: 'pro', status: 'active' }
-      };
-      const mockToken = 'mock_token_for_demo';
-      localStorage.setItem('meowchat_token', mockToken);
-      localStorage.setItem('meowchat_user', JSON.stringify(mockUser));
-      localStorage.setItem('onboardingComplete', 'true'); // Bypass onboarding
-      setUser(mockUser);
-      setIsAuthenticated(true);
-      return { success: true, user: mockUser };
-    }
-
     const res = await fetch(`${API_URL}/api/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -58,10 +36,6 @@ export function AuthProvider({ children }) {
 
     if (!res.ok) {
       throw new Error(data.message || 'เข้าสู่ระบบไม่สำเร็จ');
-    }
-
-    if (data.user.role !== 'admin') {
-      throw new Error('บัญชีนี้ไม่มีสิทธิ์เข้าใช้งาน Admin Dashboard');
     }
 
     localStorage.setItem('meowchat_token', data.token);

@@ -18,6 +18,14 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const storedUser = localStorage.getItem('meowchat_user');
     const token = localStorage.getItem('meowchat_token');
+    // Clear stale/fake tokens that don't look like real JWTs
+    if (token && !token.startsWith('eyJ')) {
+      localStorage.removeItem('meowchat_token');
+      localStorage.removeItem('meowchat_user');
+      localStorage.removeItem('onboardingComplete');
+      setLoading(false);
+      return;
+    }
     if (storedUser && token) {
       setUser(JSON.parse(storedUser));
       setIsAuthenticated(true);

@@ -14,8 +14,12 @@ import DataTable from '../components/DataTable';
 import { useAuth } from '../context/AuthContext';
 import {
   revenueData,
+  apiUsageData,
   salesByCategory,
+  userGrowthData,
+  recentTransactions,
   subscriptionStats,
+  customersData,
   ordersData,
   storeProducts,
 } from '../data/mockData';
@@ -220,13 +224,14 @@ function DailyMenuPanel() {
 }
 
 export default function Dashboard({ setSidebarOpen }) {
-  const { isAdmin, user } = useAuth();
+  const { user } = useAuth();
+  const isAdmin = user?.role === 'admin';
   const greeting = user?.name ? `สวัสดี ${user.name}! 👋` : 'สวัสดี! 👋';
   const tableColumns = ['ลูกค้า', 'วันที่', 'จำนวน', 'สถานะ'];
 
   // KPI data for admin vs regular user
   const kpiData = useMemo(() => {
-    if (isAdmin()) {
+    if (isAdmin) {
       return [
         { title: 'ลูกค้าทั้งหมด', value: subscriptionStats.total.toLocaleString(), change: `+${subscriptionStats.newThisMonth}`, isPositive: true, icon: 'users', color: 'blue' },
         { title: 'ลูกค้าใช้งานอยู่', value: subscriptionStats.active.toLocaleString(), change: '+8.2%', isPositive: true, icon: 'users', color: 'green' },
@@ -244,7 +249,7 @@ export default function Dashboard({ setSidebarOpen }) {
 
   // Plan distribution data for admin
   const planDistribution = useMemo(() => {
-    if (!isAdmin()) return null;
+    if (!isAdmin) return null;
     return [
       { name: 'Free', value: subscriptionStats.byPlan.free, color: '#6B7280' },
       { name: 'Pro', value: subscriptionStats.byPlan.pro, color: '#FF6B35' },
@@ -254,7 +259,7 @@ export default function Dashboard({ setSidebarOpen }) {
 
   // Top customers for admin
   const topCustomers = useMemo(() => {
-    if (!isAdmin()) return null;
+    if (!isAdmin) return null;
     return [...customersData]
       .sort((a, b) => b.revenue - a.revenue)
       .slice(0, 5);
@@ -302,7 +307,7 @@ export default function Dashboard({ setSidebarOpen }) {
       {(() => {
         const userMessageUsage = { used: 8430, limit: 10000 }; // will come from real API
         const usagePct = Math.round((userMessageUsage.used / userMessageUsage.limit) * 100);
-        if (isAdmin() || usagePct < 70) return null;
+        if (isAdmin || usagePct < 70) return null;
         return (
           <div className="mb-2 p-4 bg-amber-500/10 border border-amber-500/30 rounded-2xl flex flex-wrap items-start gap-3">
             <AlertTriangle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
@@ -339,7 +344,7 @@ export default function Dashboard({ setSidebarOpen }) {
       <DailyMenuPanel />
 
       {/* KPI Cards */}
-      {isAdmin() && (
+      {isAdmin && (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {kpiData.map((kpi, idx) => (
             <div key={idx} className="hover:scale-[1.02] transition-transform">
@@ -358,7 +363,7 @@ export default function Dashboard({ setSidebarOpen }) {
       )}
 
       {/* Referral nudge card — non-admin users only */}
-      {!isAdmin() && (
+      {!isAdmin && (
         <div className="mt-4 p-4 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-2xl flex flex-wrap items-center justify-between gap-3">
           <div>
             <p className="text-sm font-semibold text-white">🎁 แนะนำเพื่อน รับเดือนฟรี!</p>
@@ -369,7 +374,7 @@ export default function Dashboard({ setSidebarOpen }) {
       )}
 
       {/* Admin-specific: Subscription Overview */}
-      {isAdmin() && (
+      {isAdmin && (
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 mb-6">
           {/* Subscription Stats */}
           <div className="lg:col-span-2 bg-gradient-to-br from-orange-500/10 to-purple-500/10 border border-orange-500/20 rounded-3xl p-6">
@@ -549,7 +554,7 @@ export default function Dashboard({ setSidebarOpen }) {
       </div>
 
       {/* Admin: Top Customers Table */}
-      {isAdmin() && topCustomers && (
+      {isAdmin && topCustomers && (
         <div className="bg-[#151520] border border-white/[0.06] rounded-3xl p-6">
           <h3 className="text-lg font-bold text-white mb-4">ลูกค้ายอดนิยม</h3>
           <div className="overflow-x-auto">

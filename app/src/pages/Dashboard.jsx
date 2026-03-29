@@ -177,36 +177,6 @@ function DailyMenuPanel() {
           สั่งออเดอร์มาแล้ว{' '}
           <span className="text-white font-bold">14 รายการ</span>วันนี้
         </span>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-          <StatsCard 
-            title="ยอดขายวันนี้"
-            value="฿14,250"
-            change="+12.5%"
-            isPositive={true}
-            icon={<CreditCard className="w-5 h-5 text-emerald-400" />}
-          />
-          <StatsCard 
-            title="ออเดอร์ใหม่"
-            value="38 รายการ"
-            change="+8.2%"
-            isPositive={true}
-            icon={<ShoppingCart className="w-5 h-5 text-blue-400" />}
-          />
-          <StatsCard 
-            title="AI ช่วยตอบ"
-            value="852 ครั้ง"
-            change="+15.7%"
-            isPositive={true}
-            icon={<Zap className="w-5 h-5 text-purple-400" />}
-          />
-          <StatsCard 
-            title="อัตราตอบกลับ"
-            value="98.5%"
-            change="+0.4%"
-            isPositive={true}
-            icon={<TrendingUp className="w-5 h-5 text-pink-400" />}
-          />
-        </div>
         <button
           onClick={handleBroadcast}
           className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
@@ -341,7 +311,41 @@ export default function Dashboard({ setSidebarOpen }) {
       <StockAlertPanel />
 
       {/* ── Daily Menu / Today's Offer ────────────────────────────────────── */}
-      <DailyMenuPanel />
+      {!isAdmin && <DailyMenuPanel />}
+
+      {/* KPI Cards — Merchant View */}
+      {!isAdmin && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <StatsCard 
+            title="ยอดขายวันนี้"
+            value="฿14,250"
+            change="+12.5%"
+            isPositive={true}
+            icon={<CreditCard className="w-5 h-5 text-emerald-400" />}
+          />
+          <StatsCard 
+            title="ออเดอร์ใหม่"
+            value="38 รายการ"
+            change="+8.2%"
+            isPositive={true}
+            icon={<ShoppingCart className="w-5 h-5 text-blue-400" />}
+          />
+          <StatsCard 
+            title="AI ช่วยตอบ"
+            value="852 ครั้ง"
+            change="+15.7%"
+            isPositive={true}
+            icon={<Zap className="w-5 h-5 text-purple-400" />}
+          />
+          <StatsCard 
+            title="อัตราตอบกลับ"
+            value="98.5%"
+            change="+0.4%"
+            isPositive={true}
+            icon={<TrendingUp className="w-5 h-5 text-pink-400" />}
+          />
+        </div>
+      )}
 
       {/* KPI Cards */}
       {isAdmin && (
@@ -456,9 +460,9 @@ export default function Dashboard({ setSidebarOpen }) {
         </div>
       )}
 
-      {/* Analytics Section */}
+      {/* Analytics Section — Charts only for merchants OR platform summary for admins */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-        <ChartCard title="สถิตยอดขาย & ต้นทุน" subtitle="เปรียบเทียบ 12 เดือนที่ผ่านมา">
+        <ChartCard title={isAdmin ? "รายได้ & ต้นทุน (รวม)" : "สถิตยอดขาย & ต้นทุน"} subtitle={isAdmin ? "ภาพรวมทั้งแพลตฟอร์ม" : "เปรียบเทียบ 12 เดือนที่ผ่านมา"}>
           <ResponsiveContainer width="100%" height={300}>
             <AreaChart data={revenueData}>
               <defs>
@@ -474,13 +478,14 @@ export default function Dashboard({ setSidebarOpen }) {
                 contentStyle={{ backgroundColor: '#18181b', border: '1px solid #3f3f46', borderRadius: '12px' }}
                 itemStyle={{ color: '#fff' }}
               />
-              <Area type="monotone" dataKey="revenue" name="ยอดขาย" stroke="#FF6B35" strokeWidth={3} fillOpacity={1} fill="url(#colorRev)" />
-              <Area type="monotone" dataKey="cost" name="ต้นทุน" stroke="#8b5cf6" strokeWidth={2} fillOpacity={0} />
+              <Area type="monotone" dataKey="revenue" name={isAdmin ? "รายได้รวม" : "ยอดขาย"} stroke="#FF6B35" strokeWidth={3} fillOpacity={1} fill="url(#colorRev)" />
+              <Area type="monotone" dataKey="cost" name={isAdmin ? "ต้นทุนระบบ" : "ต้นทุนสินค้า"} stroke="#8b5cf6" strokeWidth={2} fillOpacity={0} />
             </AreaChart>
           </ResponsiveContainer>
         </ChartCard>
 
-        <ChartCard title="ออเดอร์ตามหมวดหมู่" subtitle="สัดส่วนสินค้าขายดี">
+        {/* Show category by product for merchant, or by service for admin */}
+        <ChartCard title={isAdmin ? "รายได้ตามบริการ" : "ออเดอร์ตามหมวดหมู่"} subtitle={isAdmin ? "สัดส่วนรายได้ API/Bots" : "สัดส่วนสินค้าขายดี"}>
           <ResponsiveContainer width="100%" height={180}>
             <PieChart>
               <Pie
@@ -513,45 +518,47 @@ export default function Dashboard({ setSidebarOpen }) {
         </ChartCard>
       </div>
 
-      {/* Charts Row 2 */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {/* API Usage */}
-        <ChartCard title="การใช้งาน AI ตอบกลับรายสัปดาห์" delay={600}>
-          <ResponsiveContainer width="100%" height={240}>
-            <BarChart data={apiUsageData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" vertical={false} />
-              <XAxis dataKey="day" stroke="#52525B" fontSize={11} tickLine={false} axisLine={false} />
-              <YAxis stroke="#52525B" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v/1000}k`} />
-              <Tooltip
-                contentStyle={{ backgroundColor: '#1A1A24', border: 'none', borderRadius: '12px' }}
-                formatter={(v) => [v.toLocaleString(), 'Calls']}
-              />
-              <Bar dataKey="calls" fill="#8B5CF6" radius={[8, 8, 0, 0]} />
-            </BarChart>
-          </ResponsiveContainer>
-        </ChartCard>
+      {/* Charts Row 2 — Admin only */}
+      {isAdmin && (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {/* API Usage */}
+          <ChartCard title="การใช้งาน API รายสัปดาห์ (Admin)" delay={600}>
+            <ResponsiveContainer width="100%" height={240}>
+              <BarChart data={apiUsageData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" vertical={false} />
+                <XAxis dataKey="day" stroke="#52525B" fontSize={11} tickLine={false} axisLine={false} />
+                <YAxis stroke="#52525B" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v/1000}k`} />
+                <Tooltip
+                  contentStyle={{ backgroundColor: '#1A1A24', border: 'none', borderRadius: '12px' }}
+                  formatter={(v) => [v.toLocaleString(), 'Calls']}
+                />
+                <Bar dataKey="calls" fill="#8B5CF6" radius={[8, 8, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </ChartCard>
 
-        {/* User Growth */}
-        <ChartCard title="การเติบโตของผู้ใช้" subtitle="Monthly active users" delay={700}>
-          <ResponsiveContainer width="100%" height={240}>
-            <AreaChart data={userGrowthData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-              <defs>
-                <linearGradient id="usersGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#F7C548" stopOpacity={0.3}/>
-                  <stop offset="95%" stopColor="#F7C548" stopOpacity={0}/>
-                </linearGradient>
-              </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" vertical={false} />
-              <XAxis dataKey="month" stroke="#52525B" fontSize={11} tickLine={false} axisLine={false} />
-              <YAxis stroke="#52525B" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v/1000}k`} />
-              <Tooltip
-                contentStyle={{ backgroundColor: '#1A1A24', border: 'none', borderRadius: '12px' }}
-              />
-              <Area type="monotone" dataKey="users" stroke="#F7C548" strokeWidth={3} fillOpacity={1} fill="url(#usersGrad)" />
-            </AreaChart>
-          </ResponsiveContainer>
-        </ChartCard>
-      </div>
+          {/* User Growth */}
+          <ChartCard title="การเติบโตของผู้ใช้ (Admin)" subtitle="Monthly active users" delay={700}>
+            <ResponsiveContainer width="100%" height={240}>
+              <AreaChart data={userGrowthData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                <defs>
+                  <linearGradient id="usersGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#F7C548" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#F7C548" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" vertical={false} />
+                <XAxis dataKey="month" stroke="#52525B" fontSize={11} tickLine={false} axisLine={false} />
+                <YAxis stroke="#52525B" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v/1000}k`} />
+                <Tooltip
+                  contentStyle={{ backgroundColor: '#1A1A24', border: 'none', borderRadius: '12px' }}
+                />
+                <Area type="monotone" dataKey="users" stroke="#F7C548" strokeWidth={3} fillOpacity={1} fill="url(#usersGrad)" />
+              </AreaChart>
+            </ResponsiveContainer>
+          </ChartCard>
+        </div>
+      )}
 
       {/* Admin: Top Customers Table */}
       {isAdmin && topCustomers && (

@@ -14,12 +14,9 @@ import DataTable from '../components/DataTable';
 import { useAuth } from '../context/AuthContext';
 import {
   revenueData,
-  apiUsageData,
   salesByCategory,
-  userGrowthData,
-  recentTransactions,
   subscriptionStats,
-  customersData,
+  ordersData,
   storeProducts,
 } from '../data/mockData';
 
@@ -176,6 +173,36 @@ function DailyMenuPanel() {
           สั่งออเดอร์มาแล้ว{' '}
           <span className="text-white font-bold">14 รายการ</span>วันนี้
         </span>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <StatsCard 
+            title="ยอดขายวันนี้"
+            value="฿14,250"
+            change="+12.5%"
+            isPositive={true}
+            icon={<CreditCard className="w-5 h-5 text-emerald-400" />}
+          />
+          <StatsCard 
+            title="ออเดอร์ใหม่"
+            value="38 รายการ"
+            change="+8.2%"
+            isPositive={true}
+            icon={<ShoppingCart className="w-5 h-5 text-blue-400" />}
+          />
+          <StatsCard 
+            title="AI ช่วยตอบ"
+            value="852 ครั้ง"
+            change="+15.7%"
+            isPositive={true}
+            icon={<Zap className="w-5 h-5 text-purple-400" />}
+          />
+          <StatsCard 
+            title="อัตราตอบกลับ"
+            value="98.5%"
+            change="+0.4%"
+            isPositive={true}
+            icon={<TrendingUp className="w-5 h-5 text-pink-400" />}
+          />
+        </div>
         <button
           onClick={handleBroadcast}
           className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
@@ -312,21 +339,23 @@ export default function Dashboard({ setSidebarOpen }) {
       <DailyMenuPanel />
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {kpiData.map((kpi, idx) => (
-          <div key={idx} className="hover:scale-[1.02] transition-transform">
-            <StatsCard
-              title={kpi.title}
-              value={kpi.value}
-              change={kpi.change}
-              isPositive={kpi.isPositive}
-              icon={kpi.icon}
-              color={kpi.color}
-              delay={idx * 100}
-            />
-          </div>
-        ))}
-      </div>
+      {isAdmin() && (
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {kpiData.map((kpi, idx) => (
+            <div key={idx} className="hover:scale-[1.02] transition-transform">
+              <StatsCard
+                title={kpi.title}
+                value={kpi.value}
+                change={kpi.change}
+                isPositive={kpi.isPositive}
+                icon={kpi.icon}
+                color={kpi.color}
+                delay={idx * 100}
+              />
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* Referral nudge card — non-admin users only */}
       {!isAdmin() && (
@@ -422,39 +451,31 @@ export default function Dashboard({ setSidebarOpen }) {
         </div>
       )}
 
-      {/* Charts Row 1 */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {/* Revenue Chart */}
-        <ChartCard title="รายได้ & ต้นทุน" subtitle="Monthly performance" delay={400} className="lg:col-span-2">
+      {/* Analytics Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+        <ChartCard title="สถิตยอดขาย & ต้นทุน" subtitle="เปรียบเทียบ 12 เดือนที่ผ่านมา">
           <ResponsiveContainer width="100%" height={300}>
-            <AreaChart data={revenueData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+            <AreaChart data={revenueData}>
               <defs>
-                <linearGradient id="revenueGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#FF6B35" stopOpacity={0.3}/>
+                <linearGradient id="colorRev" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#FF6B35" stopOpacity={0.1}/>
                   <stop offset="95%" stopColor="#FF6B35" stopOpacity={0}/>
                 </linearGradient>
-                <linearGradient id="costGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#8B5CF6" stopOpacity={0.3}/>
-                  <stop offset="95%" stopColor="#8B5CF6" stopOpacity={0}/>
-                </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" vertical={false} />
-              <XAxis dataKey="month" stroke="#52525B" fontSize={11} tickLine={false} axisLine={false} />
-              <YAxis stroke="#52525B" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v/1000}k`} />
-              <Tooltip
-                contentStyle={{ backgroundColor: '#1A1A24', border: 'none', borderRadius: '12px', boxShadow: '0 8px 32px rgba(0,0,0,0.4)' }}
-                labelStyle={{ color: '#A1A1AA' }}
-                formatter={(v) => `฿${v.toLocaleString()}`}
+              <CartesianGrid strokeDasharray="3 3" stroke="#ffffff05" vertical={false} />
+              <XAxis dataKey="month" stroke="#71717a" fontSize={12} tickLine={false} axisLine={false} />
+              <YAxis stroke="#71717a" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(v) => `฿${v/1000}k`} />
+              <Tooltip 
+                contentStyle={{ backgroundColor: '#18181b', border: '1px solid #3f3f46', borderRadius: '12px' }}
+                itemStyle={{ color: '#fff' }}
               />
-              <Legend iconType="circle" wrapperStyle={{ paddingTop: '20px', fontSize: '12px' }} />
-              <Area type="monotone" dataKey="revenue" stroke="#FF6B35" strokeWidth={3} fillOpacity={1} fill="url(#revenueGrad)" name="รายได้" />
-              <Area type="monotone" dataKey="cost" stroke="#8B5CF6" strokeWidth={3} fillOpacity={1} fill="url(#costGrad)" name="ต้นทุน" />
+              <Area type="monotone" dataKey="revenue" name="ยอดขาย" stroke="#FF6B35" strokeWidth={3} fillOpacity={1} fill="url(#colorRev)" />
+              <Area type="monotone" dataKey="cost" name="ต้นทุน" stroke="#8b5cf6" strokeWidth={2} fillOpacity={0} />
             </AreaChart>
           </ResponsiveContainer>
         </ChartCard>
 
-        {/* Donut Chart */}
-        <ChartCard title="ยอดขายตามหมวดหมู่" subtitle="By product category" delay={500}>
+        <ChartCard title="ออเดอร์ตามหมวดหมู่" subtitle="สัดส่วนสินค้าขายดี">
           <ResponsiveContainer width="100%" height={180}>
             <PieChart>
               <Pie
@@ -490,7 +511,7 @@ export default function Dashboard({ setSidebarOpen }) {
       {/* Charts Row 2 */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* API Usage */}
-        <ChartCard title="การใช้งาน API รายสัปดาห์" delay={600}>
+        <ChartCard title="การใช้งาน AI ตอบกลับรายสัปดาห์" delay={600}>
           <ResponsiveContainer width="100%" height={240}>
             <BarChart data={apiUsageData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" vertical={false} />

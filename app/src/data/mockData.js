@@ -147,7 +147,7 @@ export const subscriptionPlans = [
   {
     id: 'starter',
     name: 'Starter',
-    price: 390,
+    price: 490,
     period: 'เดือน',
     description: 'สำหรับผู้เริ่มต้นธุรกิจ',
     features: [
@@ -169,7 +169,7 @@ export const subscriptionPlans = [
   {
     id: 'pro',
     name: 'Pro',
-    price: 590,
+    price: 990,
     period: 'เดือน',
     description: 'สำหรับธุรกิจที่กำลังเติบโต',
     features: [
@@ -193,7 +193,7 @@ export const subscriptionPlans = [
   {
     id: 'enterprise',
     name: 'Enterprise',
-    price: 3900,
+    price: 2990,
     period: 'เดือน',
     description: 'สำหรับองค์กรขนาดใหญ่',
     features: [

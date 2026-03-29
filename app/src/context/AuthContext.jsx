@@ -26,6 +26,23 @@ export function AuthProvider({ children }) {
   }, []);
 
   const login = async (email, password) => {
+    // Demo Bypass for Omise Reviewers
+    if (email.trim().toLowerCase() === 'omise_test@meowchat.store' && password === 'omise1234') {
+      const mockUser = {
+        id: 999,
+        email: 'omise_test@meowchat.store',
+        name: 'Omise Reviewer',
+        role: 'admin',
+        subscription: { plan: 'pro', status: 'active' }
+      };
+      const mockToken = 'mock_token_for_omise';
+      localStorage.setItem('meowchat_token', mockToken);
+      localStorage.setItem('meowchat_user', JSON.stringify(mockUser));
+      setUser(mockUser);
+      setIsAuthenticated(true);
+      return { success: true, user: mockUser };
+    }
+
     const res = await fetch(`${API_URL}/api/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

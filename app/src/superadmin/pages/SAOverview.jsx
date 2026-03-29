@@ -11,8 +11,8 @@ const mrrData = [
 ];
 
 const topCustomers = [
-  { shop: 'ร้านแนน Fashion', plan: 'Enterprise', messages: 45230, revenue: 3900 },
-  { shop: 'คอร์ส Excel Pro', plan: 'Enterprise', messages: 38492, revenue: 3900 },
+  { shop: 'ร้านแนน Fashion', plan: 'Enterprise', messages: 45230, revenue: 2990 },
+  { shop: 'คอร์ส Excel Pro', plan: 'Enterprise', messages: 38492, revenue: 2990 },
   { shop: 'ครัวป้าบอล', plan: 'Pro', messages: 9847, revenue: 590 },
   { shop: 'ขนมไทยป้ามา', plan: 'Pro', messages: 8901, revenue: 590 },
   { shop: 'สปาออย', plan: 'Pro', messages: 7234, revenue: 590 },

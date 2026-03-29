@@ -2,8 +2,8 @@ import { TrendingUp, DollarSign, Users, ArrowUpRight, Rocket } from 'lucide-reac
 
 const planRevenue = [
   { plan: 'Free', color: 'bg-zinc-500', textColor: 'text-zinc-400', borderColor: 'border-zinc-500/30', count: 56, price: 0, total: 0, pct: 0 },
-  { plan: 'Pro ฿590', color: 'bg-orange-500', textColor: 'text-orange-400', borderColor: 'border-orange-500/30', count: 118, price: 590, total: 69620, pct: 58 },
-  { plan: 'Enterprise ฿3,900', color: 'bg-purple-500', textColor: 'text-purple-400', borderColor: 'border-purple-500/30', count: 13, price: 3900, total: 50700, pct: 42 },
+  { plan: 'Pro ฿990', color: 'bg-orange-500', textColor: 'text-orange-400', borderColor: 'border-orange-500/30', count: 118, price: 990, total: 116820, pct: 58 },
+  { plan: 'Enterprise ฿2,990', color: 'bg-purple-500', textColor: 'text-purple-400', borderColor: 'border-purple-500/30', count: 13, price: 2990, total: 38870, pct: 42 },
 ];
 
 const monthlyData = [

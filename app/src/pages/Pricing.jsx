@@ -7,9 +7,9 @@ import { useAuth } from '../context/AuthContext';
 
 // Annual pricing
 const ANNUAL_PRICES = {
-  starter: { monthly: 312, yearly: 3744, savings: 936 },   // 20% off
-  pro: { monthly: 454, yearly: 5448, savings: 1632 },       // 23% off
-  enterprise: { monthly: 2990, yearly: 35880, savings: 10920 }, // 23% off
+  starter: { monthly: 392, yearly: 4704, savings: 1176 },   // 20% off (490 * 0.8)
+  pro: { monthly: 792, yearly: 9504, savings: 2376 },        // 20% off (990 * 0.8)
+  enterprise: { monthly: 2392, yearly: 28704, savings: 7188 }, // 20% off (2990 * 0.8)
 };
 
 // Normalize API response to match mockData shape

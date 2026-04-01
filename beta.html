@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Beta Tester — MeowChat | เป็น 100 คนแรก ทดลองใช้ฟรี 3 เดือน</title>
-<meta name="description" content="สมัครเป็น Beta Tester ของ MeowChat ใช้ฟรี 3 เดือน พร้อม setup ฟรี และ feedback ของคุณจะกำหนด feature ถัดไป">
+<title>MeowChat — บอท AI ตอบแทนคุณ 24/7 ทดลองใช้ฟรี 14 วัน</title>
+<meta name="description" content="MeowChat AI Chatbot สำหรับธุรกิจไทย — ตอบแชท LINE อัตโนมัติ ไม่พลาดลูกค้าแม้แต่รายเดียว ทดลองใช้ฟรี 14 วัน ไม่ต้องใช้บัตรเครดิต">
 <meta name="robots" content="index, follow">
-<meta property="og:title" content="MeowChat Beta — ใช้ฟรี 3 เดือน">
-<meta property="og:description" content="สมัครเป็น 100 คนแรกที่ทดลองใช้ MeowChat AI Chatbot สำหรับธุรกิจไทย">
+<meta property="og:title" content="MeowChat — บอท AI ตอบแทนคุณ 24/7">
+<meta property="og:description" content="ทดลองใช้ฟรี 14 วัน — ตอบแชท LINE อัตโนมัติ สำหรับธุรกิจไทย">
 <meta property="og:url" content="https://meowchat.store/beta">
 <meta property="og:image" content="https://meowchat.store/assets/og-image.png">
 <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -51,104 +51,114 @@ nav{background:rgba(255,253,245,.94);backdrop-filter:blur(18px);
 .btn-p{background:linear-gradient(135deg,#FFD180,#FFB74D);color:#fff;
   box-shadow:0 4px 18px rgba(255,183,77,.4)}
 .btn-p:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 8px 26px rgba(255,183,77,.5)}
-.btn-o{background:#fff;border:2px solid var(--lavs);color:var(--lav)}
-.btn-o:hover{background:var(--lavm);transform:translateY(-2px)}
-
-/* HAMBURGER */
 .hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;z-index:1001}
 .hamburger span{display:block;width:24px;height:2px;background:var(--lav);margin:6px 0;border-radius:2px;transition:.3s}
 @media(max-width:768px){.hamburger{display:block}.nav-links,.nav-inner .btn-p{display:none}}
 
-/* HERO SECTION */
-.beta-hero{position:relative;z-index:1;padding:60px 28px 48px;text-align:center;
-  background:radial-gradient(ellipse at 50% 20%,rgba(177,156,217,.15),transparent 55%),
-             radial-gradient(ellipse at 50% 80%,rgba(255,209,128,.12),transparent 55%),
-             var(--bg)}
+/* HERO */
+.hero{position:relative;z-index:1;padding:72px 28px 64px;text-align:center;
+  background:radial-gradient(ellipse at 50% 20%,rgba(177,156,217,.16),transparent 55%),
+             radial-gradient(ellipse at 50% 85%,rgba(255,209,128,.12),transparent 55%)}
 .paw{position:absolute;font-size:22px;opacity:.08;animation:pf 7s ease-in-out infinite;user-select:none;pointer-events:none}
-.paw:nth-child(1){left:3%;top:12%}.paw:nth-child(2){left:9%;top:70%;animation-delay:2s}
+.paw:nth-child(1){left:3%;top:12%}.paw:nth-child(2){left:9%;top:72%;animation-delay:2s}
 .paw:nth-child(3){right:4%;top:18%;animation-delay:4s}.paw:nth-child(4){right:11%;top:72%;animation-delay:1.5s}
 @keyframes pf{0%,100%{transform:translateY(0)rotate(-12deg)}50%{transform:translateY(-18px)rotate(14deg)}}
-.beta-hero-inner{max-width:640px;margin:0 auto;position:relative;z-index:1}
+.hero-inner{max-width:680px;margin:0 auto;position:relative;z-index:1}
 
-/* PROGRESS BADGE */
-.progress-wrap{margin-bottom:28px}
-.progress-badge{display:inline-flex;align-items:center;gap:10px;
-  padding:10px 24px;border-radius:50px;
-  background:linear-gradient(135deg,var(--lavm),#fff);
-  border:2px solid var(--lavs);color:var(--lav);font-weight:800;font-size:14px;
-  box-shadow:var(--sh);animation:fd .5s ease both}
-@keyframes fd{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:none}}
-.progress-bar-outer{width:260px;height:10px;background:#E8E0F5;border-radius:10px;margin:10px auto 0;overflow:hidden}
-.progress-bar-inner{height:100%;border-radius:10px;
-  background:linear-gradient(90deg,var(--lav),var(--apricot));
-  transition:width 1.2s cubic-bezier(.22,.8,.44,1)}
-.progress-count{font-size:12px;color:var(--gray);font-weight:700;margin-top:6px}
-.count-num{color:var(--lav);font-weight:900;font-size:16px}
+/* REFERRAL BADGE */
+.ref-badge{display:none;align-items:center;gap:10px;justify-content:center;margin-bottom:24px}
+.ref-badge.show{display:flex}
+.ref-badge-pill{background:linear-gradient(135deg,var(--lavm),#fff);
+  border:2px solid var(--lavs);color:var(--lav);font-weight:800;font-size:13px;
+  padding:8px 20px;border-radius:50px;box-shadow:var(--sh)}
 
-/* HEADLINE */
-.beta-hero h1{font-size:clamp(26px,4vw,46px);font-weight:900;line-height:1.2;
-  color:var(--dark);margin-bottom:16px;animation:fu .7s .1s ease both}
-@keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
-.beta-hero h1 em{font-style:normal;
+/* TRIAL BADGE */
+.trial-badge{display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,rgba(255,209,128,.25),rgba(255,183,77,.15));
+  border:2px solid rgba(255,183,77,.35);color:#A05C00;
+  font-weight:800;font-size:13px;padding:8px 20px;border-radius:50px;
+  margin-bottom:28px;box-shadow:0 4px 14px rgba(255,183,77,.2)}
+
+h1{font-size:clamp(28px,5vw,52px);font-weight:900;line-height:1.18;color:var(--dark);margin-bottom:18px}
+h1 em{font-style:normal;
   background:linear-gradient(135deg,var(--apricot),var(--lav));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.beta-sub{font-size:16px;color:var(--gray);line-height:1.75;margin-bottom:32px;
-  animation:fu .7s .2s ease both}
+.hero-sub{font-size:17px;color:var(--gray);line-height:1.75;margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto}
 
-/* BENEFITS */
-.benefits-strip{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;
-  margin-bottom:44px;animation:fu .7s .3s ease both}
-.benefit-item{display:flex;align-items:center;gap:8px;
-  background:#fff;padding:12px 20px;border-radius:18px;
-  box-shadow:var(--sh);border:2px solid var(--lavm);font-size:13px;font-weight:700;color:var(--dark)}
-.benefit-item .b-ico{font-size:20px}
-
-/* FORM SECTION */
-.form-section{position:relative;z-index:1;padding:0 28px 80px}
-.form-card{max-width:600px;margin:0 auto;background:#fff;border-radius:28px;
-  box-shadow:0 12px 48px rgba(142,111,187,.15);border:2px solid var(--lavm);padding:40px 36px}
-@media(max-width:540px){.form-card{padding:28px 20px;border-radius:20px}}
-.form-card h2{font-size:22px;font-weight:900;color:var(--dark);margin-bottom:6px}
-.form-card .form-sub{font-size:13px;color:var(--gray);margin-bottom:28px}
-
-.field{margin-bottom:20px}
-.field label{display:block;font-size:13px;font-weight:800;color:var(--dark);margin-bottom:7px}
-.field label .req{color:var(--apricot)}
-.field input,.field select,.field textarea{
-  width:100%;padding:12px 16px;border:2px solid #EDE8F8;border-radius:14px;
-  font-family:'Nunito',sans-serif;font-size:14px;color:var(--dark);background:#FAFAF8;
-  transition:.25s;outline:none}
-.field input:focus,.field select:focus,.field textarea:focus{
-  border-color:var(--lavs);background:#fff;box-shadow:0 0 0 3px rgba(177,156,217,.15)}
-.field textarea{resize:vertical;min-height:90px;line-height:1.6}
-
-/* CHECKBOXES */
-.cb-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-@media(max-width:400px){.cb-grid{grid-template-columns:1fr}}
-.cb-item{display:flex;align-items:center;gap:9px;
-  padding:10px 14px;border:2px solid #EDE8F8;border-radius:12px;
-  cursor:pointer;transition:.2s;font-size:13px;font-weight:700;color:var(--gray);
-  user-select:none}
-.cb-item:hover{border-color:var(--lavs);color:var(--lav);background:var(--lavm)}
-.cb-item input[type="checkbox"]{width:16px;height:16px;accent-color:var(--lav);cursor:pointer;flex-shrink:0}
-.cb-item.checked{border-color:var(--lav);background:var(--lavm);color:var(--lav)}
-
-/* SUBMIT */
-.btn-submit{width:100%;padding:16px;border-radius:50px;font-size:16px;font-weight:900;
+/* CTA BLOCK */
+.cta-block{margin-bottom:40px}
+.cta-primary{display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:18px 44px;border-radius:60px;font-size:18px;font-weight:900;
   background:linear-gradient(135deg,#FFD180,#FFB74D);color:#fff;
-  box-shadow:0 6px 24px rgba(255,183,77,.45);border:none;cursor:pointer;
-  transition:.3s;margin-top:8px}
-.btn-submit:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(255,183,77,.55)}
-.btn-submit:active{transform:translateY(0)}
-.btn-submit:disabled{opacity:.7;cursor:not-allowed;transform:none}
+  text-decoration:none;box-shadow:0 8px 28px rgba(255,183,77,.5);
+  transition:.3s;border:none;cursor:pointer}
+.cta-primary:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 14px 36px rgba(255,183,77,.55)}
+.cta-note{font-size:12px;color:var(--gray);margin-top:10px;font-weight:600}
 
-/* SUCCESS STATE */
-.success-box{display:none;text-align:center;padding:32px 16px}
-.success-box .s-emoji{font-size:56px;margin-bottom:16px;display:block;
-  animation:pop .4s cubic-bezier(.18,.89,.32,1.28) both}
-@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
-.success-box h3{font-size:22px;font-weight:900;color:var(--lav);margin-bottom:10px}
-.success-box p{font-size:15px;color:var(--gray);line-height:1.7}
+/* QUICK STATS STRIP */
+.stats-strip{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:0}
+.stat-pill{background:#fff;border:2px solid var(--lavm);border-radius:18px;
+  padding:12px 22px;box-shadow:var(--sh);text-align:center}
+.stat-num{font-size:22px;font-weight:900;color:var(--lav)}
+.stat-label{font-size:11px;color:var(--gray);font-weight:700;margin-top:2px}
+
+/* FEATURES */
+.features{position:relative;z-index:1;padding:72px 28px}
+.features-inner{max-width:1080px;margin:0 auto}
+.section-label{text-align:center;margin-bottom:48px}
+.section-label h2{font-size:clamp(22px,3.5vw,36px);font-weight:900;color:var(--dark);margin-bottom:10px}
+.section-label p{font-size:15px;color:var(--gray);max-width:480px;margin:0 auto}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:900px){.feat-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.feat-grid{grid-template-columns:1fr}}
+.feat-card{background:#fff;border-radius:28px;border:2px solid var(--lavm);
+  padding:32px 28px;box-shadow:var(--sh);transition:.3s}
+.feat-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(142,111,187,.18)}
+.feat-ico{font-size:36px;margin-bottom:16px}
+.feat-card h3{font-size:18px;font-weight:900;color:var(--dark);margin-bottom:8px}
+.feat-card p{font-size:14px;color:var(--gray);line-height:1.7}
+.feat-card .feat-stat{margin-top:16px;font-size:13px;font-weight:800;color:var(--lav);
+  background:var(--lavm);padding:6px 14px;border-radius:50px;display:inline-block}
+
+/* ROI SECTION */
+.roi-section{position:relative;z-index:1;padding:0 28px 80px}
+.roi-card{max-width:820px;margin:0 auto;
+  background:linear-gradient(135deg,rgba(255,209,128,.18),rgba(177,156,217,.12));
+  border:2px solid rgba(255,183,77,.3);border-radius:32px;padding:48px 40px;
+  box-shadow:var(--sh2);text-align:center}
+@media(max-width:600px){.roi-card{padding:32px 24px}}
+.roi-card h2{font-size:clamp(20px,3vw,30px);font-weight:900;color:var(--dark);margin-bottom:12px}
+.roi-card .roi-sub{font-size:15px;color:var(--gray);margin-bottom:36px}
+.roi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:36px}
+@media(max-width:560px){.roi-grid{grid-template-columns:1fr}}
+.roi-item{background:#fff;border-radius:20px;padding:24px 16px;box-shadow:var(--sh)}
+.roi-item .roi-num{font-size:32px;font-weight:900;color:var(--apricot)}
+.roi-item .roi-label{font-size:12px;color:var(--gray);font-weight:700;margin-top:4px}
+.roi-vs{font-size:13px;color:var(--gray);font-weight:600;margin-top:28px}
+.roi-vs strong{color:var(--lav)}
+
+/* HOW IT WORKS */
+.how-section{position:relative;z-index:1;padding:0 28px 80px}
+.how-inner{max-width:820px;margin:0 auto}
+.steps{display:flex;flex-direction:column;gap:20px}
+.step{display:flex;align-items:flex-start;gap:20px;
+  background:#fff;border-radius:24px;padding:24px 28px;
+  border:2px solid var(--lavm);box-shadow:var(--sh)}
+.step-num{width:44px;height:44px;border-radius:50%;
+  background:linear-gradient(135deg,var(--lavm),#fff);
+  border:2px solid var(--lavs);display:flex;align-items:center;justify-content:center;
+  font-size:18px;font-weight:900;color:var(--lav);flex-shrink:0}
+.step-content h3{font-size:16px;font-weight:900;color:var(--dark);margin-bottom:5px}
+.step-content p{font-size:14px;color:var(--gray);line-height:1.65}
+
+/* FINAL CTA */
+.final-cta{position:relative;z-index:1;padding:0 28px 100px;text-align:center}
+.final-card{max-width:600px;margin:0 auto;
+  background:linear-gradient(135deg,var(--lavm),rgba(255,209,128,.2));
+  border:2px solid var(--lavs);border-radius:32px;padding:56px 40px;box-shadow:var(--sh)}
+.final-card h2{font-size:clamp(22px,3.5vw,34px);font-weight:900;color:var(--dark);margin-bottom:12px}
+.final-card p{font-size:15px;color:var(--gray);margin-bottom:36px;line-height:1.7}
+.guarantee{font-size:12px;color:var(--gray);margin-top:14px;font-weight:600}
 
 /* FOOTER */
 footer{background:#FFF5EB;color:var(--dark);padding:40px 28px;text-align:center;z-index:1;position:relative}
@@ -159,7 +169,12 @@ footer{background:#FFF5EB;color:var(--dark);padding:40px 28px;text-align:center;
   padding:8px 18px;border-radius:50px;border:2px solid var(--lavs);transition:.25s}
 .ft-back:hover{background:var(--lavm)}
 
-@keyframes countUp{from{transform:scale(1.4);color:var(--apricot)}}
+/* ANIMATIONS */
+@keyframes fd{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:none}}
+@keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.fade-up{animation:fu .7s ease both}
+.fade-up-2{animation:fu .7s .15s ease both}
+.fade-up-3{animation:fu .7s .3s ease both}
 </style>
 </head>
 <body>
@@ -174,210 +189,214 @@ footer{background:#FFF5EB;color:var(--dark);padding:40px 28px;text-align:center;
   <div class="nav-links">
     <a href="/#features">Features</a>
     <a href="/#pricing">ราคา</a>
-    <a href="/beta" class="active">Beta</a>
+    <a href="/beta" class="active">ทดลองใช้</a>
     <a href="/#contact">ติดต่อ</a>
   </div>
-  <a href="/beta" class="btn btn-p">สมัคร Beta 🐾</a>
+  <a href="#" class="btn btn-p" id="navCta">ทดลองใช้ฟรี 🐾</a>
   <button class="hamburger" aria-label="เปิดเมนู" type="button"><span></span><span></span><span></span></button>
 </div>
 </nav>
 
 <!-- HERO -->
-<section class="beta-hero">
+<section class="hero">
   <span class="paw">🐾</span><span class="paw">🐾</span>
   <span class="paw">🐾</span><span class="paw">🐾</span>
-  <div class="beta-hero-inner">
+  <div class="hero-inner">
 
-    <!-- PROGRESS BADGE -->
-    <div class="progress-wrap">
-      <div class="progress-badge">🔥 รับสมัคร Beta Tester</div>
-      <div class="progress-bar-outer">
-        <div class="progress-bar-inner" id="progressBar" style="width:0%"></div>
-      </div>
-      <div class="progress-count">ลงทะเบียนแล้ว <span class="count-num" id="countNum">0</span>/100 คน</div>
+    <!-- Referral badge — shows if ?ref=CODE in URL -->
+    <div class="ref-badge" id="refBadge">
+      <div class="ref-badge-pill" id="refBadgeText">🐾 เพื่อนของคุณแนะนำ MeowChat มา</div>
     </div>
 
-    <h1>เป็น <em>100 คนแรก</em><br>ทดลองใช้ฟรี 3 เดือน</h1>
-    <p class="beta-sub">MeowChat AI Chatbot สำหรับธุรกิจไทย — ตอบแชทอัตโนมัติ ปิดการขาย จัดการออเดอร์<br>คุณช่วยเราทดสอบ เราดูแลคุณฟรีตลอด 3 เดือน</p>
+    <div class="trial-badge fade-up">
+      🎁 ทดลองใช้ฟรี 14 วัน — ไม่ต้องใช้บัตรเครดิต
+    </div>
 
-    <!-- BENEFITS -->
-    <div class="benefits-strip">
-      <div class="benefit-item"><span class="b-ico">🎁</span> ใช้ฟรี 3 เดือน (มูลค่า 8,970 บาท)</div>
-      <div class="benefit-item"><span class="b-ico">⚙️</span> ช่วย setup ฟรี</div>
-      <div class="benefit-item"><span class="b-ico">💡</span> Feedback ของคุณกำหนด feature ถัดไป</div>
+    <h1 class="fade-up-2">บอท AI <em>ตอบแทนคุณ</em><br>ตลอด 24 ชั่วโมง</h1>
+    <p class="hero-sub fade-up-3">
+      ลูกค้าทักมา — บอทตอบทันที ไม่ว่าจะดึก แค่ไหน วันหยุด หรือคุณกำลังง่วน<br>
+      เชื่อม LINE OA ใน 10 นาที ไม่ต้องมีความรู้ด้าน IT
+    </p>
+
+    <div class="cta-block fade-up-3">
+      <a href="#" class="cta-primary" id="heroCta">
+        เริ่มทดลองใช้ฟรี 14 วัน 🐾
+      </a>
+      <p class="cta-note">ไม่ต้องใช้บัตรเครดิต · ยกเลิกได้ทันที · Setup ไม่ถึง 10 นาที</p>
+    </div>
+
+    <div class="stats-strip">
+      <div class="stat-pill">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">ตอบตลอดเวลา</div>
+      </div>
+      <div class="stat-pill">
+        <div class="stat-num">&lt; 2 วิ</div>
+        <div class="stat-label">เวลาตอบกลับ</div>
+      </div>
+      <div class="stat-pill">
+        <div class="stat-num">฿376</div>
+        <div class="stat-label">ต่อเดือน</div>
+      </div>
+      <div class="stat-pill">
+        <div class="stat-num">14 วัน</div>
+        <div class="stat-label">ทดลองฟรี</div>
+      </div>
     </div>
 
   </div>
 </section>
 
-<!-- FORM -->
-<section class="form-section">
-  <div class="form-card">
-    <h2>📋 กรอกข้อมูลเพื่อสมัคร</h2>
-    <p class="form-sub">ใช้เวลาไม่ถึง 2 นาที — ทีมงานจะติดต่อกลับทาง LINE ภายใน 24 ชม.</p>
-
-    <!-- SUCCESS STATE -->
-    <div class="success-box" id="successBox">
-      <span class="s-emoji">🎉</span>
-      <h3>ลงทะเบียนสำเร็จ!</h3>
-      <p>ขอบคุณมากครับ 🙏<br>ทีมงานจะติดต่อกลับทาง LINE ภายใน 24 ชม.<br>เพื่อเริ่ม setup MeowChat ให้ร้านคุณ</p>
+<!-- FEATURES -->
+<section class="features">
+  <div class="features-inner">
+    <div class="section-label">
+      <h2>ทำไมต้อง MeowChat</h2>
+      <p>สร้งมาสำหรับธุรกิจไทยโดยเฉพาะ ไม่ใช่ tools ฝรั่งที่ปรับมาพอดี</p>
     </div>
-
-    <!-- FORM -->
-    <form id="betaForm" novalidate>
-
-      <div class="field">
-        <label for="name">ชื่อ-นามสกุล (หรือชื่อร้าน) <span class="req">*</span></label>
-        <input type="text" id="name" name="name" placeholder="เช่น คุณสมหญิง / ร้านขนมสมใจ" required autocomplete="name">
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="feat-ico">💬</div>
+        <h3>ตอบแชทอัตโนมัติ</h3>
+        <p>บอทตอบคำถามซ้ำๆ — ราคา, สต็อค, ชั่วโมงเปิด, ที่ตั้ง — ให้คุณ focus กับงานที่สำคัญกว่า</p>
+        <span class="feat-stat">ลด workload ได้ถึง 80%</span>
       </div>
-
-      <div class="field">
-        <label for="contact">เบอร์โทร / LINE ID <span class="req">*</span></label>
-        <input type="text" id="contact" name="contact" placeholder="เช่น 0812345678 หรือ @myshop" required autocomplete="tel">
+      <div class="feat-card">
+        <div class="feat-ico">🧠</div>
+        <h3>AI เรียนรู้ร้านคุณ</h3>
+        <p>ป้อนข้อมูลร้าน เมนู ราคา โปรโมชัน — บอทจะตอบเหมือนพนักงานที่รู้จักร้านคุณดี</p>
+        <span class="feat-stat">ตั้งค่าได้ในไม่กี่นาที</span>
       </div>
-
-      <div class="field">
-        <label for="bizType">ประเภทธุรกิจ <span class="req">*</span></label>
-        <select id="bizType" name="bizType" required>
-          <option value="" disabled selected>-- เลือกประเภทธุรกิจ --</option>
-          <option value="food">ร้านอาหาร</option>
-          <option value="fashion">แฟชั่น/เสื้อผ้า</option>
-          <option value="beauty">ความงาม/สปา</option>
-          <option value="baby">สินค้าแม่และเด็ก</option>
-          <option value="electronics">อุปกรณ์อิเล็กทรอนิกส์</option>
-          <option value="other">อื่นๆ</option>
-        </select>
+      <div class="feat-card">
+        <div class="feat-ico">🤝</div>
+        <h3>Handoff อัจฉริยะ</h3>
+        <p>เรื่องซับซ้อนที่บอทตอบไม่ได้ — ส่งต่อให้คุณทันที พร้อมสรุปประวัติการสนทนา</p>
+        <span class="feat-stat">ไม่มีลูกค้าหลุดมืออีกแล้ว</span>
       </div>
+      <div class="feat-card">
+        <div class="feat-ico">📊</div>
+        <h3>Dashboard Real-time</h3>
+        <p>ดูยอดข้อความ อัตราตอบกลับ KPI และ ROI ที่บอทสร้างให้คุณทุกวัน ใน Dashboard เดียว</p>
+        <span class="feat-stat">รู้ทุกอย่างใน 1 หน้าจอ</span>
+      </div>
+      <div class="feat-card">
+        <div class="feat-ico">🔔</div>
+        <h3>แจ้งเตือน LINE</h3>
+        <p>รับสรุปยอดทุกสัปดาห์ แจ้งเตือนเมื่อมีลูกค้ารอ — ตรงใน LINE ของคุณ ไม่ต้องเปิด app ใหม่</p>
+        <span class="feat-stat">ทำงานได้จากมือถือ</span>
+      </div>
+      <div class="feat-card">
+        <div class="feat-ico">🇹🇭</div>
+        <h3>ภาษาไทย 100%</h3>
+        <p>เข้าใจสแลง ภาษาปาก คำย่อ — สื่อสารกับลูกค้าไทยได้ธรรมชาติ ไม่แข็งทื่อ</p>
+        <span class="feat-stat">ออกแบบมาสำหรับคนไทย</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <div class="field">
-        <label>แพลตฟอร์มที่ขาย (เลือกได้หลายอย่าง) <span class="req">*</span></label>
-        <div class="cb-grid" id="platformGrid">
-          <label class="cb-item" id="cb-facebook">
-            <input type="checkbox" name="platform" value="facebook"> Facebook
-          </label>
-          <label class="cb-item" id="cb-line">
-            <input type="checkbox" name="platform" value="line"> LINE
-          </label>
-          <label class="cb-item" id="cb-instagram">
-            <input type="checkbox" name="platform" value="instagram"> Instagram
-          </label>
-          <label class="cb-item" id="cb-shopee">
-            <input type="checkbox" name="platform" value="shopee"> Shopee
-          </label>
-          <label class="cb-item" id="cb-lazada">
-            <input type="checkbox" name="platform" value="lazada"> Lazada
-          </label>
-          <label class="cb-item" id="cb-tiktok">
-            <input type="checkbox" name="platform" value="tiktok"> TikTok Shop
-          </label>
+<!-- ROI CALCULATOR -->
+<section class="roi-section">
+  <div class="roi-card">
+    <h2>💰 MeowChat คุ้มแค่ไหน?</h2>
+    <p class="roi-sub">ลองคิดดู ถ้าบอทตอบแทนคุณ 500 ข้อความต่อเดือน</p>
+    <div class="roi-grid">
+      <div class="roi-item">
+        <div class="roi-num">500</div>
+        <div class="roi-label">ข้อความที่บอทตอบแทน</div>
+      </div>
+      <div class="roi-item">
+        <div class="roi-num">25 ชม.</div>
+        <div class="roi-label">เวลาที่ประหยัด<br>(≈ 3 นาที/ข้อความ)</div>
+      </div>
+      <div class="roi-item">
+        <div class="roi-num">฿3,750</div>
+        <div class="roi-label">มูลค่าที่ประหยัด<br>(vs ค่าแรง ฿150/ชม.)</div>
+      </div>
+    </div>
+    <div style="font-size:26px;font-weight:900;color:var(--lav);margin-bottom:8px">
+      คุ้มกว่าค่าสมัคร <span style="color:var(--apricot)">10x</span>
+    </div>
+    <p class="roi-vs">ค่าสมัคร MeowChat Pro เพียง <strong>฿376/เดือน</strong> — เทียบกับมูลค่าที่ได้รับ ฿3,750</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="how-inner">
+    <div class="section-label">
+      <h2>เริ่มต้นใน 3 ขั้นตอน</h2>
+      <p>Setup เสร็จใน 10 นาที บอทพร้อมตอบลูกค้าได้เลย</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>สมัครและสร้างบอท</h3>
+          <p>กรอกชื่อร้าน ประเภทธุรกิจ — ระบบสร้างบอทพร้อมตั้งค่าเริ่มต้นให้อัตโนมัติ ใช้เวลาไม่เกิน 2 นาที</p>
         </div>
       </div>
-
-      <div class="field">
-        <label for="orderVolume">จำนวนออเดอร์/วัน <span class="req">*</span></label>
-        <select id="orderVolume" name="orderVolume" required>
-          <option value="" disabled selected>-- เลือกจำนวนออเดอร์ --</option>
-          <option value="lt10">น้อยกว่า 10 ออเดอร์</option>
-          <option value="10-50">10 – 50 ออเดอร์</option>
-          <option value="50-100">50 – 100 ออเดอร์</option>
-          <option value="100+">มากกว่า 100 ออเดอร์</option>
-        </select>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>เชื่อม LINE OA</h3>
+          <p>นำ Channel Access Token จาก LINE Developers มาวาง — บอทเชื่อมกับ LINE OA ของคุณทันที ไม่ต้องตั้งค่า server เอง</p>
+        </div>
       </div>
-
-      <div class="field">
-        <label for="problem">ปัญหาหลักที่เจอตอนนี้ <span class="req">*</span></label>
-        <textarea id="problem" name="problem" rows="4"
-          placeholder="เช่น ตอบแชทไม่ทัน พลาดออเดอร์กลางคืน ต้องการรายงานยอดขาย ฯลฯ"
-          required></textarea>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>ป้อนข้อมูลร้าน แล้วเปิดรับลูกค้า</h3>
+          <p>เพิ่มเมนู ราคา โปรโมชัน ตารางเวลาเปิด-ปิด — บอทจะตอบลูกค้าโดยใช้ข้อมูลของคุณเป็น Knowledge Base</p>
+        </div>
       </div>
+    </div>
+  </div>
+</section>
 
-      <button type="submit" class="btn-submit" id="submitBtn">
-        สมัครเป็น Beta Tester 🐾
-      </button>
-
-    </form>
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="final-card">
+    <div style="font-size:48px;margin-bottom:16px">🐱</div>
+    <h2>พร้อมให้บอทช่วยคุณแล้วหรือยัง?</h2>
+    <p>ทดลองใช้ฟรี 14 วัน — ไม่ต้องใช้บัตรเครดิต ไม่มีค่าใช้จ่ายซ่อน<br>ยกเลิกได้ทุกเมื่อ ไม่มีข้อผูกมัด</p>
+    <a href="#" class="cta-primary" id="finalCta" style="font-size:16px;padding:16px 40px">
+      เริ่มทดลองใช้ฟรี 14 วัน 🐾
+    </a>
+    <p class="guarantee">🔒 ปลอดภัย · ไม่ต้องใช้บัตรเครดิต · Support ภาษาไทย</p>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <a href="/" class="ft-back">← กลับหน้าหลัก</a>
-  <div class="ft-copy">© 2024 <strong>MeowChat</strong> by Mawsom Company · AI Chatbot สำหรับธุรกิจไทย</div>
+  <div class="ft-copy">© 2025 <strong>MeowChat</strong> by Mawsom Company · AI Chatbot สำหรับธุรกิจไทย</div>
 </footer>
 
 <script>
-// Animate count from 0 to 23
+// Read ?ref=CODE from URL — attach to all CTAs
 (function() {
-  const MOCK_COUNT = 23;
-  const MAX = 100;
-  const numEl = document.getElementById('countNum');
-  const barEl = document.getElementById('progressBar');
+  const params = new URLSearchParams(window.location.search);
+  const ref = params.get('ref') || '';
+  const base = 'https://my.meowchat.store/onboarding';
+  const url = ref ? `${base}?ref=${encodeURIComponent(ref)}` : base;
 
-  // Short delay so animation is visible
-  let current = 0;
-  const step = () => {
-    current++;
-    numEl.textContent = current;
-    if (current < MOCK_COUNT) requestAnimationFrame(step);
-  };
-  setTimeout(() => {
-    requestAnimationFrame(step);
-    // Animate bar
-    barEl.style.width = (MOCK_COUNT / MAX * 100) + '%';
-  }, 400);
-})();
-
-// Checkbox visual state
-document.querySelectorAll('.cb-item input[type="checkbox"]').forEach(cb => {
-  cb.addEventListener('change', () => {
-    cb.closest('.cb-item').classList.toggle('checked', cb.checked);
+  // Update all CTA links
+  ['navCta', 'heroCta', 'finalCta'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.href = url;
   });
-});
 
-// Form submit
-document.getElementById('betaForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-
-  const name = document.getElementById('name').value.trim();
-  const contact = document.getElementById('contact').value.trim();
-  const bizType = document.getElementById('bizType').value;
-  const orderVolume = document.getElementById('orderVolume').value;
-  const problem = document.getElementById('problem').value.trim();
-  const platforms = Array.from(document.querySelectorAll('input[name="platform"]:checked')).map(c => c.value);
-
-  // Basic validation
-  if (!name || !contact || !bizType || !orderVolume || !problem) {
-    alert('กรุณากรอกข้อมูลที่มีเครื่องหมาย * ให้ครบ');
-    return;
+  // Show referral badge if ref present
+  if (ref) {
+    const badge = document.getElementById('refBadge');
+    const text = document.getElementById('refBadgeText');
+    if (badge && text) {
+      text.textContent = `🐾 เพื่อนของคุณแนะนำ MeowChat — โค้ด ${ref}`;
+      badge.classList.add('show');
+    }
   }
-  if (platforms.length === 0) {
-    alert('กรุณาเลือกแพลตฟอร์มที่ขายอย่างน้อย 1 อย่าง');
-    return;
-  }
-
-  const btn = document.getElementById('submitBtn');
-  btn.disabled = true;
-  btn.textContent = 'กำลังบันทึก...';
-
-  // Save to localStorage
-  const entry = { name, contact, bizType, platforms, orderVolume, problem, createdAt: new Date().toISOString() };
-  const existing = JSON.parse(localStorage.getItem('meowchat_beta_signups') || '[]');
-  existing.push(entry);
-  localStorage.setItem('meowchat_beta_signups', JSON.stringify(existing));
-
-  // Show success
-  setTimeout(() => {
-    document.getElementById('betaForm').style.display = 'none';
-    const successBox = document.getElementById('successBox');
-    successBox.style.display = 'block';
-
-    // Bump counter
-    const numEl = document.getElementById('countNum');
-    const newCount = parseInt(numEl.textContent, 10) + 1;
-    numEl.textContent = newCount;
-    document.getElementById('progressBar').style.width = (newCount / 100 * 100) + '%';
-  }, 600);
-});
+})();
 </script>
 </body>
 </html>
